@@ -4,9 +4,8 @@ import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import * as Icons from "lucide-react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { auth } from "@/lib/firebase/config";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
 import { useAuth } from "@/lib/firebase/AuthContext";
 
 export default function AuthPage() {
@@ -17,13 +16,15 @@ export default function AuthPage() {
   const [error, setError] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const searchParams = useSearchParams();
+  const { user, loading, login, register } = useAuth();
 
   useEffect(() => {
     if (user && !loading) {
-      router.push("/");
+      const redirect = searchParams.get("redirect");
+      router.push(redirect || "/");
     }
-  }, [user, loading, router]);
+  }, [user, loading, router, searchParams]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,10 +38,10 @@ export default function AuthPage() {
 
     try {
       if (isLogin) {
-        await signInWithEmailAndPassword(auth, email, password);
+        await login(email, password);
       } else {
         // Here we could also save the name to Firestore
-        await createUserWithEmailAndPassword(auth, email, password);
+        await register(email, password);
       }
       // redirect is handled by useEffect
     } catch (err: any) {

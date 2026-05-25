@@ -1,14 +1,17 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import { useRouter } from "next/navigation";
+import { collection, addDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase/config";
 
 export default function CheckoutPage() {
   const router = useRouter();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const items = [
     { n: 'Pancake Picknick Box', v: 'Erdbeere · Banane · Schoko', q: 1, p: 9.80, ic: Icons.Package },
@@ -16,6 +19,24 @@ export default function CheckoutPage() {
   ];
   
   const total = items.reduce((s, i) => s + i.q * i.p, 0);
+
+  const handleCheckout = async () => {
+    setIsSubmitting(true);
+    try {
+      await addDoc(collection(db, "orders"), {
+        items: items.map(it => ({ name: it.n, variant: it.v, quantity: it.q, price: it.p })),
+        total,
+        status: "pending",
+        createdAt: new Date().toISOString(),
+      });
+      router.push("/pickup-time");
+    } catch (err) {
+      console.error("Error creating order:", err);
+      alert("Fehler bei der Bestellung. Bitte versuche es erneut.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#f5efe8] flex flex-col">
@@ -95,12 +116,14 @@ export default function CheckoutPage() {
       </div>
 
       <div className="p-[14px_20px_20px] bg-[#f5efe8] border-t border-[#eedfcc]">
-        <Link href="/pickup-time" className="block w-full">
-          <PrimaryButton className="w-full flex justify-center items-center gap-2">
-            Weiter zur Abholung
-            <Icons.ArrowRight size={18} />
-          </PrimaryButton>
-        </Link>
+        <PrimaryButton 
+          className="w-full flex justify-center items-center gap-2" 
+          onClick={handleCheckout} 
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Wird verarbeitet..." : "Weiter zur Abholung"}
+          <Icons.ArrowRight size={18} />
+        </PrimaryButton>
         <div className="text-center font-nunito text-[11px] text-[#7a5a52] mt-2 font-bold">
           Zahlung erfolgt vor Ort im Laden
         </div>

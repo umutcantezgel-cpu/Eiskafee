@@ -28,7 +28,8 @@ export function PrimaryButton({
   href,
   large = false, 
   sectionBg = '#f5efe8', 
-  className = '' 
+  className = '',
+  disabled = false
 }: {
   children: React.ReactNode;
   onClick?: (e?: any) => void;
@@ -36,6 +37,7 @@ export function PrimaryButton({
   large?: boolean;
   sectionBg?: string;
   className?: string;
+  disabled?: boolean;
 }) {
   const [hovered, setHovered] = useState(false);
   const [bursts, setBursts] = useState<any[]>([]);
@@ -47,6 +49,7 @@ export function PrimaryButton({
   }, [bursts]);
 
   const handleClick = (e: any) => {
+    if (disabled) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const ox = (e.clientX ?? rect.left + rect.width / 2) - rect.left;
     const oy = (e.clientY ?? rect.top + rect.height / 2) - rect.top;
@@ -57,16 +60,17 @@ export function PrimaryButton({
   const inner = (
     <motion.button
       onClick={!href ? handleClick : undefined}
+      disabled={disabled}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.92, scaleX: 1.06, scaleY: 0.84 }}
+      whileHover={disabled ? {} : { scale: 1.05 }}
+      whileTap={disabled ? {} : { scale: 0.92, scaleX: 1.06, scaleY: 0.84 }}
       transition={{ type: 'spring', stiffness: 600, damping: 15, mass: 1 }}
-      className={`relative inline-flex items-center justify-center font-nunito font-extrabold text-white bg-[#CC624C] border-none rounded-full cursor-pointer overflow-visible ${
+      className={`relative inline-flex items-center justify-center font-nunito font-extrabold text-white bg-[#CC624C] border-none rounded-full overflow-visible ${
         large ? 'px-9 py-[15px] text-[0.96rem]' : 'px-[26px] py-[11px] text-[0.88rem]'
-      } ${className}`}
+      } ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'} ${className}`}
       style={{
-        boxShadow: hovered ? '0 8px 28px rgba(204,98,76,0.34)' : '0 3px 12px rgba(204,98,76,0.18)',
+        boxShadow: hovered && !disabled ? '0 8px 28px rgba(204,98,76,0.34)' : '0 3px 12px rgba(204,98,76,0.18)',
       }}
     >
       <span className="relative z-10 flex items-center gap-2">{children}</span>
