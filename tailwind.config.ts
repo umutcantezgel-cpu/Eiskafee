@@ -17,6 +17,8 @@ const config: Config = {
         bark: "var(--dark)",
         "bark-mid": "var(--dark-mid)",
         "bark-soft": "var(--dark-soft)",
+        mint: "var(--mint)",
+        "mint-dark": "var(--mint-dark)",
       },
       fontFamily: {
         display: ["var(--font-calistoga)"],

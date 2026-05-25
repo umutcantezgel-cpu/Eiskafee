@@ -23,8 +23,8 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Hey Fede! Dessertbar & Café Wetzlar",
-  description: "Frisch. Selbstgemacht. Mit Liebe. Dessertbar & Café in Wetzlar",
+  title: "Hey Fedee | Premium Waffeln & Desserts",
+  description: "Entdecke bei Hey Fedee in Wetzlar frisch zubereitete Premium Waffeln und hausgemachte Desserts. Genieße Qualität mit Liebe zum Detail.",
 };
 
 export default function RootLayout({

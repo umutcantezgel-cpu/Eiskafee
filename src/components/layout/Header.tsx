@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu as MenuIcon, X as XIcon, ChevronRight, ShoppingBag } from "lucide-react";
+import { Menu as MenuIcon, X as XIcon, ChevronRight, ShoppingBag, User } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 import { useStore } from "@/store/useStore";
@@ -96,6 +96,13 @@ export function Header() {
               onMouseLeave={e => e.currentTarget.style.background = '#CC624C'}>
               Jetzt bestellen
             </TransitionLink>
+
+            {/* Login / Profile Button */}
+            <Link href="/auth" style={{ textDecoration: 'none' }}>
+              <div className="w-10 h-10 rounded-full bg-[#f5efe8] flex items-center justify-center text-[#CC624C] hover:bg-[#eedfcc] transition-colors cursor-pointer">
+                <User size={20} strokeWidth={2.5} />
+              </div>
+            </Link>
 
             {/* Cart Button */}
             <button 

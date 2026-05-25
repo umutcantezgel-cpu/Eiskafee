@@ -56,8 +56,8 @@ export default function HomePage() {
 
             {/* Google rating pill */}
             <div className="inline-flex items-center gap-2.5 mt-8 bg-white/50 px-4 py-2.5 rounded-full backdrop-blur-md">
-              <div className="flex gap-0.5">
-                {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="#CC624C" color="#CC624C" />)}
+              <div className="flex gap-0.5" aria-label="5 von 5 Sternen">
+                {[1,2,3,4,5].map(i => <Star key={i} size={14} fill="#CC624C" color="#CC624C" aria-hidden="true" />)}
               </div>
               <span className="font-nunito font-black text-[0.87rem] text-[#2d1f19]">
                 {config.rating}/5 auf Google
@@ -87,7 +87,7 @@ export default function HomePage() {
 
         {/* Wave to cream */}
         <div className="absolute bottom-0 left-0 right-0 leading-none">
-          <svg viewBox="0 0 1440 58" xmlns="http://www.w3.org/2000/svg" className="block w-full h-[58px]" preserveAspectRatio="none">
+          <svg viewBox="0 0 1440 58" xmlns="http://www.w3.org/2000/svg" className="block w-full h-[58px]" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,29 C240,57 480,1 720,29 C960,57 1200,1 1440,29 L1440,58 L0,58 Z" fill="#f5efe8" />
           </svg>
         </div>
@@ -146,7 +146,7 @@ export default function HomePage() {
       {/* ─── Bestsellers ───────────────────────────────────────────────────── */}
       <section className="bg-[#eedfcc] py-20 relative">
         <div className="absolute top-0 left-0 right-0 leading-none">
-          <svg viewBox="0 0 1440 44" className="block w-full h-[44px]" preserveAspectRatio="none">
+          <svg viewBox="0 0 1440 44" className="block w-full h-[44px]" preserveAspectRatio="none" aria-hidden="true">
             <path d="M0,22 C360,44 720,0 1080,22 C1260,33 1380,18 1440,22 L1440,0 L0,0 Z" fill="#eedfcc" />
           </svg>
         </div>
@@ -220,9 +220,9 @@ export default function HomePage() {
           <div className="flex gap-4 overflow-x-auto pb-2 scroll-hide snap-x snap-mandatory">
             {reviews.map((r: any) => (
               <div key={r.id} className="bg-[#f5efe8] rounded-[22px] p-6 min-w-[284px] max-w-[320px] shrink-0 snap-start shadow-[0_4px_18px_rgba(45,31,25,0.07)]">
-                <div className="flex gap-0.5 mb-3">
+                <div className="flex gap-0.5 mb-3" aria-label={`${r.stars} von 5 Sternen`}>
                   {Array(r.stars).fill(0).map((_,j) => (
-                    <Star key={j} size={13} fill="#CC624C" color="#CC624C" />
+                    <Star key={j} size={13} fill="#CC624C" color="#CC624C" aria-hidden="true" />
                   ))}
                 </div>
                 <p className="font-nunito text-[0.86rem] text-[#5c3d35] leading-[1.65] mb-4 italic">„{r.text}"</p>

@@ -1,18 +1,53 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isAdmin() {
+      // Assuming admin status is stored in custom auth claims.
+      return isAuthenticated() && request.auth.token.admin == true;
+    }
+
     match /menu_items/{document=**} {
       allow read: if true;
-      allow write: if false; // Only admin can write
+      allow write: if isAdmin(); // Updated to use isAdmin()
     }
     match /orders/{orderId} {
       allow create: if true;
       allow read: if true;
-      allow update, delete: if false;
+      allow update, delete: if isAdmin(); // Updated to use isAdmin()
     }
     match /support_messages/{messageId} {
       allow create: if true; // Anyone can send a message
-      allow read, update, delete: if false; // Only admin can read
+      allow read, update, delete: if isAdmin(); // Updated to use isAdmin()
+    }
+
+    // --- New Collections (Master Vision Phase 1) ---
+
+    match /loyalty_points/{docId} {
+      // Owner (assumes userId field exists in document) or Admin
+      allow read: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
+      allow write: if isAdmin();
+    }
+
+    match /promo_codes/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    match /reviews/{docId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if isAdmin();
+    }
+
+    match /store_settings/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
     }
   }
 }
