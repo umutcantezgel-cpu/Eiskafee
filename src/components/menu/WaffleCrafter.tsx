@@ -3,6 +3,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence, useMotionValue, animate, useAnimation } from "framer-motion";
 import * as Icons from "lucide-react";
+import { useStore } from "@/store/useStore";
 
 const WAFFLE_INVENTORY = [
   { id: 'eis-vanille',  name: 'Vanille-Eis',     price: 1.50, icon: 'Droplets',  color: '#f5efe8' },
@@ -124,6 +125,7 @@ const AnimatedPrice = ({ value }: { value: number }) => {
 };
 
 export function WaffleCrafter() {
+  const { addToCart } = useStore();
   const [active, setActive] = useState<any[]>([]);
   const plateRef = useRef<HTMLDivElement>(null);
   const controls = useAnimation();
@@ -138,10 +140,15 @@ export function WaffleCrafter() {
   const onDrop = (item: any, point: { x: number; y: number }) => {
     const r = plateRef.current?.getBoundingClientRect();
     if (!r) return;
-    if (point.x < r.left || point.x > r.right || point.y < r.top || point.y > r.bottom) return;
+    const plateLeft = r.left + window.scrollX;
+    const plateTop = r.top + window.scrollY;
+    const plateRight = plateLeft + r.width;
+    const plateBottom = plateTop + r.height;
+
+    if (point.x < plateLeft || point.x > plateRight || point.y < plateTop || point.y > plateBottom) return;
     
-    const localX = point.x - r.left - r.width / 2;
-    const localY = point.y - r.top - r.height / 2;
+    const localX = point.x - plateLeft - r.width / 2;
+    const localY = point.y - plateTop - r.height / 2;
     
     setActive(prev => [...prev, {
       instanceId: `${item.id}-${Date.now()}-${Math.random()}`,
@@ -161,6 +168,17 @@ export function WaffleCrafter() {
   };
 
   const reset = () => setActive([]);
+  
+  const handleAddToCart = () => {
+    const desc = active.length > 0 ? `Mit ${active.map(t => t.name).join(', ')}` : 'Basis Waffel';
+    addToCart({
+      id: `waffle-${Date.now()}`,
+      name: 'Eigene Bubble Waffel',
+      price: total.toFixed(2).replace('.', ','),
+      desc: desc
+    });
+    reset();
+  };
 
   return (
     <div style={{ marginTop: 14 }}>
@@ -175,8 +193,8 @@ export function WaffleCrafter() {
       <Plate active={active} plateRef={plateRef} controls={controls} reduced={reduced} />
 
       <div style={{
-        display: 'flex', gap: 12, overflowX: 'auto', padding: '20px 4px 6px',
-        scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch', marginTop: 18,
+        display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center', padding: '20px 4px 6px',
+        marginTop: 18,
       }}>
         {WAFFLE_INVENTORY.map(item => <InventoryItem key={item.id} item={item} onDrop={onDrop}/>)}
       </div>
@@ -185,13 +203,23 @@ export function WaffleCrafter() {
         <p style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.78rem', color: '#9a7060', flex: '1 1 200px', lineHeight: 1.55 }}>
           Zieh die Toppings auf deine Waffel — und sieh deine Kreation entstehen. Nur eine Vorschau!
         </p>
-        <button
-          onClick={reset}
-          style={{
-            background: '#eedfcc', color: '#CC624C', border: 'none', borderRadius: 50,
-            padding: '10px 22px', fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, fontSize: '0.82rem', cursor: 'pointer',
-          }}
-        >🗑️ Zurücksetzen</button>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <button
+            onClick={reset}
+            style={{
+              background: '#eedfcc', color: '#CC624C', border: 'none', borderRadius: 50,
+              padding: '10px 22px', fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, fontSize: '0.82rem', cursor: 'pointer',
+            }}
+          >🗑️ Zurücksetzen</button>
+          <button
+            onClick={handleAddToCart}
+            style={{
+              background: '#CC624C', color: '#fff', border: 'none', borderRadius: 50,
+              padding: '10px 22px', fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, fontSize: '0.82rem', cursor: 'pointer',
+              boxShadow: '0 4px 12px rgba(204,98,76,0.25)'
+            }}
+          >In den Warenkorb</button>
+        </div>
       </div>
     </div>
   );

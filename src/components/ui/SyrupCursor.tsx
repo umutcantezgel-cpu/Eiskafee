@@ -79,10 +79,8 @@ export function SyrupCursor() {
   return (
     <>
       <style>{`
-        @media (pointer: fine) {
-          * { cursor: none !important; }
-          a, button, [role="button"] { cursor: none !important; }
-        }
+        * { cursor: none !important; }
+        a, button, [role="button"] { cursor: none !important; }
       `}</style>
 
       <svg width="0" height="0" style={{ position: 'absolute' }}>

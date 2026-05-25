@@ -5,6 +5,7 @@ interface CartItem {
   name: string;
   price: string;
   quantity: number;
+  desc?: string;
 }
 
 interface AppState {

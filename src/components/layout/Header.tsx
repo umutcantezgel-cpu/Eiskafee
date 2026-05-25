@@ -3,14 +3,16 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu as MenuIcon, X as XIcon, ChevronRight } from "lucide-react";
+import { Menu as MenuIcon, X as XIcon, ChevronRight, ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/ui/Logo";
 import { TransitionLink } from "@/components/ui/TransitionLink";
+import { useStore } from "@/store/useStore";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { cart, toggleCart } = useStore();
   const clickCountRef = React.useRef(0);
   const lastClickRef = React.useRef(0);
 
@@ -94,6 +96,19 @@ export function Header() {
               onMouseLeave={e => e.currentTarget.style.background = '#CC624C'}>
               Jetzt bestellen
             </TransitionLink>
+
+            {/* Cart Button */}
+            <button 
+              onClick={toggleCart}
+              className="relative w-10 h-10 rounded-full bg-[#f5efe8] flex items-center justify-center text-[#CC624C] hover:bg-[#eedfcc] transition-colors border-none cursor-pointer"
+            >
+              <ShoppingBag size={20} strokeWidth={2.5} />
+              {cart.length > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-[#CC624C] text-white text-[10px] font-black rounded-full flex items-center justify-center border-2 border-[#f5efe8]">
+                  {cart.length}
+                </span>
+              )}
+            </button>
 
             {/* Hamburger — mobile */}
             <button className="md:hidden flex flex-col gap-[5px] bg-transparent border-none cursor-pointer p-2"

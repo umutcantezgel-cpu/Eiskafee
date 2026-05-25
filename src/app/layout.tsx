@@ -8,6 +8,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { SyrupCursor } from "@/components/ui/SyrupCursor";
 import { AchievementBanner } from "@/components/ui/AchievementBanner";
 import { TransitionProvider } from "@/components/ui/TransitionProvider";
+import Script from "next/script";
 import "./globals.css";
 
 const calistoga = Calistoga({
@@ -36,6 +37,9 @@ export default function RootLayout({
       lang="de"
       className={`${calistoga.variable} ${nunito.variable} h-full antialiased`}
     >
+      <head>
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" strategy="beforeInteractive" />
+      </head>
       <body className="min-h-full flex flex-col m-0 p-0 overflow-x-hidden font-sans">
         <AuthContextProvider>
           <TransitionProvider>

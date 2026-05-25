@@ -96,9 +96,9 @@ export function Footer() {
           </p>
           <div style={{ display: 'flex', gap: 18 }}>
             {[
-              ['Impressum', '/legal/impressum'],
-              ['Datenschutz', '/legal/datenschutz'],
-              ['AGB', '/legal/agb']
+              ['Impressum', '/legal#impressum'],
+              ['Datenschutz', '/legal#datenschutz'],
+              ['AGB', '/legal#agb']
             ].map(([t, href]) => (
               <TransitionLink key={t} href={href} style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.76rem', color: '#9a7060', textDecoration: 'none' }}>{t}</TransitionLink>
             ))}

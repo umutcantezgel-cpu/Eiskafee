@@ -6,7 +6,7 @@ import { collection, getDocs } from "firebase/firestore";
 import { HF_DATA } from "@/lib/data";
 import { WaffleCrafter } from "@/components/menu/WaffleCrafter";
 
-const ProductCard = ({ item, catIcon }: { item: any, catIcon: string }) => {
+const ProductCard = ({ item, catIcon, onAdd }: { item: any, catIcon: string, onAdd: (item: any) => void }) => {
   const LIcon = (Icons as any)[catIcon] || Icons.Sparkles;
 
   return (
@@ -31,16 +31,24 @@ const ProductCard = ({ item, catIcon }: { item: any, catIcon: string }) => {
         )}
       </div>
 
-      {item.tag && (
-        <div className="bg-[#eedfcc] text-[#CC624C] font-nunito font-black text-[0.64rem] px-[11px] py-1 rounded-full shrink-0 tracking-[0.5px]">
-          {item.tag}
-        </div>
-      )}
+      <div className="flex flex-col items-end justify-between h-full py-1">
+        {item.tag && (
+          <div className="bg-[#eedfcc] text-[#CC624C] font-nunito font-black text-[0.64rem] px-[11px] py-1 rounded-full shrink-0 tracking-[0.5px]">
+            {item.tag}
+          </div>
+        )}
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAdd(item); }}
+          className="mt-auto w-8 h-8 rounded-full bg-[#CC624C] flex items-center justify-center text-white hover:bg-[#b5523d] transition-colors shadow-sm shrink-0"
+        >
+          <Icons.Plus size={18} strokeWidth={2.5} />
+        </button>
+      </div>
     </div>
   );
 };
 
-const BoxCard = ({ item }: { item: any }) => {
+const BoxCard = ({ item, onAdd }: { item: any, onAdd: (item: any) => void }) => {
   return (
     <div className="group bg-white border-2 border-dashed border-[#CC624C] rounded-xl p-[20px_22px] relative transition-all duration-[280ms] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(204,98,76,0.18)] shadow-[0_2px_12px_rgba(45,31,25,0.06)] hover:bg-[#fef8f5] mx-3">
       {/* Perforation holes */}
@@ -60,17 +68,28 @@ const BoxCard = ({ item }: { item: any }) => {
         <div className="flex-1">
           <h3 className="font-calistoga text-[1.08rem] text-[#2d1f19] mb-1.5">{item.name}</h3>
           <p className="font-nunito text-[0.78rem] text-[#7a5a52] leading-[1.55] mb-2">{item.desc}</p>
-          <span className="font-calistoga text-[1.3rem] text-[#CC624C]">{item.price}</span>
+          <div className="flex items-center justify-between mt-3">
+            <span className="font-calistoga text-[1.3rem] text-[#CC624C]">{item.price}</span>
+            <button
+              onClick={(e) => { e.preventDefault(); e.stopPropagation(); onAdd(item); }}
+              className="px-4 py-2 rounded-full bg-[#CC624C] flex items-center justify-center text-white font-nunito font-bold text-xs hover:bg-[#b5523d] transition-colors shadow-[0_4px_12px_rgba(204,98,76,0.25)]"
+            >
+              Hinzufügen
+            </button>
+          </div>
         </div>
       </div>
     </div>
   );
 };
 
+import { useStore } from "@/store/useStore";
+
 export function MenuClient({ categories: initialCategories, menu: initialMenu }: { categories: any[], menu: any }) {
   const [categories, setCategories] = useState(initialCategories);
   const [menuData, setMenuData] = useState(initialMenu);
   
+  const { addToCart } = useStore();
   const [activeId, setActiveId] = useState('boxen');
   const tabsRef = useRef<HTMLDivElement>(null);
   const [sticky, setSticky] = useState(false);
@@ -193,8 +212,8 @@ export function MenuClient({ categories: initialCategories, menu: initialMenu }:
           ) : (
             data.items?.map((item: any) =>
               item.ticket
-                ? <BoxCard key={item.id} item={item} />
-                : <ProductCard key={item.id} item={item} catIcon={cat?.icon} />
+                ? <BoxCard key={item.id} item={item} onAdd={addToCart} />
+                : <ProductCard key={item.id} item={item} catIcon={cat?.icon} onAdd={addToCart} />
             )
           )}
         </div>
