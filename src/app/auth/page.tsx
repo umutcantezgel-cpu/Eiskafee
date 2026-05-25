@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Suspense } from "react";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import * as Icons from "lucide-react";
@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { auth } from "@/lib/firebase/config";
 import { useAuth } from "@/lib/firebase/AuthContext";
 
-export default function AuthPage() {
+function AuthForm() {
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -40,10 +40,8 @@ export default function AuthPage() {
       if (isLogin) {
         await login(email, password);
       } else {
-        // Here we could also save the name to Firestore
         await register(email, password);
       }
-      // redirect is handled by useEffect
     } catch (err: any) {
       setError(err.message || "Ein Fehler ist aufgetreten.");
     } finally {
@@ -51,7 +49,7 @@ export default function AuthPage() {
     }
   };
 
-  if (loading || user) return null; // Prevent flicker
+  if (loading || user) return null;
 
   return (
     <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center p-6 relative overflow-hidden">
@@ -157,5 +155,13 @@ export default function AuthPage() {
         </div>
       </FadeUp>
     </div>
+  );
+}
+
+export default function AuthPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#f5efe8] flex items-center justify-center"><Icons.Loader2 className="animate-spin text-[#CC624C]" size={32} /></div>}>
+      <AuthForm />
+    </Suspense>
   );
 }
