@@ -3,9 +3,18 @@ import React, { useState } from "react";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import * as Icons from "lucide-react";
+import { db } from "@/lib/firebase/config";
+import { collection, addDoc } from "firebase/firestore";
 
 export default function SupportPage() {
   const [openFaq, setOpenFaq] = useState<number>(0);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("Frage zu einer Bestellung");
+  const [message, setMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const faqs = [
     { q: 'Wie funktioniert die Vorbestellung?', a: 'Wähle deine Lieblings-Desserts aus, lege sie in den Warenkorb und wähle einen Abholzeitpunkt. Wir bereiten alles frisch zu — du holst es im Laden ab und zahlst dort.' },
@@ -15,6 +24,35 @@ export default function SupportPage() {
     { q: 'Muss ich vorab bezahlen?', a: 'Nein, die Bezahlung erfolgt erst bei Abholung im Laden.' },
     { q: 'Habt ihr vegane Optionen?', a: 'Ja! Wir haben vegane Pancakes und Sorbets. Achte auf die entsprechende Kennzeichnung im Menü.' },
   ];
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !email || !message) return;
+
+    setIsSubmitting(true);
+    setError("");
+    setSuccess(false);
+
+    try {
+      await addDoc(collection(db, "support_messages"), {
+        name,
+        email,
+        subject,
+        message,
+        createdAt: new Date().toISOString()
+      });
+      setSuccess(true);
+      setName("");
+      setEmail("");
+      setMessage("");
+      setSubject("Frage zu einer Bestellung");
+    } catch (err: any) {
+      console.error(err);
+      setError("Nachricht konnte nicht gesendet werden. Bitte versuche es später noch einmal.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#f5efe8]">
@@ -75,20 +113,38 @@ export default function SupportPage() {
 
           {/* Formular */}
           <h2 className="font-calistoga text-[1.8rem] text-[#2d1f19] mb-6">Schreib uns</h2>
-          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+          <form className="space-y-4" onSubmit={handleSubmit}>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div className="bg-white rounded-xl p-4">
                 <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-1">Dein Name</label>
-                <input type="text" className="w-full bg-transparent border-none outline-none font-nunito font-bold text-[#2d1f19]" placeholder="Max Mustermann" />
+                <input 
+                  type="text" 
+                  required
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full bg-transparent border-none outline-none font-nunito font-bold text-[#2d1f19]" 
+                  placeholder="Max Mustermann" 
+                />
               </div>
               <div className="bg-white rounded-xl p-4">
                 <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-1">E-Mail</label>
-                <input type="email" className="w-full bg-transparent border-none outline-none font-nunito font-bold text-[#2d1f19]" placeholder="max@example.com" />
+                <input 
+                  type="email" 
+                  required
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full bg-transparent border-none outline-none font-nunito font-bold text-[#2d1f19]" 
+                  placeholder="max@example.com" 
+                />
               </div>
             </div>
             <div className="bg-white rounded-xl p-4">
               <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-1">Betreff</label>
-              <select className="w-full bg-transparent border-none outline-none font-nunito font-bold text-[#2d1f19] appearance-none">
+              <select 
+                value={subject}
+                onChange={(e) => setSubject(e.target.value)}
+                className="w-full bg-transparent border-none outline-none font-nunito font-bold text-[#2d1f19] appearance-none"
+              >
                 <option>Frage zu einer Bestellung</option>
                 <option>Feedback & Lob</option>
                 <option>Catering & Events</option>
@@ -97,10 +153,23 @@ export default function SupportPage() {
             </div>
             <div className="bg-white rounded-xl p-4">
               <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-2">Nachricht</label>
-              <textarea rows={4} className="w-full bg-transparent border-none outline-none font-nunito text-[#5c3d35] resize-none" placeholder="Hallo Fede, ich wollte fragen..."></textarea>
+              <textarea 
+                required
+                value={message}
+                onChange={(e) => setMessage(e.target.value)}
+                rows={4} 
+                className="w-full bg-transparent border-none outline-none font-nunito text-[#5c3d35] resize-none" 
+                placeholder="Hallo Fede, ich wollte fragen..."
+              ></textarea>
             </div>
+
+            {error && <div className="text-red-500 font-nunito text-sm font-bold">{error}</div>}
+            {success && <div className="text-green-600 font-nunito text-sm font-bold bg-green-50 p-4 rounded-xl">Deine Nachricht wurde erfolgreich gesendet! Wir melden uns zeitnah.</div>}
+
             <div className="pt-2">
-              <PrimaryButton sectionBg="#f5efe8" onClick={() => alert('Nachricht gesendet! (Demo)')}>Absenden →</PrimaryButton>
+              <PrimaryButton sectionBg="#f5efe8" disabled={isSubmitting}>
+                {isSubmitting ? "Wird gesendet..." : "Absenden →"}
+              </PrimaryButton>
             </div>
           </form>
 

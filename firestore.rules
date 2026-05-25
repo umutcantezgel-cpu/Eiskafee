@@ -10,5 +10,9 @@ service cloud.firestore {
       allow read: if true;
       allow update, delete: if false;
     }
+    match /support_messages/{messageId} {
+      allow create: if true; // Anyone can send a message
+      allow read, update, delete: if false; // Only admin can read
+    }
   }
 }
