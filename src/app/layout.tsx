@@ -16,6 +16,7 @@ import CookieRevoke from "@/components/legal/CookieRevoke";
 import ScriptManager from "@/components/legal/ScriptManager";
 import "./globals.css";
 import "@/styles/cookieconsent-theme.css";
+import "@/styles/google-maps-overrides.css";
 
 const calistoga = Calistoga({
   weight: "400",
