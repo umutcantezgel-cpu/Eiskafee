@@ -1,8 +1,16 @@
+"use client";
+
 import React from "react";
 import { FadeUp } from "@/components/ui/FadeUp";
+import dynamic from "next/dynamic";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/Btn";
 import { FoodIcon } from "@/components/ui/FoodIcon";
 import { MapPin, Phone, MessageCircle, Truck, Camera, ChevronRight } from "lucide-react";
+
+const InteractiveMap = dynamic(() => import("@/components/ui/InteractiveMap"), {
+  ssr: false,
+  loading: () => <div style={{ height: 320, borderRadius: 22, background: '#eedfcc' }} />,
+});
 
 const DAYS = ['Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag','Sonntag'];
 const todayIdx = (() => { const d = new Date().getDay(); return d === 0 ? 6 : d - 1; })();
@@ -44,31 +52,9 @@ export default function VisitPage() {
                 So findest du uns
               </h2>
 
-              {/* Map placeholder */}
-              <div className="rounded-[22px] overflow-hidden h-[300px] relative mb-5.5 shadow-[0_4px_22px_rgba(45,31,25,0.1)]">
-                <FoodIcon icon="MapPin" label="Google Maps\\nLanggasse 68\\n35576 Wetzlar" size="sq" shape="rounded-none" className="w-full h-full" />
-
-                {/* Custom pin */}
-                <div className="absolute top-[44%] left-1/2 -translate-x-1/2 -translate-y-full z-10">
-                  <div className="flex flex-col items-center">
-                    <div className="bg-[#CC624C] w-10 h-10 rounded-[50%_50%_50%_0] -rotate-45 shadow-[0_4px_16px_rgba(204,98,76,0.5)] flex items-center justify-center">
-                      <div className="rotate-45 w-3.5 h-3.5 bg-[#E4C0A8] rounded-full" />
-                    </div>
-                    <div className="w-3.5 h-[5px] bg-black/15 rounded-full mt-0.5 blur-[2px]" />
-                  </div>
-                </div>
-
-                {/* Address bubble */}
-                <div className="absolute bottom-3.5 left-3.5 right-3.5 bg-[rgba(245,239,232,0.94)] backdrop-blur-md rounded-xl p-[11px_16px] flex items-center justify-between">
-                  <div>
-                    <div className="font-nunito font-black text-[0.86rem] text-[#2d1f19]">Hey Fede!</div>
-                    <div className="font-nunito text-[0.74rem] text-[#9a7060]">Langgasse 68 · 35576 Wetzlar</div>
-                  </div>
-                  <a href="https://maps.google.com/?q=Langgasse+68+Wetzlar" target="_blank" rel="noopener noreferrer"
-                    className="bg-[#CC624C] text-white font-nunito font-extrabold text-[0.74rem] px-3.5 py-1.5 rounded-full no-underline shrink-0">
-                    Route →
-                  </a>
-                </div>
+              {/* Interactive Google Map */}
+              <div className="mb-5.5">
+                <InteractiveMap />
               </div>
 
               {/* Contact rows */}

@@ -115,9 +115,25 @@ export function HoloTiltCard({ item }: { item: any }) {
   return (
     <div style={{ perspective: 1200 }}>
       {isTouch ? (
-        <div style={containerStyle}>
+        <motion.div
+          whileTap={{ scale: 0.97 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          className="holo-tilt-touch"
+          style={containerStyle}
+        >
           {innerContent}
-        </div>
+          {/* Inject touch glow keyframe */}
+          <style dangerouslySetInnerHTML={{ __html: `
+            .holo-tilt-touch:active {
+              animation: holoTouchGlow 0.6s ease-out;
+            }
+            @keyframes holoTouchGlow {
+              0% { box-shadow: 0 2px 8px 0 rgba(204, 98, 76, 0.08); }
+              40% { box-shadow: 0 4px 20px 4px rgba(204, 98, 76, 0.28); }
+              100% { box-shadow: 0 2px 8px 0 rgba(204, 98, 76, 0.08); }
+            }
+          `}} />
+        </motion.div>
       ) : (
         <motion.div
           onPointerMove={(e) => {

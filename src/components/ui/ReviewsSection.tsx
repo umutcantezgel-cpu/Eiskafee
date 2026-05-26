@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Star, Quote, ExternalLink } from "lucide-react";
 import { WaveDivider } from "@/components/ui/WaveDivider";
@@ -20,7 +20,7 @@ function getInitials(name: string) {
   return name.split(' ').map(n => n[0]).join('').toUpperCase();
 }
 
-function ReviewCard({ review, index }: { review: Review; index: number }) {
+function ReviewCard({ review, index, isTouch }: { review: Review; index: number; isTouch: boolean }) {
   const [isHovered, setIsHovered] = useState(false);
   const avatarColor = AVATAR_COLORS[index % AVATAR_COLORS.length];
 
@@ -28,7 +28,8 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
     <motion.div
       onHoverStart={() => setIsHovered(true)}
       onHoverEnd={() => setIsHovered(false)}
-      whileHover={{ y: -8, scale: 1.02 }}
+      whileHover={isTouch ? undefined : { y: -8, scale: 1.02 }}
+      whileTap={isTouch ? { scale: 0.97 } : undefined}
       transition={{ type: 'spring', stiffness: 300, damping: 22 }}
       style={{
         background: '#f5efe8',
@@ -44,6 +45,7 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
         transition: 'box-shadow 0.3s ease',
         position: 'relative' as const,
         overflow: 'hidden' as const,
+        ...(isTouch ? { scrollSnapAlign: 'start' as const } : {}),
       }}
     >
       {/* Decorative quote mark */}
@@ -141,9 +143,18 @@ function ReviewCard({ review, index }: { review: Review; index: number }) {
 export function ReviewsSection({ reviews, config }: { reviews: Review[]; config: any }) {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [isPaused, setIsPaused] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  // Auto-scroll marquee effect
+  // Detect touch device
   useEffect(() => {
+    setIsTouch(window.matchMedia('(pointer: coarse)').matches);
+  }, []);
+
+  // Auto-scroll marquee effect (only on non-touch devices)
+  useEffect(() => {
+    if (isTouch) return; // No auto-scroll on touch devices
+
     const container = scrollRef.current;
     if (!container) return;
     
@@ -166,10 +177,38 @@ export function ReviewsSection({ reviews, config }: { reviews: Review[]; config:
     
     animationId = requestAnimationFrame(scroll);
     return () => cancelAnimationFrame(animationId);
-  }, [isPaused]);
+  }, [isPaused, isTouch]);
 
-  // Duplicate reviews for infinite scroll effect
-  const doubledReviews = [...reviews, ...reviews];
+  // Track scroll position for indicator dots (touch only)
+  const handleScroll = useCallback(() => {
+    const container = scrollRef.current;
+    if (!container || !isTouch) return;
+
+    const scrollLeft = container.scrollLeft;
+    const cardWidth = 330; // minWidth(310) + gap(20)
+    const newIndex = Math.round(scrollLeft / cardWidth);
+    setActiveIndex(Math.min(newIndex, reviews.length - 1));
+  }, [isTouch, reviews.length]);
+
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container || !isTouch) return;
+
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    return () => container.removeEventListener('scroll', handleScroll);
+  }, [isTouch, handleScroll]);
+
+  // On touch: use original reviews only (no duplication needed for snap scroll)
+  // On desktop: duplicate for infinite marquee
+  const displayReviews = isTouch ? reviews : [...reviews, ...reviews];
+
+  // Scroll to a specific dot index
+  const scrollToDot = (index: number) => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const cardWidth = 330;
+    container.scrollTo({ left: index * cardWidth, behavior: 'smooth' });
+  };
 
   return (
     <section style={{ background: '#E4C0A8', paddingBottom: 80, position: 'relative', overflow: 'hidden' }}>
@@ -181,7 +220,7 @@ export function ReviewsSection({ reviews, config }: { reviews: Review[]; config:
           Was unsere Gäste sagen
         </SectionTitle>
 
-        {/* Marquee container */}
+        {/* Marquee / Scroll-snap container */}
         <div
           ref={scrollRef}
           onMouseEnter={() => setIsPaused(true)}
@@ -191,17 +230,55 @@ export function ReviewsSection({ reviews, config }: { reviews: Review[]; config:
           style={{
             display: 'flex',
             gap: 20,
-            overflowX: 'hidden',
+            overflowX: isTouch ? 'auto' : 'hidden',
             paddingBottom: 8,
             scrollBehavior: 'auto',
-            WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%)',
-            maskImage: 'linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%)',
+            ...(isTouch
+              ? {
+                  scrollSnapType: 'x mandatory' as const,
+                  WebkitOverflowScrolling: 'touch' as any,
+                  // No mask on touch – user needs to see edges clearly
+                }
+              : {
+                  WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%)',
+                  maskImage: 'linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%)',
+                }),
           }}
         >
-          {doubledReviews.map((r, i) => (
-            <ReviewCard key={`${r.id}-${i}`} review={r} index={i} />
+          {displayReviews.map((r, i) => (
+            <ReviewCard key={`${r.id}-${i}`} review={r} index={i} isTouch={isTouch} />
           ))}
         </div>
+
+        {/* Scroll indicator dots (touch only) */}
+        {isTouch && reviews.length > 1 && (
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: 8,
+              marginTop: 16,
+            }}
+          >
+            {reviews.map((_, i) => (
+              <button
+                key={i}
+                aria-label={`Bewertung ${i + 1} anzeigen`}
+                onClick={() => scrollToDot(i)}
+                style={{
+                  width: activeIndex === i ? 24 : 8,
+                  height: 8,
+                  borderRadius: 4,
+                  background: activeIndex === i ? '#CC624C' : 'rgba(92,61,53,0.25)',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                }}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Interactive hint + Google CTA */}
         <div style={{
@@ -214,7 +291,7 @@ export function ReviewsSection({ reviews, config }: { reviews: Review[]; config:
             color: '#5c3d35',
             opacity: 0.7,
           }}>
-            ← Hover um anzuhalten · Swipe zum Entdecken →
+            {isTouch ? '← Swipe zum Entdecken →' : '← Hover um anzuhalten · Swipe zum Entdecken →'}
           </p>
 
           <motion.a

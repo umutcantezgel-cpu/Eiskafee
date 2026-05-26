@@ -507,6 +507,7 @@ export default function LegalPage() {
                     ["Firebase Auth", "Google Ireland Ltd", "Nutzer-Authentifizierung"],
                     ["Firebase Firestore", "Google Ireland Ltd", "Speicherung von Bestellungen"],
                     ["Vercel", "Vercel Inc., USA", "Website-Hosting & CDN"],
+                    ["Google Maps", "Google Ireland Ltd", "Interaktive Karte (nach Einwilligung)"],
                   ].map(([d, a, z], i) => (
                     <tr key={i} style={{ borderBottom: "1px solid rgba(228,192,168,0.25)" }}>
                       <td style={{ padding: "10px 14px", fontWeight: 700 }}>{d}</td>
@@ -630,6 +631,7 @@ export default function LegalPage() {
               { name: "__session", provider: "Firebase Auth", purpose: "Login-Session-Verwaltung", duration: "Sitzung", category: "Notwendig" },
               { name: "splash_shown", provider: "Hey Fede!", purpose: "Splash-Screen nur 1× zeigen", duration: "Sitzung", category: "Notwendig" },
               { name: "hf_ach_*", provider: "Hey Fede!", purpose: "Achievement-Gamification-Fortschritt", duration: "Dauerhaft", category: "Funktional" },
+              { name: "NID / 1P_JAR", provider: "Google Maps", purpose: "Interaktive Karte auf der Besuch-Seite", duration: "6 Monate", category: "Funktional" },
             ].map((cookie) => (
               <motion.div
                 key={cookie.name}

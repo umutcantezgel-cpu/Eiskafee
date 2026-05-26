@@ -78,6 +78,45 @@ export const PhysicsPlayground = ({ size = 360 }: { size?: number }) => {
     });
     Matter.World.add(world, mc);
 
+    // --- Touch event forwarding for mobile ---
+    // Matter.Mouse.create on a non-canvas div doesn't natively bind touch events.
+    // We manually map touch coordinates into the mouse object so MouseConstraint works.
+    const getOffset = () => container.getBoundingClientRect();
+
+    const onTouchStart = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const offset = getOffset();
+      const px = touch.clientX - offset.left;
+      const py = touch.clientY - offset.top;
+      (mouse as any).position.x = px;
+      (mouse as any).position.y = py;
+      (mouse as any).mousedownPosition.x = px;
+      (mouse as any).mousedownPosition.y = py;
+      mouse.button = 0;
+      container.style.cursor = 'grabbing';
+    };
+
+    const onTouchMove = (e: TouchEvent) => {
+      e.preventDefault();
+      const touch = e.touches[0];
+      const offset = getOffset();
+      (mouse as any).position.x = touch.clientX - offset.left;
+      (mouse as any).position.y = touch.clientY - offset.top;
+    };
+
+    const onTouchEnd = (e: TouchEvent) => {
+      e.preventDefault();
+      (mouse as any).mouseupPosition.x = (mouse as any).position.x;
+      (mouse as any).mouseupPosition.y = (mouse as any).position.y;
+      mouse.button = -1;
+      container.style.cursor = 'grab';
+    };
+
+    container.addEventListener('touchstart', onTouchStart, { passive: false });
+    container.addEventListener('touchmove', onTouchMove, { passive: false });
+    container.addEventListener('touchend', onTouchEnd, { passive: false });
+
     Matter.Runner.run(runner, engine);
 
     let raf: number;
@@ -108,6 +147,9 @@ export const PhysicsPlayground = ({ size = 360 }: { size?: number }) => {
     return () => {
       cancelAnimationFrame(raf);
       ro.disconnect();
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchmove', onTouchMove);
+      container.removeEventListener('touchend', onTouchEnd);
       Matter.Runner.stop(runner);
       Matter.World.clear(world, false);
       Matter.Engine.clear(engine);
