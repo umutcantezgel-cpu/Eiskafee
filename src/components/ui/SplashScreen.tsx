@@ -24,8 +24,14 @@ export function SplashScreen() {
       sessionStorage.setItem("splash_shown", "true");
 
       // Hard fail-safe: always dismiss after 3 seconds
-      const timer = setTimeout(() => setShowSplash(false), 3000);
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+        window.dispatchEvent(new CustomEvent("splash:done"));
+      }, 3000);
       return () => clearTimeout(timer);
+    } else {
+      // Splash already shown → notify immediately
+      window.dispatchEvent(new CustomEvent("splash:done"));
     }
   }, []);
 
@@ -92,7 +98,10 @@ export function SplashScreen() {
                 times: [0, 0.2, 0.4, 0.7, 0.9, 1],
                 ease: [0.76, 0, 0.24, 1]
               }}
-              onAnimationComplete={() => setShowSplash(false)}
+              onAnimationComplete={() => {
+                setShowSplash(false);
+                window.dispatchEvent(new CustomEvent("splash:done"));
+              }}
             />
           </svg>
         </motion.div>
