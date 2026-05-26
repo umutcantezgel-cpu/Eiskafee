@@ -1,0 +1,247 @@
+"use client";
+
+import React, { useRef, useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Star, Quote, ExternalLink } from "lucide-react";
+import { WaveDivider } from "@/components/ui/WaveDivider";
+import { FadeUp } from "@/components/ui/FadeUp";
+import { SectionTitle } from "@/components/ui/LayoutBlocks";
+
+interface Review {
+  id: string;
+  name: string;
+  stars: number;
+  text: string;
+}
+
+const AVATAR_COLORS = ['#CC624C', '#5c3d35', '#E4C0A8', '#9a7060', '#3a2820'];
+
+function getInitials(name: string) {
+  return name.split(' ').map(n => n[0]).join('').toUpperCase();
+}
+
+function ReviewCard({ review, index }: { review: Review; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const avatarColor = AVATAR_COLORS[index % AVATAR_COLORS.length];
+
+  return (
+    <motion.div
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
+      whileHover={{ y: -8, scale: 1.02 }}
+      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
+      style={{
+        background: '#f5efe8',
+        borderRadius: 22,
+        padding: '28px 24px',
+        minWidth: 310,
+        maxWidth: 350,
+        flexShrink: 0,
+        cursor: 'default',
+        boxShadow: isHovered
+          ? '0 16px 40px rgba(204,98,76,0.18)'
+          : '0 4px 18px rgba(45,31,25,0.07)',
+        transition: 'box-shadow 0.3s ease',
+        position: 'relative' as const,
+        overflow: 'hidden' as const,
+      }}
+    >
+      {/* Decorative quote mark */}
+      <motion.div
+        animate={{ opacity: isHovered ? 0.12 : 0.06, scale: isHovered ? 1.1 : 1 }}
+        transition={{ duration: 0.3 }}
+        style={{
+          position: 'absolute', top: 16, right: 16,
+          color: '#CC624C',
+        }}
+      >
+        <Quote size={48} strokeWidth={1.5} />
+      </motion.div>
+
+      {/* Stars with stagger animation */}
+      <div style={{ display: 'flex', gap: 3, marginBottom: 16 }} aria-label={`${review.stars} von 5 Sternen`}>
+        {Array(review.stars).fill(0).map((_, j) => (
+          <motion.div
+            key={j}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: j * 0.08, duration: 0.3 }}
+          >
+            <Star size={15} fill="#CC624C" color="#CC624C" aria-hidden="true" />
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Review text */}
+      <p style={{
+        fontFamily: 'var(--font-nunito), sans-serif',
+        fontSize: '0.9rem',
+        color: '#5c3d35',
+        lineHeight: 1.72,
+        marginBottom: 20,
+        fontStyle: 'italic',
+        position: 'relative' as const,
+        zIndex: 1,
+      }}>
+        „{review.text}"
+      </p>
+
+      {/* Author row */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+        {/* Avatar circle with initials */}
+        <motion.div
+          whileHover={{ rotate: [0, -5, 5, 0] }}
+          transition={{ duration: 0.4 }}
+          style={{
+            width: 40, height: 40, borderRadius: '50%',
+            background: avatarColor,
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            color: '#fefefe',
+            fontFamily: 'var(--font-calistoga), serif',
+            fontSize: '0.85rem',
+            flexShrink: 0,
+          }}
+        >
+          {getInitials(review.name)}
+        </motion.div>
+        <div>
+          <div style={{
+            fontFamily: 'var(--font-nunito), sans-serif',
+            fontWeight: 800,
+            fontSize: '0.88rem',
+            color: '#2d1f19',
+          }}>
+            {review.name}
+          </div>
+          <div style={{
+            fontFamily: 'var(--font-nunito), sans-serif',
+            fontSize: '0.72rem',
+            color: '#9a7060',
+            fontWeight: 600,
+          }}>
+            Verifizierte Google-Bewertung
+          </div>
+        </div>
+      </div>
+
+      {/* Hover accent line at bottom */}
+      <motion.div
+        animate={{ scaleX: isHovered ? 1 : 0 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          height: 3, background: 'linear-gradient(90deg, #CC624C, #E4C0A8)',
+          transformOrigin: 'left',
+        }}
+      />
+    </motion.div>
+  );
+}
+
+export function ReviewsSection({ reviews, config }: { reviews: Review[]; config: any }) {
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [isPaused, setIsPaused] = useState(false);
+
+  // Auto-scroll marquee effect
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    
+    let animationId: number;
+    let scrollPos = 0;
+    const speed = 0.5; // pixels per frame
+    
+    const scroll = () => {
+      if (!isPaused && container) {
+        scrollPos += speed;
+        // Reset when we've scrolled through the first set of cards
+        const halfWidth = container.scrollWidth / 2;
+        if (scrollPos >= halfWidth) {
+          scrollPos = 0;
+        }
+        container.scrollLeft = scrollPos;
+      }
+      animationId = requestAnimationFrame(scroll);
+    };
+    
+    animationId = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(animationId);
+  }, [isPaused]);
+
+  // Duplicate reviews for infinite scroll effect
+  const doubledReviews = [...reviews, ...reviews];
+
+  return (
+    <section style={{ background: '#E4C0A8', paddingBottom: 80, position: 'relative', overflow: 'hidden' }}>
+      <WaveDivider fromColor="#E4C0A8" toColor="#E4C0A8" variant={1} />
+      <div className="absolute inset-0 opacity-30 dot-bg" />
+
+      <FadeUp className="relative z-10 max-w-[1200px] mx-auto px-6 pt-6">
+        <SectionTitle sub={`${config.rating}/5 · ${config.reviewCount}+ echte Bewertungen auf Google`}>
+          Was unsere Gäste sagen
+        </SectionTitle>
+
+        {/* Marquee container */}
+        <div
+          ref={scrollRef}
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={() => setIsPaused(true)}
+          onTouchEnd={() => setIsPaused(false)}
+          style={{
+            display: 'flex',
+            gap: 20,
+            overflowX: 'hidden',
+            paddingBottom: 8,
+            scrollBehavior: 'auto',
+            WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%)',
+            maskImage: 'linear-gradient(90deg, transparent 0%, black 5%, black 95%, transparent 100%)',
+          }}
+        >
+          {doubledReviews.map((r, i) => (
+            <ReviewCard key={`${r.id}-${i}`} review={r} index={i} />
+          ))}
+        </div>
+
+        {/* Interactive hint + Google CTA */}
+        <div style={{
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          marginTop: 24, flexWrap: 'wrap', gap: 16,
+        }}>
+          <p style={{
+            fontFamily: 'var(--font-nunito), sans-serif',
+            fontSize: '0.78rem',
+            color: '#5c3d35',
+            opacity: 0.7,
+          }}>
+            ← Hover um anzuhalten · Swipe zum Entdecken →
+          </p>
+
+          <motion.a
+            href="https://maps.app.goo.gl/heyfede"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileHover={{ scale: 1.05, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8,
+              background: '#fefefe',
+              color: '#2d1f19',
+              fontFamily: 'var(--font-nunito), sans-serif',
+              fontWeight: 800,
+              fontSize: '0.85rem',
+              padding: '10px 20px',
+              borderRadius: 50,
+              textDecoration: 'none',
+              boxShadow: '0 4px 16px rgba(45,31,25,0.1)',
+            }}
+          >
+            <Star size={16} fill="#CC624C" color="#CC624C" />
+            Auf Google bewerten
+            <ExternalLink size={14} color="#9a7060" />
+          </motion.a>
+        </div>
+      </FadeUp>
+    </section>
+  );
+}

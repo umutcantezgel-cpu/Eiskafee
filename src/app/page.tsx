@@ -7,6 +7,7 @@ import { HoloTiltCard } from "@/components/ui/HoloTiltCard";
 import { ScratchCard } from "@/components/ui/ScratchCard";
 import { FoodIcon } from "@/components/ui/FoodIcon";
 import { PhysicsPlayground } from "@/components/ui/PhysicsPlayground";
+import { ReviewsSection } from "@/components/ui/ReviewsSection";
 import { Star } from "lucide-react";
 import { HF_DATA } from "@/lib/data";
 
@@ -201,38 +202,7 @@ export default function HomePage() {
       </section>
 
       {/* ─── Reviews ───────────────────────────────────────────────────────── */}
-      <section className="bg-[#E4C0A8] pb-20 relative overflow-hidden">
-        <WaveDivider fromColor="#E4C0A8" toColor="#E4C0A8" variant={1} />
-        <div className="absolute inset-0 opacity-30 dot-bg" />
-
-        <FadeUp className="relative z-10 max-w-[1200px] mx-auto px-6 pt-6">
-          <SectionTitle sub={`${config.rating}/5 · ${config.reviewCount}+ echte Bewertungen auf Google`}>
-            Was unsere Gäste sagen
-          </SectionTitle>
-
-          {/* Scrollable review strip */}
-          <div className="flex gap-4 overflow-x-auto pb-2 scroll-hide snap-x snap-mandatory">
-            {reviews.map((r: any) => (
-              <div key={r.id} className="bg-[#f5efe8] rounded-[22px] p-6 min-w-[284px] max-w-[320px] shrink-0 snap-start shadow-[0_4px_18px_rgba(45,31,25,0.07)]">
-                <div className="flex gap-0.5 mb-3" aria-label={`${r.stars} von 5 Sternen`}>
-                  {Array(r.stars).fill(0).map((_,j) => (
-                    <Star key={j} size={13} fill="#CC624C" color="#CC624C" aria-hidden="true" />
-                  ))}
-                </div>
-                <p className="font-nunito text-[0.86rem] text-[#5c3d35] leading-[1.65] mb-4 italic">„{r.text}"</p>
-                <div className="flex justify-between items-center">
-                  <span className="font-nunito font-black text-[0.82rem] text-[#2d1f19]">{r.name}</span>
-                  <div className="flex gap-0.5">
-                    {Array(r.stars).fill(0).map((_,j) => (
-                      <div key={j} className="w-[5px] h-[5px] rounded-full bg-[#CC624C] opacity-40" />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </FadeUp>
-      </section>
+      <ReviewsSection reviews={reviews} config={config} />
       
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes blobFloat { 0%,100%{transform:translate(0,0)} 33%{transform:translate(6px,-10px)} 66%{transform:translate(-5px,7px)} }
