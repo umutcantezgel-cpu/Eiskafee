@@ -39,32 +39,43 @@ export function HoloTiltCard({ item }: { item: any }) {
     <>
       {item.tag && (
         <motion.div
-          className="absolute z-10 top-3 right-3 bg-terracotta text-cream-pure font-sans font-black text-[10px] px-3 py-1 rounded-pill uppercase tracking-stamp"
-          style={{ transform: 'translateZ(40px)' }}
+          className="absolute z-10 top-3 right-3 font-sans font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-wider"
+          style={{ 
+            transform: 'translateZ(40px)',
+            background: '#CC624C',
+            color: '#fefefe',
+          }}
         >
           {item.tag}
         </motion.div>
       )}
 
       <motion.div
-        className="w-full aspect-square rounded-[16px] mb-4 bg-peach flex items-center justify-center overflow-hidden"
-        style={{ transform: 'translateZ(60px)' }}
+        className="w-full aspect-[4/3] rounded-[16px] mb-4 flex items-center justify-center overflow-hidden relative"
+        style={{ 
+          transform: 'translateZ(60px)',
+          background: 'linear-gradient(135deg, #E4C0A8 0%, #eedfcc 50%, #f5efe8 100%)',
+        }}
       >
-        <LIcon size={52} strokeWidth={1.3} className="text-terracotta opacity-60" />
+        {/* Decorative circles */}
+        <div className="absolute top-3 left-3 w-16 h-16 rounded-full opacity-20" style={{ background: '#CC624C' }} />
+        <div className="absolute bottom-2 right-4 w-10 h-10 rounded-full opacity-15" style={{ background: '#CC624C' }} />
+        <LIcon size={64} strokeWidth={1.2} color="#CC624C" style={{ opacity: 0.85 }} />
       </motion.div>
 
       <motion.div style={{ transform: 'translateZ(30px)' }}>
-        <h3 className="font-display text-[1.1rem] text-brown leading-tight mb-1">{item.name}</h3>
-        <p className="font-sans text-sm text-brown-muted leading-relaxed mb-4">{item.desc}</p>
+        <h3 className="font-calistoga text-[1.1rem] text-[#2d1f19] leading-tight mb-1">{item.name}</h3>
+        <p className="font-nunito text-sm text-[#5c3d35] leading-relaxed mb-4">{item.desc}</p>
         
         <div className="flex justify-between items-center mt-auto">
-          <span className="font-display text-xl text-terracotta">{item.price}</span>
+          <span className="font-calistoga text-xl text-[#CC624C]">{item.price}</span>
           <button
             onClick={() => navigate('/menu')}
             aria-label={`${item.name} ansehen`}
-            className="w-9 h-9 bg-terracotta rounded-full flex items-center justify-center shadow-clay-sm transition-transform hover:scale-110 active:scale-95"
+            className="w-9 h-9 rounded-full flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
+            style={{ background: '#CC624C', boxShadow: '0 2px 8px rgba(204,98,76,0.25)' }}
           >
-            <Plus size={18} className="text-cream-pure" strokeWidth={2.5} />
+            <Plus size={18} color="#fefefe" strokeWidth={2.5} />
           </button>
         </div>
       </motion.div>
@@ -82,7 +93,15 @@ export function HoloTiltCard({ item }: { item: any }) {
     </>
   );
 
-  const containerClasses = "relative bg-cream rounded-card p-5 overflow-hidden shadow-clay-sm cursor-pointer";
+  const containerStyle: React.CSSProperties = {
+    position: 'relative',
+    background: '#f5efe8',
+    borderRadius: 22,
+    padding: 20,
+    overflow: 'hidden',
+    boxShadow: '0 2px 8px 0 rgba(204, 98, 76, 0.08)',
+    cursor: 'pointer',
+  };
 
   // Wir nutzen den BitemarkMask nur beim Hover für den Juicy-UI-Effekt
   const hoverProps = {
@@ -96,7 +115,7 @@ export function HoloTiltCard({ item }: { item: any }) {
   return (
     <div style={{ perspective: 1200 }}>
       {isTouch ? (
-        <div className={containerClasses}>
+        <div style={containerStyle}>
           {innerContent}
         </div>
       ) : (
@@ -109,15 +128,11 @@ export function HoloTiltCard({ item }: { item: any }) {
           onPointerLeave={() => { mouseX.set(0); mouseY.set(0); }}
           {...hoverProps}
           style={{
+            ...containerStyle,
             transformStyle: 'preserve-3d',
             rotateX: safeRotateX, 
             rotateY: safeRotateY,
-            maskImage: 'url(#bitemark-card)',
-            WebkitMaskImage: 'url(#bitemark-card)',
-            maskSize: '100% 100%',
-            WebkitMaskSize: '100% 100%',
           }}
-          className={containerClasses}
         >
           {innerContent}
         </motion.div>
