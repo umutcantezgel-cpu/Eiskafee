@@ -11,7 +11,11 @@ import { SplashScreen } from "@/components/ui/SplashScreen";
 import { TransitionProvider } from "@/components/ui/TransitionProvider";
 import Script from "next/script";
 import { BitemarkMaskDefs } from "@/components/atoms/BitemarkSystem";
+import CookieConsentBanner from "@/components/legal/CookieConsent";
+import CookieRevoke from "@/components/legal/CookieRevoke";
+import ScriptManager from "@/components/legal/ScriptManager";
 import "./globals.css";
+import "@/styles/cookieconsent-theme.css";
 
 const calistoga = Calistoga({
   weight: "400",
@@ -58,6 +62,9 @@ export default function RootLayout({
             <AchievementBanner />
           </TransitionProvider>
         </AuthContextProvider>
+        <CookieConsentBanner />
+        <CookieRevoke />
+        <ScriptManager />
       </body>
     </html>
   );
