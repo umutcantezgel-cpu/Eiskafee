@@ -14,7 +14,7 @@ export default function ProfilePage() {
           </div>
           <div>
             <div className="text-[10px] font-black text-terra tracking-widest uppercase">Mein Konto</div>
-            <div className="font-display text-2xl text-bark mt-0.5 leading-none">Fedee</div>
+            <div className="font-display text-2xl text-bark mt-0.5 leading-none">Fede!</div>
             <div className="text-xs text-bark-soft mt-1.5 font-semibold">Mitglied seit Jan. 2024</div>
           </div>
         </div>

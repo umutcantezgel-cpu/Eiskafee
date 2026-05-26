@@ -18,7 +18,7 @@ export default function LoyaltyPage() {
 
         <header className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-display text-bark mb-4 tracking-tight">
-            Hey Fedee <span className="text-terra">Coins</span>
+            Hey Fede! <span className="text-terra">Coins</span>
           </h1>
           <p className="text-[15px] text-bark-soft max-w-lg mx-auto leading-relaxed">
             Sammle Coins bei jedem Einkauf und schalte exklusive Belohnungen frei. Deine Treue soll belohnt werden.

@@ -25,8 +25,8 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Hey Fedee | Premium Waffeln & Desserts",
-  description: "Entdecke bei Hey Fedee in Wetzlar frisch zubereitete Premium Waffeln und hausgemachte Desserts. Genieße Qualität mit Liebe zum Detail.",
+  title: "Hey Fede! | Premium Waffeln & Desserts in Wetzlar",
+  description: "Entdecke bei Hey Fede! in Wetzlar frisch zubereitete Premium Waffeln und hausgemachte Desserts. Genieße Qualität mit Liebe zum Detail.",
 };
 
 export default function RootLayout({
