@@ -36,9 +36,51 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
   }, []);
 
   const navigate = (href: string) => {
-    if (href === pathname || pendingHref || busy.current) return;
+    if (pendingHref || busy.current) return;
+    
+    // Parse the target href
+    const targetUrl = new URL(href, window.location.origin);
+    
+    // Same page + hash → just scroll, no curtain
+    if (targetUrl.pathname === pathname && targetUrl.hash) {
+      const el = document.querySelector(targetUrl.hash);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+      return;
+    }
+    
+    // Same page without hash → do nothing
+    if (targetUrl.pathname === pathname && !targetUrl.hash) return;
+    
     setPendingHref(href);
   };
+
+  useEffect(() => {
+    const handleClick = (e: MouseEvent) => {
+      const target = (e.target as Element).closest('a');
+      if (target && target.href && target.href.startsWith(window.location.origin)) {
+        const url = new URL(target.href);
+        if (
+          url.origin === window.location.origin &&
+          target.target !== '_blank'
+        ) {
+          // Same page hash link → let navigate() handle the scroll
+          if (url.pathname === pathname && url.hash) {
+            e.preventDefault();
+            navigate(url.pathname + url.search + url.hash);
+            return;
+          }
+          // Different page → full transition
+          if (url.pathname !== pathname) {
+            e.preventDefault();
+            navigate(url.pathname + url.search + url.hash);
+          }
+        }
+      }
+    };
+
+    document.addEventListener('click', handleClick, true);
+    return () => document.removeEventListener('click', handleClick, true);
+  }, [pathname, pendingHref]);
 
   useEffect(() => {
     if (!pendingHref || busy.current) return;
@@ -58,25 +100,63 @@ export const TransitionProvider = ({ children }: { children: React.ReactNode }) 
         router.push(pendingHref);
       }
     })();
+
+    // Fail-safe timeout: Force unblock after 2.5s if routing hangs
+    const failSafe = setTimeout(() => {
+      if (busy.current) {
+        console.warn("Transition Provider: Fail-safe timeout triggered.");
+        dismissCurtain();
+      }
+    }, 2500);
+
+    return () => clearTimeout(failSafe);
   }, [pendingHref, controls, router, reduced]);
 
-  useEffect(() => {
-    if (busy.current && pendingHref && pathname === pendingHref) {
+  const dismissCurtain = async () => {
+    const ease = [0.76, 0, 0.24, 1] as any;
+    
+    // Check if the pending href has a hash to scroll to
+    let hashTarget: string | null = null;
+    if (pendingHref) {
+      try {
+        const targetUrl = new URL(pendingHref, window.location.origin);
+        hashTarget = targetUrl.hash || null;
+      } catch {}
+    }
+    
+    // If no hash, scroll to top; if hash, scroll to element after curtain opens
+    if (!hashTarget) {
       window.scrollTo({ top: 0, behavior: 'instant' });
-      const ease = [0.76, 0, 0.24, 1] as any;
-      
-      (async () => {
-        await new Promise(r => setTimeout(r, 60));
-        if (reduced) {
-          await controls.start({ opacity: 0, transition: { duration: 0.3 } });
-        } else {
-          await controls.start({ d: PATHS.waveExit,   transition: { duration: 0.40, ease } });
-          await controls.start({ d: PATHS.flatTop,    transition: { duration: 0.28, ease } });
-          controls.set({ d: PATHS.flatBottom });
-        }
-        setPendingHref(null);
-        busy.current = false;
-      })();
+    }
+    
+    await new Promise(r => setTimeout(r, 60));
+    if (reduced) {
+      await controls.start({ opacity: 0, transition: { duration: 0.3 } });
+    } else {
+      await controls.start({ d: PATHS.waveExit,   transition: { duration: 0.40, ease } });
+      await controls.start({ d: PATHS.flatTop,    transition: { duration: 0.28, ease } });
+      controls.set({ d: PATHS.flatBottom });
+    }
+    
+    // Scroll to hash target after curtain is fully open
+    if (hashTarget) {
+      requestAnimationFrame(() => {
+        const el = document.querySelector(hashTarget!);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      });
+    }
+    
+    setPendingHref(null);
+    busy.current = false;
+  };
+
+  useEffect(() => {
+    if (busy.current && pendingHref) {
+      // Clean pendingHref from query and hash for comparison
+      const targetUrl = new URL(pendingHref, window.location.origin);
+      if (pathname === targetUrl.pathname) {
+        dismissCurtain();
+      }
     }
   }, [pathname, pendingHref, controls, reduced]);
 

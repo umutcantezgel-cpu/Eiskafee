@@ -1,60 +1,60 @@
-# BRIEFING — 2026-05-24T21:57:31Z
+# BRIEFING — 2026-05-26T12:53:00Z
 
 ## Mission
-Migrate the Hey Fede! monolithic prototype into a highly polished, production-ready Next.js 14/15 app (Phases 3-6).
+Orchestrate full integration of blueprint pages, order flow fixes, Firebase config, profile/loyalty redesign, codebase cleanup, and admin subroutes for the Hey Fedee Next.js app.
 
 ## 🔒 My Identity
-- Archetype: Project Orchestrator
+- Archetype: teamwork (self)
 - Roles: orchestrator, user_liaison, human_reporter, successor
-- Working directory: /Users/umurey/Downloads/Hey Fedee/hey-fede-app/.agents/orchestrator/
-- Original parent: top-level
-- Original parent conversation ID: df90a64d-3586-4dff-8e61-ed3d620fce67
+- Working directory: /Users/umurey/Downloads/Hey Fedee/hey-fede-app/.agents/orchestrator
+- Original parent: main agent (sentinel)
+- Original parent conversation ID: c6e0c999-342f-4553-b7c5-533bf596541e
 
 ## 🔒 My Workflow
-- **Pattern**: Project
-- **Scope document**: /Users/umurey/Downloads/Hey Fedee/hey-fede-app/.agents/orchestrator/PROJECT.md
-1. **Decompose**: Decomposed into 4 milestones (Phase 3-6) and dual track testing.
+- **Pattern**: Project Pattern
+- **Scope document**: /Users/umurey/Downloads/Hey Fedee/hey-fede-app/PROJECT.md
+1. **Decompose**: 5 implementation milestones + cleanup milestone, based on module boundaries
 2. **Dispatch & Execute**:
-   - **Delegate (sub-orchestrator)**: Will spawn a sub-orchestrator for each milestone.
-3. **On failure** (in this order):
-   - Retry: nudge stuck agent or re-send task
-   - Replace: spawn fresh agent with partial progress
-   - Skip: proceed without (only if non-critical)
-   - Redistribute: split stuck agent's remaining work
-   - Redesign: re-partition decomposition
-   - Escalate: report to parent (sub-orchestrators only, last resort)
-4. **Succession**: self-succeed at 16 spawns, write handoff.md, spawn successor.
+   - **Direct (iteration loop)**: Explorer → Worker → Reviewer → gate
+   - **Delegate (sub-orchestrator)**: For large milestones
+3. **On failure**: Retry → Replace → Skip → Redistribute → Redesign
+4. **Succession**: At 16 spawns, write handoff.md, spawn successor
+
 - **Work items**:
-  1. E2E Testing Track [pending]
-  2. Phase 3: Global Layout & UI-Core [pending]
-  3. Phase 4: Interactive Master-Features [pending]
-  4. Phase 5: Core Pages [pending]
-  5. Phase 6: Order-Hub & Sub-Routen [pending]
-- **Current phase**: 2
-- **Current focus**: Dispatching sub-orchestrators for milestones and E2E Testing Track
+  1. M1: Firebase Config + Missing Pages (R1+R3) [pending]
+  2. M2: Order Flow Fix (R2) [pending]
+  3. M3: Profile & Loyalty Redesign (R4) [pending]
+  4. M4: Admin Subroutes (R6) [pending]
+  5. M5: Codebase Cleanup + Nav Links (R5) [pending]
+- **Current phase**: 2 (Dispatch & Execute)
+- **Current focus**: Dispatching all milestones
 
 ## 🔒 Key Constraints
-- Strict Technical Architecture (TypeScript strict, Tailwind CSS cream/beige/peach/terra/bark)
-- Safe Web-Physics and Framer Motion SSR Hydration (use client, proper useEffect cleanups)
-- Never reuse a subagent after it has delivered its handoff — always spawn fresh
+- All text in German, prices in EUR (€)
+- Terracotta (#C75B3F / #CC624C) and Cream (#FFF8F0 / #f5efe8) theme
+- TypeScript, Tailwind CSS, Zustand, Firebase
+- npm run build must pass with zero errors
+- Never reuse a subagent after handoff
+- CODE_ONLY network mode
 
 ## Current Parent
-- Conversation ID: df90a64d-3586-4dff-8e61-ed3d620fce67
-- Updated: 2026-05-24T21:57:31Z
+- Conversation ID: c6e0c999-342f-4553-b7c5-533bf596541e
+- Updated: 2026-05-26T12:53:00Z
 
 ## Key Decisions Made
-- Proceeding directly to delegation using `self` subagent for sub-orchestrators.
+- Decomposed into 5 milestones grouping related requirements
+- M1 combines R1+R3 (both are page creation + config, quick wins)
+- M5 (cleanup) depends on all others, runs last
+- Skipping E2E Testing Track since project already has TEST_INFRA.md and tests/
 
 ## Team Roster
 | Agent | Type | Work Item | Status | Conv ID |
 |-------|------|-----------|--------|---------|
-| ce7b3e8e-953f-4c26-85d5-19943576c943 | self | M1: UI-Core | in-progress | ce7b3e8e-953f-4c26-85d5-19943576c943 |
-| a550946a-1512-48da-8813-7d84456ac75a | self | E2E Testing | in-progress | a550946a-1512-48da-8813-7d84456ac75a |
 
 ## Succession Status
 - Succession required: no
-- Spawn count: 2 / 16
-- Pending subagents: ce7b3e8e-953f-4c26-85d5-19943576c943, a550946a-1512-48da-8813-7d84456ac75a
+- Spawn count: 0 / 16
+- Pending subagents: none
 - Predecessor: none
 - Successor: not yet spawned
 
@@ -63,6 +63,5 @@ Migrate the Hey Fede! monolithic prototype into a highly polished, production-re
 - Safety timer: none
 
 ## Artifact Index
-- /Users/umurey/Downloads/Hey Fedee/hey-fede-app/ORIGINAL_REQUEST.md — User request
-- /Users/umurey/Downloads/Hey Fedee/hey-fede-app/.agents/orchestrator/PROJECT.md — Global milestones & interface
-- /Users/umurey/Downloads/Hey Fedee/hey-fede-app/.agents/orchestrator/progress.md — Orchestrator state tracking
+- /Users/umurey/Downloads/Hey Fedee/hey-fede-app/PROJECT.md — project architecture & milestones
+- /Users/umurey/Downloads/Hey Fedee/hey-fede-app/.agents/orchestrator/progress.md — progress tracking

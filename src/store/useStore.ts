@@ -3,24 +3,47 @@ import { create } from 'zustand';
 interface CartItem {
   id: string;
   name: string;
-  price: string;
+  price: number;
   quantity: number;
   desc?: string;
+  v?: string; // variant
+  ic?: any; // icon
+}
+
+interface OrderData {
+  pickupDate: string;
+  pickupTime: string;
+  name: string;
+  email: string;
+  phone: string;
+  orderId?: string;
+  orderNumber?: string;
 }
 
 interface AppState {
   cart: CartItem[];
   isCartOpen: boolean;
+  orderData: OrderData;
   addToCart: (item: Omit<CartItem, 'quantity'>) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, quantity: number) => void;
   toggleCart: () => void;
   clearCart: () => void;
+  updateOrderData: (data: Partial<OrderData>) => void;
 }
+
+const initialOrderData: OrderData = {
+  pickupDate: '',
+  pickupTime: '',
+  name: '',
+  email: '',
+  phone: ''
+};
 
 export const useStore = create<AppState>((set) => ({
   cart: [],
   isCartOpen: false,
+  orderData: initialOrderData,
   addToCart: (item) =>
     set((state) => {
       const existingItem = state.cart.find((c) => c.id === item.id);
@@ -49,4 +72,5 @@ export const useStore = create<AppState>((set) => ({
     })),
   toggleCart: () => set((state) => ({ isCartOpen: !state.isCartOpen })),
   clearCart: () => set({ cart: [], isCartOpen: false }),
+  updateOrderData: (data) => set((state) => ({ orderData: { ...state.orderData, ...data } }))
 }));

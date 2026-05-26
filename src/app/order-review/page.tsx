@@ -1,14 +1,77 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import { useRouter } from "next/navigation";
+import { useStore } from "@/store/useStore";
+import { doc, updateDoc, collection, addDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase/config";
 
 export default function OrderReviewPage() {
   const router = useRouter();
+  const { cart, orderData, clearCart, updateOrderData } = useStore();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const subtotal = cart.reduce((s, i) => s + i.quantity * (typeof i.price === 'number' ? i.price : parseFloat(i.price)), 0);
+  const tax = subtotal * 0.07;
+
+  // Format date display
+  const isToday = orderData.pickupDate === new Date().toISOString().split('T')[0];
+  const dateDisplay = isToday ? "Heute" : new Date(orderData.pickupDate).toLocaleDateString("de-DE", { weekday: 'short', day: '2-digit', month: '2-digit' });
+
+  const handleSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const orderNumber = `#HF-${Math.floor(1000 + Math.random() * 9000)}`;
+      
+      if (orderData.orderId) {
+        // Update existing draft order
+        const docRef = doc(db, "orders", orderData.orderId);
+        await updateDoc(docRef, {
+          orderNumber,
+          pickupDate: orderData.pickupDate,
+          pickupTime: orderData.pickupTime,
+          customerName: orderData.name,
+          customerPhone: orderData.phone,
+          customerEmail: orderData.email,
+          status: "confirmed",
+        });
+        updateOrderData({ orderNumber });
+        clearCart();
+        router.push(`/confirmation?orderId=${orderData.orderId}`);
+      } else {
+        // Fallback if no draft exists
+        const docRef = await addDoc(collection(db, "orders"), {
+          orderNumber,
+          items: cart.map(it => ({ 
+            name: it.name, 
+            variant: it.v || it.desc || "", 
+            quantity: it.quantity, 
+            price: typeof it.price === 'number' ? it.price : parseFloat(it.price) 
+          })),
+          total: subtotal,
+          pickupDate: orderData.pickupDate,
+          pickupTime: orderData.pickupTime,
+          customerName: orderData.name,
+          customerPhone: orderData.phone,
+          customerEmail: orderData.email,
+          status: "confirmed",
+          createdAt: new Date().toISOString(),
+        });
+        updateOrderData({ orderId: docRef.id, orderNumber });
+        clearCart();
+        router.push(`/confirmation?orderId=${docRef.id}`);
+      }
+    } catch (err) {
+      console.error("Error confirming order:", err);
+      alert("Fehler bei der Bestellung. Bitte versuche es erneut.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-[#f5efe8] flex flex-col">
@@ -37,7 +100,7 @@ export default function OrderReviewPage() {
           <div className="relative z-10">
             <div className="font-nunito text-[10px] font-black text-[#CC624C] tracking-[1.4px] uppercase">Abholung</div>
             <div className="flex items-baseline gap-2 mt-1">
-              <div className="font-calistoga text-[26px] text-[#2d1f19] leading-none">Heute · 15:30</div>
+              <div className="font-calistoga text-[26px] text-[#2d1f19] leading-none">{dateDisplay} · {orderData.pickupTime}</div>
             </div>
             <div className="font-nunito text-[11.5px] text-[#5c3d35] mt-1.5 font-bold">Langgasse 68 · Wetzlar</div>
           </div>
@@ -45,27 +108,24 @@ export default function OrderReviewPage() {
 
         {/* Items Header */}
         <FadeUp delay={0.2} className="flex justify-between items-baseline mb-2">
-          <div className="font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase">3 Artikel</div>
-          <button onClick={() => router.back()} className="font-nunito text-[11px] font-extrabold text-[#CC624C] underline">
+          <div className="font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase">{cart.reduce((s, i) => s + i.quantity, 0)} Artikel</div>
+          <button onClick={() => router.push('/checkout')} className="font-nunito text-[11px] font-extrabold text-[#CC624C] underline">
             Bearbeiten
           </button>
         </FadeUp>
 
         {/* Items List */}
         <FadeUp delay={0.3} className="bg-white rounded-[18px] p-1 mb-3.5 shadow-sm">
-          {[
-            { n: 'Pancake Picknick Box', v: 'Erdbeere · Banane · Schoko', q: 1, p: '9,80' },
-            { n: 'Bubble Waffel Klassik', v: 'Vanille · Erdbeere', q: 2, p: '15,00' },
-          ].map((it, i, a) => (
-            <div key={it.n} className={`p-3 flex justify-between gap-2.5 ${i < a.length - 1 ? 'border-b border-[#eedfcc]' : ''}`}>
+          {cart.map((it, i, a) => (
+            <div key={it.id} className={`p-3 flex justify-between gap-2.5 ${i < a.length - 1 ? 'border-b border-[#eedfcc]' : ''}`}>
               <div className="flex-1 min-w-0">
                 <div className="flex gap-2 mb-0.5 items-baseline">
-                  <span className="font-nunito font-extrabold text-[12.5px] text-[#7a5a52]">{it.q}×</span>
-                  <span className="font-nunito font-extrabold text-[13px] text-[#2d1f19]">{it.n}</span>
+                  <span className="font-nunito font-extrabold text-[12.5px] text-[#7a5a52]">{it.quantity}×</span>
+                  <span className="font-nunito font-extrabold text-[13px] text-[#2d1f19]">{it.name}</span>
                 </div>
-                <div className="font-nunito text-[11px] text-[#7a5a52] ml-[23px]">{it.v}</div>
+                <div className="font-nunito text-[11px] text-[#7a5a52] ml-[23px]">{it.v || it.desc || ''}</div>
               </div>
-              <span className="font-calistoga text-[14px] text-[#CC624C]">{it.p} €</span>
+              <span className="font-calistoga text-[14px] text-[#CC624C]">{(it.quantity * (typeof it.price === 'number' ? it.price : parseFloat(it.price))).toFixed(2).replace('.', ',')} €</span>
             </div>
           ))}
         </FadeUp>
@@ -86,15 +146,15 @@ export default function OrderReviewPage() {
         {/* Summary */}
         <FadeUp delay={0.5} className="bg-[#eedfcc] rounded-[18px] p-[14px_16px] shadow-sm">
           <div className="flex justify-between font-nunito text-[12.5px] text-[#5c3d35] mb-1.5">
-            <span>Zwischensumme</span><span className="font-bold">24,80 €</span>
+            <span>Zwischensumme</span><span className="font-bold">{subtotal.toFixed(2).replace('.', ',')} €</span>
           </div>
           <div className="flex justify-between font-nunito text-[12.5px] text-[#5c3d35] mb-2">
-            <span>inkl. 7% MwSt.</span><span className="font-bold">1,62 €</span>
+            <span>inkl. 7% MwSt.</span><span className="font-bold">{tax.toFixed(2).replace('.', ',')} €</span>
           </div>
           <div className="h-[1px] bg-[#E4C0A8] my-1.5" />
           <div className="flex justify-between items-baseline mt-2">
             <span className="font-nunito font-black text-[13px] text-[#2d1f19]">Vor Ort zahlen</span>
-            <span className="font-calistoga text-[24px] text-[#CC624C]">24,80 €</span>
+            <span className="font-calistoga text-[24px] text-[#CC624C]">{subtotal.toFixed(2).replace('.', ',')} €</span>
           </div>
         </FadeUp>
       </div>
@@ -103,12 +163,20 @@ export default function OrderReviewPage() {
         <div className="font-nunito text-[10.5px] text-[#7a5a52] text-center mb-2.5 leading-tight">
           Mit „Bestellung absenden" akzeptierst du unsere <span className="text-[#CC624C] font-extrabold">AGB & Vorbestellbedingungen</span>
         </div>
-        <Link href="/confirmation" className="block w-full">
-          <PrimaryButton className="w-full flex justify-center items-center gap-2">
-            <Icons.Check size={18} />
-            Bestellung absenden
-          </PrimaryButton>
-        </Link>
+        <PrimaryButton 
+          className="w-full flex justify-center items-center gap-2"
+          onClick={handleSubmit}
+          disabled={isSubmitting || cart.length === 0}
+        >
+          {isSubmitting ? (
+            "Wird gesendet..."
+          ) : (
+            <>
+              <Icons.Check size={18} />
+              Verbindlich vorbestellen
+            </>
+          )}
+        </PrimaryButton>
       </div>
     </div>
   );

@@ -1,82 +1,138 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
+import { motion, AnimatePresence, HTMLMotionProps } from 'framer-motion';
 
-interface PrimaryButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
+// --- Particle Burst ---
+interface Particle {
+  id: number;
+  x: number;
+  y: number;
+  angle: number;
+  velocity: number;
+  size: number;
+}
+
+function ParticleBurstEffect({ burstId }: { burstId: number }) {
+  const [particles] = useState<Particle[]>(() => {
+    return Array.from({ length: 8 }).map((_, i) => ({
+      id: i,
+      x: 0,
+      y: 0,
+      angle: (Math.PI * 2 * i) / 8 + (Math.random() - 0.5),
+      velocity: 40 + Math.random() * 40,
+      size: 4 + Math.random() * 4,
+    }));
+  });
+
+  return (
+    <div className="absolute inset-0 pointer-events-none z-0 flex items-center justify-center">
+      <AnimatePresence>
+        {burstId > 0 &&
+          particles.map((p) => (
+            <motion.div
+              key={`${burstId}-${p.id}`}
+              initial={{ x: 0, y: 0, scale: 1, opacity: 1 }}
+              animate={{
+                x: Math.cos(p.angle) * p.velocity,
+                y: Math.sin(p.angle) * p.velocity,
+                scale: 0,
+                opacity: 0,
+              }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
+              className="absolute bg-terracotta rounded-full"
+              style={{ width: p.size, height: p.size }}
+            />
+          ))}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+// --- Primary CTA ---
+interface PrimaryButtonProps extends Omit<HTMLMotionProps<"button">, "onClick"> {
   large?: boolean;
-  sectionBg?: string;
-  className?: string;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
 export function PrimaryButton({
   children,
   onClick,
   large = false,
-  sectionBg = "#f5efe8",
-  className = "",
+  className = '',
+  ...props
 }: PrimaryButtonProps) {
-  const [hov, setHov] = useState(false);
+  const [burstId, setBurstId] = useState(0);
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    setBurstId((prev) => prev + 1);
+    if (onClick) onClick(e);
+  };
+
   return (
-    <div
-      className="relative inline-block"
-      style={{ display: "inline-flex" }}
-      onMouseEnter={() => setHov(true)}
-      onMouseLeave={() => setHov(false)}
-    >
-      <button
-        onClick={onClick}
-        className={`relative z-10 bg-[#CC624C] text-white font-extrabold rounded-full
-          transition-all duration-300 whitespace-nowrap tracking-tight cursor-pointer
-          hover:bg-[#b5523d] active:scale-95
-          ${large ? "px-9 py-4 text-[0.96rem]" : "px-7 py-[11px] text-sm"}
-          ${className}`}
+    <div className={`relative inline-block ${className}`}>
+      <ParticleBurstEffect burstId={burstId} />
+      
+      <motion.button
+        onClick={handleClick}
+        className={`
+          relative z-10 flex items-center justify-center
+          bg-terracotta text-cream-pure font-bold rounded-pill
+          whitespace-nowrap cursor-pointer select-none
+          shadow-clay-cta outline-none focus-visible:ring-4 focus-visible:ring-terracotta/50
+          ${large ? 'h-[60px] px-9 text-lg' : 'h-[48px] px-7 text-base'}
+        `}
         style={{
-          transform: hov ? "scale(1.05) translateY(-1px)" : "scale(1)",
-          boxShadow: hov ? "0 8px 28px rgba(204,98,76,0.34)" : "0 3px 12px rgba(204,98,76,0.18)",
-          transition: "all 0.28s cubic-bezier(0.34,1.56,0.64,1)",
+          // Apply bitemark mask when hovered
+          maskImage: 'url(#bitemark-right)',
+          WebkitMaskImage: 'url(#bitemark-right)',
+          maskSize: '100% 100%',
+          WebkitMaskSize: '100% 100%',
+          maskPosition: 'center',
+          WebkitMaskPosition: 'center',
+          maskRepeat: 'no-repeat',
+          WebkitMaskRepeat: 'no-repeat',
         }}
+        whileHover={{
+          scale: 1.02,
+          backgroundColor: '#B8553F', // terracotta-deep
+          // Bitemark is static in the mask, but the scale gives it life
+        }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+        {...props}
       >
         {children}
-      </button>
-      {/* ── Bissspur (bite-mark notch) ── */}
-      <div
-        style={{
-          position: "absolute",
-          zIndex: 20,
-          width: 18,
-          height: 18,
-          borderRadius: "50%",
-          background: sectionBg,
-          bottom: -1,
-          left: 14,
-          transform: hov ? "scale(1)" : "scale(0)",
-          transformOrigin: "center bottom",
-          transition: "transform 0.25s cubic-bezier(0.34,1.56,0.64,1)",
-          pointerEvents: "none",
-        }}
-      />
+      </motion.button>
     </div>
   );
 }
 
-interface SecondaryButtonProps {
-  children: React.ReactNode;
-  onClick?: () => void;
-  className?: string;
+// --- Secondary Button ---
+interface SecondaryButtonProps extends Omit<HTMLMotionProps<"button">, "onClick"> {
+  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }
 
-export function SecondaryButton({ children, onClick, className = "" }: SecondaryButtonProps) {
+export function SecondaryButton({ children, onClick, className = '', ...props }: SecondaryButtonProps) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
-      className={`border-2 border-[#CC624C] text-[#CC624C] font-extrabold rounded-full
-      transition-all duration-200 whitespace-nowrap tracking-tight cursor-pointer
-      hover:bg-[#CC624C] hover:text-white active:scale-95
-      px-7 py-[10px] text-sm ${className}`}
+      className={`
+        border-2 border-terracotta text-terracotta font-bold rounded-pill
+        whitespace-nowrap cursor-pointer select-none
+        h-[48px] px-7 text-base outline-none focus-visible:ring-4 focus-visible:ring-terracotta/50
+        ${className}
+      `}
+      whileHover={{
+        backgroundColor: '#CC624C',
+        color: '#fefefe',
+        scale: 1.02,
+      }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      {...props}
     >
       {children}
-    </button>
+    </motion.button>
   );
 }

@@ -78,12 +78,7 @@ export function SyrupCursor() {
 
   return (
     <>
-      <style>{`
-        * { cursor: none !important; }
-        a, button, [role="button"] { cursor: none !important; }
-      `}</style>
-
-      <svg width="0" height="0" style={{ position: 'absolute' }}>
+      <svg width="0" height="0" className="absolute pointer-events-none" aria-hidden="true">
         <defs>
           <filter id="syrup-goo">
             <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
@@ -94,23 +89,27 @@ export function SyrupCursor() {
         </defs>
       </svg>
 
-      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 9999, filter: 'url(#syrup-goo)' }}>
+      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 999999, filter: 'url(#syrup-goo)' }}>
         <motion.div style={{
           position: 'fixed', top: 0, left: 0, width: 8, height: 8, borderRadius: '50%', background: '#CC624C',
           x: t4X, y: t4Y, translateX: '-50%', translateY: '-50%',
           opacity: target ? 0 : 0.6,
+          pointerEvents: 'none'
         }} />
         <motion.div style={{
           position: 'fixed', top: 0, left: 0, width: 10, height: 10, borderRadius: '50%', background: '#CC624C',
           x: t3X, y: t3Y, translateX: '-50%', translateY: '-50%', opacity: target ? 0 : 0.7,
+          pointerEvents: 'none'
         }} />
         <motion.div style={{
           position: 'fixed', top: 0, left: 0, width: 12, height: 12, borderRadius: '50%', background: '#CC624C',
           x: t2X, y: t2Y, translateX: '-50%', translateY: '-50%', opacity: target ? 0 : 0.8,
+          pointerEvents: 'none'
         }} />
         <motion.div style={{
           position: 'fixed', top: 0, left: 0, width: 14, height: 14, borderRadius: '50%', background: '#CC624C',
           x: t1X, y: t1Y, translateX: '-50%', translateY: '-50%', opacity: target ? 0 : 0.9,
+          pointerEvents: 'none'
         }} />
 
         <motion.div
@@ -118,13 +117,14 @@ export function SyrupCursor() {
             width: headSize,
             height: headSize,
             borderRadius: headRadius,
-            opacity: target ? 0.18 : 1,
+            opacity: target ? 0.25 : 1,
           }}
           transition={{ type: 'spring', stiffness: 350, damping: 26 }}
           style={{
             position: 'fixed', top: 0, left: 0, background: '#CC624C',
             x: headX, y: headY, translateX: '-50%', translateY: '-50%',
-            mixBlendMode: target ? 'difference' : 'normal',
+            mixBlendMode: 'normal',
+            pointerEvents: 'none'
           }}
         />
       </div>

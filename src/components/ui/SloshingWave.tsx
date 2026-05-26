@@ -1,45 +1,65 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { motion, useScroll, useVelocity, useSpring, useTransform, useMotionValue } from "framer-motion";
+import { motion, useScroll, useVelocity, useTransform, useSpring } from 'framer-motion';
+import React from 'react';
 
 interface SloshingWaveProps {
-  from: string;
-  to: string;
-  v?: 1 | 2 | 3;
-  flip?: boolean;
+  fill?: string;
+  className?: string;
 }
 
-export const SloshingWave: React.FC<SloshingWaveProps> = ({ from, to, v = 1, flip = false }) => {
+export const SloshingWave: React.FC<SloshingWaveProps> = ({ 
+  fill = "currentColor",
+  className = "text-blue-500" // Default color, can be overridden via className or fill prop
+}) => {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
-  const smooth = useSpring(scrollVelocity, { damping: 12, stiffness: 80, mass: 0.5 });
   
-  const [reduced, setReduced] = useState(false);
-  useEffect(() => {
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
+  // Smooth out the velocity to avoid jittering
+  const smoothVelocity = useSpring(scrollVelocity, {
+    damping: 50,
+    stiffness: 200
+  });
 
-  const offset = useTransform(smooth, [-2000, 0, 2000], [-22, 0, 22]);
-  const zeroOffset = useMotionValue(0);
-  const activeOffset = reduced ? zeroOffset : offset;
-
-  const d = useTransform(activeOffset, (o) => {
-    const oo = flip ? -o : o;
-    if (v === 1) return `M0,${30+oo} C240,${56+oo*1.2} 480,${4-oo*0.8} 720,${30+oo} C960,${56+oo*1.2} 1200,${4-oo*0.8} 1440,${30+oo} L1440,60 L0,60 Z`;
-    if (v === 2) return `M0,${22+oo*1.4} C180,${52+oo} 360,${2-oo*0.6} 540,${26+oo} C720,${50+oo*0.9} 900,${8-oo*0.5} 1080,${34+oo} C1260,${56+oo*0.8} 1380,${24-oo*0.4} 1440,${30+oo} L1440,60 L0,60 Z`;
-    return `M0,${38+oo} Q360,${8-oo*0.7} 720,${38+oo} Q1080,${68+oo*1.1} 1440,${38+oo} L1440,60 L0,60 Z`;
+  const path = useTransform(smoothVelocity, (velocity) => {
+    // Clamp velocity to a reasonable range
+    const v = Math.max(-3000, Math.min(3000, velocity));
+    const nv = v / 3000; // Normalized between -1 and 1
+    
+    // Calculate amplitude (wave height) and skew (wave leaning)
+    const amp = 15 + Math.abs(nv) * 45; 
+    const skew = nv * 80; 
+    
+    const y = 50;
+    
+    // Construct a smooth cubic bezier wave
+    return `
+      M 0 ${y}
+      C ${100 + skew} ${y - amp}, ${200 + skew} ${y - amp}, 300 ${y}
+      C ${400 + skew} ${y + amp}, ${500 + skew} ${y + amp}, 600 ${y}
+      C ${700 + skew} ${y - amp}, ${800 + skew} ${y - amp}, 900 ${y}
+      C ${1000 + skew} ${y + amp}, ${1100 + skew} ${y + amp}, 1200 ${y}
+      L 1200 120
+      L 0 120
+      Z
+    `;
   });
 
   return (
-    <div style={{ background: to, lineHeight: 0, overflow: 'hidden' }}>
-      <svg
-        viewBox="0 0 1440 60"
+    <div 
+      className={`fixed bottom-0 left-0 w-full h-20 md:h-32 pointer-events-none z-50 ${className}`} 
+      style={{ transform: 'translateY(2px)' }}
+    >
+      <motion.svg
+        viewBox="0 0 1200 120"
         preserveAspectRatio="none"
-        style={{ display: 'block', width: '100%', height: 44, transform: flip ? 'scaleY(-1)' : 'none' }}
+        className="w-full h-full drop-shadow-md"
+        xmlns="http://www.w3.org/2000/svg"
       >
-        <motion.path d={d} fill={from} />
-      </svg>
+        <motion.path
+          d={path}
+          fill={fill}
+          transition={{ type: "spring", bounce: 0.2 }}
+        />
+      </motion.svg>
     </div>
   );
 };

@@ -57,6 +57,35 @@ body {
   height: 0;
 }
 
+/* New v2.0 Dot Pattern Utilities */
+@layer utilities {
+  .bg-dot-pattern {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(204, 98, 76, 0.14) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 24px 24px;
+  }
+  .bg-dot-pattern-subtle {
+    background-image: radial-gradient(
+      circle at 1px 1px,
+      rgba(204, 98, 76, 0.07) 1.5px,
+      transparent 1.5px
+    );
+    background-size: 32px 32px;
+  }
+}
+
+@keyframes fede-pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.04); }
+}
+.animate-fede-pulse {
+  animation: fede-pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Old dot-bg alias for backward compatibility */
 .dot-bg {
   background-image: radial-gradient(circle, rgba(204,98,76,0.13) 1.5px, transparent 1.5px);
   background-size: 24px 24px;

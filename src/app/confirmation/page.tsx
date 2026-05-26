@@ -1,18 +1,70 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState, Suspense } from "react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
+import { useSearchParams } from "next/navigation";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "@/lib/firebase/config";
 
-export default function ConfirmationPage() {
+function ConfirmationContent() {
+  const searchParams = useSearchParams();
+  const orderId = searchParams.get("orderId");
+  const [order, setOrder] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (!orderId) {
+      setLoading(false);
+      return;
+    }
+    const fetchOrder = async () => {
+      try {
+        const docRef = doc(db, "orders", orderId);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setOrder(docSnap.data());
+        }
+      } catch (err) {
+        console.error("Error fetching order:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchOrder();
+  }, [orderId]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center">
+        <Icons.Loader2 className="animate-spin text-[#CC624C]" size={32} />
+      </div>
+    );
+  }
+
+  if (!order) {
+    return (
+      <div className="min-h-screen bg-[#f5efe8] flex flex-col items-center justify-center px-5">
+        <h1 className="font-calistoga text-2xl text-[#2d1f19] mb-4">Bestellung nicht gefunden</h1>
+        <Link href="/">
+          <PrimaryButton>Zurück zur Startseite</PrimaryButton>
+        </Link>
+      </div>
+    );
+  }
+
+  const itemCount = order.items?.reduce((acc: number, it: any) => acc + it.quantity, 0) || 0;
+  const isToday = order.pickupDate === new Date().toISOString().split('T')[0];
+  const dateDisplay = isToday ? "Heute" : new Date(order.pickupDate).toLocaleDateString("de-DE", { weekday: 'short', day: '2-digit', month: '2-digit' });
+
   return (
     <div className="min-h-screen bg-[#f5efe8] flex flex-col">
       {/* Hero confetti area */}
       <div className="pt-8 px-6 text-center relative">
         <FadeUp delay={0.1} className="mx-auto mt-2.5 mb-4 w-[84px] h-[84px] rounded-full bg-[#CC624C] flex items-center justify-center shadow-[0_12px_28px_rgba(204,98,76,0.32)] relative">
-          <Icons.Check size={42} color="#white" strokeWidth={2.5} />
+          <Icons.Check size={42} color="white" strokeWidth={2.5} />
           {/* sparkles */}
           <div className="absolute -top-2 -right-3">
             <Icons.Sparkles size={20} color="#CC624C" strokeWidth={1.5} />
@@ -38,18 +90,19 @@ export default function ConfirmationPage() {
 
           <div className="p-[18px_22px_14px] text-center border-b-2 border-dashed border-[#eedfcc]">
             <div className="font-nunito text-[10px] font-black text-[#7a5a52] tracking-[1.4px] uppercase">Bestellnummer</div>
-            <div className="font-calistoga text-[30px] text-[#CC624C] mt-1 tracking-wide">#F-24891</div>
+            <div className="font-calistoga text-[30px] text-[#CC624C] mt-1 tracking-wide">{order.orderNumber || `#HF-XXXX`}</div>
           </div>
 
           <div className="p-[18px_22px] flex gap-3.5 items-center">
             <div className="w-[88px] h-[88px] bg-[#2d1f19] rounded-[12px] p-[7px] shrink-0">
-              <div className="w-full h-full bg-white rounded-[6px] flex items-center justify-center">
-                <Icons.QrCode size={60} color="#2d1f19" strokeWidth={1.5} />
+              <div className="w-full h-full bg-white rounded-[6px] flex flex-col items-center justify-center p-1">
+                <Icons.QrCode size={40} color="#2d1f19" strokeWidth={1.5} />
+                <span className="font-nunito text-[10px] font-bold text-[#2d1f19] mt-1">{order.orderNumber}</span>
               </div>
             </div>
             <div>
               <div className="font-nunito text-[10px] font-black text-[#CC624C] tracking-[1.4px] uppercase">Abholung</div>
-              <div className="font-calistoga text-[18px] text-[#2d1f19] mt-1 leading-[1.1]">Heute · 15:30</div>
+              <div className="font-calistoga text-[18px] text-[#2d1f19] mt-1 leading-[1.1]">{dateDisplay} · {order.pickupTime}</div>
               <div className="font-nunito text-[11.5px] text-[#7a5a52] mt-1.5 leading-snug">
                 Langgasse 68<br/>35576 Wetzlar
               </div>
@@ -61,14 +114,14 @@ export default function ConfirmationPage() {
       {/* Summary mini */}
       <div className="p-[18px_20px]">
         <FadeUp delay={0.4} className="bg-[#eedfcc] rounded-[14px] p-[10px_14px] flex justify-between items-center shadow-sm">
-          <span className="font-nunito text-[12px] font-extrabold text-[#2d1f19]">3 Artikel · vor Ort zu zahlen</span>
-          <span className="font-calistoga text-[17px] text-[#CC624C]">24,80 €</span>
+          <span className="font-nunito text-[12px] font-extrabold text-[#2d1f19]">{itemCount} Artikel · vor Ort zu zahlen</span>
+          <span className="font-calistoga text-[17px] text-[#CC624C]">{(order.total || 0).toFixed(2).replace('.', ',')} €</span>
         </FadeUp>
       </div>
 
       <div className="mt-auto px-5 pb-8 pt-6">
         <FadeUp delay={0.5} className="flex flex-col gap-2.5">
-          <Link href="/order-status" className="block w-full">
+          <Link href={`/order-status?orderId=${orderId}`} className="block w-full">
             <PrimaryButton className="w-full flex justify-center items-center gap-2">
               <Icons.Package size={18} />
               Status anzeigen
@@ -82,5 +135,13 @@ export default function ConfirmationPage() {
         </FadeUp>
       </div>
     </div>
+  );
+}
+
+export default function ConfirmationPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-[#f5efe8] flex items-center justify-center"><Icons.Loader2 className="animate-spin text-[#CC624C]" size={32} /></div>}>
+      <ConfirmationContent />
+    </Suspense>
   );
 }

@@ -68,7 +68,7 @@ export default function SupportPage() {
       <div className="max-w-[800px] mx-auto px-6 py-16">
         <FadeUp>
           {/* Kontakt Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16">
+          <div id="kontakt" className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-16 pt-10 -mt-10">
             <div className="bg-white rounded-2xl p-6 text-center shadow-sm">
               <div className="w-12 h-12 bg-[#eedfcc] rounded-full flex items-center justify-center mx-auto mb-4">
                 <Icons.Phone size={20} color="#CC624C" />
@@ -85,7 +85,7 @@ export default function SupportPage() {
           </div>
 
           {/* FAQ */}
-          <h2 className="font-calistoga text-[1.8rem] text-[#2d1f19] mb-6">Häufige Fragen</h2>
+          <h2 id="faq" className="font-calistoga text-[1.8rem] text-[#2d1f19] mb-6 pt-10 -mt-10">Häufige Fragen</h2>
           <div className="bg-white rounded-2xl overflow-hidden shadow-sm mb-16">
             {faqs.map((faq, i) => (
               <div key={i} className="border-b border-[#eedfcc] last:border-0">

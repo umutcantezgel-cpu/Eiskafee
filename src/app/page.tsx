@@ -29,13 +29,7 @@ export default function HomePage() {
         <div className="relative z-10 w-full max-w-[1200px] mx-auto px-6 py-20 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
           {/* Copy */}
           <FadeUp delay={0.08}>
-            {/* Eyebrow pill */}
-            <div className="inline-flex items-center gap-2 bg-white/50 px-4 py-1.5 rounded-full mb-6">
-              <div className="w-2 h-2 bg-[#CC624C] rounded-full" />
-              <span className="font-nunito font-extrabold text-[0.74rem] text-[#CC624C] tracking-wider uppercase">
-                Dessertbar & Café · Wetzlar
-              </span>
-            </div>
+
 
             <h1 className="font-calistoga text-[clamp(2.8rem,6vw,5.2rem)] text-[#2d1f19] leading-[1.02] mb-6">
               Süße Momente,<br/>

@@ -71,7 +71,8 @@ export const PhysicsPlayground = ({ size = 360 }: { size?: number }) => {
     });
 
     const mouse = Matter.Mouse.create(container);
-    mouse.pixelRatio = window.devicePixelRatio || 1;
+    // Explicitly set pixelRatio to 1 because we are rendering in CSS pixels (DOM), not a scaled Canvas
+    mouse.pixelRatio = 1;
     const mc = Matter.MouseConstraint.create(engine, {
       mouse, constraint: { stiffness: 0.2, damping: 0.12, render: { visible: false } },
     });

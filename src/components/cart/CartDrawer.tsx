@@ -8,7 +8,7 @@ import Link from "next/link";
 export function CartDrawer() {
   const { cart, isCartOpen, toggleCart, updateQuantity } = useStore();
 
-  const total = cart.reduce((sum, item) => sum + (parseFloat(item.price.replace(',', '.')) * item.quantity), 0);
+  const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
 
   // Close on Escape key
   useEffect(() => {
@@ -81,7 +81,7 @@ export function CartDrawer() {
                           </div>
                           
                           <span className="font-calistoga text-base text-[#CC624C]">
-                            {(parseFloat(item.price.replace(',', '.')) * item.quantity).toFixed(2).replace('.', ',')} €
+                            {(item.price * item.quantity).toFixed(2).replace('.', ',')} €
                           </span>
                         </div>
                       </div>

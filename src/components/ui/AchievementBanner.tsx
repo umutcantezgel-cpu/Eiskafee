@@ -1,93 +1,115 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import confetti from "canvas-confetti";
-import * as Icons from "lucide-react";
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export function AchievementBanner() {
-  const [unlocked, setUnlocked] = useState(false);
-  const [reduced, setReduced] = useState(false);
-
+  const [isVisible, setIsVisible] = useState(false);
+  const [title, setTitle] = useState("Sweet Tooth Unlocked!");
+  const [description, setDescription] = useState("Du hast das Easter Egg gefunden.");
+  const [icon, setIcon] = useState("🏆");
+  
   useEffect(() => {
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    const handleAch = () => setUnlocked(true);
-    window.addEventListener('achievement-unlocked', handleAch);
-    return () => window.removeEventListener('achievement-unlocked', handleAch);
+    const handleAchievement = (e: Event) => {
+      setIsVisible(true);
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail) {
+        if (customEvent.detail.title) setTitle(customEvent.detail.title);
+        if (customEvent.detail.description) setDescription(customEvent.detail.description);
+        if (customEvent.detail.icon) setIcon(customEvent.detail.icon);
+      }
+    };
+    
+    window.addEventListener('achievement-unlocked', handleAchievement);
+    return () => window.removeEventListener('achievement-unlocked', handleAchievement);
   }, []);
 
+  // Auto-close after duration
   useEffect(() => {
-    if (!unlocked) return;
-    confetti({
-      particleCount: reduced ? 30 : 100, spread: 70, origin: { y: 0.15 },
-      colors: ['#CC624C', '#E4C0A8', '#eedfcc', '#fff8f1'],
-      zIndex: 9999999,
-    });
-    const t = setTimeout(() => setUnlocked(false), 7000);
-    return () => clearTimeout(t);
-  }, [unlocked, reduced]);
+    if (isVisible) {
+      const timer = setTimeout(() => {
+        setIsVisible(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [isVisible]);
+
+  const onClose = () => setIsVisible(false);
 
   return (
     <AnimatePresence>
-      {unlocked && (
+      {isVisible && (
         <motion.div
-          key="ach"
-          initial={{ y: -180, opacity: 0, x: '-50%', scale: 0.85 }}
-          animate={{ y: 0, opacity: 1, x: '-50%', scale: 1 }}
-          exit={{ y: -180, opacity: 0, x: '-50%', scale: 0.85 }}
-          transition={reduced ? { duration: 0.3 } : { type: 'spring', stiffness: 360, damping: 22, mass: 1 }}
+          initial={{ y: '-100%', x: '-50%', opacity: 0 }}
+          animate={{ y: 0, x: '-50%', opacity: 1 }}
+          exit={{ y: '-100%', x: '-50%', opacity: 0 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           style={{
-            position: 'fixed', top: 20, left: '50%', zIndex: 999999,
-            background: 'linear-gradient(140deg, #2d1f19 0%, #3a2820 100%)',
-            color: '#fff',
-            border: '1.5px solid rgba(228,192,168,0.45)',
-            borderRadius: 22,
-            padding: '14px 22px 14px 18px',
-            display: 'flex', alignItems: 'center', gap: 14,
-            boxShadow: '0 18px 60px rgba(204,98,76,0.45), inset 0 0 0 1px rgba(255,255,255,0.06), 0 0 0 4px rgba(204,98,76,0.18)',
-            minWidth: 320, maxWidth: 'calc(100vw - 32px)',
-            fontFamily: 'var(--font-nunito), sans-serif',
-            backdropFilter: 'blur(8px)',
+            position: 'fixed',
+            top: '24px',
+            left: '50%',
+            backgroundColor: '#3a2820', // Dark Bark
+            color: '#fffdd0',           // Cream
+            padding: '16px 24px',
+            borderRadius: '16px',
+            boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3)',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '16px',
+            zIndex: 9999,
+            minWidth: '320px',
+            maxWidth: '90vw',
+            fontFamily: 'system-ui, -apple-system, sans-serif',
           }}
-          role="status" aria-live="polite"
         >
-          <motion.div
-            animate={reduced ? {} : { scale: [1, 1.08, 1], rotate: [0, -6, 6, 0] }}
-            transition={{ duration: 1.4, repeat: 1 }}
-            style={{
-              width: 48, height: 48, borderRadius: '50%',
-              background: 'radial-gradient(circle at 30% 30%, #E4C0A8 0%, #CC624C 75%)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 0 22px rgba(228,192,168,0.6)', flexShrink: 0,
-              fontSize: 24,
-            }}
-          >🏆</motion.div>
-
-          <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.66rem', fontWeight: 900, letterSpacing: '2px', color: '#E4C0A8', textTransform: 'uppercase' }}>
-              Achievement entsperrt
+          {icon && (
+            <div style={{ flexShrink: 0, fontSize: '28px' }}>
+              {icon}
             </div>
-            <div style={{ fontFamily: 'var(--font-calistoga), serif', fontSize: '1.15rem', color: '#fff', marginTop: 2, lineHeight: 1.2 }}>
-              Sweet Tooth
-            </div>
-            <div style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.78rem', color: 'rgba(255,255,255,0.7)', marginTop: 4 }}>
-              Code: <span style={{ fontFamily: 'monospace', background: 'rgba(228,192,168,0.16)', padding: '2px 8px', borderRadius: 6, color: '#E4C0A8', fontWeight: 700 }}>SECRET-FEDE</span>
-            </div>
+          )}
+          
+          <div style={{ flexGrow: 1 }}>
+            <h4 style={{ margin: 0, fontSize: '16px', fontWeight: '700', letterSpacing: '0.02em' }}>
+              {title}
+            </h4>
+            {description && (
+              <p style={{ margin: '4px 0 0 0', fontSize: '14px', opacity: 0.85, lineHeight: 1.4 }}>
+                {description}
+              </p>
+            )}
           </div>
 
           <button
-            onClick={() => setUnlocked(false)}
-            aria-label="Schließen"
+            onClick={onClose}
             style={{
-              background: 'rgba(255,255,255,0.06)',
-              border: '1px solid rgba(255,255,255,0.14)',
-              color: '#E4C0A8',
-              width: 30, height: 30, borderRadius: '50%',
-              cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
-              flexShrink: 0, padding: 0,
+              background: 'transparent',
+              border: 'none',
+              color: '#fffdd0',
+              cursor: 'pointer',
+              padding: '4px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              opacity: 0.7,
+              transition: 'opacity 0.2s',
             }}
+            onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
+            onMouseLeave={(e) => (e.currentTarget.style.opacity = '0.7')}
+            aria-label="Schließen"
           >
-            <Icons.X size={14} color="#E4C0A8" />
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
           </button>
         </motion.div>
       )}

@@ -39,44 +39,32 @@ export function HoloTiltCard({ item }: { item: any }) {
     <>
       {item.tag && (
         <motion.div
-          style={{
-            position: 'absolute', top: 14, right: 14, zIndex: 4,
-            background: '#CC624C', color: '#fff',
-            fontFamily: 'Nunito,sans-serif', fontWeight: 900, fontSize: '0.63rem',
-            padding: '4px 11px', borderRadius: 50, textTransform: 'uppercase', letterSpacing: '.8px',
-            transform: 'translateZ(40px)',
-          }}
+          className="absolute z-10 top-3 right-3 bg-terracotta text-cream-pure font-sans font-black text-[10px] px-3 py-1 rounded-pill uppercase tracking-stamp"
+          style={{ transform: 'translateZ(40px)' }}
         >
           {item.tag}
         </motion.div>
       )}
 
       <motion.div
-        style={{
-          borderRadius: 16, overflow: 'hidden', aspectRatio: '1', marginBottom: 16,
-          background: '#E4C0A8', display: 'flex', alignItems: 'center', justifyContent: 'center',
-          transform: 'translateZ(60px)',
-        }}
+        className="w-full aspect-square rounded-[16px] mb-4 bg-peach flex items-center justify-center overflow-hidden"
+        style={{ transform: 'translateZ(60px)' }}
       >
-        <LIcon size={52} strokeWidth={1.3} color="#CC624C" style={{ opacity: 0.6 }} />
+        <LIcon size={52} strokeWidth={1.3} className="text-terracotta opacity-60" />
       </motion.div>
 
       <motion.div style={{ transform: 'translateZ(30px)' }}>
-        <h3 style={{ fontFamily: 'Calistoga,serif', fontSize: '1.05rem', color: '#2d1f19', marginBottom: 5 }}>{item.name}</h3>
-        <p style={{ fontFamily: 'Nunito,sans-serif', fontSize: '0.78rem', color: '#9a7060', marginBottom: 16, lineHeight: 1.5 }}>{item.desc}</p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-          <span style={{ fontFamily: 'Calistoga,serif', fontSize: '1.2rem', color: '#CC624C' }}>{item.price}</span>
+        <h3 className="font-display text-[1.1rem] text-brown leading-tight mb-1">{item.name}</h3>
+        <p className="font-sans text-sm text-brown-muted leading-relaxed mb-4">{item.desc}</p>
+        
+        <div className="flex justify-between items-center mt-auto">
+          <span className="font-display text-xl text-terracotta">{item.price}</span>
           <button
             onClick={() => navigate('/menu')}
             aria-label={`${item.name} ansehen`}
-            style={{
-              width: 33, height: 33, background: '#CC624C', borderRadius: '50%',
-              display: 'flex', alignItems: 'center', justifyContent: 'center',
-              boxShadow: '0 3px 10px rgba(204,98,76,.3)', cursor: 'pointer', border: 'none',
-            }}
-            className="transition-transform hover:scale-110"
+            className="w-9 h-9 bg-terracotta rounded-full flex items-center justify-center shadow-clay-sm transition-transform hover:scale-110 active:scale-95"
           >
-            <Plus size={18} color="#fefefe" strokeWidth={2.5} />
+            <Plus size={18} className="text-cream-pure" strokeWidth={2.5} />
           </button>
         </div>
       </motion.div>
@@ -84,29 +72,31 @@ export function HoloTiltCard({ item }: { item: any }) {
       {!isTouch && (
         <motion.div
           aria-hidden
+          className="absolute inset-0 rounded-card pointer-events-none z-10"
           style={{
-            position: 'absolute', inset: 0, borderRadius: 24,
-            background: glareBg, mixBlendMode: 'overlay',
-            pointerEvents: 'none', zIndex: 5,
+            background: glareBg,
+            mixBlendMode: 'overlay',
           }}
         />
       )}
     </>
   );
 
+  const containerClasses = "relative bg-cream rounded-card p-5 overflow-hidden shadow-clay-sm cursor-pointer";
+
+  // Wir nutzen den BitemarkMask nur beim Hover für den Juicy-UI-Effekt
+  const hoverProps = {
+    whileHover: { 
+      y: -3,
+      boxShadow: "0 8px 24px 0 rgba(204, 98, 76, 0.12)",
+    },
+    transition: { type: 'spring' as const, stiffness: 300, damping: 20 }
+  };
+
   return (
     <div style={{ perspective: 1200 }}>
       {isTouch ? (
-        <div
-          style={{
-            position: 'relative',
-            background: '#f5efe8',
-            borderRadius: 24,
-            padding: '20px 20px 22px',
-            overflow: 'hidden',
-            boxShadow: '0 3px 16px rgba(45,31,25,.06)',
-          }}
-        >
+        <div className={containerClasses}>
           {innerContent}
         </div>
       ) : (
@@ -117,20 +107,17 @@ export function HoloTiltCard({ item }: { item: any }) {
             mouseY.set((e.clientY - r.top) / r.height - 0.5);
           }}
           onPointerLeave={() => { mouseX.set(0); mouseY.set(0); }}
-          whileHover={{ y: -3 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+          {...hoverProps}
           style={{
-            position: 'relative',
-            background: '#f5efe8',
-            borderRadius: 24,
-            padding: '20px 20px 22px',
-            overflow: 'hidden',
             transformStyle: 'preserve-3d',
             rotateX: safeRotateX, 
             rotateY: safeRotateY,
-            boxShadow: '0 3px 16px rgba(45,31,25,.06)',
-            cursor: 'default',
+            maskImage: 'url(#bitemark-card)',
+            WebkitMaskImage: 'url(#bitemark-card)',
+            maskSize: '100% 100%',
+            WebkitMaskSize: '100% 100%',
           }}
+          className={containerClasses}
         >
           {innerContent}
         </motion.div>
