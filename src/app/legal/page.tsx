@@ -1,12 +1,20 @@
-import React from "react";
-import { FadeUp } from "@/components/ui/FadeUp";
-import { Shield, Lock, Eye, FileText, Server, Database, Cookie, Scale, Mail, AlertTriangle } from "lucide-react";
+"use client";
 
-function LegalIcon({ children }: { children: React.ReactNode }) {
+import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence, useScroll, useTransform, useSpring } from "framer-motion";
+import { Shield, Lock, Eye, FileText, Server, Database, Cookie as CookieIcon, Scale, Mail,
+  AlertTriangle, ChevronDown, ExternalLink, CheckCircle2, Info, Building2, Phone } from "lucide-react";
+import * as CookieConsentLib from "vanilla-cookieconsent";
+
+/* ═══════════════════════════════════════════════════════════
+   Utility Components
+   ═══════════════════════════════════════════════════════════ */
+
+function LegalIcon({ children, color = "#CC624C" }: { children: React.ReactNode; color?: string }) {
   return (
     <div style={{
-      width: 28, height: 28, borderRadius: '50%', background: '#CC624C',
-      color: '#fefefe', display: 'flex', alignItems: 'center', justifyContent: 'center',
+      width: 32, height: 32, borderRadius: "50%", background: color,
+      color: "#fefefe", display: "flex", alignItems: "center", justifyContent: "center",
       flexShrink: 0,
     }}>
       {children}
@@ -14,405 +22,746 @@ function LegalIcon({ children }: { children: React.ReactNode }) {
   );
 }
 
-function SectionHeading({ icon, number, title }: { icon: React.ReactNode; number: string; title: string }) {
+/** Collapsible accordion section */
+function AccordionSection({
+  icon, number, title, children, defaultOpen = false,
+}: {
+  icon: React.ReactNode; number: string; title: string;
+  children: React.ReactNode; defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-      <LegalIcon>{icon}</LegalIcon>
-      <h3 style={{
-        fontFamily: 'var(--font-calistoga), serif',
-        fontSize: '1.15rem',
-        color: '#2d1f19',
-        margin: 0,
-      }}>
-        {number}. {title}
-      </h3>
-    </div>
+    <motion.div
+      layout
+      style={{
+        background: open ? "rgba(245,239,232,0.6)" : "transparent",
+        borderRadius: 18,
+        border: open ? "1px solid rgba(228,192,168,0.4)" : "1px solid transparent",
+        marginBottom: 8,
+        overflow: "hidden",
+        transition: "background 0.3s, border 0.3s",
+      }}
+    >
+      <button
+        onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        style={{
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          gap: 12,
+          padding: "16px 20px",
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          textAlign: "left",
+        }}
+      >
+        <LegalIcon>{icon}</LegalIcon>
+        <div style={{ flex: 1 }}>
+          <span style={{
+            fontFamily: "var(--font-nunito), sans-serif",
+            fontSize: "0.72rem",
+            fontWeight: 800,
+            color: "#CC624C",
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+          }}>{number}</span>
+          <div style={{
+            fontFamily: "var(--font-calistoga), serif",
+            fontSize: "1.05rem",
+            color: "#2d1f19",
+          }}>{title}</div>
+        </div>
+        <motion.div
+          animate={{ rotate: open ? 180 : 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 25 }}
+        >
+          <ChevronDown size={20} color="#9a7060" />
+        </motion.div>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            style={{ overflow: "hidden" }}
+          >
+            <div style={{
+              padding: "0 20px 20px 64px",
+              fontFamily: "var(--font-nunito), sans-serif",
+              color: "#5c3d35",
+              fontSize: "0.9rem",
+              lineHeight: 1.72,
+            }}>
+              {children}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </motion.div>
   );
 }
 
-export default function LegalPage() {
-  const sectionStyle: React.CSSProperties = {
-    marginBottom: 40,
-    fontFamily: 'var(--font-nunito), sans-serif',
-    color: '#5c3d35',
-    fontSize: '0.95rem',
-    lineHeight: 1.75,
+/** Cookie pill badge */
+function CookieBadge({ category }: { category: string }) {
+  const colors: Record<string, { bg: string; text: string }> = {
+    Notwendig: { bg: "#CC624C", text: "#fefefe" },
+    Funktional: { bg: "#E4C0A8", text: "#2d1f19" },
+    Statistik: { bg: "#9a7060", text: "#fefefe" },
+    Marketing: { bg: "#5c3d35", text: "#fefefe" },
   };
+  const c = colors[category] || colors.Notwendig;
+  return (
+    <span style={{
+      background: c.bg, color: c.text,
+      padding: "3px 12px", borderRadius: 50,
+      fontSize: "0.7rem", fontWeight: 800,
+      letterSpacing: "0.03em",
+    }}>{category}</span>
+  );
+}
+
+/** Right card — one of the Betroffenenrechte */
+function RightCard({ right, article }: { right: string; article: string }) {
+  return (
+    <motion.div
+      whileHover={{ y: -3, boxShadow: "0 8px 24px rgba(204,98,76,0.12)" }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      style={{
+        background: "rgba(238,223,204,0.5)",
+        borderRadius: 14,
+        padding: "14px 18px",
+        cursor: "default",
+        border: "1px solid rgba(228,192,168,0.3)",
+      }}
+    >
+      <div style={{
+        display: "flex", alignItems: "center", gap: 8, marginBottom: 2,
+      }}>
+        <CheckCircle2 size={14} color="#CC624C" />
+        <span style={{ fontWeight: 800, color: "#2d1f19", fontSize: "0.85rem" }}>{right}</span>
+      </div>
+      <span style={{ fontSize: "0.72rem", color: "#9a7060", fontWeight: 600 }}>{article}</span>
+    </motion.div>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Main Legal Page
+   ═══════════════════════════════════════════════════════════ */
+export default function LegalPage() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: containerRef });
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const [activeSection, setActiveSection] = useState("impressum");
+
+  // Track which section is in view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActiveSection(e.target.id);
+        });
+      },
+      { rootMargin: "-30% 0px -60% 0px", threshold: 0 }
+    );
+    document.querySelectorAll("section[id]").forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, []);
+
+  const navItems = [
+    { id: "impressum", label: "Impressum", icon: <Building2 size={14} /> },
+    { id: "datenschutz", label: "Datenschutz", icon: <Shield size={14} /> },
+    { id: "cookies", label: "Cookies", icon: <CookieIcon size={14} /> },
+    { id: "agb", label: "AGB", icon: <FileText size={14} /> },
+  ];
 
   return (
-    <div style={{ minHeight: '100vh', background: '#fefefe' }}>
-      {/* Header */}
-      <div style={{
-        background: '#eedfcc', paddingTop: 110, paddingLeft: 24, paddingRight: 24, paddingBottom: 48,
-        textAlign: 'center',
-      }}>
-        <h1 style={{
-          fontFamily: 'var(--font-calistoga), serif',
-          fontSize: 'clamp(2rem, 5vw, 2.8rem)',
-          color: '#2d1f19', marginBottom: 8,
-        }}>Rechtliches</h1>
-        <p style={{
-          fontFamily: 'var(--font-nunito), sans-serif',
-          color: '#5c3d35',
-        }}>Impressum, Datenschutz & AGB</p>
+    <div ref={containerRef} style={{ minHeight: "100vh", background: "#fefefe" }}>
+      {/* Scroll progress bar */}
+      <motion.div style={{
+        position: "fixed", top: 68, left: 0, right: 0, height: 3,
+        background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
+        transformOrigin: "left", scaleX, zIndex: 100,
+      }} />
 
-        {/* Quick nav pills */}
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'center', marginTop: 20, flexWrap: 'wrap' }}>
-          {[
-            ['#impressum', 'Impressum'],
-            ['#datenschutz', 'Datenschutz'],
-            ['#cookies', 'Cookies'],
-            ['#agb', 'AGB'],
-          ].map(([href, label]) => (
-            <a key={href} href={href} style={{
-              background: '#f5efe8', color: '#CC624C', padding: '8px 18px', borderRadius: 50,
-              fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800,
-              fontSize: '0.82rem', textDecoration: 'none',
-              transition: 'background 0.2s',
-            }}>
-              {label}
+      {/* Hero Header */}
+      <div style={{
+        background: "linear-gradient(180deg, #eedfcc 0%, #f5efe8 100%)",
+        paddingTop: 120, paddingBottom: 48, textAlign: "center",
+        position: "relative", overflow: "hidden",
+      }}>
+        {/* Decorative blobs */}
+        <div style={{
+          position: "absolute", top: 80, right: "10%", width: 120, height: 120,
+          borderRadius: "50%", background: "rgba(204,98,76,0.06)",
+          animation: "blobFloat 9s ease-in-out infinite",
+        }} />
+        <div style={{
+          position: "absolute", bottom: 20, left: "5%", width: 80, height: 80,
+          borderRadius: "50%", background: "rgba(228,192,168,0.15)",
+          animation: "blobFloat 12s ease-in-out infinite reverse",
+        }} />
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <div style={{
+            display: "inline-flex", alignItems: "center", gap: 8,
+            background: "rgba(204,98,76,0.1)", padding: "6px 16px",
+            borderRadius: 50, marginBottom: 16,
+          }}>
+            <Shield size={14} color="#CC624C" />
+            <span style={{
+              fontFamily: "var(--font-nunito), sans-serif",
+              fontSize: "0.75rem", fontWeight: 800, color: "#CC624C",
+              textTransform: "uppercase", letterSpacing: "0.1em",
+            }}>DSGVO · TDDDG · DDG konform</span>
+          </div>
+
+          <h1 style={{
+            fontFamily: "var(--font-calistoga), serif",
+            fontSize: "clamp(2rem, 5vw, 3rem)",
+            color: "#2d1f19", margin: "0 0 8px",
+          }}>Rechtliches</h1>
+          <p style={{
+            fontFamily: "var(--font-nunito), sans-serif",
+            color: "#5c3d35", fontSize: "1rem", margin: 0,
+          }}>Transparenz & Vertrauen bei Hey Fede!</p>
+        </motion.div>
+
+        {/* Sticky section nav */}
+        <motion.nav
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          style={{
+            display: "flex", gap: 6, justifyContent: "center",
+            marginTop: 28, flexWrap: "wrap", padding: "0 16px",
+          }}
+        >
+          {navItems.map((item) => (
+            <a
+              key={item.id}
+              href={`#${item.id}`}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                background: activeSection === item.id
+                  ? "#CC624C"
+                  : "rgba(245,239,232,0.8)",
+                color: activeSection === item.id ? "#fefefe" : "#5c3d35",
+                padding: "8px 18px", borderRadius: 50,
+                fontFamily: "var(--font-nunito), sans-serif",
+                fontWeight: 800, fontSize: "0.8rem",
+                textDecoration: "none",
+                transition: "all 0.3s ease",
+                backdropFilter: "blur(8px)",
+                border: activeSection === item.id
+                  ? "1px solid transparent"
+                  : "1px solid rgba(228,192,168,0.3)",
+              }}
+            >
+              {item.icon} {item.label}
             </a>
           ))}
-        </div>
+        </motion.nav>
       </div>
 
-      <div style={{ maxWidth: 800, margin: '0 auto', padding: '64px 24px' }}>
-        <FadeUp>
-          {/* ══════════════════════════════════════════════════════════════
-              IMPRESSUM
-          ══════════════════════════════════════════════════════════════ */}
-          <section id="impressum" style={{ marginBottom: 80, scrollMarginTop: 100 }}>
-            <h2 style={{
-              fontFamily: 'var(--font-calistoga), serif', fontSize: '1.8rem',
-              color: '#2d1f19', marginBottom: 32, borderBottom: '2px solid #eedfcc', paddingBottom: 16,
-            }}>Impressum</h2>
+      {/* Content */}
+      <div style={{ maxWidth: 820, margin: "0 auto", padding: "48px 24px 96px" }}>
 
-            <div style={sectionStyle}>
-              <div style={{ marginBottom: 24 }}>
-                <h3 style={{ fontWeight: 800, color: '#2d1f19', marginBottom: 4 }}>Anbieter</h3>
-                <p>Hey Fede! Dessertbar & Café<br/>Inhaberin: Federica Rossi<br/>Langgasse 68<br/>35576 Wetzlar<br/>Deutschland</p>
-              </div>
+        {/* ═══ IMPRESSUM ═══ */}
+        <section id="impressum" style={{ marginBottom: 72, scrollMarginTop: 100 }}>
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{
+              fontFamily: "var(--font-calistoga), serif", fontSize: "1.8rem",
+              color: "#2d1f19", marginBottom: 28,
+              borderBottom: "2px solid #eedfcc", paddingBottom: 16,
+              display: "flex", alignItems: "center", gap: 12,
+            }}
+          >
+            <Building2 size={24} color="#CC624C" /> Impressum
+          </motion.h2>
 
-              <div style={{ marginBottom: 24 }}>
-                <h3 style={{ fontWeight: 800, color: '#2d1f19', marginBottom: 4 }}>Kontakt</h3>
-                <p>
-                  Telefon: 06441 7890426<br/>
-                  WhatsApp: 0176 25026991<br/>
-                  E-Mail: <span style={{ fontWeight: 700, color: '#CC624C' }}>hallo@hey-fede.de</span>
-                </p>
-              </div>
-
-              <div style={{ marginBottom: 24 }}>
-                <h3 style={{ fontWeight: 800, color: '#2d1f19', marginBottom: 4 }}>Umsatzsteuer-ID</h3>
-                <p>Gemäß § 27a Umsatzsteuergesetz:<br/>
-                  <span style={{
-                    display: 'inline-block', background: '#eedfcc', padding: '2px 8px',
-                    borderRadius: 6, fontFamily: 'monospace', fontSize: '0.88rem', marginTop: 4,
-                  }}>DE 312 456 789</span>
-                </p>
-              </div>
-
-              <div style={{ marginBottom: 24 }}>
-                <h3 style={{ fontWeight: 800, color: '#2d1f19', marginBottom: 4 }}>Aufsichtsbehörde</h3>
-                <p>Lebensmittelüberwachung Lahn-Dill-Kreis<br/>Karl-Kellner-Ring 51, 35576 Wetzlar</p>
-              </div>
-
-              <div style={{ marginBottom: 24 }}>
-                <h3 style={{ fontWeight: 800, color: '#2d1f19', marginBottom: 4 }}>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h3>
-                <p>Federica Rossi<br/>Langgasse 68<br/>35576 Wetzlar</p>
-              </div>
-
+          <div style={{
+            display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+            gap: 16,
+          }}>
+            {/* Anbieter Card */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              style={{
+                background: "#f5efe8", borderRadius: 20, padding: 24,
+                border: "1px solid rgba(228,192,168,0.3)",
+              }}
+            >
               <div style={{
-                background: '#eedfcc', padding: 20, borderRadius: 16, marginTop: 32,
-                fontSize: '0.88rem',
+                display: "flex", alignItems: "center", gap: 8, marginBottom: 12,
               }}>
-                <strong style={{ color: '#2d1f19' }}>EU-Streitschlichtung:</strong> Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit:{' '}
-                <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer" style={{ color: '#CC624C', fontWeight: 700 }}>
-                  ec.europa.eu/consumers/odr
-                </a>. Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+                <Building2 size={16} color="#CC624C" />
+                <h3 style={{
+                  fontFamily: "var(--font-calistoga), serif", color: "#2d1f19",
+                  fontSize: "0.95rem", margin: 0,
+                }}>Anbieter</h3>
               </div>
-            </div>
-          </section>
-
-          {/* ══════════════════════════════════════════════════════════════
-              DATENSCHUTZ
-          ══════════════════════════════════════════════════════════════ */}
-          <section id="datenschutz" style={{ marginBottom: 80, scrollMarginTop: 100 }}>
-            <h2 style={{
-              fontFamily: 'var(--font-calistoga), serif', fontSize: '1.8rem',
-              color: '#2d1f19', marginBottom: 32, borderBottom: '2px solid #eedfcc', paddingBottom: 16,
-            }}>Datenschutzerklärung</h2>
-
-            {/* 1. Verantwortlicher */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Shield size={14} />} number="1" title="Verantwortlicher" />
-              <p>
-                Federica Rossi, Inhaberin von Hey Fede! Dessertbar & Café<br/>
-                Langgasse 68, 35576 Wetzlar<br/>
-                E-Mail: <span style={{ fontWeight: 700, color: '#CC624C' }}>datenschutz@hey-fede.de</span>
-              </p>
-            </div>
-
-            {/* 2. Erhobene Daten */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Database size={14} />} number="2" title="Erhobene Daten" />
-              <p style={{ marginBottom: 12 }}>Für die Nutzung unserer Website und den Vorbestellservice erfassen wir folgende personenbezogene Daten:</p>
-              <ul style={{ paddingLeft: 20, listStyleType: 'disc' }}>
-                <li>Name & Handynummer (für Rückfragen zur Abholung)</li>
-                <li>E-Mail-Adresse (für Bestellbestätigung & Kontoanmeldung)</li>
-                <li>Bestelldaten (zur Zubereitung deiner Bestellung)</li>
-                <li>Technische Daten: IP-Adresse, Browser-Typ, Gerät, Betriebssystem (automatisch durch Server-Logs)</li>
-                <li>Nutzungsdaten: Aufgerufene Seiten, Verweildauer (nur bei erteiltem Consent für Statistik-Cookies)</li>
-              </ul>
-            </div>
-
-            {/* 3. Rechtsgrundlagen */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Scale size={14} />} number="3" title="Rechtsgrundlagen" />
-              <p>Die Verarbeitung deiner Daten erfolgt auf Grundlage folgender Rechtsgrundlagen der DSGVO:</p>
-              <div style={{ background: '#eedfcc', borderRadius: 14, padding: 16, marginTop: 12, fontSize: '0.88rem' }}>
-                <ul style={{ paddingLeft: 16, listStyleType: 'none', margin: 0 }}>
-                  <li style={{ marginBottom: 8 }}><strong>Art. 6 Abs. 1 lit. a</strong> — Einwilligung: Für optionale Cookies (Statistik, Marketing)</li>
-                  <li style={{ marginBottom: 8 }}><strong>Art. 6 Abs. 1 lit. b</strong> — Vertragserfüllung: Für die Abwicklung deiner Bestellung</li>
-                  <li><strong>Art. 6 Abs. 1 lit. f</strong> — Berechtigtes Interesse: Für technisch notwendige Verarbeitungen (z.B. Server-Logs, Website-Sicherheit)</li>
-                </ul>
-              </div>
-            </div>
-
-            {/* 4. Empfänger */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Eye size={14} />} number="4" title="Empfänger & Auftragsverarbeiter" />
-              <p>Wir setzen folgende Drittanbieter ein, die im Rahmen der Auftragsverarbeitung Zugang zu personenbezogenen Daten haben können:</p>
-              <table style={{
-                width: '100%', borderCollapse: 'collapse', marginTop: 12, fontSize: '0.85rem',
+              <p style={{
+                fontFamily: "var(--font-nunito), sans-serif", color: "#5c3d35",
+                fontSize: "0.88rem", lineHeight: 1.7, margin: 0,
               }}>
-                <thead>
-                  <tr style={{ background: '#eedfcc', textAlign: 'left' }}>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Dienst</th>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Anbieter</th>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Zweck</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ['Firebase Auth', 'Google Ireland Ltd', 'Nutzer-Authentifizierung'],
-                    ['Firebase Firestore', 'Google Ireland Ltd', 'Speicherung von Bestellungen'],
-                    ['Vercel', 'Vercel Inc., USA', 'Website-Hosting & CDN'],
-                  ].map(([dienst, anbieter, zweck], i) => (
-                    <tr key={i} style={{ borderBottom: '1px solid #eedfcc' }}>
-                      <td style={{ padding: '10px 12px', fontWeight: 700 }}>{dienst}</td>
-                      <td style={{ padding: '10px 12px' }}>{anbieter}</td>
-                      <td style={{ padding: '10px 12px' }}>{zweck}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* 5. Drittlandtransfer */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Server size={14} />} number="5" title="Drittlandtransfer (USA)" />
-              <p>
-                Einige der eingesetzten Dienste (Google, Vercel) haben ihren Sitz in den USA. Die Datenübermittlung erfolgt auf Grundlage des
-                EU-US Data Privacy Framework (Angemessenheitsbeschluss der EU-Kommission gemäß Art. 45 DSGVO)
-                sowie ergänzend auf Basis von EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO).
+                Hey Fede! Dessertbar & Café<br/>
+                Inhaberin: Federica Rossi<br/>
+                Langgasse 68<br/>
+                35576 Wetzlar
               </p>
-            </div>
+            </motion.div>
 
-            {/* 6. Speicherdauer */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<FileText size={14} />} number="6" title="Speicherdauer" />
-              <ul style={{ paddingLeft: 20, listStyleType: 'disc' }}>
-                <li><strong>Bestelldaten:</strong> 90 Tage nach Abholung (automatische Löschung)</li>
-                <li><strong>Kontodata:</strong> Bis zur Löschung deines Kontos durch dich</li>
-                <li><strong>Server-Logs:</strong> Maximal 30 Tage</li>
-                <li><strong>Kontaktanfragen:</strong> 6 Monate nach Abschluss der Bearbeitung</li>
-                <li><strong>Steuerrelevante Daten:</strong> 10 Jahre (gesetzliche Aufbewahrungspflicht)</li>
-              </ul>
-            </div>
-
-            {/* 7. Betroffenenrechte */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Lock size={14} />} number="7" title="Deine Rechte (Betroffenenrechte)" />
-              <p style={{ marginBottom: 12 }}>Nach der DSGVO stehen dir folgende Rechte zu:</p>
+            {/* Kontakt Card */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              style={{
+                background: "#f5efe8", borderRadius: 20, padding: 24,
+                border: "1px solid rgba(228,192,168,0.3)",
+              }}
+            >
               <div style={{
-                display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
-                gap: 10, marginTop: 8,
+                display: "flex", alignItems: "center", gap: 8, marginBottom: 12,
               }}>
-                {[
-                  ['Auskunft', 'Art. 15 DSGVO'],
-                  ['Berichtigung', 'Art. 16 DSGVO'],
-                  ['Löschung', 'Art. 17 DSGVO'],
-                  ['Einschränkung', 'Art. 18 DSGVO'],
-                  ['Datenübertragbarkeit', 'Art. 20 DSGVO'],
-                  ['Widerspruch', 'Art. 21 DSGVO'],
-                ].map(([right, article]) => (
-                  <div key={right} style={{
-                    background: '#eedfcc', borderRadius: 12, padding: '12px 16px',
-                  }}>
-                    <div style={{ fontWeight: 800, color: '#2d1f19', fontSize: '0.85rem' }}>{right}</div>
-                    <div style={{ fontSize: '0.75rem', color: '#9a7060', marginTop: 2 }}>{article}</div>
-                  </div>
-                ))}
+                <Phone size={16} color="#CC624C" />
+                <h3 style={{
+                  fontFamily: "var(--font-calistoga), serif", color: "#2d1f19",
+                  fontSize: "0.95rem", margin: 0,
+                }}>Kontakt</h3>
               </div>
-              <p style={{ marginTop: 16 }}>
-                Zur Ausübung deiner Rechte kontaktiere uns unter{' '}
-                <span style={{ fontWeight: 700, color: '#CC624C' }}>datenschutz@hey-fede.de</span>.
-              </p>
-            </div>
-
-            {/* 8. Cookies */}
-            <div id="cookies" style={{ ...sectionStyle, scrollMarginTop: 100 }}>
-              <SectionHeading icon={<Cookie size={14} />} number="8" title="Cookies & Tracking" />
-              <p style={{ marginBottom: 16 }}>
-                Unsere Website verwendet Cookies. Die Rechtsgrundlage für technisch notwendige Cookies ist Art. 6 Abs. 1 lit. f DSGVO
-                (berechtigtes Interesse). Für alle anderen Cookies holen wir deine Einwilligung ein (Art. 6 Abs. 1 lit. a DSGVO, § 25 TDDDG).
-                Du kannst deine Einstellungen jederzeit über den 🍪-Button unten links ändern.
-              </p>
-              <table style={{
-                width: '100%', borderCollapse: 'collapse', fontSize: '0.82rem',
+              <p style={{
+                fontFamily: "var(--font-nunito), sans-serif", color: "#5c3d35",
+                fontSize: "0.88rem", lineHeight: 1.7, margin: 0,
               }}>
-                <thead>
-                  <tr style={{ background: '#eedfcc', textAlign: 'left' }}>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Cookie</th>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Anbieter</th>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Zweck</th>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Laufzeit</th>
-                    <th style={{ padding: '10px 12px', fontWeight: 800, color: '#2d1f19' }}>Kategorie</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {[
-                    ['cc_cookie', 'Hey Fede!', 'Cookie-Einstellungen', '6 Monate', 'Notwendig'],
-                    ['__session', 'Firebase', 'Login-Session', 'Sitzung', 'Notwendig'],
-                    ['splash_shown', 'Hey Fede!', 'Splash nur 1× zeigen', 'Sitzung', 'Notwendig'],
-                    ['hf_ach_*', 'Hey Fede!', 'Achievement-Fortschritt', 'Dauerhaft', 'Funktional'],
-                  ].map(([name, provider, purpose, duration, category], i) => (
-                    <tr key={i} style={{ borderBottom: '1px solid #eedfcc' }}>
-                      <td style={{ padding: '8px 12px', fontFamily: 'monospace', fontWeight: 600 }}>{name}</td>
-                      <td style={{ padding: '8px 12px' }}>{provider}</td>
-                      <td style={{ padding: '8px 12px' }}>{purpose}</td>
-                      <td style={{ padding: '8px 12px' }}>{duration}</td>
-                      <td style={{ padding: '8px 12px' }}>
-                        <span style={{
-                          background: category === 'Notwendig' ? '#CC624C' : '#E4C0A8',
-                          color: category === 'Notwendig' ? '#fefefe' : '#2d1f19',
-                          padding: '2px 10px', borderRadius: 50, fontSize: '0.75rem', fontWeight: 800,
-                        }}>{category}</span>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            {/* 9. Hosting */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Server size={14} />} number="9" title="Hosting & CDN" />
-              <p>
-                Unsere Website wird bei <strong>Vercel Inc.</strong> (440 N Barranca Ave #4133, Covina, CA 91723, USA) gehostet.
-                Beim Aufruf unserer Website werden automatisch technische Daten (IP-Adresse, Browser, Zeitpunkt des Zugriffs)
-                durch den Server erhoben. Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO.
-                Vercel ist unter dem EU-US Data Privacy Framework zertifiziert.
+                Tel: 06441 7890426<br/>
+                WhatsApp: 0176 25026991<br/>
+                E-Mail: <span style={{ color: "#CC624C", fontWeight: 700 }}>hallo@hey-fede.de</span>
               </p>
-            </div>
+            </motion.div>
 
-            {/* 10. Firebase */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Database size={14} />} number="10" title="Firebase (Google)" />
-              <p>
-                Für die Nutzer-Authentifizierung und Datenspeicherung nutzen wir Firebase-Dienste von Google Ireland Limited
-                (Gordon House, Barrow Street, Dublin 4, Irland). Die Verarbeitung erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO
-                (Vertragserfüllung) und wird durch einen Auftragsverarbeitungsvertrag (AVV) abgesichert.
-                Datentransfer in die USA erfolgt auf Grundlage des EU-US Data Privacy Framework.
-              </p>
-            </div>
-
-            {/* 11. Kontaktformular */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<Mail size={14} />} number="11" title="Kontaktformular" />
-              <p>
-                Wenn du uns über das Kontaktformular auf unserer Website kontaktierst, werden die angegebenen Daten
-                (Name, E-Mail, Nachricht) zur Bearbeitung deiner Anfrage verarbeitet. Rechtsgrundlage ist
-                Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) bzw. Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse).
-                Die Daten werden nach Abschluss der Bearbeitung und Ablauf steuerrechtlicher Aufbewahrungsfristen gelöscht.
-              </p>
-            </div>
-
-            {/* 12. Beschwerderecht */}
-            <div style={sectionStyle}>
-              <SectionHeading icon={<AlertTriangle size={14} />} number="12" title="Beschwerderecht bei der Aufsichtsbehörde" />
-              <p>
-                Wenn du der Auffassung bist, dass die Verarbeitung deiner Daten gegen die DSGVO verstößt,
-                hast du das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO).
-              </p>
+            {/* USt-ID Card */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              style={{
+                background: "#f5efe8", borderRadius: 20, padding: 24,
+                border: "1px solid rgba(228,192,168,0.3)",
+              }}
+            >
               <div style={{
-                background: '#eedfcc', borderRadius: 14, padding: 16, marginTop: 12, fontSize: '0.88rem',
+                display: "flex", alignItems: "center", gap: 8, marginBottom: 12,
               }}>
-                <strong style={{ color: '#2d1f19' }}>Zuständige Aufsichtsbehörde:</strong><br/>
-                Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI)<br/>
-                Postfach 3163, 65021 Wiesbaden<br/>
-                <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener noreferrer" style={{ color: '#CC624C', fontWeight: 700 }}>
-                  datenschutz.hessen.de
-                </a>
+                <FileText size={16} color="#CC624C" />
+                <h3 style={{
+                  fontFamily: "var(--font-calistoga), serif", color: "#2d1f19",
+                  fontSize: "0.95rem", margin: 0,
+                }}>Steuernummer</h3>
               </div>
-            </div>
-          </section>
+              <p style={{
+                fontFamily: "var(--font-nunito), sans-serif", color: "#5c3d35",
+                fontSize: "0.88rem", lineHeight: 1.7, margin: 0,
+              }}>
+                USt-IdNr. gem. § 27a UStG:<br/>
+                <span style={{
+                  display: "inline-block", background: "#eedfcc", padding: "3px 10px",
+                  borderRadius: 8, fontFamily: "monospace", fontSize: "0.85rem", marginTop: 6,
+                }}>DE 312 456 789</span>
+              </p>
+            </motion.div>
 
-          {/* ══════════════════════════════════════════════════════════════
-              AGB
-          ══════════════════════════════════════════════════════════════ */}
-          <section id="agb" style={{ scrollMarginTop: 100 }}>
-            <h2 style={{
-              fontFamily: 'var(--font-calistoga), serif', fontSize: '1.8rem',
-              color: '#2d1f19', marginBottom: 32, borderBottom: '2px solid #eedfcc', paddingBottom: 16,
-            }}>AGB</h2>
+            {/* Inhaltlich Verantwortlich */}
+            <motion.div
+              whileHover={{ y: -4 }}
+              style={{
+                background: "#f5efe8", borderRadius: 20, padding: 24,
+                border: "1px solid rgba(228,192,168,0.3)",
+              }}
+            >
+              <div style={{
+                display: "flex", alignItems: "center", gap: 8, marginBottom: 12,
+              }}>
+                <Info size={16} color="#CC624C" />
+                <h3 style={{
+                  fontFamily: "var(--font-calistoga), serif", color: "#2d1f19",
+                  fontSize: "0.95rem", margin: 0,
+                }}>§ 18 MStV</h3>
+              </div>
+              <p style={{
+                fontFamily: "var(--font-nunito), sans-serif", color: "#5c3d35",
+                fontSize: "0.88rem", lineHeight: 1.7, margin: 0,
+              }}>
+                Verantwortlich für den Inhalt:<br/>
+                Federica Rossi<br/>
+                Langgasse 68, 35576 Wetzlar
+              </p>
+            </motion.div>
+          </div>
 
+          {/* EU Streitschlichtung */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            style={{
+              background: "linear-gradient(135deg, #eedfcc 0%, #f5efe8 100%)",
+              padding: 20, borderRadius: 16, marginTop: 20,
+              fontSize: "0.85rem", fontFamily: "var(--font-nunito), sans-serif",
+              color: "#5c3d35", border: "1px solid rgba(228,192,168,0.3)",
+            }}
+          >
+            <strong style={{ color: "#2d1f19" }}>EU-Streitschlichtung:</strong>{" "}
+            Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung bereit:{" "}
+            <a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer"
+              style={{ color: "#CC624C", fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>
+              ec.europa.eu/consumers/odr <ExternalLink size={12} style={{ verticalAlign: "middle" }} />
+            </a>.
+            Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+          </motion.div>
+        </section>
+
+        {/* ═══ DATENSCHUTZ ═══ */}
+        <section id="datenschutz" style={{ marginBottom: 72, scrollMarginTop: 100 }}>
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{
+              fontFamily: "var(--font-calistoga), serif", fontSize: "1.8rem",
+              color: "#2d1f19", marginBottom: 28,
+              borderBottom: "2px solid #eedfcc", paddingBottom: 16,
+              display: "flex", alignItems: "center", gap: 12,
+            }}
+          >
+            <Shield size={24} color="#CC624C" /> Datenschutzerklärung
+          </motion.h2>
+
+          <AccordionSection icon={<Shield size={14} />} number="01" title="Verantwortlicher" defaultOpen>
+            <p>
+              Federica Rossi, Inhaberin von Hey Fede! Dessertbar & Café<br/>
+              Langgasse 68, 35576 Wetzlar<br/>
+              E-Mail: <span style={{ fontWeight: 700, color: "#CC624C" }}>datenschutz@hey-fede.de</span>
+            </p>
+          </AccordionSection>
+
+          <AccordionSection icon={<Database size={14} />} number="02" title="Erhobene Daten">
+            <p style={{ marginBottom: 12 }}>Für die Nutzung unserer Website und den Vorbestellservice erfassen wir:</p>
+            <ul style={{ paddingLeft: 20, listStyleType: "disc" }}>
+              <li>Name & Handynummer (für Rückfragen zur Abholung)</li>
+              <li>E-Mail-Adresse (für Bestellbestätigung & Kontoanmeldung)</li>
+              <li>Bestelldaten (zur Zubereitung deiner Bestellung)</li>
+              <li>Technische Daten: IP-Adresse, Browser-Typ, Gerät, Betriebssystem</li>
+              <li>Nutzungsdaten: Aufgerufene Seiten, Verweildauer (nur bei Statistik-Consent)</li>
+            </ul>
+          </AccordionSection>
+
+          <AccordionSection icon={<Scale size={14} />} number="03" title="Rechtsgrundlagen">
             <div style={{
-              background: '#E4C0A8', padding: 20, borderRadius: 16, marginBottom: 40,
-              fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.88rem', color: '#5c3d35',
+              display: "grid", gap: 10,
+              gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
             }}>
-              <h3 style={{
-                fontFamily: 'var(--font-calistoga), serif', color: '#2d1f19',
-                fontSize: '1rem', marginBottom: 12,
-              }}>Das Wichtigste in Kürze</h3>
-              <ul style={{ paddingLeft: 0, listStyleType: 'none', margin: 0 }}>
-                <li>▸ Vorbestellung ist kostenlos & unverbindlich</li>
-                <li>▸ Zahlung erfolgt vor Ort im Laden</li>
-                <li>▸ Stornierung bis 30 Min vor Abholung möglich</li>
-                <li>▸ Nicht abgeholte Bestellungen werden nach 30 Min Verzug aufgelöst</li>
-              </ul>
-            </div>
-
-            <div style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#5c3d35', fontSize: '0.95rem', lineHeight: 1.75 }}>
               {[
-                { n: '§ 1', t: 'Geltungsbereich', c: 'Diese AGB gelten für alle Vorbestellungen über die Hey Fede! Online-Plattform.' },
-                { n: '§ 2', t: 'Vertragsschluss', c: 'Der Vertrag kommt mit Bestätigung deiner Bestellung per SMS oder E-Mail zustande. Bis dahin gilt die Bestellung als unverbindliche Anfrage.' },
-                { n: '§ 3', t: 'Preise & Bezahlung', c: 'Alle Preise inkl. gesetzl. MwSt. (7% für Speisen zum Mitnehmen, 19% Verzehr vor Ort). Bezahlt wird ausschließlich vor Ort — bar, mit EC- oder Kreditkarte.' },
-                { n: '§ 4', t: 'Abholung & Stornierung', c: 'Stornierung kostenlos bis 30 Min vor Abholzeit über die App, telefonisch oder per WhatsApp. Bei Nichtabholung kann die Bestellung anderweitig vergeben werden.' },
-                { n: '§ 5', t: 'Haftung', c: 'Hey Fede! haftet nur bei Vorsatz und grober Fahrlässigkeit. Für leichte Fahrlässigkeit nur bei Verletzung wesentlicher Vertragspflichten.' },
-              ].map(s => (
-                <div key={s.n} style={{ borderBottom: '1px solid #eedfcc', paddingBottom: 24, marginBottom: 24 }}>
-                  <div style={{ display: 'flex', gap: 12, marginBottom: 8 }}>
-                    <span style={{ fontFamily: 'var(--font-calistoga), serif', color: '#CC624C' }}>{s.n}</span>
-                    <span style={{ fontFamily: 'var(--font-calistoga), serif', color: '#2d1f19' }}>{s.t}</span>
-                  </div>
-                  <p style={{ margin: 0 }}>{s.c}</p>
+                { art: "Art. 6 Abs. 1 lit. a", title: "Einwilligung", desc: "Optionale Cookies (Statistik, Marketing)" },
+                { art: "Art. 6 Abs. 1 lit. b", title: "Vertragserfüllung", desc: "Abwicklung deiner Bestellung" },
+                { art: "Art. 6 Abs. 1 lit. f", title: "Berechtigtes Interesse", desc: "Server-Logs, Website-Sicherheit" },
+              ].map((r) => (
+                <div key={r.art} style={{
+                  background: "rgba(238,223,204,0.5)", borderRadius: 14, padding: 16,
+                  border: "1px solid rgba(228,192,168,0.3)",
+                }}>
+                  <div style={{ fontSize: "0.72rem", fontWeight: 800, color: "#CC624C", marginBottom: 4 }}>{r.art}</div>
+                  <div style={{ fontWeight: 800, color: "#2d1f19", fontSize: "0.88rem" }}>{r.title}</div>
+                  <div style={{ fontSize: "0.8rem", color: "#9a7060", marginTop: 4 }}>{r.desc}</div>
                 </div>
               ))}
             </div>
-          </section>
+          </AccordionSection>
 
-          {/* Last updated */}
-          <div style={{
-            marginTop: 48, padding: '16px 20px', background: '#eedfcc', borderRadius: 14,
-            fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.78rem', color: '#9a7060',
-            textAlign: 'center',
+          <AccordionSection icon={<Eye size={14} />} number="04" title="Empfänger & Auftragsverarbeiter">
+            <div style={{ overflowX: "auto" }}>
+              <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.82rem" }}>
+                <thead>
+                  <tr style={{ background: "rgba(238,223,204,0.6)" }}>
+                    {["Dienst", "Anbieter", "Zweck"].map((h) => (
+                      <th key={h} style={{
+                        padding: "10px 14px", fontWeight: 800, color: "#2d1f19",
+                        textAlign: "left", fontSize: "0.72rem", textTransform: "uppercase",
+                        letterSpacing: "0.06em", borderBottom: "1px solid rgba(228,192,168,0.4)",
+                      }}>{h}</th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    ["Firebase Auth", "Google Ireland Ltd", "Nutzer-Authentifizierung"],
+                    ["Firebase Firestore", "Google Ireland Ltd", "Speicherung von Bestellungen"],
+                    ["Vercel", "Vercel Inc., USA", "Website-Hosting & CDN"],
+                  ].map(([d, a, z], i) => (
+                    <tr key={i} style={{ borderBottom: "1px solid rgba(228,192,168,0.25)" }}>
+                      <td style={{ padding: "10px 14px", fontWeight: 700 }}>{d}</td>
+                      <td style={{ padding: "10px 14px" }}>{a}</td>
+                      <td style={{ padding: "10px 14px" }}>{z}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </AccordionSection>
+
+          <AccordionSection icon={<Server size={14} />} number="05" title="Drittlandtransfer (USA)">
+            <p>
+              Einige der eingesetzten Dienste (Google, Vercel) haben ihren Sitz in den USA.
+              Die Datenübermittlung erfolgt auf Grundlage des{" "}
+              <strong>EU-US Data Privacy Framework</strong> (Angemessenheitsbeschluss gem. Art. 45 DSGVO)
+              sowie ergänzend auf Basis von EU-Standardvertragsklauseln (Art. 46 Abs. 2 lit. c DSGVO).
+            </p>
+          </AccordionSection>
+
+          <AccordionSection icon={<FileText size={14} />} number="06" title="Speicherdauer">
+            <ul style={{ paddingLeft: 20, listStyleType: "disc" }}>
+              <li><strong>Bestelldaten:</strong> 90 Tage nach Abholung (automatische Löschung)</li>
+              <li><strong>Kontodaten:</strong> Bis zur Löschung deines Kontos durch dich</li>
+              <li><strong>Server-Logs:</strong> Maximal 30 Tage</li>
+              <li><strong>Kontaktanfragen:</strong> 6 Monate nach Abschluss der Bearbeitung</li>
+              <li><strong>Steuerrelevante Daten:</strong> 10 Jahre (gesetzliche Aufbewahrungspflicht)</li>
+            </ul>
+          </AccordionSection>
+
+          <AccordionSection icon={<Lock size={14} />} number="07" title="Deine Rechte (Betroffenenrechte)">
+            <p style={{ marginBottom: 12 }}>Nach der DSGVO stehen dir folgende Rechte zu:</p>
+            <div style={{
+              display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(170px, 1fr))", gap: 8,
+            }}>
+              {[
+                ["Auskunft", "Art. 15"], ["Berichtigung", "Art. 16"], ["Löschung", "Art. 17"],
+                ["Einschränkung", "Art. 18"], ["Datenübertragbarkeit", "Art. 20"], ["Widerspruch", "Art. 21"],
+              ].map(([r, a]) => (
+                <RightCard key={r} right={r} article={a} />
+              ))}
+            </div>
+            <p style={{ marginTop: 16 }}>
+              Kontaktiere uns unter <span style={{ fontWeight: 700, color: "#CC624C" }}>datenschutz@hey-fede.de</span>.
+            </p>
+          </AccordionSection>
+
+          <AccordionSection icon={<Server size={14} />} number="08" title="Hosting & CDN">
+            <p>
+              Unsere Website wird bei <strong>Vercel Inc.</strong> (440 N Barranca Ave #4133, Covina, CA 91723, USA)
+              gehostet. Beim Aufruf werden technische Daten (IP-Adresse, Browser, Zeitpunkt) automatisch erhoben.
+              Rechtsgrundlage: Art. 6 Abs. 1 lit. f DSGVO. Vercel ist unter dem EU-US Data Privacy Framework zertifiziert.
+            </p>
+          </AccordionSection>
+
+          <AccordionSection icon={<Database size={14} />} number="09" title="Firebase (Google)">
+            <p>
+              Für die Nutzer-Authentifizierung und Datenspeicherung nutzen wir Firebase-Dienste von Google Ireland Limited
+              (Gordon House, Barrow Street, Dublin 4, Irland). Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO.
+              Datentransfer in die USA erfolgt auf Grundlage des EU-US Data Privacy Framework.
+            </p>
+          </AccordionSection>
+
+          <AccordionSection icon={<Mail size={14} />} number="10" title="Kontaktformular">
+            <p>
+              Wenn du uns kontaktierst, werden die angegebenen Daten (Name, E-Mail, Nachricht) zur Bearbeitung deiner
+              Anfrage verarbeitet. Rechtsgrundlage: Art. 6 Abs. 1 lit. b DSGVO. Die Daten werden nach Abschluss
+              der Bearbeitung und Ablauf steuerrechtlicher Aufbewahrungsfristen gelöscht.
+            </p>
+          </AccordionSection>
+
+          <AccordionSection icon={<AlertTriangle size={14} />} number="11" title="Beschwerderecht">
+            <p>
+              Du hast das Recht, dich bei einer Datenschutz-Aufsichtsbehörde zu beschweren (Art. 77 DSGVO).
+            </p>
+            <div style={{
+              background: "rgba(238,223,204,0.5)", borderRadius: 14, padding: 16, marginTop: 12,
+              border: "1px solid rgba(228,192,168,0.3)",
+            }}>
+              <strong style={{ color: "#2d1f19" }}>Zuständige Behörde:</strong><br/>
+              Der Hessische Beauftragte für Datenschutz und Informationsfreiheit (HBDI)<br/>
+              Postfach 3163, 65021 Wiesbaden<br/>
+              <a href="https://datenschutz.hessen.de" target="_blank" rel="noopener noreferrer"
+                style={{ color: "#CC624C", fontWeight: 700, textDecoration: "underline", textUnderlineOffset: 3 }}>
+                datenschutz.hessen.de <ExternalLink size={12} style={{ verticalAlign: "middle" }} />
+              </a>
+            </div>
+          </AccordionSection>
+        </section>
+
+        {/* ═══ COOKIES (Interactive) ═══ */}
+        <section id="cookies" style={{ marginBottom: 72, scrollMarginTop: 100 }}>
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{
+              fontFamily: "var(--font-calistoga), serif", fontSize: "1.8rem",
+              color: "#2d1f19", marginBottom: 12,
+              borderBottom: "2px solid #eedfcc", paddingBottom: 16,
+              display: "flex", alignItems: "center", gap: 12,
+            }}
+          >
+            <CookieIcon size={24} color="#CC624C" /> Cookies & Tracking
+          </motion.h2>
+
+          <p style={{
+            fontFamily: "var(--font-nunito), sans-serif", fontSize: "0.9rem",
+            color: "#5c3d35", lineHeight: 1.72, marginBottom: 24,
           }}>
-            Stand: Mai 2026 · Diese Seite dient der Information und ersetzt keine Rechtsberatung.
+            Unsere Website verwendet Cookies. Die Rechtsgrundlage für technisch notwendige Cookies
+            ist Art. 6 Abs. 1 lit. f DSGVO. Für alle anderen Cookies holen wir deine Einwilligung ein
+            (Art. 6 Abs. 1 lit. a DSGVO, § 25 TDDDG).
+          </p>
+
+          {/* Interactive cookie cards */}
+          <div style={{ display: "grid", gap: 12 }}>
+            {[
+              { name: "cc_cookie", provider: "Hey Fede!", purpose: "Cookie-Einstellungen speichern", duration: "6 Monate", category: "Notwendig" },
+              { name: "__session", provider: "Firebase Auth", purpose: "Login-Session-Verwaltung", duration: "Sitzung", category: "Notwendig" },
+              { name: "splash_shown", provider: "Hey Fede!", purpose: "Splash-Screen nur 1× zeigen", duration: "Sitzung", category: "Notwendig" },
+              { name: "hf_ach_*", provider: "Hey Fede!", purpose: "Achievement-Gamification-Fortschritt", duration: "Dauerhaft", category: "Funktional" },
+            ].map((cookie) => (
+              <motion.div
+                key={cookie.name}
+                whileHover={{ x: 4 }}
+                transition={{ type: "spring", stiffness: 400, damping: 30 }}
+                style={{
+                  display: "flex", alignItems: "center", gap: 16,
+                  background: "#f5efe8", borderRadius: 16, padding: "14px 20px",
+                  border: "1px solid rgba(228,192,168,0.3)",
+                  flexWrap: "wrap",
+                }}
+              >
+                <span style={{
+                  fontFamily: "monospace", fontWeight: 700, fontSize: "0.82rem",
+                  color: "#2d1f19", minWidth: 100,
+                }}>{cookie.name}</span>
+                <span style={{
+                  flex: 1, fontSize: "0.82rem", color: "#5c3d35", minWidth: 140,
+                }}>{cookie.purpose}</span>
+                <span style={{
+                  fontSize: "0.75rem", color: "#9a7060", minWidth: 70,
+                }}>{cookie.duration}</span>
+                <CookieBadge category={cookie.category} />
+              </motion.div>
+            ))}
           </div>
-        </FadeUp>
+
+          {/* CTA: manage cookies */}
+          <motion.button
+            whileHover={{ scale: 1.03, y: -2 }}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => CookieConsentLib.showPreferences()}
+            style={{
+              display: "flex", alignItems: "center", gap: 10, justifyContent: "center",
+              width: "100%", marginTop: 24, padding: "14px 28px",
+              background: "#CC624C", color: "#fefefe", border: "none",
+              borderRadius: 50, cursor: "pointer",
+              fontFamily: "var(--font-nunito), sans-serif",
+              fontWeight: 800, fontSize: "0.88rem",
+              boxShadow: "0 6px 20px rgba(204,98,76,0.3)",
+            }}
+          >
+            <CookieIcon size={18} /> Cookie-Einstellungen jetzt anpassen
+          </motion.button>
+        </section>
+
+        {/* ═══ AGB ═══ */}
+        <section id="agb" style={{ scrollMarginTop: 100 }}>
+          <motion.h2
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            style={{
+              fontFamily: "var(--font-calistoga), serif", fontSize: "1.8rem",
+              color: "#2d1f19", marginBottom: 28,
+              borderBottom: "2px solid #eedfcc", paddingBottom: 16,
+              display: "flex", alignItems: "center", gap: 12,
+            }}
+          >
+            <FileText size={24} color="#CC624C" /> AGB
+          </motion.h2>
+
+          {/* TL;DR Box */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            style={{
+              background: "linear-gradient(135deg, #E4C0A8 0%, #eedfcc 100%)",
+              padding: 24, borderRadius: 20, marginBottom: 32,
+              fontFamily: "var(--font-nunito), sans-serif", fontSize: "0.88rem", color: "#5c3d35",
+              border: "1px solid rgba(228,192,168,0.3)",
+            }}
+          >
+            <h3 style={{
+              fontFamily: "var(--font-calistoga), serif", color: "#2d1f19",
+              fontSize: "1rem", margin: "0 0 14px",
+              display: "flex", alignItems: "center", gap: 8,
+            }}>
+              <Info size={16} color="#CC624C" /> Das Wichtigste in Kürze
+            </h3>
+            <div style={{ display: "grid", gap: 8 }}>
+              {[
+                "Vorbestellung ist kostenlos & unverbindlich",
+                "Zahlung erfolgt vor Ort im Laden",
+                "Stornierung bis 30 Min vor Abholung möglich",
+                "Nicht abgeholte Bestellungen werden nach 30 Min aufgelöst",
+              ].map((item) => (
+                <div key={item} style={{ display: "flex", alignItems: "center", gap: 8 }}>
+                  <CheckCircle2 size={14} color="#CC624C" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* AGB Paragraphs as Accordions */}
+          {[
+            { n: "§ 1", t: "Geltungsbereich", c: "Diese AGB gelten für alle Vorbestellungen über die Hey Fede! Online-Plattform." },
+            { n: "§ 2", t: "Vertragsschluss", c: "Der Vertrag kommt mit Bestätigung deiner Bestellung per SMS oder E-Mail zustande. Bis dahin gilt die Bestellung als unverbindliche Anfrage." },
+            { n: "§ 3", t: "Preise & Bezahlung", c: "Alle Preise inkl. gesetzl. MwSt. (7% für Speisen zum Mitnehmen, 19% Verzehr vor Ort). Bezahlt wird ausschließlich vor Ort — bar, mit EC- oder Kreditkarte." },
+            { n: "§ 4", t: "Abholung & Stornierung", c: "Stornierung kostenlos bis 30 Min vor Abholzeit über die App, telefonisch oder per WhatsApp. Bei Nichtabholung kann die Bestellung anderweitig vergeben werden." },
+            { n: "§ 5", t: "Haftung", c: "Hey Fede! haftet nur bei Vorsatz und grober Fahrlässigkeit. Für leichte Fahrlässigkeit nur bei Verletzung wesentlicher Vertragspflichten." },
+          ].map((s) => (
+            <AccordionSection key={s.n} icon={<Scale size={14} />} number={s.n} title={s.t}>
+              <p style={{ margin: 0 }}>{s.c}</p>
+            </AccordionSection>
+          ))}
+        </section>
+
+        {/* Last updated */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          style={{
+            marginTop: 56, padding: "16px 24px",
+            background: "linear-gradient(135deg, #eedfcc 0%, #f5efe8 100%)",
+            borderRadius: 16,
+            fontFamily: "var(--font-nunito), sans-serif",
+            fontSize: "0.78rem", color: "#9a7060",
+            textAlign: "center",
+            border: "1px solid rgba(228,192,168,0.3)",
+          }}
+        >
+          Stand: Mai 2026 · Diese Seite dient der Information und ersetzt keine Rechtsberatung.
+        </motion.div>
       </div>
+
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes blobFloat { 0%,100%{transform:translate(0,0)} 33%{transform:translate(6px,-10px)} 66%{transform:translate(-5px,7px)} }
+      `}} />
     </div>
   );
 }

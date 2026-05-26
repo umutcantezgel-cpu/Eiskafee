@@ -3,64 +3,139 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import * as CookieConsent from "vanilla-cookieconsent";
+import { Cookie, Settings } from "lucide-react";
 
 export default function CookieRevoke() {
   const [visible, setVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   useEffect(() => {
-    // Show revoke button only after consent has been given
-    const check = () => {
-      const hasConsent = CookieConsent.validConsent();
-      setVisible(hasConsent);
-    };
-
-    // Check on mount and when consent changes
+    const check = () => setVisible(CookieConsent.validConsent());
     check();
     window.addEventListener("cc:onConsent", check);
     window.addEventListener("cc:onChange", check);
 
+    // Show tooltip briefly after 3 seconds to hint the button exists
+    const tooltipTimer = setTimeout(() => {
+      if (CookieConsent.validConsent()) {
+        setShowTooltip(true);
+        setTimeout(() => setShowTooltip(false), 3000);
+      }
+    }, 5000);
+
     return () => {
       window.removeEventListener("cc:onConsent", check);
       window.removeEventListener("cc:onChange", check);
+      clearTimeout(tooltipTimer);
     };
   }, []);
 
   if (!visible) return null;
 
   return (
-    <AnimatePresence>
+    <div style={{ position: "fixed", bottom: 20, left: 20, zIndex: 800 }}>
+      {/* Tooltip */}
+      <AnimatePresence>
+        {(isHovered || showTooltip) && (
+          <motion.div
+            initial={{ opacity: 0, x: -8, scale: 0.9 }}
+            animate={{ opacity: 1, x: 0, scale: 1 }}
+            exit={{ opacity: 0, x: -8, scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+            style={{
+              position: "absolute",
+              bottom: "calc(100% + 10px)",
+              left: 0,
+              background: "rgba(45, 31, 25, 0.92)",
+              backdropFilter: "blur(12px)",
+              color: "#fefefe",
+              padding: "8px 14px",
+              borderRadius: 12,
+              fontSize: "0.75rem",
+              fontFamily: "var(--font-nunito), sans-serif",
+              fontWeight: 700,
+              whiteSpace: "nowrap",
+              boxShadow: "0 8px 24px rgba(45,31,25,0.2)",
+              pointerEvents: "none",
+            }}
+          >
+            Cookie-Einstellungen
+            <div style={{
+              position: "absolute",
+              bottom: -5,
+              left: 16,
+              width: 10,
+              height: 10,
+              background: "rgba(45, 31, 25, 0.92)",
+              transform: "rotate(45deg)",
+              borderRadius: 2,
+            }} />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Pulse ring */}
+      <motion.div
+        animate={{
+          scale: [1, 1.6, 1.6],
+          opacity: [0.4, 0, 0],
+        }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          ease: "easeOut",
+        }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          borderRadius: "50%",
+          border: "2px solid #CC624C",
+          pointerEvents: "none",
+        }}
+      />
+
+      {/* Main button */}
       <motion.button
-        initial={{ opacity: 0, scale: 0.8, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.8 }}
-        transition={{ type: "spring", stiffness: 300, damping: 25, delay: 1 }}
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.95 }}
+        initial={{ opacity: 0, scale: 0, rotate: -180 }}
+        animate={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1.5 }}
+        whileHover={{ scale: 1.12 }}
+        whileTap={{ scale: 0.9 }}
+        onHoverStart={() => { setIsHovered(true); setShowTooltip(false); }}
+        onHoverEnd={() => setIsHovered(false)}
         onClick={() => CookieConsent.showPreferences()}
         aria-label="Cookie-Einstellungen öffnen"
-        title="Cookie-Einstellungen"
         style={{
-          position: "fixed",
-          bottom: 20,
-          left: 20,
-          zIndex: 800,
-          width: 44,
-          height: 44,
+          position: "relative",
+          width: 46,
+          height: 46,
           borderRadius: "50%",
-          border: "2px solid #eedfcc",
-          background: "#f5efe8",
-          color: "#CC624C",
-          fontSize: "1.2rem",
+          border: "none",
+          background: "rgba(245, 239, 232, 0.85)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
           cursor: "pointer",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          boxShadow: "0 4px 16px rgba(45,31,25,0.12)",
-          backdropFilter: "blur(8px)",
+          boxShadow: isHovered
+            ? "0 8px 28px rgba(204,98,76,0.25), 0 0 0 1px rgba(228,192,168,0.5) inset"
+            : "0 4px 16px rgba(45,31,25,0.1), 0 0 0 1px rgba(228,192,168,0.3) inset",
+          transition: "box-shadow 0.3s ease",
         }}
       >
-        🍪
+        <motion.div
+          animate={{ rotate: isHovered ? 90 : 0 }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        >
+          {isHovered ? (
+            <Settings size={20} color="#CC624C" strokeWidth={2} />
+          ) : (
+            <Cookie size={20} color="#CC624C" strokeWidth={2} />
+          )}
+        </motion.div>
       </motion.button>
-    </AnimatePresence>
+    </div>
   );
 }
