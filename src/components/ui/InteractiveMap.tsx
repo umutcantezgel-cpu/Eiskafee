@@ -1,15 +1,16 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from "@react-google-maps/api";
-import { MapPin, Navigation, ExternalLink, Clock } from "lucide-react";
+import { MapPin, ExternalLink, Clock, Navigation, Loader2 } from "lucide-react";
 import * as CookieConsent from "vanilla-cookieconsent";
 
 /* ─── Constants ─── */
-const HEY_FEDE_LOCATION = { lat: 50.5565, lng: 8.5048 };
+const HEY_FEDE = { lat: 50.5565, lng: 8.5048 };
+const ROUTE_URL = `https://www.google.com/maps/dir/?api=1&destination=${HEY_FEDE.lat},${HEY_FEDE.lng}`;
+const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "";
 
-/* ─── Custom Map Styling — Hey Fede! Cream & Terracotta ─── */
 const MAP_STYLES = [
   { featureType: "water", elementType: "geometry.fill", stylers: [{ color: "#c9dae3" }] },
   { featureType: "landscape", elementType: "geometry.fill", stylers: [{ color: "#f5efe8" }] },
@@ -27,55 +28,17 @@ const MAP_STYLES = [
   { featureType: "administrative", elementType: "labels.text.fill", stylers: [{ color: "#9a7060" }] },
 ];
 
-const CONTAINER_STYLE = { width: "100%", height: "100%" };
-
 /* ═══════════════════════════════════════════════════════════
-   InteractiveMap Component
+   Inner Map — Only mounted after consent + API key verified
    ═══════════════════════════════════════════════════════════ */
-export default function InteractiveMap() {
-  const [showMap, setShowMap] = useState(false);
-  const [showInfo, setShowInfo] = useState(false);
-
-  // Check consent on mount + listen for changes
-  useEffect(() => {
-    const check = () => {
-      try {
-        if (CookieConsent.acceptedCategory("functional")) {
-          setShowMap(true);
-        }
-      } catch {
-        // CC not initialized yet — ignore
-      }
-    };
-    check();
-    window.addEventListener("cc:onConsent", check);
-    window.addEventListener("cc:onChange", check);
-    return () => {
-      window.removeEventListener("cc:onConsent", check);
-      window.removeEventListener("cc:onChange", check);
-    };
-  }, []);
-
-  // Only load Google Maps JS API when consent given
-  const { isLoaded } = useJsApiLoader({
-    googleMapsApiKey: showMap ? (process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "") : "",
-    id: "hey-fede-map",
+function LiveMap() {
+  const { isLoaded, loadError } = useJsApiLoader({
+    googleMapsApiKey: API_KEY,
+    id: "hey-fede-gmap",
   });
 
-  // Map options — memoized, safe to use only when isLoaded
-  const mapOptions = useMemo(() => {
-    if (!isLoaded) return {};
-    return {
-      styles: MAP_STYLES,
-      disableDefaultUI: true,
-      zoomControl: true,
-      gestureHandling: "cooperative",
-      clickableIcons: false,
-      backgroundColor: "#f5efe8",
-    };
-  }, [isLoaded]);
+  const [showInfo, setShowInfo] = useState(false);
 
-  // Marker icon — only callable after google is loaded
   const markerIcon = useMemo(() => {
     if (!isLoaded || typeof google === "undefined") return undefined;
     return {
@@ -89,22 +52,148 @@ export default function InteractiveMap() {
     };
   }, [isLoaded]);
 
-  const markerAnimation = useMemo(() => {
-    if (!isLoaded || typeof google === "undefined") return undefined;
-    return google.maps.Animation.DROP;
-  }, [isLoaded]);
+  if (loadError) {
+    return (
+      <div style={{
+        width: "100%", height: "100%", display: "flex", flexDirection: "column",
+        alignItems: "center", justifyContent: "center", gap: 12,
+        background: "linear-gradient(145deg, #eedfcc 0%, #E4C0A8 100%)",
+        fontFamily: "var(--font-nunito), sans-serif",
+      }}>
+        <MapPin size={28} color="#CC624C" />
+        <div style={{ fontSize: "0.88rem", color: "#2d1f19", fontWeight: 800 }}>Karte nicht verfügbar</div>
+        <a href={ROUTE_URL} target="_blank" rel="noopener noreferrer" style={{
+          display: "inline-flex", alignItems: "center", gap: 6,
+          background: "#CC624C", color: "#fefefe", padding: "10px 20px",
+          borderRadius: 50, fontWeight: 800, fontSize: "0.82rem", textDecoration: "none",
+        }}>
+          <Navigation size={14} /> In Google Maps öffnen
+        </a>
+      </div>
+    );
+  }
 
-  const handleActivateMap = () => {
-    try {
-      CookieConsent.acceptCategory("functional");
-    } catch {
-      // If CC isn't init yet, just show map anyway
-    }
-    setShowMap(true);
+  if (!isLoaded) {
+    return (
+      <div style={{
+        width: "100%", height: "100%", display: "flex",
+        alignItems: "center", justifyContent: "center",
+        background: "linear-gradient(145deg, #eedfcc 0%, #E4C0A8 100%)",
+      }}>
+        <motion.div animate={{ rotate: 360 }} transition={{ repeat: Infinity, duration: 1.2, ease: "linear" }}>
+          <Loader2 size={28} color="#CC624C" />
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <GoogleMap
+        mapContainerStyle={{ width: "100%", height: "100%" }}
+        center={HEY_FEDE}
+        zoom={16}
+        options={{
+          styles: MAP_STYLES,
+          disableDefaultUI: true,
+          zoomControl: true,
+          gestureHandling: "cooperative",
+          clickableIcons: false,
+          backgroundColor: "#f5efe8",
+        }}
+      >
+        <MarkerF
+          position={HEY_FEDE}
+          icon={markerIcon}
+          onClick={() => setShowInfo(true)}
+        />
+
+        {showInfo && (
+          <InfoWindowF position={HEY_FEDE} onCloseClick={() => setShowInfo(false)}>
+            <div style={{ fontFamily: "var(--font-nunito), sans-serif", padding: "4px 2px", minWidth: 180 }}>
+              <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1rem", color: "#2d1f19", marginBottom: 4 }}>Hey Fede!</div>
+              <div style={{ fontSize: "0.78rem", color: "#5c3d35", marginBottom: 6 }}>Dessertbar & Café<br/>Langgasse 68, 35576 Wetzlar</div>
+              <div style={{ display: "flex", gap: 4, fontSize: "0.72rem", color: "#9a7060", marginBottom: 8 }}>
+                <Clock size={12} /> 11:30 – 20:00 Uhr
+              </div>
+              <a href={ROUTE_URL} target="_blank" rel="noopener noreferrer" style={{
+                display: "inline-flex", alignItems: "center", gap: 6,
+                background: "#CC624C", color: "#fefefe", border: "none",
+                borderRadius: 50, padding: "6px 14px", fontSize: "0.72rem",
+                fontWeight: 800, textDecoration: "none",
+              }}>
+                <Navigation size={12} /> Route planen
+              </a>
+            </div>
+          </InfoWindowF>
+        )}
+      </GoogleMap>
+
+      {/* Floating address bubble */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5 }}
+        style={{
+          position: "absolute", bottom: 14, left: 14, right: 14,
+          background: "rgba(245,239,232,0.92)",
+          backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
+          borderRadius: 14, padding: "10px 16px",
+          display: "flex", alignItems: "center", justifyContent: "space-between",
+          boxShadow: "0 4px 16px rgba(45,31,25,0.1)",
+          border: "1px solid rgba(228,192,168,0.3)", zIndex: 10,
+        }}
+      >
+        <div>
+          <div style={{ fontFamily: "var(--font-nunito), sans-serif", fontWeight: 900, fontSize: "0.84rem", color: "#2d1f19" }}>Hey Fede! Dessertbar</div>
+          <div style={{ fontFamily: "var(--font-nunito), sans-serif", fontSize: "0.72rem", color: "#9a7060" }}>Langgasse 68 · 35576 Wetzlar</div>
+        </div>
+        <motion.a
+          whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
+          href={ROUTE_URL} target="_blank" rel="noopener noreferrer"
+          style={{
+            display: "flex", alignItems: "center", gap: 6,
+            background: "#CC624C", color: "#fefefe",
+            padding: "8px 16px", borderRadius: 50,
+            textDecoration: "none", flexShrink: 0,
+            fontFamily: "var(--font-nunito), sans-serif",
+            fontWeight: 800, fontSize: "0.76rem",
+          }}
+        >
+          Route <ExternalLink size={12} />
+        </motion.a>
+      </motion.div>
+    </>
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════
+   Outer Component — Consent Gate
+   ═══════════════════════════════════════════════════════════ */
+export default function InteractiveMap() {
+  const [activated, setActivated] = useState(false);
+
+  useEffect(() => {
+    const check = () => {
+      try {
+        if (CookieConsent.acceptedCategory("functional")) {
+          setActivated(true);
+        }
+      } catch { /* CC not init yet */ }
+    };
+    check();
+    window.addEventListener("cc:onConsent", check);
+    window.addEventListener("cc:onChange", check);
+    return () => {
+      window.removeEventListener("cc:onConsent", check);
+      window.removeEventListener("cc:onChange", check);
+    };
+  }, []);
+
+  const handleActivate = () => {
+    try { CookieConsent.acceptCategory("functional"); } catch { /* noop */ }
+    setActivated(true);
   };
-
-  const routeUrl = `https://www.google.com/maps/dir/?api=1&destination=${HEY_FEDE_LOCATION.lat},${HEY_FEDE_LOCATION.lng}`;
-  const readyToRender = showMap && isLoaded;
 
   return (
     <div style={{
@@ -113,14 +202,11 @@ export default function InteractiveMap() {
       boxShadow: "0 8px 32px rgba(45,31,25,0.12)",
     }}>
       <AnimatePresence mode="wait">
-        {!readyToRender ? (
+        {!activated ? (
           /* ─── Placeholder ─── */
           <motion.div
             key="placeholder"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0, scale: 1.02 }}
-            transition={{ duration: 0.4 }}
+            exit={{ opacity: 0 }}
             style={{
               position: "absolute", inset: 0,
               background: "linear-gradient(145deg, #eedfcc 0%, #E4C0A8 50%, #dbc7ae 100%)",
@@ -128,14 +214,11 @@ export default function InteractiveMap() {
               alignItems: "center", justifyContent: "center", gap: 16,
             }}
           >
-            {/* Grid dots */}
             <div style={{
               position: "absolute", inset: 0, opacity: 0.08,
               backgroundImage: "radial-gradient(circle, #2d1f19 1px, transparent 1px)",
               backgroundSize: "24px 24px",
             }} />
-
-            {/* Fake street lines */}
             <div style={{ position: "absolute", inset: 0, opacity: 0.06 }}>
               <div style={{ position: "absolute", top: "30%", left: 0, right: 0, height: 3, background: "#5c3d35" }} />
               <div style={{ position: "absolute", top: "60%", left: 0, right: 0, height: 2, background: "#5c3d35" }} />
@@ -143,7 +226,6 @@ export default function InteractiveMap() {
               <div style={{ position: "absolute", left: "65%", top: 0, bottom: 0, width: 3, background: "#5c3d35" }} />
             </div>
 
-            {/* Bouncing Pin */}
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
@@ -164,17 +246,14 @@ export default function InteractiveMap() {
               />
             </motion.div>
 
-            {/* Address */}
             <div style={{ textAlign: "center", position: "relative", zIndex: 2, fontFamily: "var(--font-nunito), sans-serif" }}>
               <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1.1rem", color: "#2d1f19", marginBottom: 4 }}>Hey Fede!</div>
               <div style={{ fontSize: "0.82rem", color: "#5c3d35" }}>Langgasse 68 · 35576 Wetzlar</div>
             </div>
 
-            {/* CTA */}
             <motion.button
-              whileHover={{ scale: 1.04, y: -2 }}
-              whileTap={{ scale: 0.96 }}
-              onClick={handleActivateMap}
+              whileHover={{ scale: 1.04, y: -2 }} whileTap={{ scale: 0.96 }}
+              onClick={handleActivate}
               style={{
                 position: "relative", zIndex: 2,
                 display: "flex", alignItems: "center", gap: 8,
@@ -198,95 +277,15 @@ export default function InteractiveMap() {
             </div>
           </motion.div>
         ) : (
-          /* ─── Live Map ─── */
+          /* ─── Live Map (mounted only after activation) ─── */
           <motion.div
             key="map"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.5 }}
             style={{ position: "absolute", inset: 0 }}
           >
-            <GoogleMap
-              mapContainerStyle={CONTAINER_STYLE}
-              center={HEY_FEDE_LOCATION}
-              zoom={16}
-              options={mapOptions}
-            >
-              <MarkerF
-                position={HEY_FEDE_LOCATION}
-                icon={markerIcon}
-                onClick={() => setShowInfo(true)}
-                animation={markerAnimation}
-              />
-
-              {showInfo && (
-                <InfoWindowF
-                  position={HEY_FEDE_LOCATION}
-                  onCloseClick={() => setShowInfo(false)}
-                >
-                  <div style={{ fontFamily: "var(--font-nunito), sans-serif", padding: "4px 2px", minWidth: 180 }}>
-                    <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1rem", color: "#2d1f19", marginBottom: 4 }}>Hey Fede!</div>
-                    <div style={{ fontSize: "0.78rem", color: "#5c3d35", marginBottom: 6 }}>Dessertbar & Café<br/>Langgasse 68, 35576 Wetzlar</div>
-                    <div style={{ display: "flex", gap: 4, fontSize: "0.72rem", color: "#9a7060", marginBottom: 8 }}>
-                      <Clock size={12} /> 11:30 – 20:00 Uhr
-                    </div>
-                    <a
-                      href={routeUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{
-                        display: "inline-flex", alignItems: "center", gap: 6,
-                        background: "#CC624C", color: "#fefefe",
-                        border: "none", borderRadius: 50, padding: "6px 14px",
-                        fontSize: "0.72rem", fontWeight: 800, cursor: "pointer",
-                        fontFamily: "var(--font-nunito), sans-serif",
-                        textDecoration: "none",
-                      }}
-                    >
-                      <Navigation size={12} /> Route planen
-                    </a>
-                  </div>
-                </InfoWindowF>
-              )}
-            </GoogleMap>
-
-            {/* Floating address bubble */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              style={{
-                position: "absolute", bottom: 14, left: 14, right: 14,
-                background: "rgba(245,239,232,0.92)",
-                backdropFilter: "blur(12px)", WebkitBackdropFilter: "blur(12px)",
-                borderRadius: 14, padding: "10px 16px",
-                display: "flex", alignItems: "center", justifyContent: "space-between",
-                boxShadow: "0 4px 16px rgba(45,31,25,0.1)",
-                border: "1px solid rgba(228,192,168,0.3)", zIndex: 10,
-              }}
-            >
-              <div>
-                <div style={{ fontFamily: "var(--font-nunito), sans-serif", fontWeight: 900, fontSize: "0.84rem", color: "#2d1f19" }}>Hey Fede! Dessertbar</div>
-                <div style={{ fontFamily: "var(--font-nunito), sans-serif", fontSize: "0.72rem", color: "#9a7060" }}>Langgasse 68 · 35576 Wetzlar</div>
-              </div>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href={routeUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                style={{
-                  display: "flex", alignItems: "center", gap: 6,
-                  background: "#CC624C", color: "#fefefe",
-                  padding: "8px 16px", borderRadius: 50,
-                  textDecoration: "none", flexShrink: 0,
-                  fontFamily: "var(--font-nunito), sans-serif",
-                  fontWeight: 800, fontSize: "0.76rem",
-                }}
-              >
-                Route <ExternalLink size={12} />
-              </motion.a>
-            </motion.div>
+            <LiveMap />
           </motion.div>
         )}
       </AnimatePresence>
