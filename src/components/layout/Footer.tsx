@@ -1,117 +1,124 @@
+'use client';
+
 import React from "react";
-import Link from "next/link";
-import { ArrowRight, MapPin, Mail, Clock, Phone } from "lucide-react";
-import { Logo } from "@/components/ui/Logo";
+import { MapPin, Phone, Camera } from "lucide-react";
+import { Logo } from "@/components/atoms/Logo";
 import { TransitionLink } from "@/components/ui/TransitionLink";
-import { WaveDivider } from "@/components/ui/WaveDivider";
+import { WaveDivider } from "@/components/atoms/WaveDivider";
+import { NewsletterInput } from "@/components/molecules/forms/NewsletterInput";
+import { NAPBlock } from "@/components/seo/NAPBlock";
+import { BUSINESS } from "@/lib/seo/business-data";
+import { ClientHoursTable } from "@/components/ui/ClientHoursTable";
 
 export function Footer() {
+  const currentDay = new Date().getDay(); // 0 = So, 1 = Mo, 2 = Di, 3 = Mi, 4 = Do, 5 = Fr, 6 = Sa
+
   return (
-    <footer style={{ background: '#eedfcc', position: 'relative' }}>
-      <WaveDivider fromColor="#f5efe8" toColor="#eedfcc" variant={2} />
+    <footer className="relative bg-sand pt-10">
+      <div className="absolute top-0 left-0 w-full -translate-y-[99%]">
+        <WaveDivider variant="long-curve" className="w-[150%] md:w-full h-auto text-sand" />
+      </div>
 
-      <div style={{ maxWidth: 1200, margin: '0 auto', padding: '56px 24px 44px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(210px, 1fr))', gap: 40, marginBottom: 44 }}>
+      <div className="max-w-7xl mx-auto px-6 pt-12 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
+          
+          {/* Column 1: Brand & NAP */}
+          <div className="flex flex-col items-start">
+            <TransitionLink href="/" aria-label="Startseite">
+              <Logo variant="orange" className="w-20 mb-4" />
+            </TransitionLink>
+            <p className="font-calistoga text-xl text-charcoal mb-4">Dessertbar & Café</p>
+            
+            <NAPBlock variant="footer" />
+            <div className="flex gap-3">
+              <a 
+                href={BUSINESS.instagramUrl} 
+                target="_blank" 
+                rel="noreferrer"
+                className="bg-terracotta text-cream px-4 py-2 rounded-full font-bold text-[13px] hover:bg-[#b05240] transition-colors flex items-center gap-2"
+              >
+                <Camera className="w-4 h-4" /> Instagram
+              </a>
+            </div>
+          </div>
 
-          {/* Brand column */}
+          {/* Column 2: Navigation */}
           <div>
-            <Logo size={60} />
-            <p style={{ marginTop: 14, fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 700, fontSize: '0.85rem', color: '#5c3d35' }}>
-              Dessertbar & Café
-            </p>
-            <p style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.78rem', color: '#9a7060', marginTop: 3 }}>
-              Frisch. Selbstgemacht. Mit Liebe.
-            </p>
-            <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
+            <h4 className="font-calistoga text-xl text-terracotta mb-6">Hey Fedee</h4>
+            <nav aria-label="Footer Navigation" className="flex flex-col gap-4">
               {[
-                ['#CC624C', 'Instagram', 'https://www.instagram.com/heyfede_wetzlar'],
-                ['#2d1f19', 'TikTok', 'https://tiktok.com/@heyfede_wetzlar']
-              ].map(([bg, label, href]) => (
-                <a key={label} href={href} target="_blank" rel="noreferrer"
-                  style={{ background: bg, color: '#fefefe', fontFamily: 'var(--font-nunito), sans-serif',
-                    fontWeight: 800, fontSize: '0.76rem', padding: '7px 15px', borderRadius: 50, textDecoration: 'none' }}>
-                  {label}
-                </a>
+                { href: '/', label: 'Startseite' },
+                { href: '/menu', label: 'Speisekarte' },
+                { href: '/about', label: 'Über Uns' },
+                { href: '/visit', label: 'Besuchen & Liefern' }
+              ].map(link => (
+                <TransitionLink 
+                  key={link.href} 
+                  href={link.href}
+                  className="font-bold text-charcoal w-fit hover:text-terracotta transition-colors relative group"
+                >
+                  {link.label}
+                  {/* Wavy hover underline */}
+                  <span className="absolute -bottom-1 left-0 w-full h-[3px] bg-terracotta origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300" style={{
+                    maskImage: 'url("data:image/svg+xml,%3Csvg width=\'10\' height=\'3\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M0 1.5 Q 2.5 0, 5 1.5 T 10 1.5\' fill=\'none\' stroke=\'black\' stroke-width=\'2\'/%3E%3C/svg%3E")',
+                    maskRepeat: 'repeat-x'
+                  }} />
+                </TransitionLink>
               ))}
-            </div>
+            </nav>
           </div>
 
-          {/* Navigation */}
+          {/* Column 3: Öffnungszeiten */}
           <div>
-            <h4 style={{ fontFamily: 'var(--font-calistoga), serif', fontSize: '1.05rem', color: '#CC624C', marginBottom: 14 }}>Navigation</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 9 }}>
-              {[
-                ['/', 'Startseite'],
-                ['/menu', 'Speisekarte'],
-                ['/about', 'Über Uns'],
-                ['/visit', 'Besuchen & Liefern']
-              ].map(([href, l]) => (
-                <TransitionLink key={href} href={href}
-                  style={{ background: 'none', border: 'none', color: '#5c3d35', textDecoration: 'none',
-                    fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 600, fontSize: '0.87rem',
-                    cursor: 'pointer', textAlign: 'left', padding: 0 }}>{l}</TransitionLink>
-              ))}
+            <h4 className="font-calistoga text-xl text-terracotta mb-6">Öffnungszeiten</h4>
+            <div className="mb-4">
+              <ClientHoursTable />
             </div>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h4 style={{ fontFamily: 'var(--font-calistoga), serif', fontSize: '1.05rem', color: '#CC624C', marginBottom: 14 }}>Kontakt</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              {[
-                [MapPin, 'Langgasse 68, 35576 Wetzlar'],
-                [Phone, '06441 7890426'],
-                [Phone, '0176 25026991 (WhatsApp)'],
-              ].map(([Icon, text], i) => {
-                const IconComp = Icon as any;
-                return (
-                  <div key={i} style={{ display: 'flex', gap: 8, alignItems: 'flex-start' }}>
-                    <IconComp size={14} color="#CC624C" style={{ flexShrink: 0, marginTop: 2 }} />
-                    <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.84rem', color: '#5c3d35', fontWeight: 600 }}>{text as string}</span>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Hours */}
-          <div>
-            <h4 style={{ fontFamily: 'var(--font-calistoga), serif', fontSize: '1.05rem', color: '#CC624C', marginBottom: 14 }}>Öffnungszeiten</h4>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: '0.86rem' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, color: '#2d1f19' }}>Mo + Di</span>
-                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#9a7060' }}>Geschlossen</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, color: '#2d1f19' }}>Mi – Sa</span>
-                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#5c3d35' }}>12:00 – 19:00 Uhr</span>
-              </div>
-              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, color: '#2d1f19' }}>So</span>
-                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#5c3d35' }}>13:00 – 19:00 Uhr</span>
-              </div>
-            </div>
-            <div style={{ height: 1, background: '#E4C0A8', margin: '12px 0' }} />
-            <p style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, fontSize: '0.78rem', color: '#CC624C' }}>
+            
+            <div className="mt-6 p-4 bg-cream rounded-2xl border-2 border-peach text-xs font-bold text-terracotta text-center transform -rotate-2">
               ✓ Keine Liefergebühr bei Lieferando
-            </p>
+            </div>
           </div>
+
+          {/* Column 4: Newsletter */}
+          <div>
+            <h4 className="font-calistoga text-xl text-terracotta mb-6">Stay Sweet</h4>
+            <p className="text-sm font-bold text-charcoal/80 mb-4">
+              Abonniere unseren Newsletter für exklusive Angebote und neue Bubble Waffle Kreationen.
+            </p>
+            <NewsletterInput />
+          </div>
+
         </div>
 
-        {/* Bottom bar */}
-        <div style={{ borderTop: '1px solid #E4C0A8', paddingTop: 20,
-          display: 'flex', flexWrap: 'wrap', gap: 14, justifyContent: 'space-between', alignItems: 'center' }}>
-          <p style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.76rem', color: '#9a7060' }}>
-            © {new Date().getFullYear()} Hey Fede! Dessertbar & Café
-          </p>
-          <div style={{ display: 'flex', gap: 18 }}>
-            {[
-              ['Impressum', '/legal#impressum'],
-              ['Datenschutz', '/legal#datenschutz'],
-              ['AGB', '/legal#agb']
-            ].map(([t, href]) => (
-              <TransitionLink key={t} href={href} style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.76rem', color: '#9a7060', textDecoration: 'none' }}>{t}</TransitionLink>
-            ))}
+        {/* Tagline Strip */}
+        <div className="w-full flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 py-12 border-t border-peach/50 relative">
+          <span className="font-calistoga text-3xl md:text-5xl text-charcoal transform -rotate-3 hover:rotate-0 transition-transform">Frisch</span>
+          <span className="text-terracotta font-calistoga text-2xl hidden md:block">·</span>
+          <span className="font-calistoga text-3xl md:text-5xl text-charcoal transform rotate-2 hover:rotate-0 transition-transform">Selbstgemacht</span>
+          <span className="text-terracotta font-calistoga text-2xl hidden md:block">·</span>
+          <span className="font-calistoga text-3xl md:text-5xl text-terracotta transform -rotate-1 hover:rotate-0 transition-transform">Mit Liebe</span>
+        </div>
+
+        {/* Confetti Strip with bg-dot-pattern-subtle */}
+        <div className="h-16 w-full rounded-full overflow-hidden relative mb-12 flex items-center justify-around opacity-60" 
+          style={{ backgroundImage: 'radial-gradient(circle at 2px 2px, rgba(201, 80, 57, 0.15) 1px, transparent 0)', backgroundSize: '16px 16px' }}
+        >
+          {/* Sparse hand-drawn mini icons (SVG shapes) */}
+          <svg className="w-6 h-6 text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          <svg className="w-6 h-6 text-peach" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/></svg>
+          <svg className="w-6 h-6 text-brown" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></svg>
+          <svg className="w-6 h-6 text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
+          <svg className="w-6 h-6 text-charcoal" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 8l6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z"/></svg>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-brown">
+          <p>© {new Date().getFullYear()} Hey Fedee! Dessertbar & Café</p>
+          <div className="flex gap-6">
+            <TransitionLink href="/legal#impressum" className="hover:text-terracotta transition-colors">Impressum</TransitionLink>
+            <TransitionLink href="/legal#datenschutz" className="hover:text-terracotta transition-colors">Datenschutz</TransitionLink>
+            <TransitionLink href="/legal#agb" className="hover:text-terracotta transition-colors">AGB</TransitionLink>
           </div>
         </div>
       </div>

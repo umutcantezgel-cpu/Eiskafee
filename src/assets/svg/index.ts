@@ -1,0 +1,11 @@
+export { default as FormBeige } from './form-beige.svg';
+export { default as FormHellbeige } from './form-hellbeige.svg';
+export { default as HandIllustration2 } from './hand-illustration-2.svg';
+export { default as HandIllustration3 } from './hand-illustration-3.svg';
+export { default as HandIllustration } from './hand-illustration.svg';
+export { default as LogoBeige } from './logo-beige.svg';
+export { default as LogoHellbeige } from './logo-hellbeige.svg';
+export { default as LogoOrange } from './logo-orange.svg';
+export { default as LogoRundBeige } from './logo-rund-beige.svg';
+export { default as LogoRundHellbeige } from './logo-rund-hellbeige.svg';
+export { default as LogoWortmarkeBeige } from './logo-wortmarke-beige.svg';

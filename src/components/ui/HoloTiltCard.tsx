@@ -4,10 +4,19 @@ import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useTransform, useSpring, useMotionTemplate } from "framer-motion";
 import { Plus } from "lucide-react";
 import * as Icons from "lucide-react";
-import { useTransition } from "@/components/ui/TransitionProvider";
+import { useRouter } from "next/navigation";
 
 export function HoloTiltCard({ item }: { item: any }) {
-  const { navigate } = useTransition();
+  const router = useRouter();
+  
+  const handleAction = () => {
+    // If ticket, go to order-hub, else to menu
+    if (item.ticket) {
+      router.push('/order-hub');
+    } else {
+      router.push('/menu');
+    }
+  };
   
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
@@ -70,7 +79,7 @@ export function HoloTiltCard({ item }: { item: any }) {
         <div className="flex justify-between items-center mt-auto">
           <span className="font-calistoga text-xl text-[#CC624C]">{item.price}</span>
           <button
-            onClick={() => navigate('/menu')}
+            onClick={() => router.push('/menu')}
             aria-label={`${item.name} ansehen`}
             className="w-9 h-9 rounded-full flex items-center justify-center transition-transform hover:scale-110 active:scale-95"
             style={{ background: '#CC624C', boxShadow: '0 2px 8px rgba(204,98,76,0.25)' }}

@@ -1,131 +1,120 @@
-"use client";
+'use client';
 
-import React, { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import React, { useEffect, useState } from 'react';
+import { motion, useSpring, useMotionValue, useReducedMotion } from 'framer-motion';
 
 export function SyrupCursor() {
-  const [enabled, setEnabled] = useState(false);
-  const [reduced, setReduced] = useState(false);
-  const [target, setTarget] = useState<{ x: number; y: number; w: number; h: number } | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const [isHovering, setIsHovering] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const cursorX = useMotionValue(-100);
+  const cursorY = useMotionValue(-100);
+
+  // Main dot follows instantly, so we can just use the motion value directly
+  // Or we can use a very fast spring
+  const mainX = useSpring(cursorX, { stiffness: 1000, damping: 40 });
+  const mainY = useSpring(cursorY, { stiffness: 1000, damping: 40 });
+
+  // Trailer dot lags behind
+  const trailerX = useSpring(cursorX, { stiffness: 150, damping: 18, mass: 0.5 });
+  const trailerY = useSpring(cursorY, { stiffness: 150, damping: 18, mass: 0.5 });
 
   useEffect(() => {
-    setEnabled(window.matchMedia('(pointer: fine)').matches);
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-  }, []);
+    if (prefersReducedMotion) return;
 
-  const mouseX = useMotionValue(-100);
-  const mouseY = useMotionValue(-100);
+    // Only activate cursor if we have a fine pointer (mouse)
+    const mediaQuery = window.matchMedia('(pointer: fine) and (hover: hover)');
+    if (!mediaQuery.matches) return;
 
-  useEffect(() => {
-    if (!enabled) return;
-    const move = (e: MouseEvent) => {
-      mouseX.set(e.clientX);
-      mouseY.set(e.clientY);
-    };
-    window.addEventListener('mousemove', move);
-    return () => window.removeEventListener('mousemove', move);
-  }, [enabled, mouseX, mouseY]);
+    setIsVisible(true);
 
-  useEffect(() => {
-    if (!enabled) return;
-    const enter = (e: MouseEvent) => {
-      const el = (e.target as Element).closest?.('button, a, [role="button"], .octa, .hbtn');
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      setTarget({ x: r.left + r.width/2, y: r.top + r.height/2, w: r.width, h: r.height });
+    const moveMouse = (e: MouseEvent) => {
+      cursorX.set(e.clientX);
+      cursorY.set(e.clientY);
     };
-    const leave = (e: MouseEvent) => {
-      if (!(e.target as Element).closest?.('button, a, [role="button"], .octa, .hbtn')) return;
-      setTarget(null);
+
+    const handleMouseOver = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (!target) return;
+      const isInteractive = 
+        target.tagName.toLowerCase() === 'a' || 
+        target.tagName.toLowerCase() === 'button' ||
+        target.closest('a') !== null ||
+        target.closest('button') !== null ||
+        window.getComputedStyle(target).cursor === 'pointer';
+      
+      setIsHovering(isInteractive);
     };
-    document.addEventListener('mouseover', enter, true);
-    document.addEventListener('mouseout', leave, true);
+
+    window.addEventListener('mousemove', moveMouse);
+    window.addEventListener('mouseover', handleMouseOver);
+
     return () => {
-      document.removeEventListener('mouseover', enter, true);
-      document.removeEventListener('mouseout', leave, true);
+      window.removeEventListener('mousemove', moveMouse);
+      window.removeEventListener('mouseover', handleMouseOver);
     };
-  }, [enabled]);
+  }, [cursorX, cursorY, prefersReducedMotion]);
 
-  useEffect(() => {
-    if (target) {
-      mouseX.set(target.x);
-      mouseY.set(target.y);
-    }
-  }, [target, mouseX, mouseY]);
-
-  const stiffness = reduced ? 1500 : 800;
-  const tStiffness = reduced ? 1500 : 400;
-
-  const headX = useSpring(mouseX, { stiffness, damping: 30 });
-  const headY = useSpring(mouseY, { stiffness, damping: 30 });
-
-  const t1X = useSpring(mouseX, { stiffness: tStiffness, damping: 32 });
-  const t1Y = useSpring(mouseY, { stiffness: tStiffness, damping: 32 });
-
-  const t2X = useSpring(mouseX, { stiffness: reduced ? 1500 : 250, damping: 34 });
-  const t2Y = useSpring(mouseY, { stiffness: reduced ? 1500 : 250, damping: 34 });
-
-  const t3X = useSpring(mouseX, { stiffness: reduced ? 1500 : 150, damping: 36 });
-  const t3Y = useSpring(mouseY, { stiffness: reduced ? 1500 : 150, damping: 36 });
-
-  const t4X = useSpring(mouseX, { stiffness: reduced ? 1500 : 90, damping: 38 });
-  const t4Y = useSpring(mouseY, { stiffness: reduced ? 1500 : 90, damping: 38 });
-
-  if (!enabled) return null;
-
-  const headSize = target ? Math.max(target.w, target.h) + 16 : 22;
-  const headRadius = target ? 20 : '50%';
+  if (prefersReducedMotion || !isVisible) return null;
 
   return (
     <>
-      <svg width="0" height="0" className="absolute pointer-events-none" aria-hidden="true">
+      {/* SVG Goo Filter Def */}
+      <svg className="hidden">
         <defs>
-          <filter id="syrup-goo">
+          <filter id="goo">
             <feGaussianBlur in="SourceGraphic" stdDeviation="6" result="blur" />
-            <feColorMatrix in="blur" mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="goo" />
+            <feColorMatrix 
+              in="blur" 
+              mode="matrix" 
+              values="1 0 0 0 0  
+                      0 1 0 0 0  
+                      0 0 1 0 0  
+                      0 0 0 25 -9" 
+              result="goo" 
+            />
             <feComposite in="SourceGraphic" in2="goo" operator="atop" />
           </filter>
         </defs>
       </svg>
 
-      <div style={{ position: 'fixed', inset: 0, pointerEvents: 'none', zIndex: 999999, filter: 'url(#syrup-goo)' }}>
-        <motion.div style={{
-          position: 'fixed', top: 0, left: 0, width: 8, height: 8, borderRadius: '50%', background: '#CC624C',
-          x: t4X, y: t4Y, translateX: '-50%', translateY: '-50%',
-          opacity: target ? 0 : 0.6,
-          pointerEvents: 'none'
-        }} />
-        <motion.div style={{
-          position: 'fixed', top: 0, left: 0, width: 10, height: 10, borderRadius: '50%', background: '#CC624C',
-          x: t3X, y: t3Y, translateX: '-50%', translateY: '-50%', opacity: target ? 0 : 0.7,
-          pointerEvents: 'none'
-        }} />
-        <motion.div style={{
-          position: 'fixed', top: 0, left: 0, width: 12, height: 12, borderRadius: '50%', background: '#CC624C',
-          x: t2X, y: t2Y, translateX: '-50%', translateY: '-50%', opacity: target ? 0 : 0.8,
-          pointerEvents: 'none'
-        }} />
-        <motion.div style={{
-          position: 'fixed', top: 0, left: 0, width: 14, height: 14, borderRadius: '50%', background: '#CC624C',
-          x: t1X, y: t1Y, translateX: '-50%', translateY: '-50%', opacity: target ? 0 : 0.9,
-          pointerEvents: 'none'
-        }} />
-
+      <div 
+        className="fixed inset-0 pointer-events-none z-[9999] mix-blend-multiply hidden md:block"
+        style={{ filter: 'url(#goo)' }}
+      >
+        {/* Main Dot */}
         <motion.div
-          animate={{
-            width: headSize,
-            height: headSize,
-            borderRadius: headRadius,
-            opacity: target ? 0.25 : 1,
-          }}
-          transition={{ type: 'spring', stiffness: 350, damping: 26 }}
+          className="absolute top-0 left-0 bg-terracotta rounded-full"
           style={{
-            position: 'fixed', top: 0, left: 0, background: '#CC624C',
-            x: headX, y: headY, translateX: '-50%', translateY: '-50%',
-            mixBlendMode: 'normal',
-            pointerEvents: 'none'
+            x: mainX,
+            y: mainY,
+            width: 16,
+            height: 16,
+            translateX: '-50%',
+            translateY: '-50%',
           }}
+          animate={{
+            scale: isHovering ? 1.5 : 1,
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
+        />
+        
+        {/* Trailer Dot */}
+        <motion.div
+          className="absolute top-0 left-0 bg-terracotta/70 rounded-full"
+          style={{
+            x: trailerX,
+            y: trailerY,
+            width: 32,
+            height: 32,
+            translateX: '-50%',
+            translateY: '-50%',
+          }}
+          animate={{
+            scale: isHovering ? 1.5 : 1,
+          }}
+          transition={{ type: "spring", stiffness: 300, damping: 20 }}
         />
       </div>
     </>

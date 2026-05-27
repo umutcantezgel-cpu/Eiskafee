@@ -16,28 +16,28 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      /* ═══ §5 · COLOR PALETTE ═══════════════════════════════ */
       colors: {
+        'bg-creme': 'var(--color-bg-creme)', // Main background
         cream: {
-          DEFAULT: '#f5efe8',   // Page BG, Card Fills
-          pure:    '#fefefe',   // Text on Terracotta, high-contrast
+          DEFAULT: 'var(--color-bg-creme)', // Fallback for existing components
+          pure: '#fefefe',
         },
         beige: {
-          DEFAULT: '#eedfcc',   // Section BG, Footer BG, Inactive Tabs
+          DEFAULT: 'var(--color-beige)',
         },
         peach: {
-          DEFAULT: '#E4C0A8',   // Hero BG, Icon Circles, Blobs
-          soft:    '#E4C0A8',   // Alias "Soft Sand"
+          DEFAULT: 'var(--color-peach)',
+          soft: 'var(--color-peach)',
         },
         terracotta: {
-          DEFAULT: '#CC624C',   // PRIMARY: CTAs, Stamps, Active States
-          deep:    '#B8553F',   // Hover State (10% deeper)
+          DEFAULT: 'var(--color-terracotta)',
+          deep: 'var(--color-terracotta-deep)',
         },
         brown: {
-          DEFAULT: '#2d1f19',   // Deep Warm Brown · Headlines H1
-          bark:    '#3a2820',   // Footer BG, Tooltip BG
-          mid:     '#5c3d35',   // Body Text, Card Description
-          muted:   '#9a7060',   // Captions, Disabled Labels
+          DEFAULT: 'var(--color-brown)',
+          bark: 'var(--color-brown-bark)',
+          mid: 'var(--color-brown-mid)',
+          muted: 'var(--color-brown-muted)',
         },
         // System Feedback — NEVER as brand accent
         mint:  '#25D366',       // WhatsApp, Success
@@ -54,8 +54,10 @@ const config: Config = {
 
       /* ═══ §6 · TYPOGRAPHY ══════════════════════════════════ */
       fontFamily: {
-        display: ['var(--font-calistoga)', 'serif'],
-        sans:    ['var(--font-nunito)',    'sans-serif'],
+        heading: ['var(--font-heading)', 'serif'],
+        body:    ['var(--font-body)', 'sans-serif'],
+        display: ['var(--font-heading)', 'serif'], // Backward compat
+        sans:    ['var(--font-body)', 'sans-serif'], // Backward compat
       },
       fontWeight: {
         light:    '300',

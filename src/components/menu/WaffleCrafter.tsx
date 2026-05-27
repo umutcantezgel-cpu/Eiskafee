@@ -174,8 +174,8 @@ export function WaffleCrafter() {
     addToCart({
       id: `waffle-${Date.now()}`,
       name: 'Eigene Bubble Waffel',
-      price: total.toFixed(2).replace('.', ','),
-      desc: desc
+      price: parseFloat(total.toFixed(2)),
+      variant: desc
     });
     reset();
   };

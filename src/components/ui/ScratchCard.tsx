@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import confetti from "canvas-confetti";
 
 export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children: React.ReactNode, frostingColor?: string }) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -33,7 +32,7 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
       canvas.height = r.height * dpr;
       canvas.style.width = r.width + 'px';
       canvas.style.height = r.height + 'px';
-      const ctx = canvas.getContext('2d');
+      const ctx = canvas.getContext('2d', { willReadFrequently: true });
       if (!ctx) return;
       ctx.scale(dpr, dpr);
       ctxRef.current = ctx;
@@ -83,10 +82,12 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
     if (cleared / total > 0.5 && !isRevealed) {
       setRevealed(true);
       sessionStorage.setItem('heyfede_scratch_revealed', 'true');
-      confetti({
-        particleCount: 150, spread: 80, origin: { y: 0.55 },
-        colors: ['#CC624C', '#E4C0A8', '#eedfcc', '#fff8f1'],
-        zIndex: 9999, shapes: ['circle', 'square'], scalar: 1.1,
+      import('canvas-confetti').then(({ default: confetti }) => {
+        confetti({
+          particleCount: 150, spread: 80, origin: { y: 0.55 },
+          colors: ['#CC624C', '#E4C0A8', '#eedfcc', '#fff8f1'],
+          zIndex: 9999, shapes: ['circle', 'square'], scalar: 1.1,
+        });
       });
       if (navigator.vibrate) navigator.vibrate([60, 30, 60]);
     }

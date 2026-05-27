@@ -1,11 +1,21 @@
 import { AppData } from "../types";
+import { BUSINESS } from "@/lib/seo/business-data";
+
+export const store_settings = {
+  is_open: true,
+  is_accepting_orders: true,
+  busy_mode: false,
+  pickup_time_estimate_mins: 15,
+  phone: BUSINESS.phone,
+  emergencyNotice: null
+};
 
 export const HF_DATA: AppData = {
   config: {
     name: "Hey Fede!",
     tagline: "Dessertbar & Café",
-    address: "Langgasse 68, 35576 Wetzlar",
-    phone: "06441 7890426",
+    address: `${BUSINESS.street}, ${BUSINESS.postalCode} ${BUSINESS.city}`,
+    phone: BUSINESS.phone,
     whatsapp: "0176 25026991",
     instagram: "heyfede_wetzlar",
     rating: 4.8,

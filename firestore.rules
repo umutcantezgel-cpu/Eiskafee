@@ -2,51 +2,75 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Helper functions
-    function isAuthenticated() {
-      return request.auth != null;
-    }
-    
+    // Helper Functions
     function isAdmin() {
-      // Assuming admin status is stored in custom auth claims.
-      return isAuthenticated() && request.auth.token.admin == true;
+      return request.auth != null
+          && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+          && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
     }
 
-    match /menu_items/{document=**} {
-      allow read: if true;
-      allow write: if isAdmin(); // Updated to use isAdmin()
+    function isOwner(uid) {
+      return request.auth != null && request.auth.uid == uid;
     }
+
+    // Menu — public read, admin write
+    match /menu_items/{document=**} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    // Orders — guests can create, only owner/admin can read, only admin can update
     match /orders/{orderId} {
       allow create: if true;
-      allow read: if true;
-      allow update, delete: if isAdmin(); // Updated to use isAdmin()
-    }
-    match /support_messages/{messageId} {
-      allow create: if true; // Anyone can send a message
-      allow read, update, delete: if isAdmin(); // Updated to use isAdmin()
+      allow read:   if (resource != null && isOwner(resource.data.userId)) || isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
     }
 
-    // --- New Collections (Master Vision Phase 1) ---
+    // Users — owner or admin
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
 
-    match /loyalty_points/{docId} {
-      // Owner (assumes userId field exists in document) or Admin
-      allow read: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
+    // Store-Settings — public read, admin write
+    match /store_settings/{document=**} {
+      allow read:  if true;
       allow write: if isAdmin();
     }
 
-    match /promo_codes/{docId} {
-      allow read: if true;
-      allow write: if isAdmin();
+    // Analytics — admin only
+    match /analytics_daily/{document=**} {
+      allow read, write: if isAdmin();
     }
 
-    match /reviews/{docId} {
-      allow read: if true;
-      allow create: if isAuthenticated();
+    // Reviews — anyone can read approved, auth can create, admin can update
+    match /reviews/{reviewId} {
+      allow read:   if (resource != null && resource.data.approved == true) || isAdmin();
+      allow create: if request.auth != null;
       allow update, delete: if isAdmin();
     }
 
-    match /store_settings/{docId} {
-      allow read: if true;
+    // Promo codes
+    match /promo_codes/{code} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    // Delivery zones
+    match /delivery_zones/{zone} {
+      allow read:  if true;
+      allow write: if isAdmin();
+    }
+
+    // Support
+    match /support_messages/{msg} {
+      allow create: if true;
+      allow read, update, delete: if isAdmin();
+    }
+
+    // Loyalty
+    match /loyalty_points/{uid} {
+      allow read:  if isOwner(uid) || isAdmin();
       allow write: if isAdmin();
     }
   }

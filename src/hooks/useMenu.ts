@@ -1,38 +1,35 @@
-import { useState, useEffect } from "react";
-import { collection, getDocs } from "firebase/firestore";
-import { db } from "@/lib/firebase/config";
+import { useEffect, useState } from 'react';
+import { collection, onSnapshot, query, where, orderBy } from 'firebase/firestore';
+import { db } from '@/lib/firebase';
+import type { MenuItem } from '@/types/firestore';
 
-export interface MenuItem {
-  id: string;
-  name?: string;
-  price?: number;
-  [key: string]: any;
-}
-
-export function useMenu() {
+export function useMenu(category?: string) {
   const [items, setItems] = useState<MenuItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
   useEffect(() => {
-    async function fetchMenu() {
-      try {
-        const querySnapshot = await getDocs(collection(db, "menu_items"));
-        const data = querySnapshot.docs.map(doc => ({
-          id: doc.id,
-          ...doc.data()
-        })) as MenuItem[];
-        setItems(data);
-      } catch (err) {
-        console.error("Error fetching menu_items:", err);
-        setError(err as Error);
-      } finally {
-        setLoading(false);
-      }
+    let q = query(collection(db, 'menu_items'), orderBy('category', 'asc'));
+    if (category) {
+      q = query(collection(db, 'menu_items'), where('category', '==', category), orderBy('category', 'asc'));
     }
 
-    fetchMenu();
-  }, []);
+    const unsub = onSnapshot(
+      q,
+      (snap) => {
+        setItems(snap.docs.map(d => ({ id: d.id, ...d.data() } as MenuItem)));
+        setLoading(false);
+        setError(null);
+      },
+      (err) => {
+        console.error("useMenu error:", err);
+        setError(err);
+        setLoading(false);
+      }
+    );
+
+    return () => unsub();
+  }, [category]);
 
   return { items, loading, error };
 }

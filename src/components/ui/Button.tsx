@@ -100,7 +100,7 @@ export function PrimaryButton({
         }}
         whileTap={{ scale: 0.95 }}
         transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-        {...props}
+        {...(props as any)}
       >
         {children}
       </motion.button>
@@ -130,7 +130,7 @@ export function SecondaryButton({ children, onClick, className = '', ...props }:
       }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: 'spring', stiffness: 400, damping: 25 }}
-      {...props}
+      {...(props as any)}
     >
       {children}
     </motion.button>

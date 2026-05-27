@@ -4,6 +4,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from "@react-google-maps/api";
 import { MapPin, ExternalLink, Clock, Navigation, Loader2 } from "lucide-react";
+import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
 import * as CookieConsent from "vanilla-cookieconsent";
 
 /* ─── Constants ─── */
@@ -112,7 +113,7 @@ function LiveMap() {
           <InfoWindowF position={HEY_FEDE} onCloseClick={() => setShowInfo(false)}>
             <div style={{ fontFamily: "var(--font-nunito), sans-serif", padding: "4px 2px", minWidth: 180 }}>
               <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1rem", color: "#2d1f19", marginBottom: 4 }}>Hey Fede!</div>
-              <div style={{ fontSize: "0.78rem", color: "#5c3d35", marginBottom: 6 }}>Dessertbar & Café<br/>Langgasse 68, 35576 Wetzlar</div>
+              <div style={{ fontSize: "0.78rem", color: "#5c3d35", marginBottom: 6 }}>Dessertbar & Café<br/>{FULL_ADDRESS}</div>
               <div style={{ display: "flex", gap: 4, fontSize: "0.72rem", color: "#9a7060", marginBottom: 8 }}>
                 <Clock size={12} /> Mi–Sa 12:00–19:00 · So 13:00–19:00
               </div>
@@ -146,7 +147,7 @@ function LiveMap() {
       >
         <div>
           <div style={{ fontFamily: "var(--font-nunito), sans-serif", fontWeight: 900, fontSize: "0.84rem", color: "#2d1f19" }}>Hey Fede! Dessertbar</div>
-          <div style={{ fontFamily: "var(--font-nunito), sans-serif", fontSize: "0.72rem", color: "#9a7060" }}>Langgasse 68 · 35576 Wetzlar</div>
+          <div style={{ fontFamily: "var(--font-nunito), sans-serif", fontSize: "0.72rem", color: "#9a7060" }}>{BUSINESS.street} · {BUSINESS.postalCode} {BUSINESS.city}</div>
         </div>
         <motion.a
           whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}
@@ -248,7 +249,7 @@ export default function InteractiveMap() {
 
             <div style={{ textAlign: "center", position: "relative", zIndex: 2, fontFamily: "var(--font-nunito), sans-serif" }}>
               <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1.1rem", color: "#2d1f19", marginBottom: 4 }}>Hey Fede!</div>
-              <div style={{ fontSize: "0.82rem", color: "#5c3d35" }}>Langgasse 68 · 35576 Wetzlar</div>
+              <div style={{ fontSize: "0.82rem", color: "#5c3d35" }}>{BUSINESS.street} · {BUSINESS.postalCode} {BUSINESS.city}</div>
             </div>
 
             <motion.button

@@ -9,10 +9,9 @@
 
 /* ─── CSS Custom Properties ─────────────────────────────── */
 :root {
-  /* Brand Colors (mirror of Tailwind tokens for CSS-only access) */
-  --color-cream:          #f5efe8;
-  --color-cream-pure:     #fefefe;
-  --color-beige:          #eedfcc;
+  /* Brand Colors (Styleguide V3) */
+  --color-bg-creme:       #F5EFE8;
+  --color-beige:          #EEDFCC;
   --color-peach:          #E4C0A8;
   --color-terracotta:     #CC624C;
   --color-terracotta-deep:#B8553F;
@@ -20,6 +19,10 @@
   --color-brown-bark:     #3a2820;
   --color-brown-mid:      #5c3d35;
   --color-brown-muted:    #9a7060;
+  
+  /* Typography Variables */
+  --font-heading: 'Recoleta', Georgia, 'Times New Roman', serif;
+  --font-body: 'Myriad Variable Concept', system-ui, -apple-system, sans-serif;
 
   /* Clay Shadow Palette (§7.2) */
   --shadow-clay-sm:   0 2px 8px  0 rgba(204, 98, 76, 0.08);
@@ -34,7 +37,32 @@
   --ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ─── Base Resets ────────────────────────────────────────── */
+/* ─── Webfont-Integration (@font-face) ───────────────────── */
+@font-face {
+  font-family: 'Recoleta';
+  src: url('/assets/fonts/Recoleta-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Variable Concept';
+  src: url('/assets/fonts/MyriadVariableConcept-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Myriad Variable Concept';
+  src: url('/assets/fonts/MyriadVariableConcept-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ─── Base Resets & Typografie-Hierarchie ────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -44,11 +72,41 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
-  color: var(--color-brown);
+  background-color: var(--color-bg-creme);
+  color: var(--color-terracotta);
+  font-family: var(--font-body);
+  line-height: 1.5;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings Fluid Typography */
+h1, h2, h3, h4, h5, h6, .font-heading {
+  font-family: var(--font-heading);
+  line-height: 1.1;
+  font-weight: 900;
+  color: var(--color-terracotta);
+  margin: 0;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(2rem, 4vw, 3rem); letter-spacing: -0.01em; }
+h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+h4 { font-size: clamp(1.25rem, 2vw, 1.75rem); }
+h5 { font-size: clamp(1.125rem, 1.5vw, 1.25rem); }
+h6 { font-size: 1rem; }
+
+/* Interactive elements */
+a, button, input, textarea, select {
+  font-family: var(--font-body);
+}
+
+/* ─── Custom SyrupCursor (§24) ──────────────────────────── */
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  body {
+    cursor: none;
+  }
 }
 
 /* ─── Scrollbar (Brand-Tinted) ──────────────────────────── */
@@ -60,9 +118,9 @@ body {
 ::selection { background: rgba(204, 98, 76, 0.25); color: #2d1f19; }
 
 /* ─── Focus Visibility (A11y) ───────────────────────────── */
-button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
-  outline: 3px solid #CC624C;
-  outline-offset: 3px;
+button:focus-visible, a:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible, [role="button"]:focus-visible, [tabindex="0"]:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(204, 98, 76, 0.3);
   border-radius: 50px;
 }
 
@@ -161,7 +219,7 @@ button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
-    transition-duration: 0.15s !important;
+    transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
 }

@@ -1,12 +1,21 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import * as Icons from "lucide-react";
-import { db } from "@/lib/firebase/config";
+import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 import { HF_DATA } from "@/lib/data";
 import { WaffleCrafter } from "@/components/menu/WaffleCrafter";
 
-const ProductCard = ({ item, catIcon, onAdd }: { item: any, catIcon: string, onAdd: (item: any) => void }) => {
+const useDebounce = <T,>(value: T, delay: number = 300): T => {
+  const [debouncedValue, setDebouncedValue] = useState<T>(value);
+  useEffect(() => {
+    const handler = setTimeout(() => setDebouncedValue(value), delay);
+    return () => clearTimeout(handler);
+  }, [value, delay]);
+  return debouncedValue;
+};
+
+const ProductCard = React.memo(({ item, catIcon, onAdd }: { item: any, catIcon: string, onAdd: (item: any) => void }) => {
   const LIcon = (Icons as any)[catIcon] || Icons.Sparkles;
 
   return (
@@ -46,9 +55,10 @@ const ProductCard = ({ item, catIcon, onAdd }: { item: any, catIcon: string, onA
       </div>
     </div>
   );
-};
+});
+ProductCard.displayName = "ProductCard";
 
-const BoxCard = ({ item, onAdd }: { item: any, onAdd: (item: any) => void }) => {
+const BoxCard = React.memo(({ item, onAdd }: { item: any, onAdd: (item: any) => void }) => {
   return (
     <div className="group bg-white border-2 border-dashed border-[#CC624C] rounded-xl p-[20px_22px] relative transition-all duration-[280ms] hover:-translate-y-1 hover:shadow-[0_8px_28px_rgba(204,98,76,0.18)] shadow-[0_2px_12px_rgba(45,31,25,0.06)] hover:bg-[#fef8f5] mx-3">
       {/* Perforation holes */}
@@ -81,13 +91,17 @@ const BoxCard = ({ item, onAdd }: { item: any, onAdd: (item: any) => void }) => 
       </div>
     </div>
   );
-};
+});
+BoxCard.displayName = "BoxCard";
 
 import { useStore } from "@/store/useStore";
+import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
 
 export function MenuClient({ categories: initialCategories, menu: initialMenu }: { categories: any[], menu: any }) {
   const [categories, setCategories] = useState(initialCategories);
   const [menuData, setMenuData] = useState(initialMenu);
+  const [searchQuery, setSearchQuery] = useState("");
+  const debouncedSearch = useDebounce(searchQuery, 300);
   
   const { addToCart } = useStore();
   const [activeId, setActiveId] = useState('boxen');
@@ -141,6 +155,17 @@ export function MenuClient({ categories: initialCategories, menu: initialMenu }:
 
   const cat = categories.find((c: any) => c.id === activeId);
   const data = menuData[activeId] || { items: [] };
+
+  const filteredItems = useMemo(() => {
+    if (!data.items) return [];
+    if (!debouncedSearch) return data.items;
+    const lower = debouncedSearch.toLowerCase();
+    return data.items.filter((item: any) => 
+      item.name?.toLowerCase().includes(lower) || 
+      item.desc?.toLowerCase().includes(lower) ||
+      item.tag?.toLowerCase().includes(lower)
+    );
+  }, [data.items, debouncedSearch]);
 
   return (
     <div className="min-h-screen bg-[#f5efe8] animate-fade-in">
@@ -198,6 +223,21 @@ export function MenuClient({ categories: initialCategories, menu: initialMenu }:
       </div>
 
       <div className="max-w-[880px] mx-auto pt-11 px-6 pb-20">
+        
+        {/* Search input */}
+        <div className="mb-8 relative max-w-[400px]">
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <Icons.Search size={18} className="text-terracotta opacity-60" />
+          </div>
+          <input 
+            type="text" 
+            placeholder="Suchen (z.B. Schoko)..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-white border border-[#eedfcc] rounded-full py-3.5 pl-11 pr-4 text-sm font-nunito text-charcoal focus:outline-none focus:border-terracotta focus:ring-2 focus:ring-terracotta/20 transition-all shadow-[0_2px_8px_rgba(45,31,25,0.04)]"
+          />
+        </div>
+
         {/* Category header */}
         <div className="mb-7">
           <h2 className="font-calistoga text-[clamp(1.5rem,3vw,2.1rem)] text-[#2d1f19] mb-1.5">{cat?.label}</h2>
@@ -209,12 +249,16 @@ export function MenuClient({ categories: initialCategories, menu: initialMenu }:
         <div className="flex flex-col gap-3">
           {activeId === 'bubble' ? (
             <WaffleCrafter />
-          ) : (
-            data.items?.map((item: any) =>
+          ) : filteredItems.length > 0 ? (
+            filteredItems.map((item: any) =>
               item.ticket
                 ? <BoxCard key={item.id} item={item} onAdd={addToCart} />
                 : <ProductCard key={item.id} item={item} catIcon={cat?.icon} onAdd={addToCart} />
             )
+          ) : (
+            <div className="text-center py-10 bg-white/40 rounded-[18px] border border-dashed border-[#eedfcc]">
+              <p className="font-nunito text-charcoal/60">Keine Produkte gefunden für "{searchQuery}"</p>
+            </div>
           )}
         </div>
 
@@ -233,7 +277,7 @@ export function MenuClient({ categories: initialCategories, menu: initialMenu }:
               <Icons.Cake size={26} strokeWidth={1.4} color="#CC624C" className="opacity-70" />
             </div>
             <p className="font-nunito text-[0.86rem] text-[#5c3d35] italic leading-[1.6]">
-              Psst... frischen, leckeren Kuchen findest du in unserer Vitrine vor Ort in der Langgasse 68 in Wetzlar!
+              Psst... frischen, leckeren Kuchen findest du in unserer Vitrine vor Ort in der {BUSINESS.street} in {BUSINESS.city}!
             </p>
           </div>
         )}
