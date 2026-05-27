@@ -1,9 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import { FadeUp } from "@/components/ui/FadeUp";
-import { PrimaryButton } from "@/components/ui/Btn";
+import { motion, useScroll, useTransform } from "framer-motion";
 import * as Icons from "lucide-react";
+import { GiganticTypography } from "@/components/ui/GiganticTypography";
 
 export default function GutscheinePage() {
   const [amount, setAmount] = useState<number | "Frei">(50);
@@ -13,49 +13,70 @@ export default function GutscheinePage() {
   const [recipientEmail, setRecipientEmail] = useState("");
 
   const amounts: (number | "Frei")[] = [10, 25, 50, 75, 100, "Frei"];
+  
+  const { scrollYProgress } = useScroll();
+  const ticketY = useTransform(scrollYProgress, [0, 1], [200, -100]);
+  const ticketRotate = useTransform(scrollYProgress, [0, 1], [-10, 10]);
 
   return (
-    <div className="min-h-screen bg-[#f5efe8]">
-      <div className="bg-[#E4C0A8] pt-[110px] px-6 pb-20 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.3] dot-bg" />
-        <div className="relative z-10">
-          <h1 className="font-calistoga text-[2.2rem] text-[#2d1f19] mb-3">Gutscheine</h1>
-          <p className="font-nunito text-[#5c3d35] max-w-sm mx-auto text-sm">Verschenke süße Momente</p>
-        </div>
-      </div>
+    <div className="min-h-[300vh] bg-transparent text-charcoal font-nunito relative">
+      
+      {/* SECTION 1: Massive Intro */}
+      <section className="min-h-[100vh] flex flex-col justify-center items-center px-6 relative pt-20">
+        <GiganticTypography highlightWords={["Freude."]} highlightColor="#CC624C" className="text-center justify-center max-w-[1200px] mx-auto">
+          Verschenke pure Freude.
+        </GiganticTypography>
+        
+        <p className="font-nunito text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
+          Scroll weiter, um deinen Liebsten einen süßen Moment zu kreieren.
+        </p>
+        
+        <motion.div 
+          animate={{ y: [0, 10, 0] }} 
+          transition={{ repeat: Infinity, duration: 2 }}
+          className="absolute bottom-10 flex flex-col items-center opacity-50"
+        >
+          <Icons.ArrowDown size={40} className="text-terracotta" />
+        </motion.div>
+      </section>
 
-      <div className="max-w-[500px] mx-auto pb-24 -mt-10">
-        <FadeUp>
-          {/* Hero Ticket */}
-          <div className="px-6 mb-8 relative z-20">
-            <div className="relative bg-[#CC624C] rounded-[22px] p-6 text-white overflow-hidden shadow-[0_12px_30px_rgba(204,98,76,0.30)]">
-              <div className="absolute -top-8 -right-5 w-[130px] h-[130px] bg-[rgba(255,248,241,0.12)] rounded-full" />
-              <div className="absolute top-1/2 -left-3 w-[26px] h-[26px] rounded-full bg-[#f5efe8] -translate-y-1/2" />
-              <div className="absolute top-1/2 -right-3 w-[26px] h-[26px] rounded-full bg-[#f5efe8] -translate-y-1/2" />
-              <div className="relative">
-                <div className="text-[10px] font-black tracking-[1.4px] uppercase opacity-85">Hey Fede! Gutschein</div>
-                <div className="flex items-baseline gap-2 mt-2">
-                  <span className="font-calistoga text-5xl leading-none">{amount === "Frei" ? "??" : amount}</span>
-                  <span className="font-calistoga text-[22px] opacity-90">€</span>
-                </div>
-                <div className="text-[11.5px] mt-2 opacity-90 font-semibold">Einlösbar im Laden · 36 Monate gültig</div>
+      {/* SECTION 2: The Ticket & Form */}
+      <section className="min-h-[150vh] px-6 relative z-10 flex flex-col lg:flex-row justify-center items-center gap-20 max-w-[1400px] mx-auto py-20">
+        
+        {/* Left Side: Floating Ticket */}
+        <motion.div style={{ y: ticketY, rotate: ticketRotate }} className="w-full max-w-[500px]">
+          <div className="relative bg-terracotta rounded-[40px] p-12 text-white overflow-hidden shadow-clay-lg">
+            <div className="absolute -top-12 -right-10 w-[250px] h-[250px] bg-white/10 rounded-full blur-2xl" />
+            <div className="absolute top-1/2 -left-6 w-[40px] h-[40px] rounded-full bg-cream -translate-y-1/2" />
+            <div className="absolute top-1/2 -right-6 w-[40px] h-[40px] rounded-full bg-cream -translate-y-1/2" />
+            <div className="relative">
+              <div className="text-sm font-black tracking-widest uppercase opacity-80 mb-6">Hey Fede! Gutschein</div>
+              <div className="flex items-baseline gap-4 mt-2">
+                <span className="font-calistoga text-8xl md:text-[120px] leading-none">{amount === "Frei" ? "??" : amount}</span>
+                <span className="font-calistoga text-5xl opacity-90">€</span>
               </div>
+              <div className="text-sm mt-8 opacity-90 font-bold uppercase tracking-wider">Einlösbar im Laden · 36 Monate gültig</div>
             </div>
           </div>
+        </motion.div>
 
-          <div className="px-6 space-y-8">
-            {/* Amount Selector */}
+        {/* Right Side: The Configuration Form */}
+        <div className="w-full max-w-[600px] space-y-10">
+          
+          <div className="bg-cream/80 backdrop-blur-xl p-8 rounded-[40px] shadow-clay border border-peach/50 space-y-8">
+            
+            {/* Amount */}
             <div>
-              <div className="text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-3">Betrag wählen</div>
-              <div className="grid grid-cols-3 gap-2">
+              <div className="text-sm font-black text-terracotta tracking-widest uppercase mb-4">Wähle den Betrag</div>
+              <div className="grid grid-cols-3 gap-3">
                 {amounts.map(v => (
                   <button
                     key={v}
                     onClick={() => setAmount(v)}
-                    className={`rounded-2xl py-3.5 text-center font-calistoga text-lg transition-colors border-2 ${
+                    className={`rounded-2xl py-4 text-center font-calistoga text-2xl transition-all shadow-sm ${
                       amount === v 
-                      ? 'bg-[#CC624C] text-white border-[#CC624C]' 
-                      : 'bg-white text-[#2d1f19] border-[#eedfcc] hover:border-[#CC624C]'
+                      ? 'bg-terracotta text-white scale-105 shadow-clay' 
+                      : 'bg-white/50 text-charcoal hover:bg-white/80'
                     }`}
                   >
                     {typeof v === 'number' ? `${v} €` : v}
@@ -66,101 +87,80 @@ export default function GutscheinePage() {
 
             {/* Delivery */}
             <div>
-              <div className="text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-3">Zustellung</div>
-              <div className="flex flex-col gap-2">
+              <div className="text-sm font-black text-terracotta tracking-widest uppercase mb-4">Zustellung</div>
+              <div className="flex flex-col gap-3">
                 <button 
                   onClick={() => setDelivery("mail")}
-                  className={`bg-white rounded-2xl p-3 flex gap-3 items-center border-2 transition-colors ${delivery === "mail" ? 'border-[#CC624C]' : 'border-transparent'}`}
+                  className={`bg-white/50 rounded-2xl p-4 flex gap-4 items-center transition-all ${delivery === "mail" ? 'ring-4 ring-terracotta bg-white' : 'hover:bg-white/80'}`}
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#eedfcc] flex items-center justify-center shrink-0">
-                    <Icons.Mail size={18} className="text-[#CC624C]" strokeWidth={2} />
+                  <div className="w-12 h-12 rounded-full bg-peach/30 flex items-center justify-center shrink-0">
+                    <Icons.Mail size={24} className="text-terracotta" />
                   </div>
                   <div className="flex-1 text-left">
-                    <div className="font-extrabold text-[13px] text-[#2d1f19]">Per E-Mail</div>
-                    <div className="text-[11px] text-[#9a7060] mt-0.5">Sofort verfügbar · PDF-Download</div>
+                    <div className="font-calistoga text-xl text-charcoal">Per E-Mail</div>
+                    <div className="text-sm font-bold text-brown/70 mt-1">Sofort verfügbar · PDF</div>
                   </div>
-                  {delivery === "mail" ? (
-                    <div className="w-6 h-6 rounded-full bg-[#CC624C] flex items-center justify-center">
-                      <Icons.Check size={14} color="#fff" strokeWidth={3} />
-                    </div>
-                  ) : (
-                    <div className="w-6 h-6 rounded-full border-2 border-[#eedfcc]" />
-                  )}
+                  {delivery === "mail" && <Icons.CheckCircle size={28} className="text-terracotta" />}
                 </button>
+
                 <button 
                   onClick={() => setDelivery("mail_physical")}
-                  className={`bg-white rounded-2xl p-3 flex gap-3 items-center border-2 transition-colors ${delivery === "mail_physical" ? 'border-[#CC624C]' : 'border-transparent'}`}
+                  className={`bg-white/50 rounded-2xl p-4 flex gap-4 items-center transition-all ${delivery === "mail_physical" ? 'ring-4 ring-terracotta bg-white' : 'hover:bg-white/80'}`}
                 >
-                  <div className="w-10 h-10 rounded-full bg-[#eedfcc] flex items-center justify-center shrink-0">
-                    <Icons.ShoppingBag size={18} className="text-[#CC624C]" strokeWidth={2} />
+                  <div className="w-12 h-12 rounded-full bg-peach/30 flex items-center justify-center shrink-0">
+                    <Icons.Gift size={24} className="text-terracotta" />
                   </div>
                   <div className="flex-1 text-left">
-                    <div className="font-extrabold text-[13px] text-[#2d1f19]">Edler Briefumschlag</div>
-                    <div className="text-[11px] text-[#9a7060] mt-0.5">+ 3,90 € · zu Hause oder im Laden</div>
+                    <div className="font-calistoga text-xl text-charcoal">Edler Umschlag</div>
+                    <div className="text-sm font-bold text-brown/70 mt-1">+ 3,90 € · per Post</div>
                   </div>
-                  {delivery === "mail_physical" ? (
-                    <div className="w-6 h-6 rounded-full bg-[#CC624C] flex items-center justify-center">
-                      <Icons.Check size={14} color="#fff" strokeWidth={3} />
-                    </div>
-                  ) : (
-                    <div className="w-6 h-6 rounded-full border-2 border-[#eedfcc]" />
-                  )}
+                  {delivery === "mail_physical" && <Icons.CheckCircle size={28} className="text-terracotta" />}
                 </button>
               </div>
             </div>
 
-            {/* Message */}
-            <div>
-              <div className="text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-3">Persönliche Nachricht (optional)</div>
-              <textarea
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="z.B. „Alles Liebe zum Geburtstag, viel Spaß beim Genießen!“"
-                className="w-full bg-white rounded-2xl p-4 min-h-[80px] font-nunito text-sm text-[#5c3d35] outline-none border-2 border-transparent focus:border-[#CC624C] resize-none italic"
-              />
-            </div>
-
-            {/* Recipient */}
-            <div>
-              <div className="text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-3">Empfänger</div>
-              <div className="space-y-2">
-                <div className="bg-white rounded-xl p-3 flex items-center border-2 border-transparent focus-within:border-[#CC624C]">
-                  <div className="flex-1">
-                    <label className="block text-[10px] font-extrabold text-[#9a7060] uppercase tracking-[0.8px]">Name</label>
-                    <input 
-                      type="text"
-                      value={recipientName}
-                      onChange={(e) => setRecipientName(e.target.value)}
-                      placeholder="Lisa Schmidt"
-                      className="w-full bg-transparent border-none outline-none font-bold text-[13px] text-[#2d1f19] mt-0.5"
-                    />
-                  </div>
+            {/* Config */}
+            <div className="space-y-4">
+              <div>
+                <label className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">Nachricht (optional)</label>
+                <textarea
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Alles Liebe..."
+                  className="w-full bg-white/50 border-none px-6 py-4 rounded-[20px] font-bold text-charcoal focus:outline-none focus:ring-2 focus:ring-terracotta min-h-[100px] resize-none"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">An (Name)</label>
+                  <input
+                    type="text"
+                    value={recipientName}
+                    onChange={(e) => setRecipientName(e.target.value)}
+                    className="w-full bg-white/50 border-none px-6 py-4 rounded-[20px] font-bold text-charcoal focus:outline-none focus:ring-2 focus:ring-terracotta"
+                  />
                 </div>
-                <div className="bg-white rounded-xl p-3 flex items-center border-2 border-transparent focus-within:border-[#CC624C]">
-                  <div className="flex-1">
-                    <label className="block text-[10px] font-extrabold text-[#9a7060] uppercase tracking-[0.8px]">E-Mail des Empfängers</label>
-                    <input 
-                      type="email"
-                      value={recipientEmail}
-                      onChange={(e) => setRecipientEmail(e.target.value)}
-                      placeholder="lisa.schmidt@example.de"
-                      className="w-full bg-transparent border-none outline-none font-bold text-[13px] text-[#2d1f19] mt-0.5"
-                    />
-                  </div>
+                <div>
+                  <label className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">E-Mail</label>
+                  <input
+                    type="email"
+                    value={recipientEmail}
+                    onChange={(e) => setRecipientEmail(e.target.value)}
+                    className="w-full bg-white/50 border-none px-6 py-4 rounded-[20px] font-bold text-charcoal focus:outline-none focus:ring-2 focus:ring-terracotta"
+                  />
                 </div>
               </div>
             </div>
-          </div>
-        </FadeUp>
-      </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-[#fef8f5] border-t border-[#eedfcc] p-4 z-50">
-        <div className="max-w-[500px] mx-auto">
-          <PrimaryButton large className="w-full" sectionBg="#fef8f5">
-            <Icons.Gift size={18} /> Gutschein verschenken · {amount === "Frei" ? "??" : amount} €
-          </PrimaryButton>
+            <button className="w-full bg-terracotta text-white py-6 rounded-[20px] font-black text-xl uppercase tracking-wider flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-clay mt-8">
+              In den Warenkorb <Icons.ArrowRight size={24} />
+            </button>
+            
+          </div>
         </div>
-      </div>
+
+      </section>
+
     </div>
   );
 }

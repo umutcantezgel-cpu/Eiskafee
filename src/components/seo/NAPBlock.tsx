@@ -16,6 +16,12 @@ export function NAPBlock({ variant = 'footer', className = '' }: { variant?: NAP
       <meta itemProp="name" content={BUSINESS.name} />
       <meta itemProp="telephone" content={BUSINESS.phoneTel} />
       
+      {/* GeoCoordinates Block */}
+      <div itemProp="geo" itemScope itemType="https://schema.org/GeoCoordinates" className="hidden">
+        <meta itemProp="latitude" content={BUSINESS.latitude.toString()} />
+        <meta itemProp="longitude" content={BUSINESS.longitude.toString()} />
+      </div>
+      
       <div 
         itemProp="address" 
         itemScope 

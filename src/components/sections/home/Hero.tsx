@@ -11,6 +11,7 @@ import { PrimaryCTA, SecondaryCTA } from '@/components/atoms/buttons';
 import { ScallopBadge } from '@/components/atoms/ScallopBadge';
 import { StampBadge } from '@/components/atoms/StampBadge';
 import { WaveDivider } from '@/components/atoms/WaveDivider';
+import PhysicsPlayground from '@/components/ui/PhysicsPlayground';
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
@@ -103,40 +104,31 @@ export function Hero() {
 
           {/* Right: Visual */}
           <motion.div 
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            className="hidden lg:flex justify-center items-center relative h-[600px] w-full"
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.3 }}
+            className="hidden md:flex justify-center items-center relative"
           >
-            {/* Large cream blob backing */}
-            <FloatingBlob 
-              variant="organic2" 
-              color="cream" 
-              size={500} 
-              opacity={0.8} 
-              className="top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" 
-            />
-
-            {/* Hero Image with priority and blurDataURL for LCP Optimization */}
-            <div className="relative z-10 w-[420px] h-[520px] flex items-center justify-center animate-blob-float">
-              <Image 
-                src="https://images.unsplash.com/photo-1563805042-7684c8a9e9ce?q=80&w=800&auto=format&fit=crop" 
-                alt="Hey Fede Dessert"
-                width={420}
-                height={520}
-                priority
-                className="rounded-3xl shadow-2xl object-cover"
-                placeholder="blur"
-                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAFCAYAAAB1WUOMAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg=="
-              />
+            {/* Background Blob */}
+            <div 
+              className="absolute w-[88%] aspect-square bg-[#f5efe8]/40 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2" 
+              style={{ borderRadius: '56% 44% 52% 48% / 48% 56% 44% 52%' }}
+            ></div>
+            
+            {/* Interactive Physics Playground Container */}
+            <div 
+              className="relative z-10 w-[76%] max-w-[360px] aspect-square shadow-2xl" 
+              style={{ borderRadius: '54% 46% 56% 44% / 50% 54% 46% 50%' }}
+            >
+              <PhysicsPlayground size={360} />
             </div>
 
             {/* Floating Stamps */}
-            <div className="absolute top-[15%] right-[10%] z-20 animate-blob-float" style={{ animationDelay: '1s' }}>
-              <StampBadge label="HAUSGEMACHT" size={100} rotate={12} variant="terracotta" />
+            <div className="absolute top-[4%] -right-[2%] z-20 pointer-events-none">
+              <StampBadge label="HAUSGEMACHT" size={86} rotate={14} variant="terracotta" />
             </div>
-            <div className="absolute bottom-[20%] left-[5%] z-20 animate-blob-float-reverse" style={{ animationDelay: "1s" }}>
-              <StampBadge label="FRISCH & LECKER" size={90} rotate={-15} variant="brown" />
+            <div className="absolute bottom-[5%] left-[0%] z-20 pointer-events-none">
+              <StampBadge label="FRISCH & LECKER" size={78} rotate={-9} variant="brown" />
             </div>
           </motion.div>
 

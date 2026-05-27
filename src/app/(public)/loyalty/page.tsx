@@ -1,16 +1,16 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { TransitionLink } from '@/components/ui/TransitionLink';
-import { ArrowLeft, Lock } from 'lucide-react';
+import { ArrowLeft, Lock, ArrowDown } from 'lucide-react';
 import { useAuth } from '@/store/useAuth';
 import { useAchievements } from '@/store/useAchievements';
 import { ACHIEVEMENTS, type AchievementId } from '@/lib/achievements';
 import { doc, getDoc, collection, query, orderBy, getDocs, limit } from 'firebase/firestore';
 import { db } from '@/lib/firebase';
-import { FadeUp } from '@/components/ui/FadeUp';
 import { LoyaltyCoin } from '@/components/loyalty/LoyaltyCoin';
 import { AuthGuard } from '@/components/auth/AuthGuard';
+import { GiganticTypography } from '@/components/ui/GiganticTypography';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 export default function LoyaltyPage() {
   const { user } = useAuth();
@@ -18,6 +18,10 @@ export default function LoyaltyPage() {
   const [balance, setBalance] = useState<number>(0);
   const [history, setHistory] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  const { scrollYProgress } = useScroll();
+  const coinScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.5]);
+  const coinY = useTransform(scrollYProgress, [0, 0.2], [0, -100]);
 
   useEffect(() => {
     if (!user) {
@@ -52,112 +56,130 @@ export default function LoyaltyPage() {
 
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-[#f5efe8] text-[#2d1f19] font-nunito pb-20">
-        {/* Header */}
-        <div className="bg-[#E4C0A8] pt-6 pb-8 px-5 relative overflow-hidden shadow-sm">
-          <div className="absolute -top-10 -right-10 w-48 h-48 bg-[rgba(245,239,232,0.4)] rounded-full blur-2xl"></div>
-          <div className="relative z-10 flex items-center justify-between mb-8">
-            <button onClick={() => window.history.back()} className="w-10 h-10 bg-white/60 backdrop-blur-md rounded-full flex items-center justify-center">
-              <ArrowLeft className="w-5 h-5 text-[#CC624C]" />
-            </button>
-            <div className="font-calistoga text-lg text-[#2d1f19]">Hey Fedee Rewards</div>
-            <div className="w-10 h-10" />
-          </div>
+      <div className="min-h-[300vh] bg-transparent text-[#2d1f19] font-nunito relative">
+        
+        {/* Absolute Back Button */}
+        <div className="fixed top-24 left-6 z-50">
+          <button onClick={() => window.history.back()} className="w-12 h-12 bg-white/60 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-transform">
+            <ArrowLeft className="w-6 h-6 text-[#CC624C]" />
+          </button>
+        </div>
+
+        {/* SECTION 1: The Massive Intro */}
+        <section className="min-h-[100vh] flex flex-col justify-center items-center px-6 relative pt-20">
+          <GiganticTypography highlightWords={["Treue."]} highlightColor="#CC624C" className="text-center justify-center max-w-[1200px] mx-auto">
+            Süße Treue.
+          </GiganticTypography>
           
-          <FadeUp delay={0.1} className="text-center flex flex-col items-center">
-            <div className="mb-4">
+          <motion.div 
+            style={{ scale: coinScale, y: coinY }}
+            className="mt-20 flex flex-col items-center"
+          >
+            <div className="mb-8 transform scale-150">
               <LoyaltyCoin />
             </div>
-            <div className="text-[12px] font-black text-[#CC624C] tracking-widest uppercase mb-1">Deine Coins</div>
-            <div className="font-calistoga text-5xl text-[#2d1f19]">{loading ? '...' : balance}</div>
-          </FadeUp>
-        </div>
+            <div className="text-sm font-black text-[#CC624C] tracking-widest uppercase mb-2">Dein Guthaben</div>
+            <div className="font-calistoga text-8xl text-charcoal">{loading ? '...' : balance}</div>
+          </motion.div>
+          
+          <motion.div 
+            animate={{ y: [0, 10, 0] }} 
+            transition={{ repeat: Infinity, duration: 2 }}
+            className="absolute bottom-10 flex flex-col items-center opacity-50"
+          >
+            <div className="text-xs font-bold tracking-widest uppercase mb-2">Scroll für Belohnungen</div>
+            <ArrowDown />
+          </motion.div>
+        </section>
 
-        <div className="px-5 mt-8 space-y-8">
-          {/* Explanation Section */}
-          <FadeUp delay={0.2} className="bg-white p-5 rounded-[18px] shadow-sm text-center">
-            <h3 className="font-calistoga text-lg text-[#2d1f19] mb-2">So funktioniert's</h3>
-            <p className="font-nunito text-[13px] text-[#7a5a52] leading-relaxed">
-              Sammle Hey Fedee Coins durch Achievements und Bestellungen. Du kannst sie beim nächsten Checkout für Rabatte einlösen! (10 Coins = 1€)
-            </p>
-          </FadeUp>
-
-          {/* History Section */}
-          {history.length > 0 && (
-            <div>
-              <h2 className="font-calistoga text-xl text-[#2d1f19] mb-4">Letzte Aktivitäten</h2>
-              <div className="bg-white rounded-[18px] shadow-sm overflow-hidden">
-                {history.map((item, idx) => (
-                  <div key={item.id} className={`p-4 flex justify-between items-center ${idx !== history.length - 1 ? 'border-b border-[#eedfcc]' : ''}`}>
-                    <div>
-                      <div className="font-bold text-[#2d1f19] text-[13px]">{item.description || 'Punkte gesammelt'}</div>
-                      <div className="text-[11px] font-semibold text-[#7a5a52] mt-0.5">
-                        {item.createdAt ? new Date(item.createdAt).toLocaleDateString('de-DE') : ''}
+        {/* SECTION 2: Achievements Path */}
+        <section className="min-h-[100vh] px-6 relative z-10 py-32">
+          <div className="max-w-[800px] mx-auto">
+            <GiganticTypography delay={0.2} className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center">
+              Deine Meilensteine.
+            </GiganticTypography>
+            
+            <div className="space-y-16">
+              {/* Unlocked */}
+              {unlocked.map((ach, i) => (
+                <motion.div 
+                  initial={{ opacity: 0, y: 100 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  transition={{ type: "spring", bounce: 0.4 }}
+                  key={ach.id} 
+                  className="bg-cream/80 backdrop-blur-xl p-8 rounded-[40px] flex flex-col md:flex-row gap-8 items-center shadow-clay border border-peach/30"
+                >
+                  <div className="w-24 h-24 bg-terracotta rounded-full flex items-center justify-center text-5xl shrink-0 shadow-clay-lg">
+                    {ach.icon}
+                  </div>
+                  <div className="text-center md:text-left">
+                    <div className="font-calistoga text-3xl text-charcoal mb-2">{ach.title}</div>
+                    <div className="text-lg font-bold text-brown/80">{ach.description}</div>
+                    {ach.coinReward && ach.coinReward > 0 && (
+                      <div className="inline-block bg-[#eedfcc] px-4 py-2 rounded-full text-sm font-black text-terracotta uppercase tracking-wider mt-4">
+                        +{ach.coinReward} Coins
                       </div>
-                    </div>
-                    <div className={`font-calistoga text-[16px] ${item.amount > 0 ? 'text-[#3a9d52]' : 'text-[#CC624C]'}`}>
-                      {item.amount > 0 ? '+' : ''}{item.amount}
+                    )}
+                  </div>
+                </motion.div>
+              ))}
+
+              {/* Locked */}
+              {locked.map((ach, i) => (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 0.6, scale: 1 }}
+                  viewport={{ once: true, margin: "-100px" }}
+                  key={ach.id} 
+                  className="bg-white/40 backdrop-blur-sm p-8 rounded-[40px] flex flex-col md:flex-row gap-8 items-center border border-white/50 grayscale-[0.3]"
+                >
+                  <div className="w-24 h-24 bg-peach/50 rounded-full flex items-center justify-center text-brown shrink-0">
+                    <Lock className="w-8 h-8" />
+                  </div>
+                  <div className="text-center md:text-left">
+                    <div className="font-calistoga text-3xl text-charcoal mb-2 blur-[2px]">Verborgenes Rätsel</div>
+                    <div className="text-lg font-bold text-brown/60 blur-[3px] select-none">
+                      {ach.description}
                     </div>
                   </div>
-                ))}
-              </div>
+                </motion.div>
+              ))}
             </div>
-          )}
+          </div>
+        </section>
 
-          {/* Unlocked */}
-          {unlocked.length > 0 && (
-            <div>
-              <h2 className="font-calistoga text-xl text-[#2d1f19] mb-4">Freigeschaltet</h2>
-              <div className="space-y-3">
-                {unlocked.map((ach, i) => (
-                  <FadeUp key={ach.id} delay={0.2 + (i * 0.05)} className="bg-white p-4 rounded-[18px] flex gap-4 items-center shadow-sm border border-[#eedfcc]">
-                    <div className="w-12 h-12 bg-[#E4C0A8] rounded-full flex items-center justify-center text-2xl shrink-0">
-                      {ach.icon}
+        {/* SECTION 3: History */}
+        {history.length > 0 && (
+          <section className="min-h-[100vh] px-6 relative z-10 py-32 flex flex-col items-center">
+            <GiganticTypography className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center">
+              Deine Historie.
+            </GiganticTypography>
+            
+            <div className="max-w-[800px] w-full bg-cream/90 backdrop-blur-xl rounded-[40px] shadow-clay overflow-hidden">
+              {history.map((item, idx) => (
+                <motion.div 
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.05 }}
+                  key={item.id} 
+                  className={`p-6 md:p-8 flex justify-between items-center ${idx !== history.length - 1 ? 'border-b border-peach/50' : ''}`}
+                >
+                  <div>
+                    <div className="font-calistoga text-xl md:text-2xl text-charcoal">{item.description || 'Punkte gesammelt'}</div>
+                    <div className="text-sm font-bold text-brown/70 mt-1">
+                      {item.createdAt ? new Date(item.createdAt).toLocaleDateString('de-DE') : ''}
                     </div>
-                    <div>
-                      <div className="font-calistoga text-[15px] text-[#2d1f19] leading-tight">{ach.title}</div>
-                      <div className="text-[12px] font-semibold text-[#7a5a52] mt-1 leading-snug">{ach.description}</div>
-                      {ach.coinReward && ach.coinReward > 0 && (
-                        <div className="text-[10px] font-bold text-[#CC624C] uppercase tracking-wider mt-2">
-                          +{ach.coinReward} Coins erhalten
-                        </div>
-                      )}
-                    </div>
-                  </FadeUp>
-                ))}
-              </div>
+                  </div>
+                  <div className={`font-calistoga text-3xl md:text-4xl ${item.amount > 0 ? 'text-[#3a9d52]' : 'text-[#CC624C]'}`}>
+                    {item.amount > 0 ? '+' : ''}{item.amount}
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          )}
-
-          {/* Locked */}
-          {locked.length > 0 && (
-            <div>
-              <h2 className="font-calistoga text-xl text-[#2d1f19] mb-4">Noch zu entdecken</h2>
-              <div className="space-y-3">
-                {locked.map((ach, i) => (
-                  <FadeUp key={ach.id} delay={0.4 + (i * 0.05)} className="bg-[rgba(255,255,255,0.5)] p-4 rounded-[18px] flex gap-4 items-center border border-[rgba(238,223,204,0.5)] opacity-75 grayscale-[0.5]">
-                    <div className="w-12 h-12 bg-[#eedfcc] rounded-full flex items-center justify-center text-[#CC624C] shrink-0">
-                      <Lock className="w-5 h-5" />
-                    </div>
-                    <div>
-                      <div className="font-calistoga text-[15px] text-[#2d1f19] leading-tight flex items-center gap-2">
-                        ???
-                        {ach.coinReward && ach.coinReward > 0 && (
-                          <span className="bg-[rgba(228,192,168,0.5)] text-[#CC624C] text-[10px] font-black uppercase px-2 py-0.5 rounded-full">
-                            +{ach.coinReward} Coins
-                          </span>
-                        )}
-                      </div>
-                      <div className="text-[12px] font-semibold text-[#7a5a52] mt-1 leading-snug blur-[2px] select-none">
-                        {ach.description}
-                      </div>
-                    </div>
-                  </FadeUp>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
+          </section>
+        )}
       </div>
     </AuthGuard>
   );

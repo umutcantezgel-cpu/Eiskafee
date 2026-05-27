@@ -19,6 +19,10 @@ import { buildMetadata } from '@/lib/seo/base-metadata';
 import { Hero } from "@/components/sections/home/Hero";
 import { BestsellersSection } from "@/components/sections/home/BestsellersSection";
 import { ValuesSection } from "@/components/sections/home/ValuesSection";
+import { StatsSection } from "@/components/sections/home/StatsSection";
+import { OccasionsSection } from "@/components/sections/home/OccasionsSection";
+import { SeasonalHighlights } from "@/components/sections/home/SeasonalHighlights";
+import { FAQQuickCheck } from "@/components/sections/home/FAQQuickCheck";
 import { NewsletterSection } from "@/components/sections/home/NewsletterSection";
 
 export const revalidate = 60;
@@ -103,11 +107,64 @@ export default function HomePage() {
       {/* ─── Bestsellers ───────────────────────────────────────────────────── */}
       <BestsellersSection />
 
+      {/* ─── Lieferando Ticket Promo ───────────────────────────────────────── */}
+      <section className="bg-[#f5efe8] py-20">
+        <FadeUp className="max-w-[860px] mx-auto px-6">
+          <ScratchCard>
+            <TicketCard sectionBg="#f5efe8">
+            <div className="grid grid-cols-1 md:grid-cols-[1fr_2px_0.7fr] gap-7 items-center">
+              <div>
+                <div className="font-nunito font-black text-[0.7rem] text-[#CC624C] tracking-[2px] uppercase mb-2.5">
+                  Dein exklusives Fede-Ticket
+                </div>
+                <h2 className="font-calistoga text-[clamp(1.3rem,3vw,1.9rem)] text-[#2d1f19] leading-[1.2] mb-3">
+                  Kostenlose Lieferung über Lieferando!
+                </h2>
+                <p className="font-nunito text-[0.87rem] text-[#9a7060] mb-5 leading-[1.6]">
+                  Bestell bequem von zu Hause — ohne Liefergebühr. Frische Desserts direkt zu dir.
+                </p>
+                <PrimaryButton sectionBg="#fefefe" href="https://www.lieferando.de/speisekarte/hey-fede">Jetzt bei Lieferando bestellen →</PrimaryButton>
+              </div>
+              {/* Dashed separator */}
+              <div className="hidden md:block w-[1px] h-[110px] mx-auto"
+                style={{ background: 'repeating-linear-gradient(to bottom,#CC624C 0,#CC624C 5px,transparent 5px,transparent 11px)' }} />
+              {/* Value badge */}
+              <div className="text-center">
+                <div className="bg-[#eedfcc] rounded-2xl p-5 border-2 border-dashed border-[#E4C0A8] inline-block">
+                  <div className="font-calistoga text-[3.4rem] text-[#CC624C] leading-none">0€</div>
+                  <div className="font-nunito font-black text-[0.8rem] text-[#2d1f19] tracking-widest mt-1">LIEFERGEBÜHR</div>
+                  <div className="font-nunito text-[0.7rem] text-[#9a7060] mt-1">Über Lieferando</div>
+                  <div className="mt-2.5 flex gap-[1.5px] justify-center">
+                    {Array.from({length: 20}, (_,i) => (
+                      <div key={i} className="bg-[#CC624C] opacity-55 rounded-sm"
+                           style={{ width: i%3===0 ? 2.5 : 1.2, height: i%5===0 ? 20 : 14 }} />
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            </TicketCard>
+          </ScratchCard>
+        </FadeUp>
+      </section>
+
       {/* ─── Values ────────────────────────────────────────────────────────── */}
       <ValuesSection />
 
+      {/* ─── Stats ─────────────────────────────────────────────────────────── */}
+      <StatsSection />
+
+      {/* ─── Occasions ─────────────────────────────────────────────────────── */}
+      <OccasionsSection />
+
+      {/* ─── Seasonal ──────────────────────────────────────────────────────── */}
+      <SeasonalHighlights />
+
       {/* ─── Reviews ───────────────────────────────────────────────────────── */}
       <ReviewsSection reviews={reviews} config={config} />
+
+      {/* ─── FAQ Quick Check ───────────────────────────────────────────────── */}
+      <FAQQuickCheck />
       
       {/* ─── Newsletter ────────────────────────────────────────────────────── */}
       <NewsletterSection />
@@ -119,9 +176,9 @@ export default function HomePage() {
         .animate-fade-in { animation: fadeIn 0.4s ease both; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
       `}} />
-      <SEOContentBlock visible={true} ariaLabel="Mehr über Hey Fede! Dessertbar in Wetzlar">
+      <div className="sr-only">
         <HomeSEO />
-      </SEOContentBlock>
+      </div>
       <SchemaScripts schema={[buildFaqSchema(FAQ_DATA), buildBreadcrumbSchema([])]} />
     </div>
   );

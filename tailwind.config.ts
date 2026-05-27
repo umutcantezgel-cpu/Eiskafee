@@ -83,11 +83,11 @@ const config: Config = {
       },
       boxShadow: {
         // Clay Family — NEVER rgba(0,0,0,*)
-        'clay-sm':   '0 2px 8px  0 rgba(204, 98, 76, 0.08)',   // Card Rest
-        'clay':      '0 8px 24px 0 rgba(204, 98, 76, 0.12)',   // Card Hover, FAB
-        'clay-lg':   '0 16px 40px 0 rgba(204, 98, 76, 0.18)',  // Floating Modal, Header
-        'clay-cta':  '0 6px 20px 0 rgba(204, 98, 76, 0.30)',   // Primary CTA Glow
-        'clay-deep': '0 12px 32px 0 rgba(45,  31, 25, 0.06)',  // Soft Card Glow
+        'clay-sm':   '0 4px 12px 0 rgba(204, 98, 76, 0.05)',   // Card Rest (softer)
+        'clay':      '0 12px 32px 0 rgba(204, 98, 76, 0.08)',  // Card Hover, FAB (deeper)
+        'clay-lg':   '0 24px 60px 0 rgba(204, 98, 76, 0.12)',  // Floating Modal, Header (softer, wider)
+        'clay-cta':  '0 12px 28px 0 rgba(204, 98, 76, 0.22)',  // Primary CTA Glow
+        'clay-deep': '0 16px 40px 0 rgba(45,  31, 25, 0.04)',  // Soft Card Glow
         // Glass
         'frosted':   'inset 0 0 0 1px rgba(255, 255, 255, 0.4)',
         // Loyalty
@@ -101,10 +101,10 @@ const config: Config = {
 
       /* ═══ §8 · SPACING & SIZING ═══════════════════════════ */
       spacing: {
-        // Section Rhythms (responsive)
-        'hero-y':    'clamp(4rem, 10vw, 8rem)',
-        'section-y': 'clamp(3rem, 7vw, 6rem)',
-        'section-x': 'clamp(1rem, 4vw, 2rem)',
+        // Section Rhythms (responsive) - Elevated Warmth
+        'hero-y':    'clamp(6rem, 14vw, 12rem)',
+        'section-y': 'clamp(5rem, 10vw, 8rem)',
+        'section-x': 'clamp(1.5rem, 5vw, 3rem)',
         // Component Heights
         'header':        '68px',
         'header-mobile': '60px',

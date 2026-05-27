@@ -26,6 +26,14 @@ export function FloatingBlob({
 }) {
   const prefersReducedMotion = useReducedMotion();
 
+  const FILL_COLORS = {
+    peach: 'fill-peach',
+    cream: 'fill-cream',
+    terracotta: 'fill-terracotta',
+    beige: 'fill-beige',
+    brown: 'fill-brown',
+  };
+
   return (
     <motion.svg
       viewBox="0 0 120 120"
@@ -48,7 +56,7 @@ export function FloatingBlob({
     >
       <path
         d={BLOB_PATHS[variant]}
-        className={`fill-${color}`}
+        className={FILL_COLORS[color]}
         opacity={opacity}
       />
     </motion.svg>

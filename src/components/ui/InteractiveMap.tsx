@@ -5,10 +5,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { GoogleMap, useJsApiLoader, MarkerF, InfoWindowF } from "@react-google-maps/api";
 import { MapPin, ExternalLink, Clock, Navigation, Loader2 } from "lucide-react";
 import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
+import { LANDMARKS } from "@/lib/seo/wetzlar-entities";
 import * as CookieConsent from "vanilla-cookieconsent";
 
 /* ─── Constants ─── */
-const HEY_FEDE = { lat: 50.5565, lng: 8.5048 };
+const HEY_FEDE = { lat: 50.5604, lng: 8.5048 }; // Updated Coordinates
 const ROUTE_URL = `https://www.google.com/maps/dir/?api=1&destination=${HEY_FEDE.lat},${HEY_FEDE.lng}`;
 const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY || "";
 
@@ -38,9 +39,9 @@ function LiveMap() {
     id: "hey-fede-gmap",
   });
 
-  const [showInfo, setShowInfo] = useState(false);
+  const [activeMarker, setActiveMarker] = useState<string | null>(null);
 
-  const markerIcon = useMemo(() => {
+  const heyFedeIcon = useMemo(() => {
     if (!isLoaded || typeof google === "undefined") return undefined;
     return {
       path: "M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z",
@@ -49,6 +50,19 @@ function LiveMap() {
       strokeColor: "#B8553F",
       strokeWeight: 1.5,
       scale: 1.8,
+      anchor: new google.maps.Point(12, 36),
+    };
+  }, [isLoaded]);
+
+  const landmarkIcon = useMemo(() => {
+    if (!isLoaded || typeof google === "undefined") return undefined;
+    return {
+      path: "M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z",
+      fillColor: "#9a7060",
+      fillOpacity: 0.9,
+      strokeColor: "#5c3d35",
+      strokeWeight: 1,
+      scale: 1.2,
       anchor: new google.maps.Point(12, 36),
     };
   }, [isLoaded]);
@@ -105,12 +119,13 @@ function LiveMap() {
       >
         <MarkerF
           position={HEY_FEDE}
-          icon={markerIcon}
-          onClick={() => setShowInfo(true)}
+          icon={heyFedeIcon}
+          onClick={() => setActiveMarker("hey-fede")}
+          zIndex={100}
         />
 
-        {showInfo && (
-          <InfoWindowF position={HEY_FEDE} onCloseClick={() => setShowInfo(false)}>
+        {activeMarker === "hey-fede" && (
+          <InfoWindowF position={HEY_FEDE} onCloseClick={() => setActiveMarker(null)}>
             <div style={{ fontFamily: "var(--font-nunito), sans-serif", padding: "4px 2px", minWidth: 180 }}>
               <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1rem", color: "#2d1f19", marginBottom: 4 }}>Hey Fede!</div>
               <div style={{ fontSize: "0.78rem", color: "#5c3d35", marginBottom: 6 }}>Dessertbar & Café<br/>{FULL_ADDRESS}</div>
@@ -128,6 +143,54 @@ function LiveMap() {
             </div>
           </InfoWindowF>
         )}
+
+        {LANDMARKS.map(landmark => {
+          if (!landmark.lat || !landmark.lng) return null;
+          const pos = { lat: landmark.lat, lng: landmark.lng };
+          return (
+            <React.Fragment key={landmark.name}>
+              <MarkerF
+                position={pos}
+                icon={landmarkIcon}
+                onClick={() => setActiveMarker(landmark.name)}
+                zIndex={10}
+              />
+              
+              {activeMarker === landmark.name && (
+                <InfoWindowF position={pos} onCloseClick={() => setActiveMarker(null)}>
+                  <div style={{ fontFamily: "var(--font-nunito), sans-serif", padding: "4px 2px", minWidth: 200, maxWidth: 240 }}>
+                    <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1rem", color: "#2d1f19", marginBottom: 4 }}>{landmark.name}</div>
+                    <div style={{ fontSize: "0.78rem", color: "#5c3d35", marginBottom: 8, lineHeight: 1.3 }}>{landmark.description}</div>
+                    
+                    <div style={{ display: "flex", gap: 6, marginBottom: 8 }}>
+                      <a href={`https://www.google.com/maps/dir/?api=1&destination=${pos.lat},${pos.lng}`} target="_blank" rel="noopener noreferrer" style={{
+                        display: "inline-flex", alignItems: "center", gap: 4, background: "#eedfcc", color: "#2d1f19",
+                        borderRadius: 50, padding: "4px 10px", fontSize: "0.68rem", fontWeight: 800, textDecoration: "none", flex: 1, justifyContent: "center"
+                      }}>
+                        <Navigation size={10} /> Google Maps
+                      </a>
+                      <a href={`http://maps.apple.com/?daddr=${pos.lat},${pos.lng}`} target="_blank" rel="noopener noreferrer" style={{
+                        display: "inline-flex", alignItems: "center", gap: 4, background: "#eedfcc", color: "#2d1f19",
+                        borderRadius: 50, padding: "4px 10px", fontSize: "0.68rem", fontWeight: 800, textDecoration: "none", flex: 1, justifyContent: "center"
+                      }}>
+                        <Navigation size={10} /> Apple Maps
+                      </a>
+                    </div>
+                    
+                    {landmark.wikipediaUrl && (
+                      <a href={landmark.wikipediaUrl} target="_blank" rel="noopener noreferrer" style={{
+                        display: "flex", alignItems: "center", gap: 4, color: "#CC624C",
+                        fontSize: "0.72rem", fontWeight: 800, textDecoration: "underline"
+                      }}>
+                        <ExternalLink size={10} /> Mehr auf Wikipedia
+                      </a>
+                    )}
+                  </div>
+                </InfoWindowF>
+              )}
+            </React.Fragment>
+          );
+        })}
       </GoogleMap>
 
       {/* Floating address bubble */}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormBeige } from '@/assets/svg';
+import { FormBeige } from './ScallopShapes';
 import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 

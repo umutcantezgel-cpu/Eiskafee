@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef } from 'react';
+import Image from 'next/image';
 import { useAchievements } from '@/store/useAchievements';
 import {
   LogoOrange,
@@ -10,20 +11,20 @@ import {
   LogoWortmarkeBeige,
   FormBeige
 } from '@/assets/svg';
-import { clsx } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
 type LogoVariant = 'orange' | 'beige' | 'hellbeige' | 'rund' | 'wortmarke' | 'form';
 
-interface LogoProps extends React.SVGProps<SVGSVGElement> {
+interface LogoProps extends Omit<React.SVGProps<SVGSVGElement>, 'onClick'> {
   variant?: LogoVariant;
   pulse?: boolean;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
 export function Logo({ variant = 'orange', pulse = false, className, onClick, ...props }: LogoProps) {
   const clicks = useRef<number[]>([]);
 
-  const handleTap = (e: React.MouseEvent<SVGSVGElement>) => {
+  const handleTap = (e: React.MouseEvent<HTMLElement>) => {
     const now = Date.now();
     clicks.current.push(now);
     clicks.current = clicks.current.filter(t => now - t <= 500);
@@ -36,6 +37,29 @@ export function Logo({ variant = 'orange', pulse = false, className, onClick, ..
 
     if (onClick) onClick(e);
   };
+
+  if (variant === 'orange' || !variant) {
+    return (
+      <div
+        onClick={handleTap}
+        style={{ aspectRatio: "429.455 / 444.526" }}
+        className={twMerge(
+          "cursor-pointer transition-transform active:scale-95 relative",
+          pulse && "animate-fede-pulse",
+          className
+        )}
+        {...(props as any)}
+      >
+        <Image 
+          src="/logo-orange.svg"
+          alt="Hey Fede! Logo"
+          fill
+          priority
+          style={{ objectFit: 'contain' }}
+        />
+      </div>
+    );
+  }
 
   let SvgIcon = LogoOrange;
   let ratio = "429.455 / 444.526"; // Default normal logo ratio
@@ -57,17 +81,13 @@ export function Logo({ variant = 'orange', pulse = false, className, onClick, ..
       break;
     case 'form':
       SvgIcon = FormBeige;
-      ratio = "1 / 1"; // Assuming form is roughly square, or use normal logo ratio if unknown
-      break;
-    case 'orange':
-    default:
-      SvgIcon = LogoOrange;
+      ratio = "1 / 1"; 
       break;
   }
 
   return (
     <SvgIcon
-      onClick={handleTap}
+      onClick={handleTap as any}
       style={{ aspectRatio: ratio }}
       className={twMerge(
         "cursor-pointer transition-transform active:scale-95",

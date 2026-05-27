@@ -3,6 +3,7 @@
 import React from "react";
 import { MapPin, Phone, Camera } from "lucide-react";
 import { Logo } from "@/components/atoms/Logo";
+import Image from "next/image";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 import { WaveDivider } from "@/components/atoms/WaveDivider";
 import { NewsletterInput } from "@/components/molecules/forms/NewsletterInput";
@@ -110,6 +111,59 @@ export function Footer() {
           <svg className="w-6 h-6 text-brown" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1zM4 22v-7"/></svg>
           <svg className="w-6 h-6 text-terracotta" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 0C1.46 6.7 1.33 10.28 4 13l8 8 8-8c2.67-2.72 2.54-6.3.42-8.42z"/></svg>
           <svg className="w-6 h-6 text-charcoal" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15 8l6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1z"/></svg>
+        </div>
+
+        {/* Semantic SEO Location Block */}
+        <div className="mb-12 text-center" itemScope itemType="https://schema.org/Place">
+          <h4 className="font-calistoga text-xl text-terracotta mb-4">Wir sind hier zuhause</h4>
+          <p className="text-sm font-nunito font-bold text-charcoal/70 flex flex-wrap justify-center items-center gap-2">
+            <span itemProp="containedInPlace" itemScope itemType="https://schema.org/AdministrativeArea">
+              <span itemProp="name">Hessen</span>
+              <link itemProp="sameAs" href="https://www.wikidata.org/wiki/Q1199" />
+            </span>
+            <span className="text-peach">›</span>
+            <span itemProp="containedInPlace" itemScope itemType="https://schema.org/AdministrativeArea">
+              <span itemProp="name">Lahn-Dill-Kreis</span>
+              <link itemProp="sameAs" href="https://www.wikidata.org/wiki/Q7059" />
+            </span>
+            <span className="text-peach">›</span>
+            <span itemProp="containedInPlace" itemScope itemType="https://schema.org/City">
+              <span itemProp="name">Wetzlar</span>
+              <link itemProp="sameAs" href="https://www.wikidata.org/wiki/Q3950" />
+            </span>
+            <span className="text-peach">›</span>
+            <span itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
+              <span itemProp="streetAddress">Langgasse</span>
+            </span>
+          </p>
+        </div>
+
+        {/* Trust Badges / Off-Site Citations */}
+        <div className="flex flex-col items-center mb-12">
+          <h4 className="font-calistoga text-lg text-charcoal/80 mb-4">Besuche uns auch auf</h4>
+          <div className="flex flex-wrap justify-center gap-4">
+            <a href={BUSINESS.googleMapsUrl} target="_blank" rel="external nofollow" className="flex items-center gap-2 bg-cream/50 border border-peach text-charcoal px-4 py-2 rounded-full font-bold text-xs hover:bg-white hover:border-terracotta transition-all shadow-sm">
+              <span className="text-[#4285F4] font-extrabold">G</span> Google
+            </a>
+            <a href="https://www.tripadvisor.de/HeyFede-Wetzlar" target="_blank" rel="external nofollow" className="flex items-center gap-2 bg-cream/50 border border-peach text-charcoal px-4 py-2 rounded-full font-bold text-xs hover:bg-white hover:border-terracotta transition-all shadow-sm">
+              <span className="text-[#34E0A1] text-[16px] leading-none">●</span> TripAdvisor
+            </a>
+            <a href="https://www.yelp.de/biz/hey-fede-wetzlar" target="_blank" rel="external nofollow" className="flex items-center gap-2 bg-cream/50 border border-peach text-charcoal px-4 py-2 rounded-full font-bold text-xs hover:bg-white hover:border-terracotta transition-all shadow-sm">
+              <span className="text-[#FF1A1A] font-extrabold">y<span className="opacity-80">elp</span></span>
+            </a>
+          </div>
+        </div>
+
+        {/* Footer Stamp */}
+        <div className="flex justify-center mb-12">
+          <div className="relative w-32 h-32 opacity-80 hover:opacity-100 transition-opacity">
+            <Image 
+              src="/assets/logos/Logo rund beige.svg" 
+              alt="Made with Love in Wetzlar" 
+              fill 
+              className="object-contain animate-spin [animation-duration:12s]"
+            />
+          </div>
         </div>
 
         {/* Bottom Bar */}

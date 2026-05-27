@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import * as Icons from "lucide-react";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
@@ -46,7 +47,9 @@ export default function OrderHubPage() {
     <div className="min-h-screen bg-[#f5efe8] pb-32">
       {/* Top Bar Area */}
       <div className="flex items-center justify-between px-5 pt-4 pb-3.5">
-        <div className="font-calistoga text-3xl text-[#CC624C]">Hey Fede!</div>
+        <div className="w-32 h-10 relative">
+          <Image src="/assets/logos/Logo Wortmarke beige.svg" alt="Hey Fede! Logo" fill className="object-contain object-left" />
+        </div>
         <button onClick={() => router.push('/')} className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
           <Icons.X size={20} color="#2d1f19" />
         </button>

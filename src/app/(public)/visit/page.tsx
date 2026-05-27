@@ -14,6 +14,8 @@ import { SchemaScripts } from "@/components/seo/SchemaScripts";
 import { buildPlaceSchema, buildTouristDestinationSchema } from "@/lib/seo/schema/pages";
 import { NAPBlock } from "@/components/seo/NAPBlock";
 import { BUSINESS, FULL_ADDRESS, DIRECTIONS_URL } from "@/lib/seo/business-data";
+import { LANDMARKS } from "@/lib/seo/wetzlar-entities";
+import { Compass } from "lucide-react";
 
 export const metadata = buildMetadata({
   title: 'Besuche uns · Anfahrt, Öffnungszeiten & Kontakt',
@@ -125,6 +127,46 @@ export default function VisitPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* Neighborhood / Landmarks Section */}
+      <section className="py-20 bg-white border-t border-peach/30">
+        <FadeUp className="max-w-[1200px] mx-auto px-6">
+          <div className="text-center mb-12">
+            <h2 className="font-calistoga text-[2rem] text-charcoal mb-4">
+              Unsere Nachbarschaft
+            </h2>
+            <p className="font-nunito text-charcoal/80 max-w-[600px] mx-auto">
+              Hey Fede! liegt im Herzen der historischen Altstadt Wetzlars. Verbinde deinen Besuch bei uns mit einem Spaziergang zu diesen wunderschönen Sehenswürdigkeiten in unmittelbarer Nähe.
+            </p>
+          </div>
+          
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {LANDMARKS.map((landmark, idx) => (
+              <a 
+                key={idx}
+                href={landmark.wikipediaUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="group bg-cream border border-peach/50 rounded-[18px] p-6 transition-all duration-300 hover:shadow-clay hover:-translate-y-1 block"
+              >
+                <div className="flex items-start justify-between mb-3">
+                  <h3 className="font-calistoga text-xl text-terracotta group-hover:text-[#b05240] transition-colors">{landmark.name}</h3>
+                  <div className="flex items-center gap-1.5 bg-[#eedfcc] text-brown text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap">
+                    <Compass size={14} />
+                    {landmark.distanceStr}
+                  </div>
+                </div>
+                <p className="font-nunito text-sm text-charcoal/80 leading-relaxed">
+                  {landmark.description}
+                </p>
+                <div className="mt-4 text-xs font-bold text-terracotta flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                  Auf Wikipedia ansehen <ChevronRight size={14} />
+                </div>
+              </a>
+            ))}
           </div>
         </FadeUp>
       </section>

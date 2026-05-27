@@ -9,6 +9,7 @@ import { CookieBanner } from "@/components/layout/CookieBanner";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { BitemarkMaskDefs } from "@/components/atoms/BitemarkSystem";
 import { PhysicsPlaygroundContainer } from "@/components/ui/PhysicsPlaygroundContainer";
+import { ScrollLavaBackground } from "@/components/ui/ScrollLavaBackground";
 
 export default function PublicLayout({
   children,
@@ -17,12 +18,13 @@ export default function PublicLayout({
 }) {
   return (
     <>
+      <ScrollLavaBackground />
       <ScrollProgressBar />
       <BitemarkMaskDefs />
       <SplashScreen />
       <TransitionCurtain />
       <Header />
-      <main id="main-content" className="flex-grow pt-[68px]">
+      <main id="main-content" className="flex-grow pt-[68px] relative z-10">
         {children}
         <SpeedInsights />
       </main>

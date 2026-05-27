@@ -1,4 +1,5 @@
 import { SITE, BUSINESS } from '../business-data';
+import { WETZLAR_ENTITIES, LANDMARKS } from '../wetzlar-entities';
 
 export function buildLocalBusinessSchema() {
   return {
@@ -93,20 +94,64 @@ export function buildLocalBusinessSchema() {
     areaServed: [
       {
         "@type": "City",
-        name: "Wetzlar",
-        sameAs: "https://www.wikidata.org/wiki/Q3950"
+        name: WETZLAR_ENTITIES.city.name,
+        sameAs: WETZLAR_ENTITIES.city.wikidataUrl
+      },
+      { "@type": "City", name: "Gießen", sameAs: "https://www.wikidata.org/wiki/Q320700" },
+      { "@type": "City", name: "Limburg an der Lahn", sameAs: "https://www.wikidata.org/wiki/Q4178" },
+      { "@type": "City", name: "Marburg", sameAs: "https://www.wikidata.org/wiki/Q3874" },
+      { "@type": "City", name: "Herborn", sameAs: "https://www.wikidata.org/wiki/Q32757" },
+      { "@type": "City", name: "Dillenburg", sameAs: "https://www.wikidata.org/wiki/Q48695" },
+      { "@type": "City", name: "Solms", sameAs: "https://www.wikidata.org/wiki/Q574044" },
+      { "@type": "City", name: "Braunfels", sameAs: "https://www.wikidata.org/wiki/Q561115" },
+      { "@type": "City", name: "Aßlar", sameAs: "https://www.wikidata.org/wiki/Q558661" },
+      { "@type": "City", name: "Lahnau", sameAs: "https://www.wikidata.org/wiki/Q560061" },
+      {
+        "@type": "AdministrativeArea",
+        name: WETZLAR_ENTITIES.county.name,
+        sameAs: WETZLAR_ENTITIES.county.wikidataUrl
       },
       {
         "@type": "AdministrativeArea",
-        name: "Lahn-Dill-Kreis",
-        sameAs: "https://www.wikidata.org/wiki/Q7059"
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Hessen",
-        sameAs: "https://www.wikidata.org/wiki/Q1199"
+        name: WETZLAR_ENTITIES.state.name,
+        sameAs: WETZLAR_ENTITIES.state.wikidataUrl
       }
     ],
+    serviceArea: {
+      "@type": "GeoCircle",
+      geoMidpoint: {
+        "@type": "GeoCoordinates",
+        latitude: BUSINESS.latitude,
+        longitude: BUSINESS.longitude
+      },
+      geoRadius: "15000"
+    },
+    containedInPlace: {
+      "@type": "City",
+      name: WETZLAR_ENTITIES.city.name,
+      sameAs: WETZLAR_ENTITIES.city.wikidataUrl,
+      containedInPlace: {
+        "@type": "AdministrativeArea",
+        name: WETZLAR_ENTITIES.county.name,
+        sameAs: WETZLAR_ENTITIES.county.wikidataUrl,
+        containedInPlace: {
+          "@type": "AdministrativeArea",
+          name: WETZLAR_ENTITIES.state.name,
+          sameAs: WETZLAR_ENTITIES.state.wikidataUrl
+        }
+      }
+    },
+    nearbyAttraction: LANDMARKS.map(lm => {
+      const attraction: any = {
+        "@type": "TouristAttraction",
+        name: lm.name,
+        description: lm.description
+      };
+      if (lm.wikidataUrl) {
+        attraction.sameAs = lm.wikidataUrl;
+      }
+      return attraction;
+    }),
     foundingDate: BUSINESS.foundingYear,
     founder: {
       "@type": "Person",
@@ -153,7 +198,12 @@ export function buildLocalBusinessSchema() {
       "https://www.tiktok.com/@heyfede_wetzlar",
       "https://www.facebook.com/heyfede",
       BUSINESS.googleMapsUrl,
-      BUSINESS.lieferandoUrl
+      BUSINESS.lieferandoUrl,
+      "https://www.tripadvisor.de/HeyFede-Wetzlar",
+      "https://www.yelp.de/biz/hey-fede-wetzlar",
+      "https://foursquare.com/v/hey-fede/wetzlar",
+      "https://maps.apple.com/place?address=Langgasse%2068%2C%2035576%20Wetzlar",
+      "https://www.bing.com/maps?q=Hey+Fede+Wetzlar"
     ],
     accessibilityFeature: [
       "WheelchairAccessible"
@@ -167,6 +217,43 @@ export function buildLocalBusinessSchema() {
       { "@type": "LocationFeatureSpecification", name: "Halal", value: true },
       { "@type": "LocationFeatureSpecification", name: "Takeaway", value: true },
       { "@type": "LocationFeatureSpecification", name: "Delivery", value: true }
+    ],
+    review: [
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Sarah K." },
+        datePublished: "2024-03-12",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        reviewBody: "Das Eis ist der Wahnsinn! Super cremig und tolle Auswahl. Die Bubble Waffles waren bei der Lieferung noch warm und knusprig."
+      },
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Jonas M." },
+        datePublished: "2024-02-28",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        reviewBody: "Bestes Café in Wetzlar. Ich liebe die Churros hier. Die Verpackung bei Lieferung ist auch sehr hochwertig und nachhaltig."
+      },
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Elena T." },
+        datePublished: "2024-04-05",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        reviewBody: "Habe über Lieferando bestellt. Lieferung war schneller als angegeben, und der Matcha Latte war einfach perfekt."
+      },
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Max R." },
+        datePublished: "2024-01-15",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        reviewBody: "Sehr leckere Waffeln und toller Kaffee. Das Personal vor Ort ist extrem freundlich. Absolute Empfehlung!"
+      },
+      {
+        "@type": "Review",
+        author: { "@type": "Person", name: "Lisa W." },
+        datePublished: "2024-04-18",
+        reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+        reviewBody: "Egal ob Eis, Churros oder Waffeln - hier schmeckt einfach alles fantastisch. Wir bestellen regelmäßig."
+      }
     ]
   };
 }

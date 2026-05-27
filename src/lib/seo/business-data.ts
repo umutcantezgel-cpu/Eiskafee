@@ -19,7 +19,7 @@ export const BUSINESS = {
   street:      'Langgasse 68',
   postalCode:  '35576',
   city:        'Wetzlar',
-  region:      'Hessen',
+  region:      'DE-HE',
   country:     'DE',
   countryName: 'Deutschland',
 
@@ -32,7 +32,7 @@ export const BUSINESS = {
   emailPrivacy:   'datenschutz@hey-fede.de',
 
   // ─── Geo ───
-  latitude:   50.5565,
+  latitude:   50.5604,
   longitude:  8.5048,
 
   // ─── Social ───
