@@ -1,4 +1,9 @@
 import React from "react";
+import { HomeSEO } from "@/content/seo/HomeSEO";
+import { SEOContentBlock } from "@/components/seo/SEOContentBlock";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqSchema, breadcrumbSchema } from "@/lib/seo/schemas";
+import { FAQ_DATA } from "@/content/seo/faq-data";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/Btn";
 import { WaveDivider } from "@/components/ui/WaveDivider";
@@ -219,6 +224,10 @@ export default function HomePage() {
         .animate-fade-in { animation: fadeIn 0.4s ease both; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
       `}} />
+      <SEOContentBlock visible={true} ariaLabel="Mehr über Hey Fede! Dessertbar in Wetzlar">
+        <HomeSEO />
+      </SEOContentBlock>
+      <JsonLd data={[faqSchema(FAQ_DATA), breadcrumbSchema([])]} />
     </div>
   );
 }

@@ -1,6 +1,8 @@
 "use client";
 
 import React from "react";
+import { VisitSEO } from "@/content/seo/VisitSEO";
+import { SEOContentBlock } from "@/components/seo/SEOContentBlock";
 import { FadeUp } from "@/components/ui/FadeUp";
 import dynamic from "next/dynamic";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/Btn";
@@ -17,6 +19,7 @@ const todayIdx = (() => { const d = new Date().getDay(); return d === 0 ? 6 : d 
 
 export default function VisitPage() {
   return (
+    <>
     <div className="min-h-screen bg-[#f5efe8] animate-fade-in">
       {/* Hero */}
       <section className="bg-[#eedfcc] pt-[110px] px-6 pb-[88px] relative overflow-hidden">
@@ -160,5 +163,9 @@ export default function VisitPage() {
         @keyframes fadeIn { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
       `}} />
     </div>
+      <SEOContentBlock visible={true} ariaLabel="Anfahrt, Parken & Tipps für deinen Besuch bei Hey Fede!">
+        <VisitSEO />
+      </SEOContentBlock>
+    </>
   );
 }

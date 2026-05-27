@@ -1,4 +1,8 @@
 import React from "react";
+import { AboutSEO } from "@/content/seo/AboutSEO";
+import { SEOContentBlock } from "@/components/seo/SEOContentBlock";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { breadcrumbSchema } from "@/lib/seo/schemas";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { WaveDivider } from "@/components/ui/WaveDivider";
 import { SectionTitle, StampBadge } from "@/components/ui/LayoutBlocks";
@@ -22,6 +26,7 @@ export default function AboutPage() {
   ];
 
   return (
+    <>
     <div className="min-h-screen bg-[#f5efe8] animate-fade-in relative">
       <LevelMap sections={sections} />
 
@@ -162,5 +167,10 @@ export default function AboutPage() {
         @keyframes fadeIn { from { opacity: 0; transform: translateY(18px) } to { opacity: 1; transform: none } }
       `}} />
     </div>
+      <SEOContentBlock visible={true} ariaLabel="Die Geschichte von Hey Fede! Dessertbar Wetzlar">
+        <AboutSEO />
+      </SEOContentBlock>
+      <JsonLd data={[breadcrumbSchema([{ name: 'Über uns', path: '/about' }])]} />
+    </>
   );
 }
