@@ -7,7 +7,7 @@ export const HF_DATA: AppData = {
     address: "Langgasse 68, 35576 Wetzlar",
     phone: "06441 7890426",
     whatsapp: "0176 25026991",
-    instagram: "HeyFede_Dessertbar",
+    instagram: "heyfede_wetzlar",
     rating: 4.8,
     reviewCount: 84,
   },

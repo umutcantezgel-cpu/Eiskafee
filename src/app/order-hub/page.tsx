@@ -3,6 +3,14 @@ import * as Icons from "lucide-react";
 import Link from "next/link";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Online Bestellen',
+  description: 'Bestelle online bei Hey Fede! Wetzlar — Bubble Waffles, Pancakes & mehr. Abholung oder Lieferung via Lieferando.',
+  path: '/order-hub',
+  keywords: ['Hey Fede bestellen','Lieferung Wetzlar','Dessert bestellen'],
+});
 
 export default function OrderHubPage() {
   return (

@@ -168,7 +168,7 @@ export function Header() {
           {/* Quick info */}
           <div style={{ marginTop: 24, background: '#eedfcc', borderRadius: 16, padding: '16px 20px' }}>
             <p style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 700, fontSize: '0.85rem', color: '#5c3d35' }}>
-              Mo – So · 11:30 – 20:00 Uhr
+              Mi – Sa 12:00–19:00 · So 13:00–19:00 · Mo+Di geschlossen
             </p>
             <p style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.8rem', color: '#9a7060', marginTop: 3 }}>
               Langgasse 68 · 35576 Wetzlar

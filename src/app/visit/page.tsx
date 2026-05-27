@@ -61,9 +61,9 @@ export default function VisitPage() {
               <div className="flex flex-col gap-2.5">
                 {[
                   { Icon: MapPin,         label: 'Adresse',   val: 'Langgasse 68, 35576 Wetzlar',   href: null },
-                  { Icon: Phone,          label: 'Telefon',   val: '06441 7890426',                  href: 'tel:+496441789042' },
+                  { Icon: Phone,          label: 'Telefon',   val: '06441 7890426',                  href: 'tel:+4964417890426' },
                   { Icon: MessageCircle,  label: 'WhatsApp',  val: '0176 25026991',                   href: 'https://wa.me/4917625026991' },
-                  { Icon: Camera,      label: 'Instagram', val: '@HeyFede_Dessertbar',            href: 'https://instagram.com' },
+                  { Icon: Camera,      label: 'Instagram', val: '@heyfede_wetzlar',               href: 'https://www.instagram.com/heyfede_wetzlar' },
                 ].map(({ Icon, label, val, href }) => (
                   <div key={label} className="bg-[#eedfcc] rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
                     <div className="w-[38px] h-[38px] bg-[#CC624C] rounded-full flex items-center justify-center shrink-0">
@@ -90,6 +90,8 @@ export default function VisitPage() {
                 <div className="bg-[#eedfcc] rounded-[18px] overflow-hidden">
                   {DAYS.map((day, i) => {
                     const isToday = i === todayIdx;
+                    const hours = i <= 1 ? 'Geschlossen' : i === 6 ? '13:00 – 19:00 Uhr' : '12:00 – 19:00 Uhr';
+                    const isClosed = i <= 1;
                     return (
                       <div key={day} className={`flex justify-between items-center p-[13px_19px] ${isToday ? 'bg-[#CC624C]' : 'bg-transparent border-b border-[rgba(228,192,168,0.45)] last:border-b-0'}`}>
                         <div className="flex items-center gap-2">
@@ -97,8 +99,8 @@ export default function VisitPage() {
                           <span className={`font-nunito text-[0.87rem] ${isToday ? 'font-black text-white' : 'font-semibold text-[#2d1f19]'}`}>{day}</span>
                         </div>
                         <div className="flex items-center gap-[9px]">
-                          <span className={`font-nunito text-[0.87rem] ${isToday ? 'text-white font-bold' : 'text-[#5c3d35] font-normal'}`}>
-                            11:30 – 20:00 Uhr
+                          <span className={`font-nunito text-[0.87rem] ${isToday ? 'text-white font-bold' : isClosed ? 'text-[#9a7060] font-normal' : 'text-[#5c3d35] font-normal'}`}>
+                            {hours}
                           </span>
                           {isToday && (
                             <span className="bg-white/20 text-white font-nunito font-black text-[0.63rem] px-2.5 py-0.5 rounded-full">Heute</span>

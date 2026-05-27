@@ -29,8 +29,8 @@ function generateDays() {
 
 function generateTimes(selectedFullDate: string) {
   const times = [];
-  let current = new Date(`2000-01-01T11:30:00`);
-  const end = new Date(`2000-01-01T19:30:00`);
+  let current = new Date(`2000-01-01T12:00:00`);
+  const end = new Date(`2000-01-01T19:00:00`);
 
   const now = new Date();
   const isToday = selectedFullDate === now.toISOString().split('T')[0];
@@ -129,7 +129,7 @@ export default function PickupTimePage() {
               <div className="font-nunito text-[11.5px] text-[#7a5a52] mt-0.5">Langgasse 68, 35576 Wetzlar</div>
               <div className="inline-flex items-center gap-1.5 bg-[rgba(72,160,90,0.13)] px-2 py-1 rounded-full mt-2">
                 <div className="w-1.5 h-1.5 rounded-full bg-[#3a9d52]" />
-                <span className="font-nunito text-[10px] font-extrabold text-[#3a9d52]">Geöffnet · bis 20:00</span>
+                <span className="font-nunito text-[10px] font-extrabold text-[#3a9d52]">Geöffnet · bis 19:00</span>
               </div>
             </div>
           </div>

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { JsonLd } from '@/components/seo/JsonLd';
+import { localBusinessSchema, websiteSchema, organizationSchema } from '@/lib/seo/schemas';
 import { Calistoga, Nunito } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
@@ -30,8 +32,19 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
-  title: "Hey Fede! | Premium Waffeln & Desserts in Wetzlar",
-  description: "Entdecke bei Hey Fede! in Wetzlar frisch zubereitete Premium Waffeln und hausgemachte Desserts. Genieße Qualität mit Liebe zum Detail.",
+  title: {
+    template: '%s · Hey Fede! Wetzlar',
+    default: 'Hey Fede! · Hausgemachte Bubble Waffles & Desserts in Wetzlar',
+  },
+  description: 'Hey Fede! Dessertbar & Café in Wetzlar — hausgemachte Bubble Waffles, Crêpes, Pancakes, Eisbecher und Special Shakes. Langgasse 68, Wetzlarer Altstadt.',
+  metadataBase: new URL('https://hey-fede.de'),
+  formatDetection: { telephone: true, address: true, email: true },
+  other: {
+    'geo.region': 'DE-HE',
+    'geo.placename': 'Wetzlar',
+    'geo.position': '50.5565;8.5048',
+    'ICBM': '50.5565, 8.5048',
+  },
 };
 
 export default function RootLayout({
@@ -48,6 +61,7 @@ export default function RootLayout({
         <Script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js" strategy="beforeInteractive" />
       </head>
       <body className="min-h-full flex flex-col m-0 p-0 overflow-x-hidden font-sans">
+        <JsonLd data={[localBusinessSchema, websiteSchema, organizationSchema]} />
         <BitemarkMaskDefs />
         <SplashScreen />
         <AuthContextProvider>

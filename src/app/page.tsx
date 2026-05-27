@@ -10,6 +10,14 @@ import { PhysicsPlayground } from "@/components/ui/PhysicsPlayground";
 import { ReviewsSection } from "@/components/ui/ReviewsSection";
 import { Star } from "lucide-react";
 import { HF_DATA } from "@/lib/data";
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Hey Fede! · Hausgemachte Bubble Waffles & Desserts in Wetzlar',
+  description: 'Dessertbar & Café in Wetzlar — Bubble Waffles, Pancakes, Crêpes, Eisbecher & Special Shakes. Frisch & hausgemacht in der Langgasse 68.',
+  path: '/',
+  keywords: ['Bubble Waffle Wetzlar','Dessertbar Wetzlar','Café Wetzlar','Pancakes Wetzlar','Eisbecher Wetzlar','Hey Fede'],
+});
 
 export default function HomePage() {
   const { bestsellers, reviews, config } = HF_DATA;

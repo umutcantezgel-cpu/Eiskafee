@@ -4,6 +4,14 @@ import { WaveDivider } from "@/components/ui/WaveDivider";
 import { SectionTitle, StampBadge } from "@/components/ui/LayoutBlocks";
 import { FoodIcon } from "@/components/ui/FoodIcon";
 import { LevelMap } from "@/components/ui/LevelMap";
+import { buildMetadata } from '@/lib/seo/metadata';
+
+export const metadata = buildMetadata({
+  title: 'Über uns · Die Geschichte hinter Hey Fede!',
+  description: 'Erfahre die Geschichte von Hey Fede! — gegründet von Federica. Frische Desserts, hausgemacht mit Liebe, in der Wetzlarer Altstadt.',
+  path: '/about',
+  keywords: ['Hey Fede Geschichte','Dessertbar Gründerin','Federica Wetzlar'],
+});
 
 export default function AboutPage() {
   const sections = [

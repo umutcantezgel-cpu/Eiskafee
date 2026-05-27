@@ -114,7 +114,7 @@ function LiveMap() {
               <div style={{ fontFamily: "var(--font-calistoga), serif", fontSize: "1rem", color: "#2d1f19", marginBottom: 4 }}>Hey Fede!</div>
               <div style={{ fontSize: "0.78rem", color: "#5c3d35", marginBottom: 6 }}>Dessertbar & Café<br/>Langgasse 68, 35576 Wetzlar</div>
               <div style={{ display: "flex", gap: 4, fontSize: "0.72rem", color: "#9a7060", marginBottom: 8 }}>
-                <Clock size={12} /> 11:30 – 20:00 Uhr
+                <Clock size={12} /> Mi–Sa 12:00–19:00 · So 13:00–19:00
               </div>
               <a href={ROUTE_URL} target="_blank" rel="noopener noreferrer" style={{
                 display: "inline-flex", alignItems: "center", gap: 6,

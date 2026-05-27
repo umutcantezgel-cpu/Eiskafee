@@ -24,7 +24,7 @@ export function Footer() {
             </p>
             <div style={{ display: 'flex', gap: 10, marginTop: 18 }}>
               {[
-                ['#CC624C', 'Instagram', 'https://instagram.com/heyfede_wetzlar'],
+                ['#CC624C', 'Instagram', 'https://www.instagram.com/heyfede_wetzlar'],
                 ['#2d1f19', 'TikTok', 'https://tiktok.com/@heyfede_wetzlar']
               ].map(([bg, label, href]) => (
                 <a key={label} href={href} target="_blank" rel="noreferrer"
@@ -77,9 +77,19 @@ export function Footer() {
           {/* Hours */}
           <div>
             <h4 style={{ fontFamily: 'var(--font-calistoga), serif', fontSize: '1.05rem', color: '#CC624C', marginBottom: 14 }}>Öffnungszeiten</h4>
-            <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.86rem' }}>
-              <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, color: '#2d1f19' }}>Mo – So</span>
-              <span style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#5c3d35' }}>11:30 – 20:00 Uhr</span>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 4, fontSize: '0.86rem' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, color: '#2d1f19' }}>Mo + Di</span>
+                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#9a7060' }}>Geschlossen</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, color: '#2d1f19' }}>Mi – Sa</span>
+                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#5c3d35' }}>12:00 – 19:00 Uhr</span>
+              </div>
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, color: '#2d1f19' }}>So</span>
+                <span style={{ fontFamily: 'var(--font-nunito), sans-serif', color: '#5c3d35' }}>13:00 – 19:00 Uhr</span>
+              </div>
             </div>
             <div style={{ height: 1, background: '#E4C0A8', margin: '12px 0' }} />
             <p style={{ fontFamily: 'var(--font-nunito), sans-serif', fontWeight: 800, fontSize: '0.78rem', color: '#CC624C' }}>
