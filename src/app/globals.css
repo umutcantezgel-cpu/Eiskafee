@@ -2,33 +2,39 @@
 
 @config "../../tailwind.config.ts";
 
+/* ═══════════════════════════════════════════════════════════
+   Hey Fede! — Global CSS
+   Source of Truth: MASTER_CONTEXT.md v2.0, §5–§9 + §12.4
+   ═══════════════════════════════════════════════════════════ */
+
+/* ─── CSS Custom Properties ─────────────────────────────── */
 :root {
-  --cream: #f5efe8;
-  --soft-beige: #eedfcc;
-  --waffle-peach: #E4C0A8;
-  --terracotta: #CC624C;
-  --terracotta-dark: #b5523d;
-  --dark: #2d1f19;
-  --dark-mid: #5c3d35;
-  --dark-soft: #9a7060;
-  --mint: #BBD5C9;
-  --mint-dark: #8DB5A4;
-  --white: #fefefe;
-  
-  --radius-sm: 12px;
-  --radius-md: 20px;
-  --radius-lg: 32px;
-  --radius-pill: 100px;
-  
-  --shadow-sm: 0 2px 12px rgba(45,31,25,0.06);
-  --shadow-md: 0 6px 28px rgba(45,31,25,0.10);
-  --shadow-lg: 0 12px 48px rgba(45,31,25,0.14);
-  --shadow-terra: 0 8px 32px rgba(204,98,76,0.22);
-  
-  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+  /* Brand Colors (mirror of Tailwind tokens for CSS-only access) */
+  --color-cream:          #f5efe8;
+  --color-cream-pure:     #fefefe;
+  --color-beige:          #eedfcc;
+  --color-peach:          #E4C0A8;
+  --color-terracotta:     #CC624C;
+  --color-terracotta-deep:#B8553F;
+  --color-brown:          #2d1f19;
+  --color-brown-bark:     #3a2820;
+  --color-brown-mid:      #5c3d35;
+  --color-brown-muted:    #9a7060;
+
+  /* Clay Shadow Palette (§7.2) */
+  --shadow-clay-sm:   0 2px 8px  0 rgba(204, 98, 76, 0.08);
+  --shadow-clay:      0 8px 24px 0 rgba(204, 98, 76, 0.12);
+  --shadow-clay-lg:   0 16px 40px 0 rgba(204, 98, 76, 0.18);
+  --shadow-clay-cta:  0 6px 20px 0 rgba(204, 98, 76, 0.30);
+
+  /* Easings (§9.1) */
+  --ease-fede:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-fede-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-fede-in:  cubic-bezier(0.7, 0, 0.84, 0);
+  --ease-bounce:   cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+/* ─── Base Resets ────────────────────────────────────────── */
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -38,18 +44,29 @@ html {
 }
 
 body {
-  background-color: var(--cream);
-  color: var(--dark);
+  background-color: var(--color-cream);
+  color: var(--color-brown);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* Scrollbar Styles */
+/* ─── Scrollbar (Brand-Tinted) ──────────────────────────── */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
-::-webkit-scrollbar-track { background: var(--soft-beige); }
-::-webkit-scrollbar-thumb { background: var(--waffle-peach); border-radius: 3px; }
+::-webkit-scrollbar-track { background: var(--color-beige); }
+::-webkit-scrollbar-thumb { background: var(--color-peach); border-radius: 3px; }
 
-/* Gooey Filter for Cursor */
+/* ─── Selection ─────────────────────────────────────────── */
+::selection { background: rgba(204, 98, 76, 0.25); color: #2d1f19; }
+
+/* ─── Focus Visibility (A11y) ───────────────────────────── */
+button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
+  outline: 3px solid #CC624C;
+  outline-offset: 3px;
+  border-radius: 50px;
+}
+
+/* ─── Gooey Filter (SyrupCursor, §24) ──────────────────── */
 .gooey-filter {
   position: absolute;
   visibility: hidden;
@@ -57,7 +74,7 @@ body {
   height: 0;
 }
 
-/* New v2.0 Dot Pattern Utilities */
+/* ═══ §12.4 · DOT PATTERN UTILITIES ═════════════════════ */
 @layer utilities {
   .bg-dot-pattern {
     background-image: radial-gradient(
@@ -77,6 +94,19 @@ body {
   }
 }
 
+/* Alias for backward compat (used in existing pages) */
+.dot-bg {
+  background-image: radial-gradient(circle, rgba(204, 98, 76, 0.13) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* ─── Scroll Hide Utility ───────────────────────────────── */
+.scroll-hide { scrollbar-width: none; -ms-overflow-style: none; }
+.scroll-hide::-webkit-scrollbar { display: none; }
+
+/* ═══ CUSTOM KEYFRAMES ══════════════════════════════════ */
+
+/* §10.3 · Logo Pulse (Splash, Loading) */
 @keyframes fede-pulse {
   0%, 100% { transform: scale(1); }
   50%      { transform: scale(1.04); }
@@ -85,26 +115,48 @@ body {
   animation: fede-pulse 2.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Old dot-bg alias for backward compatibility */
-.dot-bg {
-  background-image: radial-gradient(circle, rgba(204,98,76,0.13) 1.5px, transparent 1.5px);
-  background-size: 24px 24px;
+/* Skeleton Shimmer (SkeletonCard loading state) */
+@keyframes fede-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.animate-fede-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-beige) 25%,
+    var(--color-peach) 50%,
+    var(--color-beige) 75%
+  );
+  background-size: 200% 100%;
+  animation: fede-shimmer 1.8s var(--ease-fede) infinite;
 }
 
-.scroll-hide { scrollbar-width: none; -ms-overflow-style: none; }
-.scroll-hide::-webkit-scrollbar { display: none; }
-
-/* Focus visibility — A11y */
-button:focus-visible, a:focus-visible, [role="button"]:focus-visible {
-  outline: 3px solid #CC624C;
-  outline-offset: 3px;
-  border-radius: 50px;
+/* Order Ready Pulse (Success notification) */
+@keyframes fede-ready-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  50%      { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+.animate-fede-ready-pulse {
+  animation: fede-ready-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
 }
 
-/* Selection */
-::selection { background: rgba(204,98,76,0.25); color: #2d1f19; }
+/* Blob Float (decorative backgrounds) */
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0); }
+  33%      { transform: translate(6px, -10px); }
+  66%      { transform: translate(-5px, 7px); }
+}
+.animate-blob-float { animation: blobFloat 9s ease-in-out infinite; }
+.animate-blob-float-reverse { animation: blobFloat 12s ease-in-out infinite reverse; }
 
-/* Reduced-motion global guard */
+/* Fade In (page entrance) */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: none; }
+}
+.animate-fade-in { animation: fadeIn 0.4s ease both; }
+
+/* ═══ REDUCED MOTION GLOBAL GUARD ═══════════════════════ */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

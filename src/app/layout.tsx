@@ -23,12 +23,16 @@ import "@/styles/google-maps-overrides.css";
 const calistoga = Calistoga({
   weight: "400",
   variable: "--font-calistoga",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  fallback: ["Georgia", "ui-serif", "serif"],
 });
 
 const nunito = Nunito({
   variable: "--font-nunito",
-  subsets: ["latin"],
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+  fallback: ["ui-sans-serif", "system-ui", "sans-serif"],
 });
 
 export const metadata: Metadata = {
