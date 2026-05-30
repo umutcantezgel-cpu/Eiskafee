@@ -5,27 +5,27 @@
 
 /* ─── Design Tokens ─── */
 #cc-main {
-  --cc-font-family: var(--font-nunito), 'Nunito', sans-serif;
+  --cc-font-family: var(--font-nunito), "Nunito", sans-serif;
   --cc-bg: rgba(245, 239, 232, 0.92);
   --cc-primary-color: #2d1f19;
   --cc-secondary-color: #5c3d35;
-  --cc-btn-primary-bg: #CC624C;
+  --cc-btn-primary-bg: #cc624c;
   --cc-btn-primary-color: #fefefe;
-  --cc-btn-primary-hover-bg: #B8553F;
+  --cc-btn-primary-hover-bg: #b8553f;
   --cc-btn-primary-hover-color: #fefefe;
   --cc-btn-secondary-bg: rgba(238, 223, 204, 0.7);
   --cc-btn-secondary-color: #2d1f19;
-  --cc-btn-secondary-hover-bg: #E4C0A8;
+  --cc-btn-secondary-hover-bg: #e4c0a8;
   --cc-btn-secondary-hover-color: #2d1f19;
   --cc-btn-border-radius: 50px;
   --cc-modal-border-radius: 24px;
-  --cc-toggle-on-bg: #CC624C;
-  --cc-toggle-off-bg: #E4C0A8;
+  --cc-toggle-on-bg: #cc624c;
+  --cc-toggle-off-bg: #e4c0a8;
   --cc-toggle-readonly-bg: #9a7060;
   --cc-cookie-category-block-bg: rgba(238, 223, 204, 0.5);
   --cc-separator-border-color: rgba(228, 192, 168, 0.5);
   --cc-overlay-bg: rgba(45, 31, 25, 0.6);
-  --cc-link-color: #CC624C;
+  --cc-link-color: #cc624c;
   --cc-footer-bg: rgba(238, 223, 204, 0.5);
   --cc-footer-color: #5c3d35;
   --cc-footer-border-color: rgba(228, 192, 168, 0.4);
@@ -35,7 +35,7 @@
 #cc-main .cm {
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  box-shadow: 
+  box-shadow:
     0 24px 64px rgba(45, 31, 25, 0.18),
     0 0 0 1px rgba(255, 255, 255, 0.3) inset;
   border: 1px solid rgba(228, 192, 168, 0.35);
@@ -57,7 +57,7 @@
 /* ─── Title — Calistoga Display ─── */
 #cc-main .cm__title,
 #cc-main .pm__title {
-  font-family: var(--font-calistoga), 'Calistoga', serif;
+  font-family: var(--font-calistoga), "Calistoga", serif;
   color: #2d1f19;
   letter-spacing: -0.01em;
 }
@@ -109,28 +109,28 @@
 #cc-main .cm__btn--manage {
   font-weight: 700;
   font-size: 0.78rem;
-  color: #CC624C;
+  color: #cc624c;
   text-decoration: underline;
   text-underline-offset: 3px;
   padding: 8px 4px;
 }
 
 #cc-main .cm__btn--manage:hover {
-  color: #B8553F;
+  color: #b8553f;
 }
 
 /* ─── Preferences Modal ─── */
 #cc-main .pm {
   backdrop-filter: blur(20px) saturate(1.4);
   -webkit-backdrop-filter: blur(20px) saturate(1.4);
-  box-shadow: 
+  box-shadow:
     0 32px 80px rgba(45, 31, 25, 0.2),
     0 0 0 1px rgba(255, 255, 255, 0.25) inset;
   border: 1px solid rgba(228, 192, 168, 0.3);
 }
 
 #cc-main .pm__section-title {
-  font-family: var(--font-calistoga), 'Calistoga', serif;
+  font-family: var(--font-calistoga), "Calistoga", serif;
   font-size: 1rem;
   color: #2d1f19;
 }
@@ -178,7 +178,7 @@
 
 /* ─── Links ─── */
 #cc-main a.cc-link {
-  color: #CC624C;
+  color: #cc624c;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -187,7 +187,7 @@
 }
 
 #cc-main a.cc-link:hover {
-  color: #B8553F;
+  color: #b8553f;
 }
 
 /* ─── Category Blocks — Card style ─── */
@@ -202,7 +202,9 @@
 
 /* ─── Close button — Subtle ─── */
 #cc-main .pm__close-btn {
-  transition: transform 0.2s ease, background 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
 }
 
 #cc-main .pm__close-btn:hover {
@@ -216,13 +218,18 @@
     margin: 12px;
     border-radius: 20px;
   }
-  
+
   #cc-main .cm__btn {
     padding: 12px 20px;
     font-size: 0.82rem;
   }
-  
+
   #cc-main .cm__title {
     font-size: 1.15rem;
   }
+}
+
+/* Hide the main consent modal of vanilla-cookieconsent because we use custom Framer Motion banner */
+#cc-main .cm-wrapper {
+  display: none !important;
 }

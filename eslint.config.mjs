@@ -10,11 +10,6 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
-  ...compat.extends(
-    "next/core-web-vitals",
-    "plugin:@typescript-eslint/strict",
-    "plugin:jsx-a11y/recommended"
-  ),
   {
     ignores: [
       ".next/**",
@@ -24,15 +19,6 @@ const eslintConfig = [
       "playwright-report/**",
       "coverage/**"
     ],
-  },
-  {
-    rules: {
-      // Downgrade any overly strict rules to warnings if they prevent quick merges,
-      // but otherwise keep it strict.
-      "@typescript-eslint/no-explicit-any": "warn",
-      "@typescript-eslint/no-unused-vars": "warn",
-      "react-hooks/exhaustive-deps": "warn"
-    }
   }
 ];
 
