@@ -55,3 +55,6 @@ export const useAuth = create<AuthState>((set) => ({
     return unsubscribe;
   }
 }));
+
+// Auto-initialize: start the Firebase Auth listener when the store is first imported
+useAuth.getState().init();
