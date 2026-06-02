@@ -13,41 +13,40 @@ import { HF_DATA } from "@/lib/data";
 // Helper to convert HF_DATA to MenuItem[]
 function getLocalFallback(category?: string): MenuItem[] {
   let items: MenuItem[] = [];
+
+  const mapItem = (item: any, catKey: string): MenuItem => {
+    // Attempt to extract numeric price from string like "7,50 €"
+    let numericPrice = 0;
+    if (typeof item.price === "string") {
+      const match = item.price.match(/[\d,]+/);
+      if (match) {
+        numericPrice = parseFloat(match[0].replace(",", "."));
+      }
+    } else if (typeof item.price === "number") {
+      numericPrice = item.price;
+    }
+
+    return {
+      id: item.name,
+      category: catKey,
+      name: item.name,
+      desc: item.desc,
+      price: numericPrice,
+      icon: "🍽️",
+      color: "peach",
+      available: true,
+    } as MenuItem;
+  };
+
   if (category && HF_DATA.menu[category as keyof typeof HF_DATA.menu]) {
     items = (
       HF_DATA.menu[category as keyof typeof HF_DATA.menu] as { items: any[] }
-    ).items.map(
-      (item) =>
-        ({
-          id: item.name,
-          category,
-          name: item.name,
-          desc: item.desc,
-          price: item.price,
-          isAvailable: true,
-          popular: false,
-          allergens: [],
-          createdAt: new Date(),
-          updatedAt: new Date(),
-        }) as MenuItem,
-    );
+    ).items.map((item) => mapItem(item, category));
   } else if (!category) {
     Object.entries(HF_DATA.menu).forEach(([catKey, catData]) => {
       items.push(
-        ...(catData as { items: any[] }).items.map(
-          (item) =>
-            ({
-              id: item.name,
-              category: catKey,
-              name: item.name,
-              desc: item.desc,
-              price: item.price,
-              isAvailable: true,
-              popular: false,
-              allergens: [],
-              createdAt: new Date(),
-              updatedAt: new Date(),
-            }) as MenuItem,
+        ...(catData as { items: any[] }).items.map((item) =>
+          mapItem(item, catKey),
         ),
       );
     });
