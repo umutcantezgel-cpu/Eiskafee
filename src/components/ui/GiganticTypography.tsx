@@ -1,7 +1,7 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion, useReducedMotion, Variants } from 'framer-motion';
+import React from "react";
+import { motion, useReducedMotion, Variants } from "framer-motion";
 
 interface GiganticTypographyProps {
   children: React.ReactNode;
@@ -9,26 +9,28 @@ interface GiganticTypographyProps {
   delay?: number;
   highlightWords?: string[];
   highlightColor?: string;
+  as?: "h1" | "h2" | "h3" | "div";
 }
 
-export function GiganticTypography({ 
-  children, 
-  className = "", 
+export function GiganticTypography({
+  children,
+  className = "",
   delay = 0,
   highlightWords = [],
-  highlightColor = "#CC624C"
+  highlightColor = "#CC624C",
+  as = "div",
 }: GiganticTypographyProps) {
   const reduced = useReducedMotion();
-  
-  const text = typeof children === 'string' ? children : String(children);
-  const words = text.split(' ');
+
+  const text = typeof children === "string" ? children : String(children);
+  const words = text.split(" ");
 
   const container: Variants = {
     hidden: { opacity: 0 },
     visible: (i = 1) => ({
       opacity: 1,
-      transition: { staggerChildren: 0.1, delayChildren: delay }
-    })
+      transition: { staggerChildren: 0.1, delayChildren: delay },
+    }),
   };
 
   const child: Variants = {
@@ -40,8 +42,8 @@ export function GiganticTypography({
       transition: {
         type: "spring",
         damping: 12,
-        stiffness: 100
-      }
+        stiffness: 100,
+      },
     },
     hidden: {
       opacity: 0,
@@ -51,21 +53,26 @@ export function GiganticTypography({
       transition: {
         type: "spring",
         damping: 12,
-        stiffness: 100
-      }
-    }
+        stiffness: 100,
+      },
+    },
   };
+
+  const Component = motion[as] as React.ElementType;
+  const StaticComponent = as;
 
   if (reduced) {
     return (
-      <div className={`font-calistoga text-[clamp(3rem,8vw,8rem)] leading-[1.05] tracking-tight ${className}`}>
+      <StaticComponent
+        className={`font-calistoga text-[clamp(3rem,8vw,8rem)] leading-[1.05] tracking-tight ${className}`}
+      >
         {text}
-      </div>
+      </StaticComponent>
     );
   }
 
   return (
-    <motion.div
+    <Component
       variants={container}
       initial="hidden"
       whileInView="visible"
@@ -73,20 +80,20 @@ export function GiganticTypography({
       className={`font-calistoga text-[clamp(3rem,8vw,8rem)] leading-[1.05] tracking-tight flex flex-wrap gap-x-[2vw] ${className}`}
     >
       {words.map((word, index) => {
-        const cleanWord = word.replace(/[.,!?]/g, '');
+        const cleanWord = word.replace(/[.,!?]/g, "");
         const isHighlighted = highlightWords.includes(cleanWord);
-        
+
         return (
           <motion.span
             variants={child}
             key={index}
-            style={{ color: isHighlighted ? highlightColor : 'inherit' }}
+            style={{ color: isHighlighted ? highlightColor : "inherit" }}
             className="inline-block relative z-10"
           >
             {word}
           </motion.span>
         );
       })}
-    </motion.div>
+    </Component>
   );
 }

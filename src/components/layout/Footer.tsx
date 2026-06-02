@@ -49,9 +49,9 @@ export function Footer() {
 
           {/* Column 2: Navigation & SEO Silos */}
           <div>
-            <h4 className="font-calistoga text-xl text-terracotta mb-6">
+            <h3 className="font-calistoga text-xl text-terracotta mb-6">
               Hey Fede!
-            </h4>
+            </h3>
             <nav
               aria-label="Footer Navigation"
               className="flex flex-col gap-4 mb-8"
@@ -80,9 +80,9 @@ export function Footer() {
               ))}
             </nav>
 
-            <h4 className="font-calistoga text-lg text-terracotta/80 mb-4">
+            <h3 className="font-calistoga text-lg text-terracotta/80 mb-4">
               Entdecke Mehr
-            </h4>
+            </h3>
             <nav aria-label="SEO Navigation" className="flex flex-col gap-3">
               {[
                 { href: "/bubble-waffles-wetzlar", label: "Bubble Waffles" },
@@ -110,9 +110,9 @@ export function Footer() {
 
           {/* Column 3: Öffnungszeiten */}
           <div>
-            <h4 className="font-calistoga text-xl text-terracotta mb-6">
+            <h3 className="font-calistoga text-xl text-terracotta mb-6">
               Öffnungszeiten
-            </h4>
+            </h3>
             <div className="mb-4">
               <ClientHoursTable />
             </div>
@@ -124,9 +124,9 @@ export function Footer() {
 
           {/* Column 4: Newsletter */}
           <div>
-            <h4 className="font-calistoga text-xl text-terracotta mb-6">
+            <h3 className="font-calistoga text-xl text-terracotta mb-6">
               Stay Sweet
-            </h4>
+            </h3>
             <p className="text-sm font-bold text-charcoal/80 mb-4">
               Abonniere unseren Newsletter für exklusive Angebote und neue
               Bubble Waffle Kreationen.
@@ -217,16 +217,18 @@ export function Footer() {
           itemScope
           itemType="https://schema.org/Place"
         >
-          <h4 className="font-calistoga text-xl text-terracotta mb-4">
+          <h3 className="font-calistoga text-xl text-terracotta mb-4">
             Wir sind hier zuhause
-          </h4>
+          </h3>
           <p className="text-sm font-nunito font-bold text-charcoal/70 flex flex-wrap justify-center items-center gap-2">
             <span
               itemProp="containedInPlace"
               itemScope
               itemType="https://schema.org/AdministrativeArea"
             >
-              <span itemProp="name">Hessen</span>
+              <span itemProp="name" className="text-charcoal">
+                Hessen
+              </span>
               <link
                 itemProp="sameAs"
                 href="https://www.wikidata.org/wiki/Q1199"
@@ -238,7 +240,9 @@ export function Footer() {
               itemScope
               itemType="https://schema.org/AdministrativeArea"
             >
-              <span itemProp="name">Lahn-Dill-Kreis</span>
+              <span itemProp="name" className="text-charcoal">
+                Lahn-Dill-Kreis
+              </span>
               <link
                 itemProp="sameAs"
                 href="https://www.wikidata.org/wiki/Q7059"
@@ -250,7 +254,9 @@ export function Footer() {
               itemScope
               itemType="https://schema.org/City"
             >
-              <span itemProp="name">Wetzlar</span>
+              <span itemProp="name" className="text-charcoal">
+                Wetzlar
+              </span>
               <link
                 itemProp="sameAs"
                 href="https://www.wikidata.org/wiki/Q3950"
@@ -262,16 +268,18 @@ export function Footer() {
               itemScope
               itemType="https://schema.org/PostalAddress"
             >
-              <span itemProp="streetAddress">Langgasse</span>
+              <span itemProp="streetAddress" className="text-charcoal">
+                Langgasse
+              </span>
             </span>
           </p>
         </div>
 
         {/* Trust Badges / Off-Site Citations */}
         <div className="flex flex-col items-center mb-12">
-          <h4 className="font-calistoga text-lg text-charcoal/80 mb-4">
+          <h3 className="font-calistoga text-lg text-charcoal/80 mb-4">
             Besuche uns auch auf
-          </h4>
+          </h3>
           <div className="flex flex-wrap justify-center gap-4">
             <a
               href={BUSINESS.googleMapsUrl}
@@ -296,8 +304,8 @@ export function Footer() {
               rel="external nofollow"
               className="flex items-center gap-2 bg-cream/50 border border-peach text-charcoal px-4 py-2 rounded-full font-bold text-xs hover:bg-white hover:border-terracotta transition-all shadow-sm"
             >
-              <span className="text-[#FF1A1A] font-extrabold">
-                y<span className="opacity-80">elp</span>
+              <span className="text-[#e00707] font-extrabold">
+                y<span>elp</span>
               </span>
             </a>
           </div>
@@ -317,7 +325,7 @@ export function Footer() {
 
         {/* Bottom Bar */}
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-bold text-brown">
-          <p>© {new Date().getFullYear()} Hey Fedee! Dessertbar & Café</p>
+          <p>© {new Date().getFullYear()} Hey Fede! Dessertbar & Café</p>
           <div className="flex gap-6">
             <TransitionLink
               href="/legal#impressum"
