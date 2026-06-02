@@ -386,11 +386,9 @@ export default function InteractiveMap() {
           zoom={16}
           style={{ height: "100%", width: "100%", zIndex: 1 }}
           zoomControl={false}
+          attributionControl={false}
         >
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-            url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-          />
+          <TileLayer url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png" />
           <Marker
             position={HEY_FEDE_LATLNG}
             icon={heyFedeIcon}
