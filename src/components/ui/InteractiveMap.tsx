@@ -225,7 +225,11 @@ function GlassPopup({
               color: "#2d1f19",
               marginBottom: 6,
               paddingRight: 24,
+              wordBreak: "break-word",
+              WebkitHyphens: "auto",
+              hyphens: "auto",
             }}
+            lang="de"
           >
             {landmark.name}
           </div>
