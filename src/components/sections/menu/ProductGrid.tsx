@@ -1,12 +1,18 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { useMenu } from '@/hooks/useMenu';
-import { ProductCard, BoxCard, SkeletonCard } from '@/components/molecules/cards';
-import { TransitionLink } from '@/components/ui/TransitionLink';
-import { Cake } from 'lucide-react';
-import { FloatingBlob } from '@/components/atoms/FloatingBlob';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useMenu } from "@/hooks/useMenu";
+import {
+  ProductCard,
+  BoxCard,
+  SkeletonCard,
+} from "@/components/molecules/cards";
+import { TransitionLink } from "@/components/ui/TransitionLink";
+import { Cake, Image as ImageIcon, Plus } from "lucide-react";
+import { FloatingBlob } from "@/components/atoms/FloatingBlob";
+import { useStore } from "@/store/useStore";
+import Image from "next/image";
 
 interface ProductGridProps {
   activeCategory: string;
@@ -14,6 +20,16 @@ interface ProductGridProps {
 
 export function ProductGrid({ activeCategory }: ProductGridProps) {
   const { items, loading, error } = useMenu(activeCategory);
+  const addToCart = useStore((state) => state.addToCart);
+
+  const handleAddToCart = (e: React.MouseEvent, item: any) => {
+    e.stopPropagation(); // Prevent card click if we had one
+    addToCart({
+      id: item.id,
+      name: item.name,
+      price: Number(item.price) || 0,
+    });
+  };
 
   return (
     <div className="max-w-7xl mx-auto px-6 py-12 min-h-[60vh]">
@@ -35,17 +51,26 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
 
       {/* Empty State */}
       {!loading && !error && items.length === 0 && (
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-col items-center justify-center text-center py-20 relative"
         >
-          <FloatingBlob variant="organic3" color="peach" size={300} opacity={0.3} className="absolute z-0" />
+          <FloatingBlob
+            variant="organic3"
+            color="peach"
+            size={300}
+            opacity={0.3}
+            className="absolute z-0"
+          />
           <div className="relative z-10">
             <span className="text-7xl mb-6 block">🧐</span>
-            <h3 className="font-calistoga text-3xl text-charcoal mb-3">Nichts gefunden!</h3>
+            <h3 className="font-calistoga text-3xl text-charcoal mb-3">
+              Nichts gefunden!
+            </h3>
             <p className="font-bold text-charcoal/70">
-              In dieser Kategorie gibt es aktuell keine Leckereien.<br />
+              In dieser Kategorie gibt es aktuell keine Leckereien.
+              <br />
               Schau doch mal in einer anderen vorbei!
             </p>
           </div>
@@ -63,23 +88,75 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 300, damping: 25, delay: i * 0.05 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25,
+                  delay: i * 0.05,
+                }}
               >
-                {activeCategory === 'boxen' ? (
-                  <BoxCard 
-                    title={item.name} 
-                    desc={item.desc} 
-                    price={String(item.price)} 
+                {activeCategory === "boxen" ? (
+                  <BoxCard
+                    title={item.name}
+                    desc={item.desc}
+                    price={String(item.price)}
+                    onClick={() =>
+                      addToCart({
+                        id: item.id,
+                        name: item.name,
+                        price: Number(item.price) || 0,
+                      })
+                    }
                   />
                 ) : (
-                  <ProductCard>
+                  <ProductCard
+                    onClick={() =>
+                      addToCart({
+                        id: item.id,
+                        name: item.name,
+                        price: Number(item.price) || 0,
+                      })
+                    }
+                  >
                     <div className="flex flex-col h-full relative">
-                      <h3 className="font-calistoga text-xl text-charcoal mb-2">{item.name}</h3>
-                      <p className="text-sm text-charcoal/70 line-clamp-2 flex-grow mb-4">{item.desc}</p>
+                      {/* Image Placeholder */}
+                      <div className="w-full aspect-[4/3] bg-cream rounded-xl mb-4 flex items-center justify-center overflow-hidden border border-peach/30 relative">
+                        {(item as any).image ? (
+                          <Image
+                            src={(item as any).image}
+                            alt={item.name}
+                            fill
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div className="flex flex-col items-center justify-center text-peach/80">
+                            <ImageIcon size={32} className="mb-2 opacity-50" />
+                            <span className="text-xs font-bold uppercase tracking-wider opacity-60">
+                              Kein Bild
+                            </span>
+                          </div>
+                        )}
+                      </div>
+
+                      <h3 className="font-calistoga text-xl text-charcoal mb-2">
+                        {item.name}
+                      </h3>
+                      <p className="text-sm text-charcoal/70 line-clamp-2 flex-grow mb-4">
+                        {item.desc}
+                      </p>
                       <div className="flex items-center justify-between mt-auto">
                         <span className="font-bold text-lg text-terracotta whitespace-nowrap">
-                          {String(item.price)}
+                          {typeof item.price === "number"
+                            ? `${item.price.toFixed(2).replace(".", ",")} €`
+                            : item.price}
                         </span>
+                        <button
+                          onClick={(e) => handleAddToCart(e, item)}
+                          className="bg-terracotta text-white p-2 rounded-full hover:bg-brown transition-colors shadow-sm"
+                          aria-label="Zum Warenkorb hinzufügen"
+                        >
+                          <Plus size={18} strokeWidth={2.5} />
+                        </button>
                       </div>
                     </div>
                   </ProductCard>
@@ -91,28 +168,33 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
       )}
 
       {/* Vitrine Hint Card for Toppings or Kuchen/Cookies */}
-      {!loading && !error && (activeCategory === 'kuchen' || activeCategory === 'cookies' || activeCategory === 'toppings') && (
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="mt-12 bg-peach/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center border border-peach"
-        >
-          <div className="w-16 h-16 rounded-full bg-peach flex items-center justify-center shrink-0">
-            <Cake className="w-8 h-8 text-terracotta" />
-          </div>
-          <div className="flex-1 text-center md:text-left">
-            <p className="font-bold text-charcoal leading-relaxed">
-              Psst... frischen, leckeren Kuchen und viele weitere Specials findest du tagesaktuell in unserer Vitrine vor Ort in Wetzlar!
-            </p>
-          </div>
-          <TransitionLink href="/visit">
-            <button className="bg-terracotta text-cream px-6 py-3 rounded-full font-bold whitespace-nowrap shadow-clay hover:bg-brown transition-colors">
-              Besuchen
-            </button>
-          </TransitionLink>
-        </motion.div>
-      )}
+      {!loading &&
+        !error &&
+        (activeCategory === "kuchen" ||
+          activeCategory === "cookies" ||
+          activeCategory === "toppings") && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="mt-12 bg-peach/30 rounded-3xl p-6 md:p-8 flex flex-col md:flex-row gap-6 items-center border border-peach"
+          >
+            <div className="w-16 h-16 rounded-full bg-peach flex items-center justify-center shrink-0">
+              <Cake className="w-8 h-8 text-terracotta" />
+            </div>
+            <div className="flex-1 text-center md:text-left">
+              <p className="font-bold text-charcoal leading-relaxed">
+                Psst... frischen, leckeren Kuchen und viele weitere Specials
+                findest du tagesaktuell in unserer Vitrine vor Ort in Wetzlar!
+              </p>
+            </div>
+            <TransitionLink href="/visit">
+              <button className="bg-terracotta text-cream px-6 py-3 rounded-full font-bold whitespace-nowrap shadow-clay hover:bg-brown transition-colors">
+                Besuchen
+              </button>
+            </TransitionLink>
+          </motion.div>
+        )}
     </div>
   );
 }

@@ -7,6 +7,7 @@ export type MenuItem = {
   icon: string;
   color: string;
   tag?: string;
+  image?: string;
   available: boolean;
 };
 
@@ -21,8 +22,8 @@ export type Order = {
     variant?: string;
   }>;
   total: number;
-  status: 'pending' | 'preparing' | 'ready' | 'completed' | 'cancelled';
-  type: 'pickup' | 'delivery' | 'instore';
+  status: "pending" | "preparing" | "ready" | "completed" | "cancelled";
+  type: "pickup" | "delivery" | "instore";
   time: string;
   createdAt: Date;
   name: string;
@@ -40,7 +41,7 @@ export type User = {
     city: string;
     zipCode: string;
   }>;
-  role: 'customer' | 'admin';
+  role: "customer" | "admin";
   createdAt: Date;
   achievements?: string[];
   birthday?: string; // Format: 'MM-DD' or 'YYYY-MM-DD'
@@ -59,7 +60,7 @@ export type SupportMessage = {
 export type LoyaltyPointHistory = {
   orderId?: string;
   amount: number;
-  type: 'earned' | 'spent';
+  type: "earned" | "spent";
   date: Date;
 };
 
