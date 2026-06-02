@@ -20,7 +20,10 @@ interface ProductGridProps {
 
 export function ProductGrid({ activeCategory }: ProductGridProps) {
   const { items, loading, error } = useMenu(activeCategory);
+  const cart = useStore((state) => state.cart);
   const addToCart = useStore((state) => state.addToCart);
+  const updateQuantity = useStore((state) => state.updateQuantity);
+  const removeFromCart = useStore((state) => state.removeFromCart);
 
   const handleAddToCart = (e: React.MouseEvent, item: any) => {
     e.stopPropagation(); // Prevent card click if we had one
