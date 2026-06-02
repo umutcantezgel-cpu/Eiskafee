@@ -304,7 +304,7 @@ export function Footer() {
               rel="external nofollow"
               className="flex items-center gap-2 bg-cream/50 border border-peach text-charcoal px-4 py-2 rounded-full font-bold text-xs hover:bg-white hover:border-terracotta transition-all shadow-sm"
             >
-              <span className="text-[#e00707] font-extrabold">
+              <span className="text-red-700 font-extrabold">
                 y<span>elp</span>
               </span>
             </a>

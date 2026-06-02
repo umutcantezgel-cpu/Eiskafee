@@ -9,7 +9,7 @@ import {
   SkeletonCard,
 } from "@/components/molecules/cards";
 import { TransitionLink } from "@/components/ui/TransitionLink";
-import { Cake, Image as ImageIcon, Plus } from "lucide-react";
+import { Cake, Image as ImageIcon, Plus, Minus } from "lucide-react";
 import { FloatingBlob } from "@/components/atoms/FloatingBlob";
 import { useStore } from "@/store/useStore";
 import Image from "next/image";

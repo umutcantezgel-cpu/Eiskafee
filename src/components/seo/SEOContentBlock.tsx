@@ -1,10 +1,10 @@
-'use client';
-import React from 'react';
+"use client";
+import React from "react";
 
 export function SEOContentBlock({
   visible = true,
   children,
-  ariaLabel = 'Über Hey Fede! — Hintergrundinformationen',
+  ariaLabel = "Über Hey Fede! — Hintergrundinformationen",
 }: {
   visible?: boolean;
   children: React.ReactNode;
@@ -15,14 +15,14 @@ export function SEOContentBlock({
       <section
         aria-label={ariaLabel}
         style={{
-          position: 'absolute',
+          position: "absolute",
           width: 1,
           height: 1,
           padding: 0,
           margin: -1,
-          overflow: 'hidden',
-          clip: 'rect(0,0,0,0)',
-          whiteSpace: 'nowrap',
+          overflow: "hidden",
+          clip: "rect(0,0,0,0)",
+          whiteSpace: "nowrap",
           borderWidth: 0,
         }}
       >
@@ -34,15 +34,14 @@ export function SEOContentBlock({
   return (
     <section
       aria-label={ariaLabel}
+      role="region"
       style={{
-        background: '#faf6f1',
-        borderTop: '1px solid rgba(228,192,168,0.3)',
-        padding: '60px 20px',
+        background: "#faf6f1",
+        borderTop: "1px solid rgba(228,192,168,0.3)",
+        padding: "60px 20px",
       }}
     >
-      <div style={{ maxWidth: 800, margin: '0 auto' }}>
-        {children}
-      </div>
+      <div style={{ maxWidth: 800, margin: "0 auto" }}>{children}</div>
     </section>
   );
 }
