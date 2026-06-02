@@ -1,8 +1,14 @@
-'use client';
+"use client";
 
-import React, { useRef } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion';
-import { twMerge } from 'tailwind-merge';
+import React, { useRef } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
+import { twMerge } from "tailwind-merge";
 
 interface ProductCardProps {
   className?: string;
@@ -10,7 +16,11 @@ interface ProductCardProps {
   onClick?: () => void;
 }
 
-export function ProductCard({ className, children, onClick }: ProductCardProps) {
+export function ProductCard({
+  className,
+  children,
+  onClick,
+}: ProductCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
@@ -37,7 +47,7 @@ export function ProductCard({ className, children, onClick }: ProductCardProps) 
     const height = rect.height;
     const mouseX = e.clientX - rect.left;
     const mouseY = e.clientY - rect.top;
-    
+
     const xPct = (mouseX / width) * 2 - 1; // -1 to 1
     const yPct = (mouseY / height) * 2 - 1; // -1 to 1
 
@@ -58,7 +68,7 @@ export function ProductCard({ className, children, onClick }: ProductCardProps) 
         perspective: 1200,
         rotateX: prefersReducedMotion ? 0 : rotateX,
         rotateY: prefersReducedMotion ? 0 : rotateY,
-        transformStyle: 'preserve-3d',
+        transformStyle: "preserve-3d",
       }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
@@ -68,8 +78,7 @@ export function ProductCard({ className, children, onClick }: ProductCardProps) 
       className={twMerge(
         "relative flex flex-col p-5 rounded-2xl bg-white shadow-clay cursor-pointer",
         "transition-shadow duration-300 hover:shadow-lg",
-        "hover:[mask-image:url(#bitemark-card)] [mask-image:none]",
-        className
+        className,
       )}
     >
       {/* Glare effect */}
@@ -78,16 +87,19 @@ export function ProductCard({ className, children, onClick }: ProductCardProps) 
           className="pointer-events-none absolute inset-0 z-20 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 mix-blend-overlay"
           style={{
             background: useTransform(
-              () => `radial-gradient(circle at ${glareX.get()}% ${glareY.get()}%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%)`
+              () =>
+                `radial-gradient(circle at ${glareX.get()}% ${glareY.get()}%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%)`,
             ),
           }}
         />
       )}
 
       {/* Content wrapper pushed forward slightly for 3D effect */}
-      <div 
+      <div
         className="relative z-10 flex-grow"
-        style={{ transform: prefersReducedMotion ? 'none' : 'translateZ(20px)' }}
+        style={{
+          transform: prefersReducedMotion ? "none" : "translateZ(20px)",
+        }}
       >
         {children}
       </div>
