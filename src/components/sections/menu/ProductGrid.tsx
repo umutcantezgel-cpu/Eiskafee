@@ -81,88 +81,138 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
       {!loading && !error && items.length > 0 && (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           <AnimatePresence mode="popLayout">
-            {items.map((item, i) => (
-              <motion.div
-                key={item.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 25,
-                  delay: i * 0.05,
-                }}
-              >
-                {activeCategory === "boxen" ? (
-                  <BoxCard
-                    title={item.name}
-                    desc={item.desc}
-                    price={String(item.price)}
-                    onClick={() =>
-                      addToCart({
-                        id: item.id,
-                        name: item.name,
-                        price: Number(item.price) || 0,
-                      })
-                    }
-                  />
-                ) : (
-                  <ProductCard
-                    onClick={() =>
-                      addToCart({
-                        id: item.id,
-                        name: item.name,
-                        price: Number(item.price) || 0,
-                      })
-                    }
-                  >
-                    <div className="flex flex-col h-full relative">
-                      {/* Image Placeholder */}
-                      <div className="w-full aspect-[4/3] bg-cream rounded-xl mb-4 flex items-center justify-center overflow-hidden border border-peach/30 relative">
-                        {(item as any).image ? (
-                          <Image
-                            src={(item as any).image}
-                            alt={item.name}
-                            fill
-                            className="object-cover"
-                          />
-                        ) : (
-                          <div className="flex flex-col items-center justify-center text-peach/80">
-                            <ImageIcon size={32} className="mb-2 opacity-50" />
-                            <span className="text-xs font-bold uppercase tracking-wider opacity-60">
-                              Kein Bild
-                            </span>
-                          </div>
-                        )}
-                      </div>
+            {items.map((item, i) => {
+              const cartItem = cart.find((c) => c.id === item.id);
+              const quantity = cartItem?.quantity || 0;
 
-                      <h3 className="font-calistoga text-xl text-charcoal mb-2">
-                        {item.name}
-                      </h3>
-                      <p className="text-sm text-charcoal/70 line-clamp-2 flex-grow mb-4">
-                        {item.desc}
-                      </p>
-                      <div className="flex items-center justify-between mt-auto">
-                        <span className="font-bold text-lg text-terracotta whitespace-nowrap">
-                          {typeof item.price === "number"
-                            ? `${item.price.toFixed(2).replace(".", ",")} €`
-                            : item.price}
-                        </span>
-                        <button
-                          onClick={(e) => handleAddToCart(e, item)}
-                          className="bg-terracotta text-white p-2 rounded-full hover:bg-brown transition-colors shadow-sm"
-                          aria-label="Zum Warenkorb hinzufügen"
-                        >
-                          <Plus size={18} strokeWidth={2.5} />
-                        </button>
+              const increment = () => {
+                if (quantity > 0) {
+                  updateQuantity(item.id, quantity + 1);
+                } else {
+                  addToCart({
+                    id: item.id,
+                    name: item.name,
+                    price: Number(item.price) || 0,
+                  });
+                }
+              };
+
+              const decrement = () => {
+                if (quantity > 1) {
+                  updateQuantity(item.id, quantity - 1);
+                } else {
+                  removeFromCart(item.id);
+                }
+              };
+
+              return (
+                <motion.div
+                  key={item.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{
+                    type: "spring",
+                    stiffness: 300,
+                    damping: 25,
+                    delay: i * 0.05,
+                  }}
+                >
+                  {activeCategory === "boxen" ? (
+                    <BoxCard
+                      title={item.name}
+                      desc={item.desc}
+                      price={String(item.price)}
+                      quantity={quantity}
+                      onIncrement={increment}
+                      onDecrement={decrement}
+                      onClick={quantity === 0 ? increment : undefined}
+                    />
+                  ) : (
+                    <ProductCard
+                      onClick={quantity === 0 ? increment : undefined}
+                    >
+                      <div className="flex flex-col h-full relative">
+                        {/* Image Placeholder */}
+                        <div className="w-full aspect-[4/3] bg-cream rounded-xl mb-4 flex items-center justify-center overflow-hidden border border-peach/30 relative">
+                          {(item as any).image ? (
+                            <Image
+                              src={(item as any).image}
+                              alt={item.name}
+                              fill
+                              className="object-cover"
+                            />
+                          ) : (
+                            <div className="flex flex-col items-center justify-center text-peach/80">
+                              <ImageIcon
+                                size={32}
+                                className="mb-2 opacity-50"
+                              />
+                              <span className="text-xs font-bold uppercase tracking-wider opacity-60">
+                                Kein Bild
+                              </span>
+                            </div>
+                          )}
+                        </div>
+
+                        <h3 className="font-calistoga text-xl text-charcoal mb-2">
+                          {item.name}
+                        </h3>
+                        <p className="text-sm text-charcoal/70 line-clamp-2 flex-grow mb-4">
+                          {item.desc}
+                        </p>
+                        <div className="flex items-center justify-between mt-auto">
+                          <span className="font-bold text-lg text-terracotta whitespace-nowrap">
+                            {typeof item.price === "number"
+                              ? `${item.price.toFixed(2).replace(".", ",")} €`
+                              : item.price}
+                          </span>
+
+                          {/* Quantity Selector or Add Button */}
+                          <div onClick={(e) => e.stopPropagation()}>
+                            {quantity > 0 ? (
+                              <motion.div
+                                initial={{ opacity: 0, width: 40 }}
+                                animate={{ opacity: 1, width: "auto" }}
+                                className="flex items-center gap-2 bg-cream rounded-full p-1 border border-peach shadow-sm"
+                              >
+                                <button
+                                  onClick={decrement}
+                                  className="w-8 h-8 flex items-center justify-center bg-white rounded-full text-charcoal hover:bg-peach/50 transition-colors"
+                                  aria-label="Menge reduzieren"
+                                >
+                                  <Minus size={16} />
+                                </button>
+                                <span className="font-bold text-sm w-4 text-center">
+                                  {quantity}
+                                </span>
+                                <button
+                                  onClick={increment}
+                                  className="w-8 h-8 flex items-center justify-center bg-terracotta rounded-full text-white hover:bg-brown transition-colors"
+                                  aria-label="Menge erhöhen"
+                                >
+                                  <Plus size={16} />
+                                </button>
+                              </motion.div>
+                            ) : (
+                              <motion.button
+                                whileTap={{ scale: 0.9 }}
+                                onClick={increment}
+                                className="bg-terracotta text-white p-2 rounded-full hover:bg-brown transition-colors shadow-sm"
+                                aria-label="Zum Warenkorb hinzufügen"
+                              >
+                                <Plus size={18} strokeWidth={2.5} />
+                              </motion.button>
+                            )}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </ProductCard>
-                )}
-              </motion.div>
-            ))}
+                    </ProductCard>
+                  )}
+                </motion.div>
+              );
+            })}
           </AnimatePresence>
         </div>
       )}
