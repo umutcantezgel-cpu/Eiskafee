@@ -11,7 +11,7 @@ export function StampBadge({
   text,
   size = 88,
   rotate = -12,
-  color = "#CC624C",
+  color = "#b34832",
 }: StampBadgeProps) {
   const id = `sb-${text.replace(/\W/g, "")}-${size}`;
   const r = size / 2 - 10;

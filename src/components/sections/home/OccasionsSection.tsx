@@ -13,37 +13,37 @@ import {
 export function OccasionsSection() {
   const occasions = [
     {
-      icon: <Heart className="w-8 h-8 text-[#CC624C]" />,
+      icon: <Heart className="w-8 h-8 text-[#b34832]" />,
       title: "Romantische Date-Night",
       description:
         "Gedimmtes Licht, eine süße Bubble Waffle zum Teilen und zwei Löffel. Hey Fede! bietet die perfekte, unkomplizierte Atmosphäre in der Wetzlarer Altstadt, um sich beim ersten oder hundertsten Date ungestört näherzukommen.",
     },
     {
-      icon: <Users className="w-8 h-8 text-[#CC624C]" />,
+      icon: <Users className="w-8 h-8 text-[#b34832]" />,
       title: "Sonntags mit der Familie",
       description:
         "Nach einem langen Spaziergang an der Lahn gibt es nichts Schöneres, als sich gemeinsam aufzuwärmen. Unsere familienfreundliche Dessertbar bietet viel Platz, eine Kinderecke und süße Belohnungen, die garantiert jedes Kinderauge zum Leuchten bringen.",
     },
     {
-      icon: <Coffee className="w-8 h-8 text-[#CC624C]" />,
+      icon: <Coffee className="w-8 h-8 text-[#b34832]" />,
       title: "Der entspannte After-Work",
       description:
         "Lass den anstrengenden Büroalltag einfach hinter dir. Ein aromatischer Espresso, ein frisch gebackener Crêpe und gute Gespräche mit Kollegen in gemütlicher Atmosphäre sind die beste Art, den verdienten Feierabend in Wetzlar einzuläuten.",
     },
     {
-      icon: <Gift className="w-8 h-8 text-[#CC624C]" />,
+      icon: <Gift className="w-8 h-8 text-[#b34832]" />,
       title: "Unvergessliche Geburtstage",
       description:
         "Feier deinen besonderen Tag bei uns! Mit unseren riesigen Fede Boxen, dekoriert mit funkelnden Wunderkerzen, und einer Auswahl deiner absoluten Lieblingsdesserts wird jeder Geburtstag zu einem süßen Fest, das du und deine Freunde so schnell nicht vergessen werden.",
     },
     {
-      icon: <GraduationCap className="w-8 h-8 text-[#CC624C]" />,
+      icon: <GraduationCap className="w-8 h-8 text-[#b34832]" />,
       title: "Der wöchentliche Studi-Treff",
       description:
         "Als Student der THM brauchst du Nervennahrung für lange Lernsessions. Bei Hey Fede! findest du kostenloses WLAN, bequeme Sitzplätze und großartige Pancake-Stapel, die dir die nötige Energie für deine nächste Klausurenphase liefern.",
     },
     {
-      icon: <ShoppingBag className="w-8 h-8 text-[#CC624C]" />,
+      icon: <ShoppingBag className="w-8 h-8 text-[#b34832]" />,
       title: "Die süße Shopping-Pause",
       description:
         "Nach einem ausgiebigen Einkaufsbummel durch die Wetzlarer Altstadt gibt es keinen besseren Ort für einen Boxenstopp. Gönn dir eine wohlverdiente Zucker-Dosis in unserer gemütlichen Dessertbar, bevor es mit vollen Taschen weitergeht.",

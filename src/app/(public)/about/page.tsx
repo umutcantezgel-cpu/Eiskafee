@@ -40,7 +40,7 @@ export default function AboutPage() {
           <GiganticTypography
             as="h1"
             highlightWords={["Leidenschaft."]}
-            highlightColor="#CC624C"
+            highlightColor="#b34832"
             className="text-center justify-center max-w-[1200px] mx-auto mt-20"
           >
             Unser Rezept? Leidenschaft.
@@ -181,7 +181,7 @@ export default function AboutPage() {
         <section className="min-h-[80vh] flex flex-col justify-center items-center px-6 relative z-10 pb-32">
           <GiganticTypography
             highlightWords={["Zuhause"]}
-            highlightColor="#CC624C"
+            highlightColor="#b34832"
             className="text-center justify-center mb-16"
           >
             Unser Zuhause in Wetzlar.

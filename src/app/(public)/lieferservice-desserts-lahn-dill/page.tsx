@@ -113,7 +113,7 @@ export default function LieferservicePage() {
           </PrimaryButton>
         </div>
         <div className="absolute bottom-0 left-0 w-full translate-y-1">
-          <WaveDivider fromColor="#CC624C" toColor="#ffffff" variant={3} />
+          <WaveDivider fromColor="#b34832" toColor="#ffffff" variant={3} />
         </div>
       </section>
 

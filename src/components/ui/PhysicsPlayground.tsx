@@ -6,12 +6,12 @@ import Matter from "matter-js";
 import { FoodIcon } from "@/components/ui/FoodIcon"; // Changed from Ic to FoodIcon based on the project structure
 
 const DESSERT_ITEMS = [
-  { icon: "Cookie", color: "#CC624C", size: 40, type: "circle" },
+  { icon: "Cookie", color: "#b34832", size: 40, type: "circle" },
   { icon: "Cookie", color: "#E4C0A8", size: 38, type: "circle" },
   { icon: "Sparkles", color: "#eedfcc", size: 32, type: "circle" },
   { icon: "Coffee", color: "#5c3d35", size: 44, type: "circle" },
-  { icon: "Cake", color: "#CC624C", size: 46, type: "square" },
-  { icon: "Heart", color: "#CC624C", size: 34, type: "circle" },
+  { icon: "Cake", color: "#b34832", size: 46, type: "square" },
+  { icon: "Heart", color: "#b34832", size: 34, type: "circle" },
   { icon: "Star", color: "#E4C0A8", size: 30, type: "circle" },
   { icon: "Package", color: "#f5efe8", size: 36, type: "circle" }, // Droplets changed to Package as it is available
 ];
@@ -203,7 +203,7 @@ export default function PhysicsPlayground({ size = 360 }: { size?: number }) {
 
       // Create subtle confetti
       const confettiColors = [
-        "#CC624C",
+        "#b34832",
         "#E4C0A8",
         "#eedfcc",
         "#5c3d35",

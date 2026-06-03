@@ -42,7 +42,7 @@ function MenuContent() {
         <GiganticTypography
           as="h1"
           highlightWords={["Süßes!"]}
-          highlightColor="#CC624C"
+          highlightColor="#b34832"
           className="text-center justify-center max-w-[1200px] mx-auto z-10"
         >
           Gönn dir was Süßes!

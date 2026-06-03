@@ -13,14 +13,21 @@ const ALLOWED_ZONES = ["35576", "35578", "35580", "35581"];
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { cart, orderType, updateOrderData, orderData, updateQuantity, clearCart } = useStore();
+  const {
+    cart,
+    orderType,
+    updateOrderData,
+    orderData,
+    updateQuantity,
+    clearCart,
+  } = useStore();
   const { user } = useAuth();
-  
+
   const [name, setName] = useState(orderData.name || "");
   const [phone, setPhone] = useState(orderData.phone || "");
   const [email, setEmail] = useState(orderData.email || "");
   const [notes, setNotes] = useState(orderData.notes || "");
-  
+
   const [street, setStreet] = useState(orderData.address?.street || "");
   const [zip, setZip] = useState(orderData.address?.zip || "");
   const [city, setCity] = useState(orderData.address?.city || "");
@@ -34,7 +41,13 @@ export default function CheckoutPage() {
     }
   }, [user]);
 
-  const total = cart.reduce((s, i) => s + i.quantity * (typeof i.price === 'number' ? i.price : parseFloat(i.price)), 0);
+  const total = cart.reduce(
+    (s, i) =>
+      s +
+      i.quantity *
+        (typeof i.price === "number" ? i.price : parseFloat(i.price)),
+    0,
+  );
 
   const handleNext = () => {
     if (cart.length === 0) {
@@ -55,21 +68,23 @@ export default function CheckoutPage() {
         return;
       }
       if (!ALLOWED_ZONES.includes(zip)) {
-        setZoneError("Sorry, wir liefern aktuell leider nicht in deine Postleitzahl.");
+        setZoneError(
+          "Sorry, wir liefern aktuell leider nicht in deine Postleitzahl.",
+        );
         return;
       }
       setZoneError("");
       addressData = { street, zip, city };
     }
-    
+
     updateOrderData({
       name,
       phone,
       email,
       notes,
-      address: addressData
+      address: addressData,
     });
-    
+
     router.push("/pickup-time");
   };
 
@@ -78,12 +93,19 @@ export default function CheckoutPage() {
       {/* ─── LEFT COLUMN: FORM ─── */}
       <div className="flex-1 overflow-y-auto pb-32 md:pb-6">
         <div className="bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between md:hidden">
-          <button onClick={() => router.back()} className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm">
+          <button
+            onClick={() => router.back()}
+            className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm"
+          >
             <Icons.ArrowLeft size={20} color="#2d1f19" />
           </button>
           <div className="text-center">
-            <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">Kontaktdaten</div>
-            <div className="font-nunito text-[11px] font-bold text-[#7a5a52]">Schritt 1 von 3</div>
+            <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">
+              Kontaktdaten
+            </div>
+            <div className="font-nunito text-[11px] font-bold text-[#7a5a52]">
+              Schritt 1 von 3
+            </div>
           </div>
           <div className="w-10 h-10" />
         </div>
@@ -91,41 +113,67 @@ export default function CheckoutPage() {
         {/* Progress */}
         <div className="px-5 pb-4 flex gap-1.5 md:mt-6">
           {[true, false, false].map((active, i) => (
-            <div key={i} className={`flex-1 h-1 rounded-full ${active ? 'bg-[#CC624C]' : 'bg-[#eedfcc]'}`} />
+            <div
+              key={i}
+              className={`flex-1 h-1 rounded-full ${active ? "bg-[#b34832]" : "bg-[#eedfcc]"}`}
+            />
           ))}
         </div>
 
         <div className="px-5">
           <FadeUp delay={0.1}>
-            <div className="font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-2.5">Deine Daten</div>
-            
-            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]">
-              <label htmlFor="checkout-name" className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]">Name *</label>
-              <input 
+            <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+              Deine Daten
+            </div>
+
+            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+              <label
+                htmlFor="checkout-name"
+                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+              >
+                Name *
+              </label>
+              <input
                 id="checkout-name"
-                type="text" value={name} onChange={(e) => setName(e.target.value)}
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 placeholder="Dein Vorname"
                 autoComplete="name"
                 className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
               />
             </div>
 
-            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]">
-              <label htmlFor="checkout-email" className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]">E-Mail *</label>
-              <input 
+            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+              <label
+                htmlFor="checkout-email"
+                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+              >
+                E-Mail *
+              </label>
+              <input
                 id="checkout-email"
-                type="email" value={email} onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
                 autoComplete="email"
                 className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
               />
             </div>
 
-            <div className="bg-white rounded-[18px] p-4 mb-5 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]">
-              <label htmlFor="checkout-phone" className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]">Handynummer *</label>
-              <input 
+            <div className="bg-white rounded-[18px] p-4 mb-5 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+              <label
+                htmlFor="checkout-phone"
+                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+              >
+                Handynummer *
+              </label>
+              <input
                 id="checkout-phone"
-                type="tel" value={phone} onChange={(e) => setPhone(e.target.value)}
+                type="tel"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
                 placeholder="Für Rückfragen"
                 autoComplete="tel"
                 className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
@@ -135,13 +183,22 @@ export default function CheckoutPage() {
 
           {orderType === "delivery" && (
             <FadeUp delay={0.2}>
-              <div className="font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-2.5">Lieferadresse</div>
-              
-              <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]">
-                <label htmlFor="checkout-street" className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]">Straße & Hausnr. *</label>
-                <input 
+              <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+                Lieferadresse
+              </div>
+
+              <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+                <label
+                  htmlFor="checkout-street"
+                  className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                >
+                  Straße & Hausnr. *
+                </label>
+                <input
                   id="checkout-street"
-                  type="text" value={street} onChange={(e) => setStreet(e.target.value)}
+                  type="text"
+                  value={street}
+                  onChange={(e) => setStreet(e.target.value)}
                   placeholder="Musterstraße 12"
                   autoComplete="street-address"
                   className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
@@ -149,11 +206,23 @@ export default function CheckoutPage() {
               </div>
 
               <div className="grid grid-cols-[1fr_2fr] gap-3 mb-5">
-                <div className={`bg-white rounded-[18px] p-4 shadow-sm border-2 ${zoneError ? 'border-red-500' : 'border-transparent focus-within:border-[#CC624C]'}`}>
-                  <label htmlFor="checkout-zip" className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]">PLZ *</label>
-                  <input 
+                <div
+                  className={`bg-white rounded-[18px] p-4 shadow-sm border-2 ${zoneError ? "border-red-500" : "border-transparent focus-within:border-[#b34832]"}`}
+                >
+                  <label
+                    htmlFor="checkout-zip"
+                    className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                  >
+                    PLZ *
+                  </label>
+                  <input
                     id="checkout-zip"
-                    type="text" value={zip} onChange={(e) => { setZip(e.target.value); setZoneError(""); }}
+                    type="text"
+                    value={zip}
+                    onChange={(e) => {
+                      setZip(e.target.value);
+                      setZoneError("");
+                    }}
                     placeholder="35576"
                     autoComplete="postal-code"
                     aria-invalid={!!zoneError}
@@ -161,11 +230,18 @@ export default function CheckoutPage() {
                     className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
                   />
                 </div>
-                <div className="bg-white rounded-[18px] p-4 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]">
-                  <label htmlFor="checkout-city" className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]">Stadt *</label>
-                  <input 
+                <div className="bg-white rounded-[18px] p-4 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+                  <label
+                    htmlFor="checkout-city"
+                    className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                  >
+                    Stadt *
+                  </label>
+                  <input
                     id="checkout-city"
-                    type="text" value={city} onChange={(e) => setCity(e.target.value)}
+                    type="text"
+                    value={city}
+                    onChange={(e) => setCity(e.target.value)}
                     placeholder="Wetzlar"
                     autoComplete="address-level2"
                     className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
@@ -173,18 +249,33 @@ export default function CheckoutPage() {
                 </div>
               </div>
               <div aria-live="polite" aria-atomic="true">
-                {zoneError && <div id="zone-error" className="text-red-500 font-nunito text-sm font-bold mb-4">{zoneError}</div>}
+                {zoneError && (
+                  <div
+                    id="zone-error"
+                    className="text-red-500 font-nunito text-sm font-bold mb-4"
+                  >
+                    {zoneError}
+                  </div>
+                )}
               </div>
             </FadeUp>
           )}
 
           <FadeUp delay={0.3}>
-            <div className="font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-2.5">Zusätzliche Infos</div>
-            <div className="bg-white rounded-[18px] p-4 mb-6 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]">
-              <label htmlFor="checkout-notes" className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]">Anmerkungen (Optional)</label>
-              <textarea 
+            <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+              Zusätzliche Infos
+            </div>
+            <div className="bg-white rounded-[18px] p-4 mb-6 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+              <label
+                htmlFor="checkout-notes"
+                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+              >
+                Anmerkungen (Optional)
+              </label>
+              <textarea
                 id="checkout-notes"
-                value={notes} onChange={(e) => setNotes(e.target.value)}
+                value={notes}
+                onChange={(e) => setNotes(e.target.value)}
                 placeholder="Z.B. Klingel ist defekt..."
                 className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full resize-none min-h-[60px] placeholder:opacity-40"
               />
@@ -196,35 +287,65 @@ export default function CheckoutPage() {
       {/* ─── RIGHT COLUMN: CART SUMMARY ─── */}
       <div className="w-full md:w-[380px] bg-[#fef8f5] border-t md:border-t-0 md:border-l border-[#eedfcc] flex flex-col fixed md:relative bottom-0 left-0 right-0 z-40 max-h-[50vh] md:max-h-none overflow-y-auto">
         <div className="hidden md:block px-6 pt-8 pb-4">
-          <div className="font-calistoga text-2xl text-[#2d1f19]">Dein Warenkorb</div>
-          <button onClick={() => { if(confirm("Wirklich leeren?")) clearCart(); }} className="text-[12px] font-extrabold text-[#7a5a52] underline mt-1">Leeren</button>
+          <div className="font-calistoga text-2xl text-[#2d1f19]">
+            Dein Warenkorb
+          </div>
+          <button
+            onClick={() => {
+              if (confirm("Wirklich leeren?")) clearCart();
+            }}
+            className="text-[12px] font-extrabold text-[#7a5a52] underline mt-1"
+          >
+            Leeren
+          </button>
         </div>
 
         <div className="px-5 md:px-6 flex-1 py-4">
           <div className="flex justify-between items-center mb-4 md:hidden">
-            <span className="font-calistoga text-xl text-[#2d1f19]">{total.toFixed(2).replace('.', ',')} €</span>
-            <span className="font-nunito text-sm text-[#7a5a52] font-bold">{cart.reduce((s, i) => s + i.quantity, 0)} Artikel</span>
+            <span className="font-calistoga text-xl text-[#2d1f19]">
+              {total.toFixed(2).replace(".", ",")} €
+            </span>
+            <span className="font-nunito text-sm text-[#7a5a52] font-bold">
+              {cart.reduce((s, i) => s + i.quantity, 0)} Artikel
+            </span>
           </div>
 
           <div className="hidden md:block space-y-3 mb-6">
-            {cart.map(it => {
-              const itemPrice = typeof it.price === 'number' ? it.price : parseFloat(it.price);
+            {cart.map((it) => {
+              const itemPrice =
+                typeof it.price === "number" ? it.price : parseFloat(it.price);
               return (
-                <div key={it.id} className="flex justify-between gap-3 bg-white p-3 rounded-2xl shadow-sm">
+                <div
+                  key={it.id}
+                  className="flex justify-between gap-3 bg-white p-3 rounded-2xl shadow-sm"
+                >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-2">
-                      <span className="font-nunito font-extrabold text-[#CC624C] text-[13px]">{it.quantity}×</span>
-                      <span className="font-nunito font-bold text-[14px] text-[#2d1f19] truncate">{it.name}</span>
+                      <span className="font-nunito font-extrabold text-[#b34832] text-[13px]">
+                        {it.quantity}×
+                      </span>
+                      <span className="font-nunito font-bold text-[14px] text-[#2d1f19] truncate">
+                        {it.name}
+                      </span>
                     </div>
-                    {it.variant && <div className="font-nunito text-[11px] text-[#7a5a52] ml-5">{it.variant}</div>}
+                    {it.variant && (
+                      <div className="font-nunito text-[11px] text-[#7a5a52] ml-5">
+                        {it.variant}
+                      </div>
+                    )}
                   </div>
-                  <span className="font-calistoga text-[14px] text-[#CC624C]">{(it.quantity * itemPrice).toFixed(2).replace('.', ',')} €</span>
+                  <span className="font-calistoga text-[14px] text-[#b34832]">
+                    {(it.quantity * itemPrice).toFixed(2).replace(".", ",")} €
+                  </span>
                 </div>
               );
             })}
           </div>
 
-          <PrimaryButton onClick={handleNext} className="w-full flex justify-center items-center gap-2">
+          <PrimaryButton
+            onClick={handleNext}
+            className="w-full flex justify-center items-center gap-2"
+          >
             Weiter zu {orderType === "delivery" ? "Lieferzeit" : "Abholzeit"}
             <Icons.ArrowRight size={18} />
           </PrimaryButton>

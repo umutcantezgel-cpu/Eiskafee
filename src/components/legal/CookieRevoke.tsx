@@ -61,16 +61,18 @@ export default function CookieRevoke() {
             }}
           >
             Cookie-Einstellungen
-            <div style={{
-              position: "absolute",
-              bottom: -5,
-              left: 16,
-              width: 10,
-              height: 10,
-              background: "rgba(45, 31, 25, 0.92)",
-              transform: "rotate(45deg)",
-              borderRadius: 2,
-            }} />
+            <div
+              style={{
+                position: "absolute",
+                bottom: -5,
+                left: 16,
+                width: 10,
+                height: 10,
+                background: "rgba(45, 31, 25, 0.92)",
+                transform: "rotate(45deg)",
+                borderRadius: 2,
+              }}
+            />
           </motion.div>
         )}
       </AnimatePresence>
@@ -90,7 +92,7 @@ export default function CookieRevoke() {
           position: "absolute",
           inset: 0,
           borderRadius: "50%",
-          border: "2px solid #CC624C",
+          border: "2px solid #b34832",
           pointerEvents: "none",
         }}
       />
@@ -102,7 +104,10 @@ export default function CookieRevoke() {
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1.5 }}
         whileHover={{ scale: 1.12 }}
         whileTap={{ scale: 0.9 }}
-        onHoverStart={() => { setIsHovered(true); setShowTooltip(false); }}
+        onHoverStart={() => {
+          setIsHovered(true);
+          setShowTooltip(false);
+        }}
         onHoverEnd={() => setIsHovered(false)}
         onClick={() => CookieConsent.showPreferences()}
         aria-label="Cookie-Einstellungen öffnen"
@@ -130,9 +135,9 @@ export default function CookieRevoke() {
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
           {isHovered ? (
-            <Settings size={20} color="#CC624C" strokeWidth={2} />
+            <Settings size={20} color="#b34832" strokeWidth={2} />
           ) : (
-            <Cookie size={20} color="#CC624C" strokeWidth={2} />
+            <Cookie size={20} color="#b34832" strokeWidth={2} />
           )}
         </motion.div>
       </motion.button>

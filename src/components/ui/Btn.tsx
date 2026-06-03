@@ -5,8 +5,8 @@ import { TransitionLink } from "@/components/ui/TransitionLink";
 import { motion, AnimatePresence } from "framer-motion";
 import * as Icons from "lucide-react";
 
-const PARTICLE_COLORS = ['#CC624C', '#E4C0A8', '#eedfcc', '#fefefe'];
-const PARTICLE_ICONS  = ['dot', 'sparkle', 'star'];
+const PARTICLE_COLORS = ["#b34832", "#E4C0A8", "#eedfcc", "#fefefe"];
+const PARTICLE_ICONS = ["dot", "sparkle", "star"];
 
 function makeBurst(originX: number, originY: number) {
   const id = Date.now() + Math.random();
@@ -22,14 +22,14 @@ function makeBurst(originX: number, originY: number) {
   return { id, originX, originY, particles };
 }
 
-export function PrimaryButton({ 
-  children, 
-  onClick, 
+export function PrimaryButton({
+  children,
+  onClick,
   href,
-  large = false, 
-  sectionBg = '#f5efe8', 
-  className = '',
-  disabled = false
+  large = false,
+  sectionBg = "#f5efe8",
+  className = "",
+  disabled = false,
 }: {
   children: React.ReactNode;
   onClick?: (e?: any) => void;
@@ -44,7 +44,12 @@ export function PrimaryButton({
 
   useEffect(() => {
     if (bursts.length === 0) return;
-    const timers = bursts.map(b => setTimeout(() => setBursts(prev => prev.filter(x => x.id !== b.id)), 800));
+    const timers = bursts.map((b) =>
+      setTimeout(
+        () => setBursts((prev) => prev.filter((x) => x.id !== b.id)),
+        800,
+      ),
+    );
     return () => timers.forEach(clearTimeout);
   }, [bursts]);
 
@@ -53,7 +58,7 @@ export function PrimaryButton({
     const rect = e.currentTarget.getBoundingClientRect();
     const ox = (e.clientX ?? rect.left + rect.width / 2) - rect.left;
     const oy = (e.clientY ?? rect.top + rect.height / 2) - rect.top;
-    setBursts(b => [...b, makeBurst(ox, oy)]);
+    setBursts((b) => [...b, makeBurst(ox, oy)]);
     if (onClick) onClick(e);
   };
 
@@ -65,12 +70,17 @@ export function PrimaryButton({
       onHoverEnd={() => setHovered(false)}
       whileHover={disabled ? {} : { scale: 1.05 }}
       whileTap={disabled ? {} : { scale: 0.92, scaleX: 1.06, scaleY: 0.84 }}
-      transition={{ type: 'spring', stiffness: 600, damping: 15, mass: 1 }}
-      className={`relative inline-flex items-center justify-center font-nunito font-extrabold text-white bg-[#CC624C] border-none rounded-full overflow-visible ${
-        large ? 'px-9 py-[15px] text-[0.96rem]' : 'px-[26px] py-[11px] text-[0.88rem]'
-      } ${disabled ? 'opacity-60 cursor-not-allowed' : 'cursor-pointer'} ${className}`}
+      transition={{ type: "spring", stiffness: 600, damping: 15, mass: 1 }}
+      className={`relative inline-flex items-center justify-center font-nunito font-extrabold text-white bg-[#b34832] border-none rounded-full overflow-visible ${
+        large
+          ? "px-9 py-[15px] text-[0.96rem]"
+          : "px-[26px] py-[11px] text-[0.88rem]"
+      } ${disabled ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${className}`}
       style={{
-        boxShadow: hovered && !disabled ? '0 8px 28px rgba(204,98,76,0.34)' : '0 3px 12px rgba(204,98,76,0.18)',
+        boxShadow:
+          hovered && !disabled
+            ? "0 8px 28px rgba(204,98,76,0.34)"
+            : "0 3px 12px rgba(204,98,76,0.18)",
       }}
     >
       <span className="relative z-10 flex items-center gap-2">{children}</span>
@@ -81,56 +91,100 @@ export function PrimaryButton({
         className="absolute z-0 w-[18px] h-[18px] rounded-full bottom-[-1px] left-[14px] pointer-events-none"
         style={{
           background: sectionBg,
-          transform: hovered ? 'scale(1)' : 'scale(0)',
-          transformOrigin: 'center bottom',
-          transition: 'transform .25s cubic-bezier(0.34,1.56,0.64,1)',
+          transform: hovered ? "scale(1)" : "scale(0)",
+          transformOrigin: "center bottom",
+          transition: "transform .25s cubic-bezier(0.34,1.56,0.64,1)",
         }}
       />
 
       {/* Particle burst overlay */}
       <span className="absolute inset-0 pointer-events-none overflow-visible z-20">
         <AnimatePresence>
-          {bursts.map(burst => burst.particles.map((p: any) => (
-            <motion.div
-              key={p.id}
-              initial={{ x: burst.originX, y: burst.originY, opacity: 1, scale: 0, rotate: 0 }}
-              animate={{
-                x: burst.originX + Math.cos(p.angle) * p.distance,
-                y: burst.originY + Math.sin(p.angle) * p.distance - 20,
-                opacity: [1, 1, 0], scale: [0, 1, 0.5], rotate: p.rotation,
-              }}
-              transition={{ duration: 0.65, ease: 'easeOut', times: [0, 0.3, 1] }}
-              style={{
-                position: 'absolute', top: 0, left: 0,
-                width: p.size, height: p.size,
-                borderRadius: p.type === 'dot' ? '50%' : 0,
-                background: p.type === 'dot' ? p.color : 'transparent',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}
-            >
-              {p.type === 'star' && <Icons.Star size={p.size} strokeWidth={0} color={p.color} fill={p.color} />}
-              {p.type === 'sparkle' && <Icons.Sparkles size={p.size} strokeWidth={0} color={p.color} fill={p.color} />}
-            </motion.div>
-          )))}
+          {bursts.map((burst) =>
+            burst.particles.map((p: any) => (
+              <motion.div
+                key={p.id}
+                initial={{
+                  x: burst.originX,
+                  y: burst.originY,
+                  opacity: 1,
+                  scale: 0,
+                  rotate: 0,
+                }}
+                animate={{
+                  x: burst.originX + Math.cos(p.angle) * p.distance,
+                  y: burst.originY + Math.sin(p.angle) * p.distance - 20,
+                  opacity: [1, 1, 0],
+                  scale: [0, 1, 0.5],
+                  rotate: p.rotation,
+                }}
+                transition={{
+                  duration: 0.65,
+                  ease: "easeOut",
+                  times: [0, 0.3, 1],
+                }}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: p.size,
+                  height: p.size,
+                  borderRadius: p.type === "dot" ? "50%" : 0,
+                  background: p.type === "dot" ? p.color : "transparent",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                {p.type === "star" && (
+                  <Icons.Star
+                    size={p.size}
+                    strokeWidth={0}
+                    color={p.color}
+                    fill={p.color}
+                  />
+                )}
+                {p.type === "sparkle" && (
+                  <Icons.Sparkles
+                    size={p.size}
+                    strokeWidth={0}
+                    color={p.color}
+                    fill={p.color}
+                  />
+                )}
+              </motion.div>
+            )),
+          )}
         </AnimatePresence>
       </span>
     </motion.button>
   );
 
   return href ? (
-    <div onClick={handleClick} className="inline-block" style={{ textDecoration: 'none' }}>
-      <TransitionLink href={href} style={{ textDecoration: 'none' }} className="inline-block" tabIndex={-1}>
+    <div
+      onClick={handleClick}
+      className="inline-block"
+      style={{ textDecoration: "none" }}
+    >
+      <TransitionLink
+        href={href}
+        style={{ textDecoration: "none" }}
+        className="inline-block"
+        tabIndex={-1}
+      >
         {inner}
       </TransitionLink>
     </div>
-  ) : inner;
+  ) : (
+    inner
+  );
 }
 
-export function SecondaryButton({ 
-  children, 
-  onClick, 
+export function SecondaryButton({
+  children,
+  onClick,
   href,
-  className = '' 
+  className = "",
 }: {
   children: React.ReactNode;
   onClick?: () => void;
@@ -138,20 +192,20 @@ export function SecondaryButton({
   className?: string;
 }) {
   const [hover, setHover] = useState(false);
-  
+
   const inner = (
     <motion.button
       onClick={onClick}
       onHoverStart={() => setHover(true)}
       onHoverEnd={() => setHover(false)}
       whileTap={{ scale: 0.94, scaleX: 1.04, scaleY: 0.88 }}
-      transition={{ type: 'spring', stiffness: 600, damping: 15 }}
+      transition={{ type: "spring", stiffness: 600, damping: 15 }}
       className={`relative inline-flex items-center justify-center font-nunito font-extrabold rounded-full cursor-pointer whitespace-nowrap px-[25px] py-[10px] text-[0.88rem] ${className}`}
       style={{
-        border: '2px solid #CC624C',
-        color: hover ? '#fff' : '#CC624C',
-        background: hover ? '#CC624C' : 'transparent',
-        transition: 'background .2s ease, color .2s ease',
+        border: "2px solid #b34832",
+        color: hover ? "#fff" : "#b34832",
+        background: hover ? "#b34832" : "transparent",
+        transition: "background .2s ease, color .2s ease",
       }}
     >
       {children}
@@ -159,8 +213,14 @@ export function SecondaryButton({
   );
 
   return href ? (
-    <TransitionLink href={href} style={{ textDecoration: 'none' }} className="inline-block">
+    <TransitionLink
+      href={href}
+      style={{ textDecoration: "none" }}
+      className="inline-block"
+    >
       {inner}
     </TransitionLink>
-  ) : inner;
+  ) : (
+    inner
+  );
 }

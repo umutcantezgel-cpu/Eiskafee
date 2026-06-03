@@ -1,0 +1,930 @@
+
+> hey-fede-app@0.1.0 lint
+> eslint .
+
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/next.config.ts
+  11:60  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/parse-lint.js
+  1:12  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/replace_links.js
+  1:12  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  2:14  error    A `require()` style import is forbidden                                @typescript-eslint/no-require-imports
+  8:5   warning  Expected an assignment or function call and instead saw an expression  @typescript-eslint/no-unused-expressions
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/menu/page.tsx
+  8:25  warning  'Check' is defined but never used  @typescript-eslint/no-unused-vars
+  8:32  warning  'X' is defined but never used      @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/settings/page.tsx
+   40:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+   58:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/settings/page.tsx:58:7
+  56 |   useEffect(() => {
+  57 |     if (settings) {
+> 58 |       setLocalSettings({
+     |       ^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  59 |         currentWaitTime: settings.currentWaitTime || 15,
+  60 |         bannerText: settings.bannerText || "",
+  61 |         emergencyNotice: (settings as any).emergencyNotice || "",  react-hooks/set-state-in-effect
+   61:39  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+   63:24  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+   64:37  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+  455:28  warning  'e' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/users/page.tsx
+   6:33  warning  'ShieldAlert' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+   6:46  warning  'Coins' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   6:53  warning  'History' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   6:62  warning  'Check' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   7:10  warning  'Modal' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+  21:44  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+  26:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+  33:5   error    Error: Cannot access variable before it is declared
+
+`fetchUsers` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/users/page.tsx:33:5
+  31 |
+  32 |   useEffect(() => {
+> 33 |     fetchUsers();
+     |     ^^^^^^^^^^ `fetchUsers` accessed before it is declared
+  34 |     fetchSupportMessages();
+  35 |   }, []);
+  36 |
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/users/page.tsx:37:3
+  35 |   }, []);
+  36 |
+> 37 |   const fetchUsers = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 38 |     try {
+     | ^^^^^^^^^
+> 39 |       const snap = await getDocs(collection(db, 'users'));
+     | ^^^^^^^^^
+> 40 |       setUsers(snap.docs.map(d => ({ id: d.id, ...d.data() } as UserData)));
+     | ^^^^^^^^^
+> 41 |     } catch (e) {
+     | ^^^^^^^^^
+> 42 |       console.error(e);
+     | ^^^^^^^^^
+> 43 |     } finally {
+     | ^^^^^^^^^
+> 44 |       setLoading(false);
+     | ^^^^^^^^^
+> 45 |     }
+     | ^^^^^^^^^
+> 46 |   };
+     | ^^^^^ `fetchUsers` is declared here
+  47 |
+  48 |   const fetchSupportMessages = async () => {
+  49 |     try {                                                                                                         react-hooks/immutability
+  34:5   error    Error: Cannot access variable before it is declared
+
+`fetchSupportMessages` is accessed before it is declared, which prevents the earlier access from updating when this value changes over time.
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/users/page.tsx:34:5
+  32 |   useEffect(() => {
+  33 |     fetchUsers();
+> 34 |     fetchSupportMessages();
+     |     ^^^^^^^^^^^^^^^^^^^^ `fetchSupportMessages` accessed before it is declared
+  35 |   }, []);
+  36 |
+  37 |   const fetchUsers = async () => {
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(admin)/admin/users/page.tsx:48:3
+  46 |   };
+  47 |
+> 48 |   const fetchSupportMessages = async () => {
+     |   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 49 |     try {
+     | ^^^^^^^^^
+> 50 |       const q = query(collection(db, 'support_messages'), orderBy('createdAt', 'desc'));
+     | ^^^^^^^^^
+> 51 |       const snap = await getDocs(q);
+     | ^^^^^^^^^
+> 52 |       setMessages(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+     | ^^^^^^^^^
+> 53 |     } catch (e) {
+     | ^^^^^^^^^
+> 54 |       console.error(e);
+     | ^^^^^^^^^
+> 55 |     }
+     | ^^^^^^^^^
+> 56 |   };
+     | ^^^^^ `fetchSupportMessages` is declared here
+  57 |
+  58 |   const loadUserDetails = async (u: UserData) => {
+  59 |     setSelectedUser(u);  react-hooks/immutability
+  63:83  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/about/page.tsx
+  13:10  warning  'BUSINESS' is defined but never used  @typescript-eslint/no-unused-vars
+  14:10  warning  'motion' is defined but never used    @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/agb/page.tsx
+  1:0  error  Parsing error: Expression expected
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/auth/page.tsx
+   4:10  warning  'PrimaryButton' is defined but never used  @typescript-eslint/no-unused-vars
+  53:19  warning  Unexpected any. Specify a different type   @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/bubble-waffles-wetzlar/page.tsx
+    8:16  warning  'BUSINESS' is defined but never used                             @typescript-eslint/no-unused-vars
+  111:56  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  111:64  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  120:17  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  120:79  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/checkout/page.tsx
+  16:56  warning  'updateQuantity' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  32:38  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/checkout/page.tsx:32:38
+  30 |   useEffect(() => {
+  31 |     if (user) {
+> 32 |       if (!name && user.displayName) setName(user.displayName);
+     |                                      ^^^^^^^ Avoid calling setState() directly within an effect
+  33 |       if (!email && user.email) setEmail(user.email);
+  34 |     }
+  35 |   }, [user]);  react-hooks/set-state-in-effect
+  35:6   warning  React Hook useEffect has missing dependencies: 'email' and 'name'. Either include them or remove the dependency array                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      react-hooks/exhaustive-deps
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/confirmation/page.tsx
+   6:10  warning  'Logo' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              @typescript-eslint/no-unused-vars
+  17:38  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+  22:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/confirmation/page.tsx:22:7
+  20 |   useEffect(() => {
+  21 |     if (!orderId) {
+> 22 |       setLoading(false);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  23 |       return;
+  24 |     }
+  25 |     const fetchOrder = async () => {  react-hooks/set-state-in-effect
+  60:59  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/cookie-richtlinie/page.tsx
+  1:0  error  Parsing error: Expression expected
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/datenschutz/page.tsx
+  1:0  error  Parsing error: Expression expected
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/eisdiele-wetzlar-special-shakes/page.tsx
+  5:10  warning  'WaveDivider' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/events-catering-hessen/page.tsx
+  8:16  warning  'BUSINESS' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/firebase-test/page.tsx
+  16:21  warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  37:22  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  37:58  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/impressum/page.tsx
+  1:0  error  Parsing error: Expression expected
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/legal/page.tsx
+  8:3  warning  'useTransform' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/lieferservice-desserts-lahn-dill/page.tsx
+  123:28  warning  `'` can be escaped with `&apos;`, `&lsquo;`, `&#39;`, `&rsquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/loyalty/page.tsx
+   27:42  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         @typescript-eslint/no-explicit-any
+   36:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/loyalty/page.tsx:36:7
+  34 |   useEffect(() => {
+  35 |     if (!user) {
+> 36 |       setLoading(false);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  37 |       return;
+  38 |     }
+  39 |  react-hooks/set-state-in-effect
+  128:35  warning  'i' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+  157:33  warning  'i' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/menu/MenuClientWrapper.tsx
+   9:10  warning  'motion' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     @typescript-eslint/no-unused-vars
+   9:18  warning  'useScroll' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  @typescript-eslint/no-unused-vars
+   9:29  warning  'useTransform' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-unused-vars
+  20:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/menu/MenuClientWrapper.tsx:20:7
+  18 |     const cat = searchParams.get("category");
+  19 |     if (cat && HF_DATA.categories.find((c) => c.id === cat)) {
+> 20 |       setActiveCategory(cat);
+     |       ^^^^^^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  21 |     }
+  22 |   }, [searchParams]);
+  23 |  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/order-review/page.tsx
+   63:52   error    Error: Cannot call impure function during render
+
+`Math.random` is an impure function. Calling an impure function can produce unstable results that update unpredictably when the component happens to re-render. (https://react.dev/reference/rules/components-and-hooks-must-be-pure#components-and-hooks-must-be-idempotent).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/order-review/page.tsx:63:52
+  61 |     setIsSubmitting(true);
+  62 |     try {
+> 63 |       const orderNumber = `#HF-${Math.floor(1000 + Math.random() * 9000)}`;
+     |                                                    ^^^^^^^^^^^^^ Cannot call impure function
+  64 |       
+  65 |       const orderDoc = {
+  66 |         orderNumber,  react-hooks/purity
+   70:41   warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+   72:83   warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  149:105  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  151:157  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  219:13   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react/no-unescaped-entities
+  219:31   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react/no-unescaped-entities
+  226:35   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/order-status/page.tsx
+  19:38  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      @typescript-eslint/no-explicit-any
+  21:10  warning  'hasTriggeredReady' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+  25:7   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/order-status/page.tsx:25:7
+  23 |   useEffect(() => {
+  24 |     if (!orderId) {
+> 25 |       setLoading(false);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  26 |       return;
+  27 |     }
+  28 |       react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/page.tsx
+   3:10  warning  'SEOContentBlock' is defined but never used       @typescript-eslint/no-unused-vars
+   8:25  warning  'SecondaryButton' is defined but never used       @typescript-eslint/no-unused-vars
+   9:10  warning  'WaveDivider' is defined but never used           @typescript-eslint/no-unused-vars
+  10:10  warning  'SectionTitle' is defined but never used          @typescript-eslint/no-unused-vars
+  11:10  warning  'HoloTiltCard' is defined but never used          @typescript-eslint/no-unused-vars
+  15:10  warning  'Star' is defined but never used                  @typescript-eslint/no-unused-vars
+  51:11  warning  'bestsellers' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/password-reset/page.tsx
+  27:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/pickup-time/page.tsx
+  32:7  error  'current' is never reassigned. Use 'const' instead  prefer-const
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/profile/orders/page.tsx
+   16:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+   20:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  103:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/profile/page.tsx
+   5:10  warning  'Package' is defined but never used       @typescript-eslint/no-unused-vars
+   5:47  warning  'Loader2' is defined but never used       @typescript-eslint/no-unused-vars
+   5:56  warning  'Save' is defined but never used          @typescript-eslint/no-unused-vars
+  24:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/vegane-desserts-wetzlar/page.tsx
+  5:10  warning  'WaveDivider' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/visit/page.tsx
+   5:8   warning  'dynamic' is defined but never used        @typescript-eslint/no-unused-vars
+   7:10  warning  'FoodIcon' is defined but never used       @typescript-eslint/no-unused-vars
+  10:3   warning  'Phone' is defined but never used          @typescript-eslint/no-unused-vars
+  11:3   warning  'MessageCircle' is defined but never used  @typescript-eslint/no-unused-vars
+  13:3   warning  'Camera' is defined but never used         @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/(public)/widerruf/page.tsx
+  1:0  error  Parsing error: Expression expected
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/app/api/admin/seed/route.ts
+   6:28  warning  'request' is defined but never used       @typescript-eslint/no-unused-vars
+  92:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/admin/KanbanBoard.tsx
+   4:10  warning  'motion' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  21:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/admin/KanbanBoard.tsx:21:5
+  19 |   // Sync when real-time updates arrive
+  20 |   useEffect(() => {
+> 21 |     setOrders(initialOrders);
+     |     ^^^^^^^^^ Avoid calling setState() directly within an effect
+  22 |   }, [initialOrders]);
+  23 |
+  24 |   const updateOrderStatus = async (orderId: string, newStatus: string) => {  react-hooks/set-state-in-effect
+  26:85  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    @typescript-eslint/no-explicit-any
+  66:29  warning  'newOrder' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/Logo.tsx
+  51:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  90:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/__tests__/atoms.test.tsx
+  20:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  21:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  22:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  23:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  24:31  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  25:22  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/buttons/FAB.tsx
+  29:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/buttons/IconCirclePlus.tsx
+  26:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/buttons/LieferandoCTA.tsx
+  30:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/buttons/PrimaryCTA.tsx
+  31:46  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  70:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/buttons/SecondaryCTA.tsx
+  26:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/buttons/TabPill.tsx
+  34:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/atoms/icons/index.tsx
+  4:18  error  An interface declaring no members is equivalent to its supertype  @typescript-eslint/no-empty-object-type
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/interactive/PhysicsPlayground.tsx
+  11:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/interactive/PhysicsPlayground.tsx:11:5
+   9 |
+  10 |   useEffect(() => {
+> 11 |     setIsMounted(true);
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  12 |   }, []);
+  13 |
+  14 |   useEffect(() => {  react-hooks/set-state-in-effect
+  65:18  warning  The ref value 'sceneRef.current' will likely have changed by the time this effect cleanup function runs. If this ref points to a node rendered by React, copy 'sceneRef.current' to a variable inside the effect, and use that variable in the cleanup function                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         react-hooks/exhaustive-deps
+  69:31  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+  70:32  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/interactive/ScratchCard.tsx
+  10:19  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/interactive/ScratchCard.tsx:10:19
+   8 |   const [isMounted, setIsMounted] = useState(false);
+   9 |
+> 10 |   useEffect(() => setIsMounted(true), []);
+     |                   ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  11 |
+  12 |   useEffect(() => {
+  13 |     if (!isMounted || !canvasRef.current || isScratched) return;  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/interactive/SyrupCursor.tsx
+  12:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/interactive/SyrupCursor.tsx:12:5
+  10 |
+  11 |   useEffect(() => {
+> 12 |     setMounted(true);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  13 |     const handleMouseMove = (e: MouseEvent) => {
+  14 |       setMousePos({ x: e.clientX, y: e.clientY });
+  15 |     };  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/layout/Footer.tsx
+   4:10  warning  'MapPin' is defined but never used               @typescript-eslint/no-unused-vars
+   4:18  warning  'Phone' is defined but never used                @typescript-eslint/no-unused-vars
+  15:9   warning  'currentDay' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/layout/Header.tsx
+  56:30  error  React Hook "useTransform" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+  57:29  error  React Hook "useTransform" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+  58:27  error  React Hook "useTransform" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+  59:24  error  React Hook "useTransform" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/legal/LegalUI.tsx
+  1:0  error  Parsing error: Expression expected
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/menu/MenuClient.tsx
+    6:10   warning  'HF_DATA' is defined but never used                              @typescript-eslint/no-unused-vars
+   18:67   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   18:103  warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   19:27   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   61:54   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   61:73   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+   98:20   warning  'FULL_ADDRESS' is defined but never used                         @typescript-eslint/no-unused-vars
+  100:96   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  100:109  warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  121:45   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  121:53   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  127:26   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  156:35   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  163:37   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  209:33   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  211:39   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  253:38   warning  Unexpected any. Specify a different type                         @typescript-eslint/no-explicit-any
+  260:87   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  260:101  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/menu/WaffleCrafter.tsx
+   20:50  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+   20:70  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+   21:27  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+   47:67  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+   47:84  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+   47:99  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+   73:35  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  105:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/menu/WaffleCrafter.tsx:105:5
+  103 |
+  104 |   useEffect(() => {
+> 105 |     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  106 |   }, []);
+  107 |
+  108 |   useEffect(() => {                                                           react-hooks/set-state-in-effect
+  129:40  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+  135:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/menu/WaffleCrafter.tsx:135:5
+  133 |
+  134 |   useEffect(() => {
+> 135 |     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  136 |   }, []);
+  137 |
+  138 |   const total = WAFFLE_BASE_PRICE + active.reduce((s, t) => s + t.price, 0);  react-hooks/set-state-in-effect
+  140:25  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/molecules/cards/ProductCard.tsx
+  89:25  error  React Hook "useTransform" is called conditionally. React Hooks must be called in the exact same order in every component render  react-hooks/rules-of-hooks
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/molecules/cards/ReviewBubble.tsx
+  20:9   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  20:17  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/molecules/feedback/AchievementBanner.tsx
+  37:16  warning  'err' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/molecules/forms/AuthForm.tsx
+  11:20  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  31:19  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/providers/A11yProvider.tsx
+  9:26  error  A `require()` style import is forbidden  @typescript-eslint/no-require-imports
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/sections/home/BestsellersSection.tsx
+  29:55  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/sections/home/Hero.tsx
+   4:8   warning  'Image' is defined but never used         @typescript-eslint/no-unused-vars
+  11:10  warning  'ScallopBadge' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/sections/home/ValuesSection.tsx
+  31:48  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/sections/menu/ProductGrid.tsx
+   28:9   warning  'handleAddToCart' is assigned a value but never used  @typescript-eslint/no-unused-vars
+   28:55  warning  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  142:37  warning  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+  144:45  warning  Unexpected any. Specify a different type              @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/Btn.tsx
+  35:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  43:40  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  51:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  93:56  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/Button.tsx
+  103:23  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  133:21  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/FoodIcon.tsx
+  5:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  6:12  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/GiganticTypography.tsx
+  30:15  warning  'i' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/HoloTiltCard.tsx
+   9:48  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+  12:9   warning  'handleAction' is assigned a value but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          @typescript-eslint/no-unused-vars
+  38:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/HoloTiltCard.tsx:38:5
+  36 |
+  37 |   useEffect(() => {
+> 38 |     setIsTouch(window.matchMedia('(pointer: coarse)').matches);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  39 |     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  40 |   }, []);
+  41 |  react-hooks/set-state-in-effect
+  45:27  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/InteractiveMap.tsx
+   13:3  warning  'Loader2' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @typescript-eslint/no-unused-vars
+  352:5  error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/InteractiveMap.tsx:352:5
+  350 |
+  351 |   useEffect(() => {
+> 352 |     setMounted(true);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  353 |   }, []);
+  354 |
+  355 |   if (!mounted || !heyFedeIcon || !landmarkIcon) {  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/LevelMap.tsx
+  15:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/LevelMap.tsx:15:5
+  13 |
+  14 |   useEffect(() => {
+> 15 |     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  16 |   }, []);
+  17 |
+  18 |   useEffect(() => {  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/PhysicsPlayground.tsx
+    6:10  warning  'FoodIcon' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-unused-vars
+   23:27  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+  129:22  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+  163:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/PhysicsPlayground.tsx:163:5
+  161 |   const [mounted, setMounted] = React.useState(false);
+  162 |   useEffect(() => {
+> 163 |     setMounted(true);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  164 |   }, []);
+  165 |
+  166 |   if (!mounted || reduced || !matterAvailable) {  react-hooks/set-state-in-effect
+  189:37  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+  192:16  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+  260:18  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+  311:41  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/ReviewsSection.tsx
+    4:18  warning  'AnimatePresence' is defined but never used                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                @typescript-eslint/no-unused-vars
+  118:23  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            react/no-unescaped-entities
+  190:11  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+  199:5   error    Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/ReviewsSection.tsx:199:5
+  197 |   // Detect touch device
+  198 |   useEffect(() => {
+> 199 |     setIsTouch(window.matchMedia("(pointer: coarse)").matches);
+      |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  200 |   }, []);
+  201 |
+  202 |   // Auto-scroll marquee effect (only on non-touch devices)  react-hooks/set-state-in-effect
+  296:55  warning  Unexpected any. Specify a different type                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/ScratchCard.tsx
+  19:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/ScratchCard.tsx:19:7
+  17 |     const wasRevealed = sessionStorage.getItem('heyfede_scratch_revealed') === 'true';
+  18 |     if (wasRevealed) {
+> 19 |       setRevealed(true);
+     |       ^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  20 |     }
+  21 |     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  22 |       react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/SplashScreen.tsx
+  20:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/SplashScreen.tsx:20:5
+  18 |
+  19 |   useEffect(() => {
+> 20 |     setIsMounted(true);
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  21 |     const hasShownSplash = sessionStorage.getItem("splash_shown");
+  22 |     if (!hasShownSplash) {
+  23 |       setShowSplash(true);  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/SyrupCursor.tsx
+  30:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/SyrupCursor.tsx:30:5
+  28 |     if (!mediaQuery.matches) return;
+  29 |
+> 30 |     setIsVisible(true);
+     |     ^^^^^^^^^^^^ Avoid calling setState() directly within an effect
+  31 |
+  32 |     const moveMouse = (e: MouseEvent) => {
+  33 |       cursorX.set(e.clientX);  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/TransitionCurtain.tsx
+  17:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/TransitionCurtain.tsx:17:7
+  15 |
+  16 |     if (isBusy) {
+> 17 |       setOrigin('top');
+     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
+  18 |       setShow(true);
+  19 |     } else {
+  20 |       setOrigin('bottom');  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/WaveDivider.tsx
+  23:5  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/components/ui/WaveDivider.tsx:23:5
+  21 |   const [reduced, setReduced] = useState(false);
+  22 |   useEffect(() => {
+> 23 |     setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+     |     ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  24 |   }, []);
+  25 |
+  26 |   const offset = useTransform(smooth, [-2000, 0, 2000], [-22, 0, 22]);  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/content/seo/AboutSEO.tsx
+  130:42  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  130:52  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  800:59  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  800:70  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/content/seo/HomeSEO.tsx
+  25:126  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  25:293  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  28:445  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  28:453  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  51:90   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  51:99   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  61:119  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  61:134  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  77:220  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  77:238  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  77:253  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  77:271  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  77:642  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  77:785  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  80:624  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  80:679  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  83:132  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  83:196  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/content/seo/MenuSEO.tsx
+  191:51  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  191:58  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  191:65  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  191:73  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  224:9   warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  224:17  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  402:25  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  402:41  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  459:26  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  459:46  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  514:46  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  514:58  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  547:38  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  547:57  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  581:16  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  583:40  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  591:22  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  591:41  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  630:16  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  630:37  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  676:64  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  676:70  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/content/seo/VisitSEO.tsx
+  172:50  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  172:68  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  246:47  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  246:61  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  256:23  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  256:27  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  350:62  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  350:68  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  352:52  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+  353:19  warning  `"` can be escaped with `&quot;`, `&ldquo;`, `&#34;`, `&rdquo;`  react/no-unescaped-entities
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/hooks/__tests__/useMenu.test.ts
+  35:7  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+  56:7  error  Use "@ts-expect-error" instead of "@ts-ignore", as "@ts-ignore" will do nothing if the following line is error-free  @typescript-eslint/ban-ts-comment
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/hooks/useMenu.ts
+  17:26  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  43:71  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  48:33  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/hooks/useOrder.ts
+  13:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/hooks/useOrder.ts:13:7
+  11 |   useEffect(() => {
+  12 |     if (!orderId) {
+> 13 |       setLoading(false);
+     |       ^^^^^^^^^^ Avoid calling setState() directly within an effect
+  14 |       return;
+  15 |     }
+  16 |  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/hooks/useOrders.ts
+  18:7  error  Error: Calling setState synchronously within an effect can trigger cascading renders
+
+Effects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:
+* Update external systems with the latest state from React.
+* Subscribe for updates from some external system, calling setState in a callback function when external state changes.
+
+Calling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/hooks/useOrders.ts:18:7
+  16 |
+  17 |     if (!user) {
+> 18 |       setOrders([]);
+     |       ^^^^^^^^^ Avoid calling setState() directly within an effect
+  19 |       setLoading(false);
+  20 |       return;
+  21 |     }  react-hooks/set-state-in-effect
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/lib/date-utils.ts
+   5:12  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+  16:12  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/lib/firebase.ts
+  27:12  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/lib/motion-variants.ts
+  12:25  warning  'Transition' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/lib/seo/schema/business.ts
+  145:25  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/lib/seo/schema/menu.ts
+  11:46  warning  'index' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/store/__tests__/useAchievements.test.ts
+   3:10  warning  'auth' is defined but never used          @typescript-eslint/no-unused-vars
+  10:27  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  54:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+  61:16  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/store/useAchievements.ts
+  87:51  warning  'e' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/store/useStore.ts
+  55:11  warning  'get' is defined but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/src/types/svg.d.ts
+  2:18  error    A `require()` style import is forbidden   @typescript-eslint/no-require-imports
+  9:18  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/svgo.config.mjs
+  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/tests/e2e/admin-flow.spec.ts
+  55:11  warning  'pendingColumn' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/tests/e2e/global-layout.spec.ts
+  76:11  warning  'initialBox' is assigned a value but never used  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/vitest.setup.ts
+  26:29  warning  Unexpected any. Specify a different type  @typescript-eslint/no-explicit-any
+
+✖ 287 problems (47 errors, 240 warnings)
+  1 error and 0 warnings potentially fixable with the `--fix` option.
+

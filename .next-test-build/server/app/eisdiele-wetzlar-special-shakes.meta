@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(public)/layout,_N_T_/(public)/eisdiele-wetzlar-special-shakes/layout,_N_T_/(public)/eisdiele-wetzlar-special-shakes/page,_N_T_/eisdiele-wetzlar-special-shakes"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHB1YmxpYyk/eisdiele-wetzlar-special-shakes/__PAGE__",
+    "/!KHB1YmxpYyk/eisdiele-wetzlar-special-shakes",
+    "/!KHB1YmxpYyk",
+    "/_index",
+    "/_head"
+  ]
+}

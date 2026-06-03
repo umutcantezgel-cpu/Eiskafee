@@ -1,0 +1,349 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "app",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains; preload"
+        }
+      ],
+      "regex": "^(?:/(.*))(?:/)?$"
+    }
+  ],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/order-status/[orderId]/opengraph-image-1ekr2y",
+      "regex": "^/order\\-status/([^/]+?)/opengraph\\-image\\-1ekr2y(?:/)?$",
+      "routeKeys": {
+        "nxtPorderId": "nxtPorderId"
+      },
+      "namedRegex": "^/order\\-status/(?<nxtPorderId>[^/]+?)/opengraph\\-image\\-1ekr2y(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_global-error",
+      "regex": "^/_global\\-error(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_global\\-error(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/about",
+      "regex": "^/about(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/about(?:/)?$"
+    },
+    {
+      "page": "/admin",
+      "regex": "^/admin(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin(?:/)?$"
+    },
+    {
+      "page": "/admin/menu",
+      "regex": "^/admin/menu(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/menu(?:/)?$"
+    },
+    {
+      "page": "/admin/orders",
+      "regex": "^/admin/orders(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/orders(?:/)?$"
+    },
+    {
+      "page": "/admin/settings",
+      "regex": "^/admin/settings(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/settings(?:/)?$"
+    },
+    {
+      "page": "/admin/users",
+      "regex": "^/admin/users(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/admin/users(?:/)?$"
+    },
+    {
+      "page": "/agb",
+      "regex": "^/agb(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/agb(?:/)?$"
+    },
+    {
+      "page": "/api/admin/seed",
+      "regex": "^/api/admin/seed(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/admin/seed(?:/)?$"
+    },
+    {
+      "page": "/api/mcp",
+      "regex": "^/api/mcp(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/api/mcp(?:/)?$"
+    },
+    {
+      "page": "/auth",
+      "regex": "^/auth(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/auth(?:/)?$"
+    },
+    {
+      "page": "/bubble-waffles-wetzlar",
+      "regex": "^/bubble\\-waffles\\-wetzlar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/bubble\\-waffles\\-wetzlar(?:/)?$"
+    },
+    {
+      "page": "/checkout",
+      "regex": "^/checkout(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/checkout(?:/)?$"
+    },
+    {
+      "page": "/confirmation",
+      "regex": "^/confirmation(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/confirmation(?:/)?$"
+    },
+    {
+      "page": "/cookie-richtlinie",
+      "regex": "^/cookie\\-richtlinie(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/cookie\\-richtlinie(?:/)?$"
+    },
+    {
+      "page": "/datenschutz",
+      "regex": "^/datenschutz(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/datenschutz(?:/)?$"
+    },
+    {
+      "page": "/eisdiele-wetzlar-special-shakes",
+      "regex": "^/eisdiele\\-wetzlar\\-special\\-shakes(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/eisdiele\\-wetzlar\\-special\\-shakes(?:/)?$"
+    },
+    {
+      "page": "/events-catering-hessen",
+      "regex": "^/events\\-catering\\-hessen(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/events\\-catering\\-hessen(?:/)?$"
+    },
+    {
+      "page": "/faq",
+      "regex": "^/faq(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/faq(?:/)?$"
+    },
+    {
+      "page": "/firebase-test",
+      "regex": "^/firebase\\-test(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/firebase\\-test(?:/)?$"
+    },
+    {
+      "page": "/gutscheine",
+      "regex": "^/gutscheine(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/gutscheine(?:/)?$"
+    },
+    {
+      "page": "/icon.svg",
+      "regex": "^/icon\\.svg(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/icon\\.svg(?:/)?$"
+    },
+    {
+      "page": "/impressum",
+      "regex": "^/impressum(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/impressum(?:/)?$"
+    },
+    {
+      "page": "/kontakt",
+      "regex": "^/kontakt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/kontakt(?:/)?$"
+    },
+    {
+      "page": "/legal",
+      "regex": "^/legal(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/legal(?:/)?$"
+    },
+    {
+      "page": "/lieferservice-desserts-lahn-dill",
+      "regex": "^/lieferservice\\-desserts\\-lahn\\-dill(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/lieferservice\\-desserts\\-lahn\\-dill(?:/)?$"
+    },
+    {
+      "page": "/loyalty",
+      "regex": "^/loyalty(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/loyalty(?:/)?$"
+    },
+    {
+      "page": "/menu",
+      "regex": "^/menu(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/menu(?:/)?$"
+    },
+    {
+      "page": "/order-hub",
+      "regex": "^/order\\-hub(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/order\\-hub(?:/)?$"
+    },
+    {
+      "page": "/order-review",
+      "regex": "^/order\\-review(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/order\\-review(?:/)?$"
+    },
+    {
+      "page": "/order-status",
+      "regex": "^/order\\-status(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/order\\-status(?:/)?$"
+    },
+    {
+      "page": "/password-reset",
+      "regex": "^/password\\-reset(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/password\\-reset(?:/)?$"
+    },
+    {
+      "page": "/pickup-time",
+      "regex": "^/pickup\\-time(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/pickup\\-time(?:/)?$"
+    },
+    {
+      "page": "/poc",
+      "regex": "^/poc(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/poc(?:/)?$"
+    },
+    {
+      "page": "/profile",
+      "regex": "^/profile(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/profile(?:/)?$"
+    },
+    {
+      "page": "/profile/orders",
+      "regex": "^/profile/orders(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/profile/orders(?:/)?$"
+    },
+    {
+      "page": "/reservierung",
+      "regex": "^/reservierung(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/reservierung(?:/)?$"
+    },
+    {
+      "page": "/robots.txt",
+      "regex": "^/robots\\.txt(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/robots\\.txt(?:/)?$"
+    },
+    {
+      "page": "/sitemap.xml",
+      "regex": "^/sitemap\\.xml(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/sitemap\\.xml(?:/)?$"
+    },
+    {
+      "page": "/support",
+      "regex": "^/support(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/support(?:/)?$"
+    },
+    {
+      "page": "/test-realtime",
+      "regex": "^/test\\-realtime(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/test\\-realtime(?:/)?$"
+    },
+    {
+      "page": "/vegane-desserts-wetzlar",
+      "regex": "^/vegane\\-desserts\\-wetzlar(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/vegane\\-desserts\\-wetzlar(?:/)?$"
+    },
+    {
+      "page": "/visit",
+      "regex": "^/visit(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/visit(?:/)?$"
+    },
+    {
+      "page": "/widerruf",
+      "regex": "^/widerruf(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/widerruf(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

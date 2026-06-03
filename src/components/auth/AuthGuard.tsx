@@ -1,11 +1,17 @@
 "use client";
 
-import { useEffect } from 'react';
-import { useRouter, usePathname } from 'next/navigation';
-import { useAuth } from '@/store/useAuth';
-import * as Icons from 'lucide-react';
+import { useEffect } from "react";
+import { useRouter, usePathname } from "next/navigation";
+import { useAuth } from "@/store/useAuth";
+import * as Icons from "lucide-react";
 
-export function AuthGuard({ children, requireAdmin = false }: { children: React.ReactNode, requireAdmin?: boolean }) {
+export function AuthGuard({
+  children,
+  requireAdmin = false,
+}: {
+  children: React.ReactNode;
+  requireAdmin?: boolean;
+}) {
   const { user, role, loading } = useAuth();
   const router = useRouter();
   const pathname = usePathname();
@@ -14,8 +20,8 @@ export function AuthGuard({ children, requireAdmin = false }: { children: React.
     if (!loading) {
       if (!user) {
         router.push(`/auth?redirect=${encodeURIComponent(pathname)}`);
-      } else if (requireAdmin && role !== 'admin') {
-        router.push('/profile');
+      } else if (requireAdmin && role !== "admin") {
+        router.push("/profile");
       }
     }
   }, [user, role, loading, router, pathname, requireAdmin]);
@@ -23,12 +29,12 @@ export function AuthGuard({ children, requireAdmin = false }: { children: React.
   if (loading) {
     return (
       <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center">
-        <Icons.Loader2 className="w-8 h-8 text-[#CC624C] animate-spin" />
+        <Icons.Loader2 className="w-8 h-8 text-[#b34832] animate-spin" />
       </div>
     );
   }
 
-  if (!user || (requireAdmin && role !== 'admin')) {
+  if (!user || (requireAdmin && role !== "admin")) {
     return null;
   }
 

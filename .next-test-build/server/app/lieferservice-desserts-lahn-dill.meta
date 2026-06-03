@@ -1,0 +1,16 @@
+{
+  "headers": {
+    "x-nextjs-stale-time": "300",
+    "x-nextjs-prerender": "1",
+    "x-next-cache-tags": "_N_T_/layout,_N_T_/(public)/layout,_N_T_/(public)/lieferservice-desserts-lahn-dill/layout,_N_T_/(public)/lieferservice-desserts-lahn-dill/page,_N_T_/lieferservice-desserts-lahn-dill"
+  },
+  "segmentPaths": [
+    "/_tree",
+    "/_full",
+    "/!KHB1YmxpYyk/lieferservice-desserts-lahn-dill/__PAGE__",
+    "/!KHB1YmxpYyk/lieferservice-desserts-lahn-dill",
+    "/!KHB1YmxpYyk",
+    "/_index",
+    "/_head"
+  ]
+}

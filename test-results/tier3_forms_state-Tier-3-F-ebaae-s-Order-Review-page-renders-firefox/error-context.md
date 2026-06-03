@@ -1,0 +1,352 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: tier3_forms_state.spec.ts >> Tier 3: Form Submissions & State Management >> Order Flow Fragments >> Order-Review page renders
+- Location: tests/e2e/tier3_forms_state.spec.ts:138:5
+
+# Error details
+
+```
+Error: expect(locator).toBeVisible() failed
+
+Locator: getByRole('button', { name: /bestellen/i })
+Expected: visible
+Error: strict mode violation: getByRole('button', { name: /bestellen/i }) resolved to 2 elements:
+    1) <button tabindex="0" class="relative flex items-center justify-center gap-2 px-6 bg-terracotta text-cream font-bold rounded-full transition-all duration-300 hover:bg-[#C95039] hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-terracotta/30 hover:[mask-image:url(#bitemark-right)] [mask-image:none] py-2.5 text-sm">…</button> aka getByRole('button', { name: 'Jetzt bestellen' })
+    2) <button disabled tabindex="0" class="relative inline-flex items-center justify-center font-nunito font-extrabold text-white bg-[#b34832] border-none rounded-full overflow-visible px-[26px] py-[11px] text-[0.88rem] opacity-60 cursor-not-allowed w-full flex justify-center items-center gap-2">…</button> aka getByRole('button', { name: 'Verbindlich vorbestellen' })
+
+Call log:
+  - Expect "toBeVisible" with timeout 5000ms
+  - waiting for getByRole('button', { name: /bestellen/i })
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+    - link "Zum Hauptinhalt springen" [ref=e2] [cursor=pointer]:
+        - /url: "#main-content"
+    - status
+    - generic:
+        - generic:
+            - heading "Hey Fede!" [level=1]
+            - paragraph: Dessertbar & Café
+        - img
+    - banner [ref=e4]:
+        - generic [ref=e5]:
+            - link "Hey Fedee! Startseite" [ref=e7] [cursor=pointer]:
+                - /url: /
+                - img "Hey Fede! Logo" [ref=e9]
+            - navigation "Hauptnavigation" [ref=e10]:
+                - link "Speisekarte" [ref=e11] [cursor=pointer]:
+                    - /url: /menu
+                - link "Über Uns" [ref=e12] [cursor=pointer]:
+                    - /url: /about
+                - link "Besuchen & Liefern" [ref=e13] [cursor=pointer]:
+                    - /url: /visit
+            - generic [ref=e14]:
+                - link "Jetzt bestellen" [ref=e16] [cursor=pointer]:
+                    - /url: /menu
+                    - button "Jetzt bestellen" [ref=e18]:
+                        - generic [ref=e19]: Jetzt bestellen
+                        - img [ref=e20]
+                - link "Profil" [ref=e22] [cursor=pointer]:
+                    - /url: /auth
+                    - img [ref=e24]
+                - button "Warenkorb" [ref=e27] [cursor=pointer]:
+                    - img [ref=e28]
+    - main [ref=e32]:
+        - generic [ref=e33]:
+            - generic [ref=e34]:
+                - button [ref=e35]:
+                    - img [ref=e36]
+                - generic [ref=e39]:
+                    - generic [ref=e40]: Übersicht
+                    - generic [ref=e41]: Schritt 3 von 3
+            - generic [ref=e47]:
+                - generic [ref=e50]:
+                    - generic [ref=e51]: Abholung
+                    - generic [ref=e53]: Invalid Date ·
+                    - generic [ref=e54]: Langgasse 68 · Wetzlar
+                    - generic [ref=e55]: ·
+                - generic [ref=e57]:
+                    - generic [ref=e58]: Gutscheincode
+                    - generic [ref=e60]:
+                        - textbox "Code eingeben" [ref=e61]
+                        - button "Einlösen" [disabled] [ref=e62]
+                - generic [ref=e63]:
+                    - generic [ref=e64]:
+                        - generic [ref=e65]: Zwischensumme
+                        - generic [ref=e66]: 0,00 €
+                    - generic [ref=e67]:
+                        - generic [ref=e68]: inkl. 7% MwSt.
+                        - generic [ref=e69]: 0,00 €
+                    - generic [ref=e71]:
+                        - generic [ref=e72]: Vor Ort zahlen
+                        - generic [ref=e73]: 0,00 €
+            - generic [ref=e74]:
+                - generic [ref=e75]: Mit „Bestellung absenden" akzeptierst du unsere AGB & Vorbestellbedingungen
+                - button "Verbindlich vorbestellen" [disabled] [ref=e76]:
+                    - generic [ref=e77]:
+                        - img [ref=e78]
+                        - text: Verbindlich vorbestellen
+    - contentinfo [ref=e80]:
+        - img [ref=e83]
+        - generic [ref=e85]:
+            - generic [ref=e86]:
+                - generic [ref=e87]:
+                    - link "Startseite" [ref=e88] [cursor=pointer]:
+                        - /url: /
+                        - img "Hey Fede! Logo" [ref=e90]
+                    - paragraph [ref=e91]: Dessertbar & Café
+                    - generic [ref=e94]:
+                        - generic [ref=e95]:
+                            - img [ref=e96]
+                            - generic [ref=e99]:
+                                - text: Langgasse 68
+                                - text: 35576 Wetzlar
+                        - generic [ref=e100]:
+                            - img [ref=e101]
+                            - link "06441 7890426" [ref=e103] [cursor=pointer]:
+                                - /url: tel:+4964417890426
+                    - link "Instagram" [ref=e105] [cursor=pointer]:
+                        - /url: https://www.instagram.com/heyfede_wetzlar
+                        - img [ref=e106]
+                        - text: Instagram
+                - generic [ref=e109]:
+                    - heading "Hey Fede!" [level=3] [ref=e110]
+                    - navigation "Footer Navigation" [ref=e111]:
+                        - link "Startseite" [ref=e112] [cursor=pointer]:
+                            - /url: /
+                            - text: Startseite
+                        - link "Speisekarte" [ref=e113] [cursor=pointer]:
+                            - /url: /menu
+                            - text: Speisekarte
+                        - link "Über Uns" [ref=e114] [cursor=pointer]:
+                            - /url: /about
+                            - text: Über Uns
+                        - link "Besuchen & Liefern" [ref=e115] [cursor=pointer]:
+                            - /url: /visit
+                            - text: Besuchen & Liefern
+                    - heading "Entdecke Mehr" [level=3] [ref=e116]
+                    - navigation "SEO Navigation" [ref=e117]:
+                        - link "Bubble Waffles" [ref=e118] [cursor=pointer]:
+                            - /url: /bubble-waffles-wetzlar
+                        - link "Lieferservice" [ref=e119] [cursor=pointer]:
+                            - /url: /lieferservice-desserts-lahn-dill
+                        - link "Eisdiele & Shakes" [ref=e120] [cursor=pointer]:
+                            - /url: /eisdiele-wetzlar-special-shakes
+                        - link "Event Catering" [ref=e121] [cursor=pointer]:
+                            - /url: /events-catering-hessen
+                        - link "Vegane Desserts" [ref=e122] [cursor=pointer]:
+                            - /url: /vegane-desserts-wetzlar
+                - generic [ref=e123]:
+                    - heading "Öffnungszeiten" [level=3] [ref=e124]
+                    - generic [ref=e127]:
+                        - generic [ref=e128]:
+                            - generic [ref=e130]: Montag
+                            - generic [ref=e132]: Geschlossen
+                        - generic [ref=e133]:
+                            - generic [ref=e135]: Dienstag
+                            - generic [ref=e137]: Geschlossen
+                        - generic [ref=e138]:
+                            - generic [ref=e141]: Mittwoch
+                            - generic [ref=e142]:
+                                - generic [ref=e143]: 12:00 – 19:00 Uhr
+                                - generic [ref=e144]: Heute
+                        - generic [ref=e145]:
+                            - generic [ref=e147]: Donnerstag
+                            - generic [ref=e149]: 12:00 – 19:00 Uhr
+                        - generic [ref=e150]:
+                            - generic [ref=e152]: Freitag
+                            - generic [ref=e154]: 12:00 – 19:00 Uhr
+                        - generic [ref=e155]:
+                            - generic [ref=e157]: Samstag
+                            - generic [ref=e159]: 12:00 – 19:00 Uhr
+                        - generic [ref=e160]:
+                            - generic [ref=e162]: Sonntag
+                            - generic [ref=e164]: 13:00 – 19:00 Uhr
+                    - generic [ref=e165]: ✓ Keine Liefergebühr bei Lieferando
+                - generic [ref=e166]:
+                    - heading "Stay Sweet" [level=3] [ref=e167]
+                    - paragraph [ref=e168]: Abonniere unseren Newsletter für exklusive Angebote und neue Bubble Waffle Kreationen.
+                    - generic [ref=e170]:
+                        - textbox "Bleib hungrig..." [ref=e171]
+                        - button "Abonnieren" [ref=e173]:
+                            - generic [ref=e174]: Abonnieren
+            - generic [ref=e175]:
+                - generic [ref=e176]: Frisch
+                - generic [ref=e177]: ·
+                - generic [ref=e178]: Selbstgemacht
+                - generic [ref=e179]: ·
+                - generic [ref=e180]: Mit Liebe
+            - generic [ref=e181]:
+                - img [ref=e182]
+                - img [ref=e184]
+                - img [ref=e186]
+                - img [ref=e188]
+                - img [ref=e190]
+            - generic [ref=e192]:
+                - heading "Wir sind hier zuhause" [level=3] [ref=e193]
+                - paragraph [ref=e194]:
+                    - generic [ref=e195]: Hessen
+                    - generic [ref=e196]: ›
+                    - generic [ref=e197]: Lahn-Dill-Kreis
+                    - generic [ref=e198]: ›
+                    - generic [ref=e199]: Wetzlar
+                    - generic [ref=e200]: ›
+                    - generic [ref=e201]: Langgasse
+            - generic [ref=e202]:
+                - heading "Besuche uns auch auf" [level=3] [ref=e203]
+                - generic [ref=e204]:
+                    - link "G Google" [ref=e205] [cursor=pointer]:
+                        - /url: https://maps.google.com/?q=Langgasse+68+Wetzlar
+                        - generic [ref=e206]: G
+                        - text: Google
+                    - link "● TripAdvisor" [ref=e207] [cursor=pointer]:
+                        - /url: https://www.tripadvisor.de/HeyFede-Wetzlar
+                        - generic [ref=e208]: ●
+                        - text: TripAdvisor
+                    - link "yelp" [ref=e209] [cursor=pointer]:
+                        - /url: https://www.yelp.de/biz/hey-fede-wetzlar
+                        - generic [ref=e210]: yelp
+            - img "Made with Love in Wetzlar" [ref=e213]
+            - generic [ref=e214]:
+                - paragraph [ref=e215]: © 2026 Hey Fede! Dessertbar & Café
+                - generic [ref=e216]:
+                    - link "Impressum" [ref=e217] [cursor=pointer]:
+                        - /url: /legal#impressum
+                    - link "Datenschutz" [ref=e218] [cursor=pointer]:
+                        - /url: /legal#datenschutz
+                    - link "AGB" [ref=e219] [cursor=pointer]:
+                        - /url: /legal#agb
+    - alert [ref=e220]
+```
+
+# Test source
+
+```ts
+  41  |       await expect(checkoutBtn).toBeVisible();
+  42  |     });
+  43  |   });
+  44  |
+  45  |   test.describe('User Authentication', () => {
+  46  |     test('should show validation errors on empty submit', async ({ page }) => {
+  47  |       await page.goto('/auth');
+  48  |
+  49  |       // Wait for form to appear
+  50  |       await expect(page.getByRole('heading', { level: 1, name: /Willkommen zurück/i })).toBeVisible();
+  51  |
+  52  |       // Try to submit empty form
+  53  |       const loginBtn = page.getByRole('button', { name: /Anmelden/i });
+  54  |
+  55  |       // Native validation will prevent form submission if required fields are empty
+  56  |       // So we can just check if the inputs are required.
+  57  |       const emailInput = page.getByLabel(/E-Mail/i);
+  58  |       await expect(emailInput).toHaveAttribute('required', '');
+  59  |       const passwordInput = page.getByLabel(/Passwort/i);
+  60  |       await expect(passwordInput).toHaveAttribute('required', '');
+  61  |     });
+  62  |
+  63  |     test('should allow user login attempt', async ({ page }) => {
+  64  |       await page.goto('/auth');
+  65  |
+  66  |       const emailInput = page.getByLabel(/E-Mail/i);
+  67  |       const passwordInput = page.getByLabel(/Passwort/i);
+  68  |
+  69  |       await emailInput.fill('test@example.com');
+  70  |       await passwordInput.fill('password123');
+  71  |
+  72  |       const loginBtn = page.getByRole('button', { name: /Anmelden/i });
+  73  |       await loginBtn.click();
+  74  |
+  75  |       // Given we use the dummy key in tests or emulator, it might show an error or load
+  76  |       // Just ensure the loading state or error state appears without crashing
+  77  |       const submitText = page.locator('text=Firebase Konfiguration fehlt').first();
+  78  |       // Alternatively, the button disables
+  79  |       await expect(loginBtn).toBeEnabled();
+  80  |     });
+  81  |   });
+  82  |
+  83  |   test.describe('Support Forms', () => {
+  84  |     test('should fill out Kontakt form', async ({ page }) => {
+  85  |       await page.goto('/support#kontakt');
+  86  |
+  87  |       await page.getByLabel(/Dein Name/i).fill('Test User');
+  88  |       await page.getByLabel(/Deine E-Mail/i).fill('test@example.com');
+  89  |       await page.getByLabel(/Nachricht/i).fill('Dies ist eine Testnachricht aus Playwright.');
+  90  |
+  91  |       const submitBtn = page.getByRole('button', { name: /Senden/i });
+  92  |       await submitBtn.click();
+  93  |
+  94  |       // Check if button text changes to "Wird gesendet..." or success happens
+  95  |       // (Assuming mock API or fast execution, just ensure it doesn't crash)
+  96  |       await expect(submitBtn).toBeVisible();
+  97  |     });
+  98  |
+  99  |     test('should interact with Reservierung page', async ({ page }) => {
+  100 |       await page.goto('/reservierung');
+  101 |
+  102 |       // Check heading
+  103 |       await expect(page.getByRole('heading', { level: 1, name: /Tisch reservieren/i })).toBeVisible();
+  104 |
+  105 |       // Click on a date
+  106 |       const dateBtn = page.getByRole('button').filter({ hasText: 'Sa' }).first();
+  107 |       await dateBtn.click();
+  108 |
+  109 |       // Click the final submit button
+  110 |       const submitBtn = page.getByRole('button', { name: /Tisch reservieren/i });
+  111 |       await expect(submitBtn).toBeVisible();
+  112 |     });
+  113 |   });
+  114 |
+  115 |   test.describe('Order Flow Fragments', () => {
+  116 |     test('Order-Hub is accessible', async ({ page }) => {
+  117 |       await page.goto('/order-hub');
+  118 |       // The page should contain options like "Abholung" or "Lieferung"
+  119 |       const btn = page.getByRole('button', { name: /Abholung/i }).first();
+  120 |       await expect(btn).toBeVisible();
+  121 |     });
+  122 |
+  123 |     test('Checkout page renders', async ({ page }) => {
+  124 |       await page.goto('/checkout');
+  125 |       const emailInput = page.getByLabel(/E-Mail/i).first();
+  126 |       await expect(emailInput).toBeVisible();
+  127 |
+  128 |       const continueBtn = page.getByRole('button', { name: /Weiter/i });
+  129 |       await expect(continueBtn).toBeVisible();
+  130 |     });
+  131 |
+  132 |     test('Pickup-Time selection renders', async ({ page }) => {
+  133 |       await page.goto('/pickup-time');
+  134 |       const continueBtn = page.getByRole('button', { name: /Weiter/i });
+  135 |       await expect(continueBtn).toBeVisible();
+  136 |     });
+  137 |
+  138 |     test('Order-Review page renders', async ({ page }) => {
+  139 |       await page.goto('/order-review');
+  140 |       const submitOrderBtn = page.getByRole('button', { name: /bestellen/i });
+> 141 |       await expect(submitOrderBtn).toBeVisible();
+      |                                    ^ Error: expect(locator).toBeVisible() failed
+  142 |       await expect(submitOrderBtn).toBeEnabled();
+  143 |     });
+  144 |
+  145 |     test('Confirmation page renders', async ({ page }) => {
+  146 |       await page.goto('/confirmation');
+  147 |       await expect(page.getByText(/bestätigt|eingegangen/i).first()).toBeVisible();
+  148 |     });
+  149 |
+  150 |     test('Order-Status page renders', async ({ page }) => {
+  151 |       await page.goto('/order-status');
+  152 |       await expect(page.getByRole('progressbar')).toBeVisible();
+  153 |     });
+  154 |   });
+  155 | });
+  156 |
+```

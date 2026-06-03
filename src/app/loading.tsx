@@ -1,27 +1,26 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 export default function Loading() {
   return (
     <div className="fixed inset-0 bg-[#f5efe8] z-50 flex flex-col items-center justify-center">
-      
       {/* Pulsating Logo */}
-      <motion.div 
-        className="w-24 h-24 mb-8 bg-[#CC624C] rounded-full flex items-center justify-center text-4xl shadow-clay"
-        animate={{ 
+      <motion.div
+        className="w-24 h-24 mb-8 bg-[#b34832] rounded-full flex items-center justify-center text-4xl shadow-clay"
+        animate={{
           scale: [1, 1.1, 1],
           boxShadow: [
             "0 10px 25px -5px rgba(204, 98, 76, 0.4)",
             "0 20px 35px -5px rgba(204, 98, 76, 0.6)",
-            "0 10px 25px -5px rgba(204, 98, 76, 0.4)"
-          ]
+            "0 10px 25px -5px rgba(204, 98, 76, 0.4)",
+          ],
         }}
-        transition={{ 
+        transition={{
           duration: 2,
           repeat: Infinity,
-          ease: "easeInOut"
+          ease: "easeInOut",
         }}
       >
         <span className="font-calistoga text-white">HF</span>
@@ -32,21 +31,20 @@ export default function Loading() {
         {[0, 1, 2].map((dot) => (
           <motion.div
             key={dot}
-            className="w-3 h-3 bg-[#CC624C] rounded-full"
-            animate={{ 
+            className="w-3 h-3 bg-[#b34832] rounded-full"
+            animate={{
               y: ["0%", "-50%", "0%"],
-              opacity: [0.3, 1, 0.3]
+              opacity: [0.3, 1, 0.3],
             }}
             transition={{
               duration: 0.8,
               repeat: Infinity,
               ease: "easeInOut",
-              delay: dot * 0.15
+              delay: dot * 0.15,
             }}
           />
         ))}
       </div>
-      
     </div>
   );
 }

@@ -1,15 +1,26 @@
 "use client";
 
-import React, { useState } from 'react';
-import { TransitionLink } from '@/components/ui/TransitionLink';
-import { Package, Gift, MapPin, User, LogOut, Loader2, Save, Plus, Trash2, Calendar } from 'lucide-react';
-import { useAuth } from '@/store/useAuth';
-import { useOrders } from '@/hooks/useOrders';
-import { auth, db } from '@/lib/firebase';
-import { signOut } from 'firebase/auth';
-import { doc, updateDoc } from 'firebase/firestore';
-import { FadeUp } from '@/components/ui/FadeUp';
-import { AuthGuard } from '@/components/auth/AuthGuard';
+import React, { useState } from "react";
+import { TransitionLink } from "@/components/ui/TransitionLink";
+import {
+  Package,
+  Gift,
+  MapPin,
+  User,
+  LogOut,
+  Loader2,
+  Save,
+  Plus,
+  Trash2,
+  Calendar,
+} from "lucide-react";
+import { useAuth } from "@/store/useAuth";
+import { useOrders } from "@/hooks/useOrders";
+import { auth, db } from "@/lib/firebase";
+import { signOut } from "firebase/auth";
+import { doc, updateDoc } from "firebase/firestore";
+import { FadeUp } from "@/components/ui/FadeUp";
+import { AuthGuard } from "@/components/auth/AuthGuard";
 
 export default function ProfilePage() {
   const { user, dbUser } = useAuth();
@@ -23,7 +34,11 @@ export default function ProfilePage() {
 
   const [addresses, setAddresses] = useState<any[]>(dbUser?.addresses || []);
   const [isAddingAddress, setIsAddingAddress] = useState(false);
-  const [newAddress, setNewAddress] = useState({ street: "", zip: "", city: "" });
+  const [newAddress, setNewAddress] = useState({
+    street: "",
+    zip: "",
+    city: "",
+  });
 
   const orderCount = orders.length;
 
@@ -35,10 +50,10 @@ export default function ProfilePage() {
     if (!user) return;
     setSavingData(true);
     try {
-      await updateDoc(doc(db, 'users', user.uid), {
+      await updateDoc(doc(db, "users", user.uid), {
         name,
         phone,
-        birthday
+        birthday,
       });
       setIsEditingData(false);
     } catch (e) {
@@ -55,8 +70,8 @@ export default function ProfilePage() {
     setSavingData(true);
     try {
       const updated = [...addresses, newAddress];
-      await updateDoc(doc(db, 'users', user.uid), {
-        addresses: updated
+      await updateDoc(doc(db, "users", user.uid), {
+        addresses: updated,
       });
       setAddresses(updated);
       setIsAddingAddress(false);
@@ -73,8 +88,8 @@ export default function ProfilePage() {
     setSavingData(true);
     try {
       const updated = addresses.filter((_, i) => i !== index);
-      await updateDoc(doc(db, 'users', user.uid), {
-        addresses: updated
+      await updateDoc(doc(db, "users", user.uid), {
+        addresses: updated,
       });
       setAddresses(updated);
     } catch (e) {
@@ -91,28 +106,49 @@ export default function ProfilePage() {
         <div className="bg-[#E4C0A8] pt-12 pb-10 px-6 relative overflow-hidden">
           <div className="absolute -top-8 -right-8 w-40 h-40 bg-[rgba(245,239,232,0.4)] rounded-[58%_42%_52%_48%/48%_58%_42%_52%]"></div>
           <div className="relative flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-[#CC624C] flex items-center justify-center text-white font-calistoga text-2xl shadow-sm">
-              {name?.[0]?.toUpperCase() || 'H'}
+            <div className="w-16 h-16 rounded-full bg-[#b34832] flex items-center justify-center text-white font-calistoga text-2xl shadow-sm">
+              {name?.[0]?.toUpperCase() || "H"}
             </div>
             <div>
-              <div className="text-[10px] font-black text-[#CC624C] tracking-widest uppercase">Mein Konto</div>
-              <div className="font-calistoga text-2xl text-[#2d1f19] mt-0.5 leading-none">{name || 'Gast'}</div>
-              <div className="text-xs text-[#7a5a52] mt-1.5 font-bold">Mitglied seit {dbUser?.createdAt ? new Date(dbUser.createdAt).getFullYear() : '2024'}</div>
+              <div className="text-[10px] font-black text-[#b34832] tracking-widest uppercase">
+                Mein Konto
+              </div>
+              <div className="font-calistoga text-2xl text-[#2d1f19] mt-0.5 leading-none">
+                {name || "Gast"}
+              </div>
+              <div className="text-xs text-[#7a5a52] mt-1.5 font-bold">
+                Mitglied seit{" "}
+                {dbUser?.createdAt
+                  ? new Date(dbUser.createdAt).getFullYear()
+                  : "2024"}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Stats row */}
         <div className="-mt-4 mx-5 bg-white rounded-[18px] p-4 shadow-sm relative z-10 flex divide-x divide-[#eedfcc]">
-          <TransitionLink href="/profile/orders" className="flex-1 text-center py-2 block hover:bg-[#f5efe8] rounded-l-xl transition-colors">
-            <div className="text-2xl font-calistoga text-[#2d1f19]">{orderCount}</div>
-            <div className="text-[11px] font-bold text-[#7a5a52] mt-1 uppercase tracking-wide">Bestellungen</div>
-          </TransitionLink>
-          <TransitionLink href="/loyalty" className="flex-1 text-center py-2 block hover:bg-[#f5efe8] rounded-r-xl transition-colors">
-            <div className="text-2xl font-calistoga text-[#2d1f19] flex items-center justify-center gap-1">
-              <Gift className="w-5 h-5 text-[#CC624C]" />
+          <TransitionLink
+            href="/profile/orders"
+            className="flex-1 text-center py-2 block hover:bg-[#f5efe8] rounded-l-xl transition-colors"
+          >
+            <div className="text-2xl font-calistoga text-[#2d1f19]">
+              {orderCount}
             </div>
-            <div className="text-[11px] font-bold text-[#7a5a52] mt-1 uppercase tracking-wide">Rewards</div>
+            <div className="text-[11px] font-bold text-[#7a5a52] mt-1 uppercase tracking-wide">
+              Bestellungen
+            </div>
+          </TransitionLink>
+          <TransitionLink
+            href="/loyalty"
+            className="flex-1 text-center py-2 block hover:bg-[#f5efe8] rounded-r-xl transition-colors"
+          >
+            <div className="text-2xl font-calistoga text-[#2d1f19] flex items-center justify-center gap-1">
+              <Gift className="w-5 h-5 text-[#b34832]" />
+            </div>
+            <div className="text-[11px] font-bold text-[#7a5a52] mt-1 uppercase tracking-wide">
+              Rewards
+            </div>
           </TransitionLink>
         </div>
 
@@ -120,42 +156,83 @@ export default function ProfilePage() {
           {/* Sektion 1: Persönliche Daten & Geburtstag */}
           <FadeUp delay={0.1}>
             <div className="flex justify-between items-baseline mb-2.5">
-              <div className="font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase">Persönliche Daten</div>
-              <button onClick={() => isEditingData ? handleSaveData() : setIsEditingData(true)} disabled={savingData} className="font-nunito text-[11px] font-extrabold text-[#CC624C] underline">
-                {savingData ? "..." : isEditingData ? "Speichern" : "Bearbeiten"}
+              <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase">
+                Persönliche Daten
+              </div>
+              <button
+                onClick={() =>
+                  isEditingData ? handleSaveData() : setIsEditingData(true)
+                }
+                disabled={savingData}
+                className="font-nunito text-[11px] font-extrabold text-[#b34832] underline"
+              >
+                {savingData
+                  ? "..."
+                  : isEditingData
+                    ? "Speichern"
+                    : "Bearbeiten"}
               </button>
             </div>
             <div className="bg-white rounded-[18px] p-1 shadow-sm">
               <div className="p-3.5 border-b border-[#eedfcc] flex gap-3 items-center">
-                <User size={18} className="text-[#CC624C]" />
+                <User size={18} className="text-[#b34832]" />
                 <div className="flex-1">
-                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">Name</div>
+                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">
+                    Name
+                  </div>
                   {isEditingData ? (
-                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none" />
+                    <input
+                      type="text"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none"
+                    />
                   ) : (
-                    <div className="font-bold text-[#2d1f19] text-[13px]">{name}</div>
+                    <div className="font-bold text-[#2d1f19] text-[13px]">
+                      {name}
+                    </div>
                   )}
                 </div>
               </div>
               <div className="p-3.5 border-b border-[#eedfcc] flex gap-3 items-center">
                 <div className="w-[18px]" />
                 <div className="flex-1">
-                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">Handy</div>
+                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">
+                    Handy
+                  </div>
                   {isEditingData ? (
-                    <input type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none" />
+                    <input
+                      type="tel"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
+                      className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none"
+                    />
                   ) : (
-                    <div className="font-bold text-[#2d1f19] text-[13px]">{phone || '—'}</div>
+                    <div className="font-bold text-[#2d1f19] text-[13px]">
+                      {phone || "—"}
+                    </div>
                   )}
                 </div>
               </div>
               <div className="p-3.5 flex gap-3 items-center">
-                <Calendar size={18} className="text-[#CC624C]" />
+                <Calendar size={18} className="text-[#b34832]" />
                 <div className="flex-1">
-                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">Geburtstag (für Überraschungen 🎁)</div>
+                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">
+                    Geburtstag (für Überraschungen 🎁)
+                  </div>
                   {isEditingData ? (
-                    <input type="date" value={birthday} onChange={(e) => setBirthday(e.target.value)} className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none" />
+                    <input
+                      type="date"
+                      value={birthday}
+                      onChange={(e) => setBirthday(e.target.value)}
+                      className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none"
+                    />
                   ) : (
-                    <div className="font-bold text-[#2d1f19] text-[13px]">{birthday ? new Date(birthday).toLocaleDateString('de-DE') : '—'}</div>
+                    <div className="font-bold text-[#2d1f19] text-[13px]">
+                      {birthday
+                        ? new Date(birthday).toLocaleDateString("de-DE")
+                        : "—"}
+                    </div>
                   )}
                 </div>
               </div>
@@ -165,41 +242,93 @@ export default function ProfilePage() {
           {/* Sektion 2: Adressen */}
           <FadeUp delay={0.2}>
             <div className="flex justify-between items-baseline mb-2.5">
-              <div className="font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase">Lieferadressen</div>
+              <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase">
+                Lieferadressen
+              </div>
             </div>
-            
+
             <div className="space-y-2">
               {addresses.map((addr, i) => (
-                <div key={i} className="bg-white rounded-[18px] p-3.5 shadow-sm flex items-center justify-between">
+                <div
+                  key={i}
+                  className="bg-white rounded-[18px] p-3.5 shadow-sm flex items-center justify-between"
+                >
                   <div className="flex items-center gap-3">
-                    <MapPin size={18} className="text-[#CC624C]" />
+                    <MapPin size={18} className="text-[#b34832]" />
                     <div>
-                      <div className="font-bold text-[#2d1f19] text-[13px]">{addr.street}</div>
-                      <div className="text-[11px] text-[#7a5a52] font-semibold">{addr.zip} {addr.city}</div>
+                      <div className="font-bold text-[#2d1f19] text-[13px]">
+                        {addr.street}
+                      </div>
+                      <div className="text-[11px] text-[#7a5a52] font-semibold">
+                        {addr.zip} {addr.city}
+                      </div>
                     </div>
                   </div>
-                  <button onClick={() => handleDeleteAddress(i)} disabled={savingData} className="w-8 h-8 rounded-full bg-[#f5efe8] flex items-center justify-center text-[#CC624C] hover:bg-[#eedfcc]">
+                  <button
+                    onClick={() => handleDeleteAddress(i)}
+                    disabled={savingData}
+                    className="w-8 h-8 rounded-full bg-[#f5efe8] flex items-center justify-center text-[#b34832] hover:bg-[#eedfcc]"
+                  >
                     <Trash2 size={14} />
                   </button>
                 </div>
               ))}
 
               {isAddingAddress ? (
-                <div className="bg-white rounded-[18px] p-4 shadow-sm border border-[#CC624C]">
+                <div className="bg-white rounded-[18px] p-4 shadow-sm border border-[#b34832]">
                   <div className="space-y-2.5">
-                    <input type="text" placeholder="Straße & Hausnr." value={newAddress.street} onChange={e => setNewAddress({...newAddress, street: e.target.value})} className="w-full font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none" />
+                    <input
+                      type="text"
+                      placeholder="Straße & Hausnr."
+                      value={newAddress.street}
+                      onChange={(e) =>
+                        setNewAddress({ ...newAddress, street: e.target.value })
+                      }
+                      className="w-full font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none"
+                    />
                     <div className="flex gap-2">
-                      <input type="text" placeholder="PLZ" value={newAddress.zip} onChange={e => setNewAddress({...newAddress, zip: e.target.value})} className="w-1/3 font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none" />
-                      <input type="text" placeholder="Ort" value={newAddress.city} onChange={e => setNewAddress({...newAddress, city: e.target.value})} className="flex-1 font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none" />
+                      <input
+                        type="text"
+                        placeholder="PLZ"
+                        value={newAddress.zip}
+                        onChange={(e) =>
+                          setNewAddress({ ...newAddress, zip: e.target.value })
+                        }
+                        className="w-1/3 font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none"
+                      />
+                      <input
+                        type="text"
+                        placeholder="Ort"
+                        value={newAddress.city}
+                        onChange={(e) =>
+                          setNewAddress({ ...newAddress, city: e.target.value })
+                        }
+                        className="flex-1 font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none"
+                      />
                     </div>
                   </div>
                   <div className="flex gap-2 mt-3">
-                    <button onClick={handleAddAddress} disabled={savingData} className="flex-1 bg-[#CC624C] text-white font-bold text-[12px] py-2 rounded-xl">Hinzufügen</button>
-                    <button onClick={() => setIsAddingAddress(false)} disabled={savingData} className="flex-1 bg-[#eedfcc] text-[#2d1f19] font-bold text-[12px] py-2 rounded-xl">Abbrechen</button>
+                    <button
+                      onClick={handleAddAddress}
+                      disabled={savingData}
+                      className="flex-1 bg-[#b34832] text-white font-bold text-[12px] py-2 rounded-xl"
+                    >
+                      Hinzufügen
+                    </button>
+                    <button
+                      onClick={() => setIsAddingAddress(false)}
+                      disabled={savingData}
+                      className="flex-1 bg-[#eedfcc] text-[#2d1f19] font-bold text-[12px] py-2 rounded-xl"
+                    >
+                      Abbrechen
+                    </button>
                   </div>
                 </div>
               ) : (
-                <button onClick={() => setIsAddingAddress(true)} className="w-full bg-[rgba(255,255,255,0.6)] rounded-[18px] p-3.5 flex items-center justify-center gap-2 border-2 border-dashed border-[#E4C0A8] text-[#CC624C] font-extrabold text-[12.5px] hover:bg-white transition-colors">
+                <button
+                  onClick={() => setIsAddingAddress(true)}
+                  className="w-full bg-[rgba(255,255,255,0.6)] rounded-[18px] p-3.5 flex items-center justify-center gap-2 border-2 border-dashed border-[#E4C0A8] text-[#b34832] font-extrabold text-[12.5px] hover:bg-white transition-colors"
+                >
                   <Plus size={16} /> Neue Adresse
                 </button>
               )}
@@ -209,9 +338,14 @@ export default function ProfilePage() {
 
         {/* Logout */}
         <div className="pt-10 pb-12 text-center">
-          <button onClick={handleLogout} className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[rgba(204,98,76,0.1)] hover:bg-[rgba(204,98,76,0.15)] transition-colors">
-            <LogOut size={16} className="text-[#CC624C]" strokeWidth={2} />
-            <span className="text-[13px] font-bold text-[#CC624C]">Abmelden</span>
+          <button
+            onClick={handleLogout}
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[rgba(204,98,76,0.1)] hover:bg-[rgba(204,98,76,0.15)] transition-colors"
+          >
+            <LogOut size={16} className="text-[#b34832]" strokeWidth={2} />
+            <span className="text-[13px] font-bold text-[#b34832]">
+              Abmelden
+            </span>
           </button>
         </div>
       </div>

@@ -26,7 +26,7 @@ const heyFedeIcon =
         html: `<div style="position: relative; width: 60px; height: 60px; display: flex; align-items: flex-end; justify-content: center;">
            <div class="animate-map-pulse" style="position: absolute; bottom: -5px; width: 30px; height: 10px; background: rgba(204,98,76,0.6); border-radius: 50%;"></div>
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="40" height="60" style="filter: drop-shadow(0px 6px 12px rgba(45,31,25,0.4)); position: relative; z-index: 2;">
-             <path fill="#CC624C" stroke="#f5efe8" stroke-width="1.5" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
+             <path fill="#b34832" stroke="#f5efe8" stroke-width="1.5" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
              <circle cx="12" cy="12" r="5" fill="#f5efe8" />
            </svg>
          </div>`,
@@ -126,7 +126,7 @@ function GlassPopup({
                 width: 32,
                 height: 32,
                 borderRadius: "50%",
-                background: "#CC624C",
+                background: "#b34832",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -179,7 +179,7 @@ function GlassPopup({
                 display: "flex",
                 alignItems: "center",
                 gap: 6,
-                color: "#CC624C",
+                color: "#b34832",
                 fontSize: "0.8rem",
                 fontWeight: 700,
               }}
@@ -198,7 +198,7 @@ function GlassPopup({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                background: "#CC624C",
+                background: "#b34832",
                 color: "#fefefe",
                 padding: "12px",
                 borderRadius: 12,
@@ -310,7 +310,7 @@ function GlassPopup({
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 6,
-                color: "#CC624C",
+                color: "#b34832",
                 fontSize: "0.8rem",
                 fontWeight: 800,
                 textDecoration: "none",
@@ -489,7 +489,7 @@ export default function InteractiveMap() {
                   display: "flex",
                   alignItems: "center",
                   gap: 6,
-                  background: "#CC624C",
+                  background: "#b34832",
                   color: "#fefefe",
                   padding: "10px 18px",
                   borderRadius: 50,

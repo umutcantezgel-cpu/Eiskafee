@@ -9,7 +9,7 @@ const paths = {
   dropDown: "M 0 0 L 100 0 L 100 100 Q 50 150 0 100 Z",
   cover: "M 0 0 L 100 0 L 100 100 Q 50 100 0 100 Z",
   retractCurve: "M 0 0 L 100 0 L 100 0 Q 50 50 0 0 Z",
-  done: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z"
+  done: "M 0 0 L 100 0 L 100 0 Q 50 0 0 0 Z",
 };
 
 export function SplashScreen() {
@@ -46,9 +46,13 @@ export function SplashScreen() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.3 } }}
           style={{
-            position: 'fixed', inset: 0, zIndex: 99999,
-            pointerEvents: 'none',
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            position: "fixed",
+            inset: 0,
+            zIndex: 99999,
+            pointerEvents: "none",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           {/* Logo */}
@@ -58,45 +62,65 @@ export function SplashScreen() {
             exit={{ opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.6, delay: 0.4, ease: [0.76, 0, 0.24, 1] }}
             style={{
-              position: 'absolute', zIndex: 10,
-              display: 'flex', flexDirection: 'column', alignItems: 'center',
+              position: "absolute",
+              zIndex: 10,
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
             }}
           >
-            <h1 style={{
-              fontFamily: 'var(--font-calistoga), serif',
-              fontSize: 'clamp(2.5rem, 8vw, 3.5rem)',
-              color: '#fffdd0',
-              margin: 0,
-            }}>Hey Fede!</h1>
-            <p style={{
-              fontFamily: 'var(--font-nunito), sans-serif',
-              color: '#fffdd0',
-              fontWeight: 700,
-              letterSpacing: '0.15em',
-              textTransform: 'uppercase',
-              fontSize: '0.85rem',
-              marginTop: 8,
-            }}>Dessertbar & Café</p>
+            <h1
+              style={{
+                fontFamily: "var(--font-calistoga), serif",
+                fontSize: "clamp(2.5rem, 8vw, 3.5rem)",
+                color: "#fffdd0",
+                margin: 0,
+              }}
+            >
+              Hey Fede!
+            </h1>
+            <p
+              style={{
+                fontFamily: "var(--font-nunito), sans-serif",
+                color: "#fffdd0",
+                fontWeight: 700,
+                letterSpacing: "0.15em",
+                textTransform: "uppercase",
+                fontSize: "0.85rem",
+                marginTop: 8,
+              }}
+            >
+              Dessertbar & Café
+            </p>
           </motion.div>
 
           <svg
             viewBox="0 0 100 100"
             preserveAspectRatio="none"
             style={{
-              width: '100%', height: '100%', display: 'block',
-              filter: 'drop-shadow(0 20px 30px rgba(204,98,76,0.3))',
+              width: "100%",
+              height: "100%",
+              display: "block",
+              filter: "drop-shadow(0 20px 30px rgba(204,98,76,0.3))",
             }}
           >
             <motion.path
-              fill="#CC624C"
+              fill="#b34832"
               initial={{ d: paths.initial }}
               animate={{
-                d: [paths.initial, paths.dropDown, paths.cover, paths.cover, paths.retractCurve, paths.done]
+                d: [
+                  paths.initial,
+                  paths.dropDown,
+                  paths.cover,
+                  paths.cover,
+                  paths.retractCurve,
+                  paths.done,
+                ],
               }}
               transition={{
                 duration: 2.0,
                 times: [0, 0.2, 0.4, 0.7, 0.9, 1],
-                ease: [0.76, 0, 0.24, 1]
+                ease: [0.76, 0, 0.24, 1],
               }}
               onAnimationComplete={() => {
                 setShowSplash(false);

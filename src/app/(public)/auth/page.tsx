@@ -3,11 +3,14 @@ import React, { useState, useEffect, Suspense } from "react";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import * as Icons from "lucide-react";
-import { TransitionLink } from '@/components/ui/TransitionLink';
+import { TransitionLink } from "@/components/ui/TransitionLink";
 import { useRouter, useSearchParams } from "next/navigation";
 import { auth, db } from "@/lib/firebase";
 import { useAuth } from "@/store/useAuth";
-import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import {
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 
 function AuthForm() {
@@ -30,7 +33,11 @@ function AuthForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!auth.app.options.apiKey || auth.app.options.apiKey === "dummy" || auth.app.options.apiKey === "DEIN_API_KEY") {
+    if (
+      !auth.app.options.apiKey ||
+      auth.app.options.apiKey === "dummy" ||
+      auth.app.options.apiKey === "DEIN_API_KEY"
+    ) {
       setError("Firebase Konfiguration fehlt. Bitte API-Keys eintragen.");
       return;
     }
@@ -42,12 +49,16 @@ function AuthForm() {
       if (isLogin) {
         await signInWithEmailAndPassword(auth, email, password);
       } else {
-        const cred = await createUserWithEmailAndPassword(auth, email, password);
-        await setDoc(doc(db, 'users', cred.user.uid), {
-          role: 'customer',
+        const cred = await createUserWithEmailAndPassword(
+          auth,
+          email,
+          password,
+        );
+        await setDoc(doc(db, "users", cred.user.uid), {
+          role: "customer",
           createdAt: new Date().toISOString(),
           name: name,
-          email: email
+          email: email,
         });
       }
     } catch (err: any) {
@@ -68,13 +79,17 @@ function AuthForm() {
       <FadeUp className="w-full max-w-[440px] relative z-10">
         <div className="text-center mb-8">
           <TransitionLink href="/" className="inline-block mb-6">
-            <div className="font-calistoga text-3xl text-[#CC624C]">Hey Fede!</div>
+            <div className="font-calistoga text-3xl text-[#b34832]">
+              Hey Fede!
+            </div>
           </TransitionLink>
           <h1 className="font-calistoga text-3xl text-[#2d1f19] mb-2">
             {isLogin ? "Willkommen zurück" : "Konto erstellen"}
           </h1>
           <p className="font-nunito text-[#5c3d35]">
-            {isLogin ? "Schön, dass du wieder da bist!" : "Melde dich an, um schneller zu bestellen."}
+            {isLogin
+              ? "Schön, dass du wieder da bist!"
+              : "Melde dich an, um schneller zu bestellen."}
           </p>
         </div>
 
@@ -82,52 +97,69 @@ function AuthForm() {
           <form className="space-y-5" onSubmit={handleSubmit}>
             {!isLogin && (
               <div>
-                <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-2">Name</label>
+                <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-2">
+                  Name
+                </label>
                 <div className="relative">
-                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9a7060]"><Icons.User size={18} /></div>
-                  <input 
-                    type="text" 
+                  <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9a7060]">
+                    <Icons.User size={18} />
+                  </div>
+                  <input
+                    type="text"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                     required={!isLogin}
-                    className="w-full bg-[#f5efe8] border-none outline-none rounded-xl py-3.5 pl-11 pr-4 font-nunito font-bold text-[#2d1f19]" 
-                    placeholder="Max Mustermann" 
+                    className="w-full bg-[#f5efe8] border-none outline-none rounded-xl py-3.5 pl-11 pr-4 font-nunito font-bold text-[#2d1f19]"
+                    placeholder="Max Mustermann"
                   />
                 </div>
               </div>
             )}
 
             <div>
-              <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-2">E-Mail</label>
+              <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-2">
+                E-Mail
+              </label>
               <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9a7060]"><Icons.Mail size={18} /></div>
-                <input 
-                  type="email" 
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9a7060]">
+                  <Icons.Mail size={18} />
+                </div>
+                <input
+                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
-                  className="w-full bg-[#f5efe8] border-none outline-none rounded-xl py-3.5 pl-11 pr-4 font-nunito font-bold text-[#2d1f19]" 
-                  placeholder="hallo@example.de" 
+                  className="w-full bg-[#f5efe8] border-none outline-none rounded-xl py-3.5 pl-11 pr-4 font-nunito font-bold text-[#2d1f19]"
+                  placeholder="hallo@example.de"
                 />
               </div>
             </div>
 
             <div>
-              <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-2">Passwort</label>
+              <label className="block font-nunito text-xs font-bold text-[#9a7060] uppercase tracking-wider mb-2">
+                Passwort
+              </label>
               <div className="relative">
-                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9a7060]"><Icons.Lock size={18} /></div>
-                <input 
-                  type="password" 
+                <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[#9a7060]">
+                  <Icons.Lock size={18} />
+                </div>
+                <input
+                  type="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   required
-                  className="w-full bg-[#f5efe8] border-none outline-none rounded-xl py-3.5 pl-11 pr-4 font-nunito font-bold text-[#2d1f19]" 
-                  placeholder="••••••••" 
+                  className="w-full bg-[#f5efe8] border-none outline-none rounded-xl py-3.5 pl-11 pr-4 font-nunito font-bold text-[#2d1f19]"
+                  placeholder="••••••••"
                 />
               </div>
               {isLogin && (
                 <div className="text-right mt-2">
-                  <span className="font-nunito text-xs font-bold text-[#CC624C] cursor-pointer hover:underline">Passwort vergessen?</span>
+                  <TransitionLink
+                    href="/password-reset"
+                    className="font-nunito text-xs font-bold text-[#b34832] cursor-pointer hover:underline"
+                  >
+                    Passwort vergessen?
+                  </TransitionLink>
                 </div>
               )}
             </div>
@@ -139,23 +171,29 @@ function AuthForm() {
             )}
 
             <div className="pt-2">
-              <button 
+              <button
                 disabled={isLoading}
-                className="w-full bg-[#CC624C] text-white rounded-xl py-3.5 font-nunito font-black text-[0.95rem] shadow-[0_4px_14px_rgba(204,98,76,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(204,98,76,0.4)] transition-all disabled:opacity-50 flex justify-center"
+                className="w-full bg-[#b34832] text-white rounded-xl py-3.5 font-nunito font-black text-[0.95rem] shadow-[0_4px_14px_rgba(204,98,76,0.3)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(204,98,76,0.4)] transition-all disabled:opacity-50 flex justify-center"
               >
-                {isLoading ? <Icons.Loader2 className="animate-spin" size={20} /> : (isLogin ? "Anmelden" : "Registrieren")}
+                {isLoading ? (
+                  <Icons.Loader2 className="animate-spin" size={20} />
+                ) : isLogin ? (
+                  "Anmelden"
+                ) : (
+                  "Registrieren"
+                )}
               </button>
             </div>
           </form>
 
           <div className="mt-8 text-center font-nunito text-sm text-[#5c3d35]">
             {isLogin ? "Noch kein Konto? " : "Bereits ein Konto? "}
-            <button 
+            <button
               onClick={() => {
                 setIsLogin(!isLogin);
                 setError("");
               }}
-              className="font-bold text-[#CC624C] hover:underline cursor-pointer"
+              className="font-bold text-[#b34832] hover:underline cursor-pointer"
             >
               {isLogin ? "Jetzt erstellen" : "Anmelden"}
             </button>
@@ -168,7 +206,13 @@ function AuthForm() {
 
 export default function AuthPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen bg-[#f5efe8] flex items-center justify-center"><Icons.Loader2 className="animate-spin text-[#CC624C]" size={32} /></div>}>
+    <Suspense
+      fallback={
+        <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center">
+          <Icons.Loader2 className="animate-spin text-[#b34832]" size={32} />
+        </div>
+      }
+    >
       <AuthForm />
     </Suspense>
   );

@@ -14,7 +14,7 @@ interface Review {
   text: string;
 }
 
-const AVATAR_COLORS = ["#CC624C", "#5c3d35", "#E4C0A8", "#9a7060", "#3a2820"];
+const AVATAR_COLORS = ["#b34832", "#5c3d35", "#E4C0A8", "#9a7060", "#3a2820"];
 
 function getInitials(name: string) {
   return name
@@ -71,7 +71,7 @@ function ReviewCard({
           position: "absolute",
           top: 16,
           right: 16,
-          color: "#CC624C",
+          color: "#b34832",
         }}
       >
         <Quote size={48} strokeWidth={1.5} />
@@ -94,8 +94,8 @@ function ReviewCard({
             >
               <Star
                 size={15}
-                fill="#CC624C"
-                color="#CC624C"
+                fill="#b34832"
+                color="#b34832"
                 aria-hidden="true"
               />
             </motion.div>
@@ -174,7 +174,7 @@ function ReviewCard({
           left: 0,
           right: 0,
           height: 3,
-          background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
+          background: "linear-gradient(90deg, #b34832, #E4C0A8)",
           transformOrigin: "left",
         }}
       />
@@ -334,7 +334,7 @@ export function ReviewsSection({
                   height: 8,
                   borderRadius: 4,
                   background:
-                    activeIndex === i ? "#CC624C" : "rgba(92,61,53,0.25)",
+                    activeIndex === i ? "#b34832" : "rgba(92,61,53,0.25)",
                   border: "none",
                   padding: 0,
                   cursor: "pointer",
@@ -390,7 +390,7 @@ export function ReviewsSection({
               boxShadow: "0 4px 16px rgba(45,31,25,0.1)",
             }}
           >
-            <Star size={16} fill="#CC624C" color="#CC624C" />
+            <Star size={16} fill="#b34832" color="#b34832" />
             Auf Google bewerten
             <ExternalLink size={14} color="#9a7060" />
           </motion.a>

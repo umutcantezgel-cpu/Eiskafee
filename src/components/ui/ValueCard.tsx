@@ -1,5 +1,5 @@
-import React from 'react';
-import * as Icons from 'lucide-react';
+import React from "react";
+import * as Icons from "lucide-react";
 
 interface ValueCardProps {
   icon: keyof typeof Icons;
@@ -14,12 +14,16 @@ export function ValueCard({ icon, title, text }: ValueCardProps) {
     <div className="bg-[#f5efe8] rounded-[22px] p-[30px_24px] shadow-[0_3px_14px_rgba(45,31,25,0.05)] transition-transform hover:-translate-y-1">
       <div className="relative w-12 h-12 mb-4.5">
         <div className="w-12 h-12 bg-[#E4C0A8] rounded-full flex items-center justify-center">
-          <IconComponent size={22} strokeWidth={1.5} color="#CC624C" />
+          <IconComponent size={22} strokeWidth={1.5} color="#b34832" />
         </div>
         <div className="absolute -bottom-1 -right-1 w-3.5 h-3.5 bg-[#eedfcc] rounded-full border-2 border-[#f5efe8]" />
       </div>
-      <h3 className="font-calistoga text-[1.22rem] text-[#2d1f19] mb-2.5">{title}</h3>
-      <p className="font-nunito text-[0.86rem] text-[#7a5a52] leading-[1.7]">{text}</p>
+      <h3 className="font-calistoga text-[1.22rem] text-[#2d1f19] mb-2.5">
+        {title}
+      </h3>
+      <p className="font-nunito text-[0.86rem] text-[#7a5a52] leading-[1.7]">
+        {text}
+      </p>
     </div>
   );
 }

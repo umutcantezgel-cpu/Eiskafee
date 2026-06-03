@@ -1,12 +1,15 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { BUSINESS } from '@/lib/seo/business-data';
+import React from "react";
+import { BUSINESS } from "@/lib/seo/business-data";
 import { store_settings } from "@/lib/data";
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle } from "lucide-react";
 
 export function ClientHoursTable() {
-  const todayIdx = (() => { const d = new Date().getDay(); return d === 0 ? 6 : d - 1; })();
+  const todayIdx = (() => {
+    const d = new Date().getDay();
+    return d === 0 ? 6 : d - 1;
+  })();
   const { emergencyNotice } = store_settings;
 
   return (
@@ -22,26 +25,39 @@ export function ClientHoursTable() {
       <div className="bg-[#eedfcc] rounded-[18px] overflow-hidden">
         {BUSINESS.openingHoursDisplay.map((dayData, i) => {
           const isToday = i === todayIdx;
-          const isClosed = dayData.hours === 'Geschlossen';
+          const isClosed = dayData.hours === "Geschlossen";
           return (
-            <div 
-              key={dayData.day} 
-              className={`flex justify-between items-center p-[13px_19px] ${isToday ? 'bg-[#CC624C]' : 'bg-transparent border-b border-[rgba(228,192,168,0.45)] last:border-b-0'}`}
-              itemScope 
-              itemProp="openingHoursSpecification" 
+            <div
+              key={dayData.day}
+              className={`flex justify-between items-center p-[13px_19px] ${isToday ? "bg-[#b34832]" : "bg-transparent border-b border-[rgba(228,192,168,0.45)] last:border-b-0"}`}
+              itemScope
+              itemProp="openingHoursSpecification"
               itemType="https://schema.org/OpeningHoursSpecification"
             >
-              <meta itemProp="dayOfWeek" content={`https://schema.org/${dayData.day.replace('Montag', 'Monday').replace('Dienstag', 'Tuesday').replace('Mittwoch', 'Wednesday').replace('Donnerstag', 'Thursday').replace('Freitag', 'Friday').replace('Samstag', 'Saturday').replace('Sonntag', 'Sunday')}`} />
+              <meta
+                itemProp="dayOfWeek"
+                content={`https://schema.org/${dayData.day.replace("Montag", "Monday").replace("Dienstag", "Tuesday").replace("Mittwoch", "Wednesday").replace("Donnerstag", "Thursday").replace("Freitag", "Friday").replace("Samstag", "Saturday").replace("Sonntag", "Sunday")}`}
+              />
               <div className="flex items-center gap-2">
-                {isToday && <div className="w-1.5 h-1.5 bg-white rounded-full shrink-0" />}
-                <span className={`font-nunito text-[0.87rem] ${isToday ? 'font-black text-white' : 'font-semibold text-[#2d1f19]'}`}>{dayData.day}</span>
+                {isToday && (
+                  <div className="w-1.5 h-1.5 bg-white rounded-full shrink-0" />
+                )}
+                <span
+                  className={`font-nunito text-[0.87rem] ${isToday ? "font-black text-white" : "font-semibold text-[#2d1f19]"}`}
+                >
+                  {dayData.day}
+                </span>
               </div>
               <div className="flex items-center gap-[9px]">
-                <span className={`font-nunito text-[0.87rem] ${isToday ? 'text-white font-bold' : isClosed ? 'text-[#9a7060] font-normal' : 'text-[#5c3d35] font-normal'}`}>
+                <span
+                  className={`font-nunito text-[0.87rem] ${isToday ? "text-white font-bold" : isClosed ? "text-[#9a7060] font-normal" : "text-[#5c3d35] font-normal"}`}
+                >
                   {dayData.hours}
                 </span>
                 {isToday && (
-                  <span className="bg-white/20 text-white font-nunito font-black text-[0.63rem] px-2.5 py-0.5 rounded-full">Heute</span>
+                  <span className="bg-white/20 text-white font-nunito font-black text-[0.63rem] px-2.5 py-0.5 rounded-full">
+                    Heute
+                  </span>
                 )}
               </div>
             </div>
@@ -51,4 +67,3 @@ export function ClientHoursTable() {
     </div>
   );
 }
-

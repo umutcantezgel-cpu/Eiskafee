@@ -1,0 +1,75 @@
+
+> hey-fede-app@0.1.0 build
+> next build
+
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+(node:7968) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///Users/umurey/Downloads/Hey%20Fedee/hey-fede-app/tailwind.config.ts?id=1780477051609 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /Users/umurey/Downloads/Hey Fedee/hey-fede-app/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+✓ Compiled successfully in 10.7s
+  Running TypeScript ...
+  Finished TypeScript in 4.8s ...
+  Collecting page data using 13 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 13 workers (0/44) ...
+  Generating static pages using 13 workers (11/44) 
+  Generating static pages using 13 workers (22/44) 
+  Generating static pages using 13 workers (33/44) 
+✓ Generating static pages using 13 workers (44/44) in 496ms
+  Finalizing page optimization ...
+
+Route (app)                                         Revalidate  Expire
+┌ ○ /                                                       1m      1y
+├ ○ /_not-found
+├ ○ /about
+├ ○ /admin
+├ ○ /admin/menu
+├ ○ /admin/orders
+├ ○ /admin/settings
+├ ○ /admin/users
+├ ○ /agb
+├ ƒ /api/admin/seed
+├ ƒ /api/mcp
+├ ○ /auth
+├ ○ /bubble-waffles-wetzlar                                 1m      1y
+├ ○ /checkout
+├ ○ /confirmation
+├ ○ /cookie-richtlinie
+├ ○ /datenschutz
+├ ○ /eisdiele-wetzlar-special-shakes                        1m      1y
+├ ○ /events-catering-hessen                                 1m      1y
+├ ○ /faq
+├ ○ /firebase-test
+├ ○ /gutscheine
+├ ○ /icon.svg
+├ ○ /impressum
+├ ○ /kontakt
+├ ○ /lieferservice-desserts-lahn-dill                       1m      1y
+├ ○ /loyalty
+├ ○ /menu                                                   1m      1y
+├ ○ /order-hub
+├ ○ /order-review
+├ ○ /order-status
+├ ƒ /order-status/[orderId]/opengraph-image-1ekr2y
+├ ○ /password-reset
+├ ○ /pickup-time
+├ ○ /poc
+├ ○ /profile
+├ ○ /profile/orders
+├ ○ /reservierung
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+├ ○ /support
+├ ○ /test-realtime
+├ ○ /vegane-desserts-wetzlar                                1m      1y
+├ ○ /visit
+└ ○ /widerruf
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

@@ -48,65 +48,115 @@ export default function OrderHubPage() {
       {/* Top Bar Area */}
       <div className="flex items-center justify-between px-5 pt-4 pb-3.5">
         <div className="w-32 h-10 relative">
-          <Image src="/assets/logos/Logo Wortmarke beige.svg" alt="Hey Fede! Logo" fill className="object-contain object-left" />
+          <Image
+            src="/assets/logos/Logo Wortmarke beige.svg"
+            alt="Hey Fede! Logo"
+            fill
+            className="object-contain object-left"
+          />
         </div>
-        <button onClick={() => router.push('/')} className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+        <button
+          onClick={() => router.push("/")}
+          className="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm"
+        >
           <Icons.X size={20} color="#2d1f19" />
         </button>
       </div>
 
       <div className="px-5">
-        <h1 className="font-calistoga text-2xl text-[#2d1f19] mb-6">Wie möchtest du bestellen?</h1>
+        <h1 className="font-calistoga text-2xl text-[#2d1f19] mb-6">
+          Wie möchtest du bestellen?
+        </h1>
 
         {loading ? (
           <div className="flex justify-center items-center py-10">
-            <Icons.Loader2 size={32} className="animate-spin text-[#CC624C]" />
+            <Icons.Loader2 size={32} className="animate-spin text-[#b34832]" />
           </div>
         ) : (
           <div className="space-y-3">
             {isOnline === false && (
-              <FadeUp className="bg-[rgba(204,98,76,0.1)] border-2 border-[#CC624C] rounded-[18px] p-4 flex gap-3 items-start mb-6">
-                <Icons.AlertCircle size={20} className="text-[#CC624C] shrink-0 mt-0.5" />
+              <FadeUp className="bg-[rgba(204,98,76,0.1)] border-2 border-[#b34832] rounded-[18px] p-4 flex gap-3 items-start mb-6">
+                <Icons.AlertCircle
+                  size={20}
+                  className="text-[#b34832] shrink-0 mt-0.5"
+                />
                 <div>
-                  <div className="font-calistoga text-[15px] text-[#2d1f19] mb-1">Online-Bestellungen pausiert</div>
+                  <div className="font-calistoga text-[15px] text-[#2d1f19] mb-1">
+                    Online-Bestellungen pausiert
+                  </div>
                   <div className="font-nunito text-[12.5px] text-[#5c3d35] leading-relaxed">
-                    Wir bereiten aktuell sehr viele Bestellungen im Laden zu und können momentan keine Online-Orders annehmen.
+                    Wir bereiten aktuell sehr viele Bestellungen im Laden zu und
+                    können momentan keine Online-Orders annehmen.
                   </div>
                 </div>
               </FadeUp>
             )}
 
             {[
-              { id: "pickup", title: "Abholung", desc: "Ofenfrisch im Laden abholen", icon: Icons.Store, disabled: !isOnline },
-              { id: "delivery", title: "Lieferung", desc: "Bequem nach Hause liefern lassen", icon: Icons.Truck, disabled: !isOnline },
-              { id: "in-store", title: "Im Laden essen", desc: "Reserviere einen Tisch vor Ort", icon: Icons.Utensils, disabled: false }, // Maybe in-store is possible even if online is paused? Or disabled too. Let's make it disabled for now if online is off, or actually the prompt says "sind die Choices disabled".
+              {
+                id: "pickup",
+                title: "Abholung",
+                desc: "Ofenfrisch im Laden abholen",
+                icon: Icons.Store,
+                disabled: !isOnline,
+              },
+              {
+                id: "delivery",
+                title: "Lieferung",
+                desc: "Bequem nach Hause liefern lassen",
+                icon: Icons.Truck,
+                disabled: !isOnline,
+              },
+              {
+                id: "in-store",
+                title: "Im Laden essen",
+                desc: "Reserviere einen Tisch vor Ort",
+                icon: Icons.Utensils,
+                disabled: false,
+              }, // Maybe in-store is possible even if online is paused? Or disabled too. Let's make it disabled for now if online is off, or actually the prompt says "sind die Choices disabled".
             ].map((choice, i) => {
               const disabled = choice.disabled;
               const isSelected = selected === choice.id;
-              
+
               return (
                 <FadeUp key={choice.id} delay={0.1 + i * 0.1}>
                   <button
                     disabled={disabled}
                     onClick={() => setSelected(choice.id as OrderType)}
                     className={`w-full text-left rounded-[20px] p-[16px_18px] flex items-center gap-4 transition-all border-2 ${
-                      disabled ? 'opacity-40 bg-white border-transparent cursor-not-allowed' :
-                      isSelected ? 'bg-[#CC624C] text-white border-[#CC624C] shadow-[0_8px_20px_rgba(204,98,76,0.25)]' :
-                      'bg-white text-[#2d1f19] border-transparent shadow-sm'
+                      disabled
+                        ? "opacity-40 bg-white border-transparent cursor-not-allowed"
+                        : isSelected
+                          ? "bg-[#b34832] text-white border-[#b34832] shadow-[0_8px_20px_rgba(204,98,76,0.25)]"
+                          : "bg-white text-[#2d1f19] border-transparent shadow-sm"
                     }`}
                   >
-                    <div className={`w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? 'bg-[rgba(255,255,255,0.2)]' : 'bg-[#f5efe8]'}`}>
-                      <choice.icon size={22} className={isSelected ? 'text-white' : 'text-[#CC624C]'} strokeWidth={1.8} />
+                    <div
+                      className={`w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? "bg-[rgba(255,255,255,0.2)]" : "bg-[#f5efe8]"}`}
+                    >
+                      <choice.icon
+                        size={22}
+                        className={isSelected ? "text-white" : "text-[#b34832]"}
+                        strokeWidth={1.8}
+                      />
                     </div>
                     <div className="flex-1">
-                      <div className="font-calistoga text-[17px] mb-0.5">{choice.title}</div>
-                      <div className={`font-nunito text-[12px] font-bold ${isSelected ? 'text-[rgba(255,255,255,0.8)]' : 'text-[#7a5a52]'}`}>
+                      <div className="font-calistoga text-[17px] mb-0.5">
+                        {choice.title}
+                      </div>
+                      <div
+                        className={`font-nunito text-[12px] font-bold ${isSelected ? "text-[rgba(255,255,255,0.8)]" : "text-[#7a5a52]"}`}
+                      >
                         {choice.desc}
                       </div>
                     </div>
                     {isSelected && (
                       <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                        <Icons.Check size={14} className="text-[#CC624C]" strokeWidth={3} />
+                        <Icons.Check
+                          size={14}
+                          className="text-[#b34832]"
+                          strokeWidth={3}
+                        />
                       </div>
                     )}
                   </button>
@@ -118,8 +168,8 @@ export default function OrderHubPage() {
       </div>
 
       <div className="fixed bottom-0 left-0 right-0 p-[16px_20px_32px] bg-gradient-to-t from-[#f5efe8] via-[#f5efe8] to-transparent z-40">
-        <PrimaryButton 
-          className="w-full" 
+        <PrimaryButton
+          className="w-full"
           disabled={!selected || isOnline === false}
           onClick={handleNext}
         >

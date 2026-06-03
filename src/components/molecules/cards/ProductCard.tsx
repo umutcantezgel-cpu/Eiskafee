@@ -61,6 +61,11 @@ export function ProductCard({
     y.set(0);
   };
 
+  const background = useTransform(
+    () =>
+      `radial-gradient(circle at ${glareX.get()}% ${glareY.get()}%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%)`,
+  );
+
   return (
     <motion.div
       ref={ref}
@@ -85,12 +90,7 @@ export function ProductCard({
       {!prefersReducedMotion && (
         <motion.div
           className="pointer-events-none absolute inset-0 z-20 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100 mix-blend-overlay"
-          style={{
-            background: useTransform(
-              () =>
-                `radial-gradient(circle at ${glareX.get()}% ${glareY.get()}%, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 60%)`,
-            ),
-          }}
+          style={{ background }}
         />
       )}
 

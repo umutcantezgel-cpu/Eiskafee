@@ -23,7 +23,7 @@ const h2Style: React.CSSProperties = {
 const h3Style: React.CSSProperties = {
   fontFamily: "Calistoga, serif",
   fontSize: "clamp(1.15rem, 2.2vw, 1.55rem)",
-  color: "#CC624C",
+  color: "#b34832",
   lineHeight: 1.2,
   marginBottom: 12,
   marginTop: 32,
@@ -54,7 +54,7 @@ const liStyle: React.CSSProperties = {
 const dividerStyle: React.CSSProperties = {
   width: 60,
   height: 3,
-  background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
+  background: "linear-gradient(90deg, #b34832, #E4C0A8)",
   borderRadius: 2,
   margin: "48px auto",
   border: "none",

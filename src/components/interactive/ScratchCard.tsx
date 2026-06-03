@@ -2,7 +2,11 @@
 
 import React, { useEffect, useRef, useState } from "react";
 
-export function ScratchCard({ discountCode = "HEYFEDE10" }: { discountCode?: string }) {
+export function ScratchCard({
+  discountCode = "HEYFEDE10",
+}: {
+  discountCode?: string;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isScratched, setIsScratched] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -19,7 +23,7 @@ export function ScratchCard({ discountCode = "HEYFEDE10" }: { discountCode?: str
     // Fill with scratchable cover
     ctx.fillStyle = "#E4C0A8";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+
     // Add some pattern/text
     ctx.font = "bold 20px var(--font-nunito), sans-serif";
     ctx.fillStyle = "#b5523d";
@@ -40,7 +44,8 @@ export function ScratchCard({ discountCode = "HEYFEDE10" }: { discountCode?: str
       for (let i = 3; i < imageData.data.length; i += 4) {
         if (imageData.data[i] === 0) clearCount++;
       }
-      const percentCleared = (clearCount / (canvas.width * canvas.height)) * 100;
+      const percentCleared =
+        (clearCount / (canvas.width * canvas.height)) * 100;
       if (percentCleared > 40) {
         setIsScratched(true);
         canvas.style.opacity = "0";
@@ -52,8 +57,8 @@ export function ScratchCard({ discountCode = "HEYFEDE10" }: { discountCode?: str
 
     const getPos = (e: MouseEvent | TouchEvent) => {
       const rect = canvas.getBoundingClientRect();
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
+      const clientX = "touches" in e ? e.touches[0].clientX : e.clientX;
+      const clientY = "touches" in e ? e.touches[0].clientY : e.clientY;
       return { x: clientX - rect.left, y: clientY - rect.top };
     };
 
@@ -78,7 +83,7 @@ export function ScratchCard({ discountCode = "HEYFEDE10" }: { discountCode?: str
     canvas.addEventListener("mousemove", handleMove);
     canvas.addEventListener("mouseup", handleUp);
     canvas.addEventListener("mouseleave", handleUp);
-    
+
     canvas.addEventListener("touchstart", handleDown, { passive: false });
     canvas.addEventListener("touchmove", handleMove, { passive: false });
     canvas.addEventListener("touchend", handleUp);
@@ -94,19 +99,70 @@ export function ScratchCard({ discountCode = "HEYFEDE10" }: { discountCode?: str
     };
   }, [isMounted, isScratched]);
 
-  if (!isMounted) return <div style={{ width: 250, height: 100, background: '#E4C0A8', borderRadius: 16 }} />;
+  if (!isMounted)
+    return (
+      <div
+        style={{
+          width: 250,
+          height: 100,
+          background: "#E4C0A8",
+          borderRadius: 16,
+        }}
+      />
+    );
 
   return (
-    <div style={{ position: 'relative', width: 250, height: 100, borderRadius: 16, overflow: 'hidden', boxShadow: 'var(--shadow-sm)' }}>
-      <div style={{ position: 'absolute', inset: 0, background: '#fefefe', display: 'flex', alignItems: 'center', justifyContent: 'center', flexDirection: 'column' }}>
-        <span style={{ fontFamily: 'var(--font-nunito), sans-serif', fontSize: '0.8rem', color: '#9a7060', fontWeight: 600 }}>Dein Code:</span>
-        <span style={{ fontFamily: 'var(--font-calistoga), serif', fontSize: '1.4rem', color: '#CC624C' }}>{discountCode}</span>
+    <div
+      style={{
+        position: "relative",
+        width: 250,
+        height: 100,
+        borderRadius: 16,
+        overflow: "hidden",
+        boxShadow: "var(--shadow-sm)",
+      }}
+    >
+      <div
+        style={{
+          position: "absolute",
+          inset: 0,
+          background: "#fefefe",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <span
+          style={{
+            fontFamily: "var(--font-nunito), sans-serif",
+            fontSize: "0.8rem",
+            color: "#9a7060",
+            fontWeight: 600,
+          }}
+        >
+          Dein Code:
+        </span>
+        <span
+          style={{
+            fontFamily: "var(--font-calistoga), serif",
+            fontSize: "1.4rem",
+            color: "#b34832",
+          }}
+        >
+          {discountCode}
+        </span>
       </div>
       <canvas
         ref={canvasRef}
         width={250}
         height={100}
-        style={{ position: 'absolute', inset: 0, cursor: 'crosshair', transition: 'opacity 0.3s ease' }}
+        style={{
+          position: "absolute",
+          inset: 0,
+          cursor: "crosshair",
+          transition: "opacity 0.3s ease",
+        }}
       />
     </div>
   );

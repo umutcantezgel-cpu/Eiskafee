@@ -82,7 +82,7 @@ export default function SupportPage() {
         <GiganticTypography
           as="h1"
           highlightWords={["helfen?"]}
-          highlightColor="#CC624C"
+          highlightColor="#b34832"
           className="text-center justify-center max-w-[1200px] mx-auto"
         >
           Wie können wir helfen?
@@ -156,7 +156,10 @@ export default function SupportPage() {
       </section>
 
       {/* SECTION 3: Contact Form */}
-      <section className="min-h-[150vh] px-6 relative z-10 flex flex-col justify-center items-center overflow-hidden">
+      <section
+        id="kontakt"
+        className="min-h-[150vh] px-6 relative z-10 flex flex-col justify-center items-center overflow-hidden"
+      >
         <GiganticTypography className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center z-10">
           Nichts gefunden?
         </GiganticTypography>

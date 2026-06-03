@@ -1,12 +1,12 @@
 "use client";
 
-import React from 'react';
-import { useRouter } from 'next/navigation';
-import { useOrders } from '@/hooks/useOrders';
-import { useStore } from '@/store/useStore';
-import { AuthGuard } from '@/components/auth/AuthGuard';
-import { FadeUp } from '@/components/ui/FadeUp';
-import * as Icons from 'lucide-react';
+import React from "react";
+import { useRouter } from "next/navigation";
+import { useOrders } from "@/hooks/useOrders";
+import { useStore } from "@/store/useStore";
+import { AuthGuard } from "@/components/auth/AuthGuard";
+import { FadeUp } from "@/components/ui/FadeUp";
+import * as Icons from "lucide-react";
 
 export default function ProfileOrdersPage() {
   const { orders, loading } = useOrders();
@@ -23,7 +23,7 @@ export default function ProfileOrdersPage() {
       price: item.price,
       quantity: item.quantity,
       v: item.variant || "",
-      desc: item.variant || ""
+      desc: item.variant || "",
     }));
 
     setCart(cartItems);
@@ -33,22 +33,33 @@ export default function ProfileOrdersPage() {
 
   const getStatusColor = (status: string) => {
     switch (status) {
-      case 'ready': return 'bg-[#3a9d52] text-white';
-      case 'completed': return 'bg-[#2d1f19] text-white';
-      case 'cancelled': return 'bg-red-500 text-white';
-      default: return 'bg-[#CC624C] text-white';
+      case "ready":
+        return "bg-[#3a9d52] text-white";
+      case "completed":
+        return "bg-[#2d1f19] text-white";
+      case "cancelled":
+        return "bg-red-500 text-white";
+      default:
+        return "bg-[#b34832] text-white";
     }
   };
 
   const getStatusText = (status: string) => {
     switch (status) {
-      case 'pending': return 'Ausstehend';
-      case 'confirmed': return 'Bestätigt';
-      case 'preparing': return 'In Zubereitung';
-      case 'ready': return 'Abholbereit';
-      case 'completed': return 'Abgeschlossen';
-      case 'cancelled': return 'Storniert';
-      default: return status;
+      case "pending":
+        return "Ausstehend";
+      case "confirmed":
+        return "Bestätigt";
+      case "preparing":
+        return "In Zubereitung";
+      case "ready":
+        return "Abholbereit";
+      case "completed":
+        return "Abgeschlossen";
+      case "cancelled":
+        return "Storniert";
+      default:
+        return status;
     }
   };
 
@@ -57,11 +68,16 @@ export default function ProfileOrdersPage() {
       <div className="min-h-screen bg-[#f5efe8] flex flex-col">
         {/* Header */}
         <div className="bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
-          <button onClick={() => router.push('/profile')} className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm">
+          <button
+            onClick={() => router.push("/profile")}
+            className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm"
+          >
             <Icons.ArrowLeft size={20} color="#2d1f19" />
           </button>
           <div className="text-center">
-            <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">Bestellungen</div>
+            <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">
+              Bestellungen
+            </div>
           </div>
           <div className="w-10 h-10" />
         </div>
@@ -69,14 +85,27 @@ export default function ProfileOrdersPage() {
         <div className="px-5 flex-1 overflow-y-auto pb-10 pt-4">
           {loading ? (
             <div className="flex justify-center mt-10">
-              <Icons.Loader2 className="animate-spin text-[#CC624C]" size={32} />
+              <Icons.Loader2
+                className="animate-spin text-[#b34832]"
+                size={32}
+              />
             </div>
           ) : orders.length === 0 ? (
             <div className="text-center mt-20">
-              <Icons.Package size={48} className="mx-auto text-[#eedfcc] mb-4" />
-              <div className="font-calistoga text-xl text-[#2d1f19] mb-2">Noch keine Bestellungen</div>
-              <div className="font-nunito text-[13px] text-[#7a5a52]">Zeit für ein paar süße Momente!</div>
-              <button onClick={() => router.push('/menu')} className="mt-6 bg-[#CC624C] text-white px-6 py-2.5 rounded-xl font-bold text-sm">
+              <Icons.Package
+                size={48}
+                className="mx-auto text-[#eedfcc] mb-4"
+              />
+              <div className="font-calistoga text-xl text-[#2d1f19] mb-2">
+                Noch keine Bestellungen
+              </div>
+              <div className="font-nunito text-[13px] text-[#7a5a52]">
+                Zeit für ein paar süße Momente!
+              </div>
+              <button
+                onClick={() => router.push("/menu")}
+                className="mt-6 bg-[#b34832] text-white px-6 py-2.5 rounded-xl font-bold text-sm"
+              >
                 Zur Speisekarte
               </button>
             </div>
@@ -87,30 +116,46 @@ export default function ProfileOrdersPage() {
                   <div className="bg-white rounded-[18px] p-4 shadow-sm relative overflow-hidden">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <div className="font-nunito text-[10px] font-black text-[#CC624C] tracking-widest uppercase mb-1">
-                          {new Date(order.createdAt).toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' })}
+                        <div className="font-nunito text-[10px] font-black text-[#b34832] tracking-widest uppercase mb-1">
+                          {new Date(order.createdAt).toLocaleDateString(
+                            "de-DE",
+                            {
+                              day: "2-digit",
+                              month: "2-digit",
+                              year: "numeric",
+                            },
+                          )}
                         </div>
                         <div className="font-calistoga text-[16px] text-[#2d1f19]">
-                          {order.total?.toFixed(2).replace('.', ',')} €
+                          {order.total?.toFixed(2).replace(".", ",")} €
                         </div>
                       </div>
-                      <div className={`px-2 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${getStatusColor(order.status)}`}>
+                      <div
+                        className={`px-2 py-1 rounded-full font-bold text-[10px] uppercase tracking-wider ${getStatusColor(order.status)}`}
+                      >
                         {getStatusText(order.status)}
                       </div>
                     </div>
-                    
+
                     <div className="border-t border-dashed border-[#eedfcc] pt-3 pb-4 mb-3 space-y-1.5">
                       {order.items?.map((item: any, idx: number) => (
                         <div key={idx} className="flex gap-2">
-                          <span className="font-nunito font-extrabold text-[12px] text-[#7a5a52]">{item.quantity}×</span>
-                          <span className="font-nunito font-bold text-[13px] text-[#2d1f19] flex-1">{item.name} <span className="text-[#7a5a52] font-normal text-[11px]">{item.variant ? `(${item.variant})` : ''}</span></span>
+                          <span className="font-nunito font-extrabold text-[12px] text-[#7a5a52]">
+                            {item.quantity}×
+                          </span>
+                          <span className="font-nunito font-bold text-[13px] text-[#2d1f19] flex-1">
+                            {item.name}{" "}
+                            <span className="text-[#7a5a52] font-normal text-[11px]">
+                              {item.variant ? `(${item.variant})` : ""}
+                            </span>
+                          </span>
                         </div>
                       ))}
                     </div>
-                    
-                    <button 
+
+                    <button
                       onClick={() => handleReorder(order)}
-                      className="w-full flex items-center justify-center gap-2 bg-[#f5efe8] text-[#CC624C] py-2.5 rounded-[12px] font-bold text-[13px] hover:bg-[#eedfcc] transition-colors"
+                      className="w-full flex items-center justify-center gap-2 bg-[#f5efe8] text-[#b34832] py-2.5 rounded-[12px] font-bold text-[13px] hover:bg-[#eedfcc] transition-colors"
                     >
                       <Icons.RotateCcw size={16} />
                       Bestellung wiederholen

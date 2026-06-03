@@ -1,8 +1,13 @@
-'use client';
+"use client";
 
 import React, { useState } from "react";
 import { usePathname } from "next/navigation";
-import { motion, useScroll, useTransform, useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useReducedMotion,
+} from "framer-motion";
 import { User, ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/atoms/Logo";
 import { HamburgerIcon } from "@/components/atoms/icons";
@@ -24,12 +29,22 @@ export function Header() {
 
   // Scroll interpolation (0 to 80px)
   const { scrollY } = useScroll();
-  
-  // Interpolate rgba for background: transparent to cream (rgba(255,245,238, 0.9))
+
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.9]);
   const blur = useTransform(scrollY, [0, 80], [0, 12]);
   const shadowOpacity = useTransform(scrollY, [0, 80], [0, 0.1]);
   const borderOpacity = useTransform(scrollY, [0, 80], [0, 1]);
+
+  const bgStyle = useTransform(bgOpacity, (v) => `rgba(255,245,238, ${v})`);
+  const blurStyle = useTransform(blur, (v) => `blur(${v}px)`);
+  const borderStyle = useTransform(
+    borderOpacity,
+    (v) => `1px solid rgba(238,223,204, ${v})`,
+  );
+  const shadowStyle = useTransform(
+    shadowOpacity,
+    (v) => `0 4px 20px rgba(45,31,25, ${v})`,
+  );
 
   const links = [
     { id: "menu", href: "/menu", label: "Speisekarte" },
@@ -40,46 +55,56 @@ export function Header() {
   return (
     <>
       <ScrollProgressBar />
-      
+
       <div className="fixed top-0 left-0 right-0 z-[900] flex flex-col">
-        {settings?.bannerText && (
-          <PromoBanner text={settings.bannerText} />
-        )}
-        
-        <motion.header 
-          style={prefersReducedMotion ? {
-            backgroundColor: 'rgba(255,245,238, 0.95)',
-            backdropFilter: 'blur(12px)',
-            borderBottom: '1px solid var(--color-sand)',
-            boxShadow: '0 4px 20px rgba(45,31,25, 0.08)'
-          } : {
-            backgroundColor: useTransform(bgOpacity, v => `rgba(255,245,238, ${v})`),
-            backdropFilter: useTransform(blur, v => `blur(${v}px)`),
-            borderBottom: useTransform(borderOpacity, v => `1px solid rgba(238,223,204, ${v})`), // sand border
-            boxShadow: useTransform(shadowOpacity, v => `0 4px 20px rgba(45,31,25, ${v})`)
-          }}
+        {settings?.bannerText && <PromoBanner text={settings.bannerText} />}
+
+        <motion.header
+          style={
+            prefersReducedMotion
+              ? {
+                  backgroundColor: "rgba(255,245,238, 0.95)",
+                  backdropFilter: "blur(12px)",
+                  borderBottom: "1px solid var(--color-sand)",
+                  boxShadow: "0 4px 20px rgba(45,31,25, 0.08)",
+                }
+              : {
+                  backgroundColor: bgStyle,
+                  backdropFilter: blurStyle,
+                  borderBottom: borderStyle,
+                  boxShadow: shadowStyle,
+                }
+          }
           className="w-full transition-all duration-200"
         >
           <div className="max-w-7xl mx-auto px-6 h-[88px] flex items-center justify-between gap-4">
-            
             {/* Left: Logo */}
             <div className="flex-shrink-0">
-              <TransitionLink href="/" aria-label="Hey Fedee! Startseite" className="block">
+              <TransitionLink
+                href="/"
+                aria-label="Hey Fedee! Startseite"
+                className="block"
+              >
                 <Logo variant="orange" className="w-[60px]" />
               </TransitionLink>
             </div>
 
             {/* Middle: Navigation */}
-            <nav aria-label="Hauptnavigation" className="hidden md:flex items-center gap-2">
+            <nav
+              aria-label="Hauptnavigation"
+              className="hidden md:flex items-center gap-2"
+            >
               {links.map(({ id, href, label }) => {
                 const active = pathname === href;
                 return (
-                  <TransitionLink 
-                    key={id} 
+                  <TransitionLink
+                    key={id}
                     href={href}
                     className={twMerge(
                       "px-5 py-2.5 rounded-full font-bold text-sm transition-all duration-200",
-                      active ? "bg-sand text-terracotta" : "text-charcoal hover:bg-sand/50"
+                      active
+                        ? "bg-sand text-terracotta"
+                        : "text-charcoal hover:bg-sand/50",
                     )}
                   >
                     {label}
@@ -107,7 +132,7 @@ export function Header() {
               </TransitionLink>
 
               {/* Cart */}
-              <button 
+              <button
                 onClick={toggleCart}
                 className="relative w-11 h-11 rounded-full bg-cream flex items-center justify-center text-terracotta hover:bg-sand transition-colors border-2 border-peach cursor-pointer"
                 aria-label="Warenkorb"
@@ -121,7 +146,7 @@ export function Header() {
               </button>
 
               {/* Mobile Hamburger */}
-              <button 
+              <button
                 className="md:hidden w-11 h-11 flex items-center justify-center bg-transparent border-none text-charcoal"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 aria-label="Menü öffnen"
@@ -133,10 +158,10 @@ export function Header() {
         </motion.header>
       </div>
 
-      <MobileMenu 
-        isOpen={mobileMenuOpen} 
-        onClose={() => setMobileMenuOpen(false)} 
-        pathname={pathname} 
+      <MobileMenu
+        isOpen={mobileMenuOpen}
+        onClose={() => setMobileMenuOpen(false)}
+        pathname={pathname}
       />
     </>
   );

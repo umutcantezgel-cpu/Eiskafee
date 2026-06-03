@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
 export const SyrupCursor: React.FC = () => {
   // Initial position off-screen
@@ -24,14 +24,14 @@ export const SyrupCursor: React.FC = () => {
     const handleMouseLeave = () => setIsVisible(false);
     const handleMouseEnter = () => setIsVisible(true);
 
-    window.addEventListener('mousemove', moveCursor);
-    document.addEventListener('mouseleave', handleMouseLeave);
-    document.addEventListener('mouseenter', handleMouseEnter);
+    window.addEventListener("mousemove", moveCursor);
+    document.addEventListener("mouseleave", handleMouseLeave);
+    document.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
-      window.removeEventListener('mousemove', moveCursor);
-      document.removeEventListener('mouseleave', handleMouseLeave);
-      document.removeEventListener('mouseenter', handleMouseEnter);
+      window.removeEventListener("mousemove", moveCursor);
+      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.removeEventListener("mouseenter", handleMouseEnter);
     };
   }, [cursorX, cursorY, isVisible]);
 
@@ -40,25 +40,25 @@ export const SyrupCursor: React.FC = () => {
       style={{
         x: cursorXSpring,
         y: cursorYSpring,
-        position: 'fixed',
+        position: "fixed",
         top: 0,
         left: 0,
-        width: '24px',
-        height: '24px',
-        backgroundColor: '#CC624C',
+        width: "24px",
+        height: "24px",
+        backgroundColor: "#b34832",
         // Top-left is sharp (0), others are rounded to create a drop shape
-        borderRadius: '0 50% 50% 50%',
-        pointerEvents: 'none',
+        borderRadius: "0 50% 50% 50%",
+        pointerEvents: "none",
         zIndex: 9999,
         opacity: isVisible ? 0.85 : 0,
-        boxShadow: '0 4px 12px rgba(204, 98, 76, 0.4)',
+        boxShadow: "0 4px 12px rgba(204, 98, 76, 0.4)",
         // Slight scale and rotation adjustment to make it look dynamic
-        transformOrigin: 'top left',
+        transformOrigin: "top left",
       }}
       animate={{
         scale: isVisible ? 1 : 0.5,
       }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      transition={{ type: "spring", stiffness: 300, damping: 20 }}
     />
   );
 };

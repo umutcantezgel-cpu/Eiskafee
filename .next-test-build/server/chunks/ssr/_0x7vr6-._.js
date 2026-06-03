@@ -1,0 +1,755 @@
+module.exports = [
+  544623,
+  (a) => {
+    "use strict";
+    var b = a.i(187924),
+      c = a.i(572131);
+    a.s([
+      "FadeUp",
+      0,
+      function ({ children: a, delay: d = 0, className: e = "" }) {
+        let f = (0, c.useRef)(null),
+          [g, h] = (0, c.useState)(!1);
+        return (
+          (0, c.useEffect)(() => {
+            let a = new IntersectionObserver(
+              ([a]) => {
+                a.isIntersecting && h(!0);
+              },
+              { threshold: 0.12 },
+            );
+            return (f.current && a.observe(f.current), () => a.disconnect());
+          }, []),
+          (0, b.jsx)("div", {
+            ref: f,
+            className: e,
+            style: {
+              opacity: +!!g,
+              transform: g ? "none" : "translateY(20px)",
+              transition: `all 0.6s ease ${d}s`,
+            },
+            children: a,
+          })
+        );
+      },
+    ]);
+  },
+  526634,
+  383784,
+  (a) => {
+    "use strict";
+    let b = (0, a.i(164831).default)("star", [
+      [
+        "path",
+        {
+          d: "M11.525 2.295a.53.53 0 0 1 .95 0l2.31 4.679a2.123 2.123 0 0 0 1.595 1.16l5.166.756a.53.53 0 0 1 .294.904l-3.736 3.638a2.123 2.123 0 0 0-.611 1.878l.882 5.14a.53.53 0 0 1-.771.56l-4.618-2.428a2.122 2.122 0 0 0-1.973 0L6.396 21.01a.53.53 0 0 1-.77-.56l.881-5.139a2.122 2.122 0 0 0-.611-1.879L2.16 9.795a.53.53 0 0 1 .294-.906l5.165-.755a2.122 2.122 0 0 0 1.597-1.16z",
+          key: "r04s7s",
+        },
+      ],
+    ]);
+    (a.s(["default", 0, b], 383784), a.s(["Star", 0, b], 526634));
+  },
+  858301,
+  943784,
+  986708,
+  (a) => {
+    "use strict";
+    var b = a.i(187924),
+      c = a.i(572131),
+      d = a.i(371947),
+      e = a.i(346271),
+      f = a.i(262036),
+      g = a.i(526634);
+    let h = (0, a.i(164831).default)("sparkles", [
+      [
+        "path",
+        {
+          d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
+          key: "1s2grr",
+        },
+      ],
+      ["path", { d: "M20 2v4", key: "1rf3ol" }],
+      ["path", { d: "M22 4h-4", key: "gwowj6" }],
+      ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }],
+    ]);
+    (a.s(["default", 0, h], 943784), a.s(["Sparkles", 0, h], 986708));
+    let i = ["#CC624C", "#E4C0A8", "#eedfcc", "#fefefe"],
+      j = ["dot", "sparkle", "star"];
+    a.s(
+      [
+        "PrimaryButton",
+        0,
+        function ({
+          children: a,
+          onClick: k,
+          href: l,
+          large: m = !1,
+          sectionBg: n = "#f5efe8",
+          className: o = "",
+          disabled: p = !1,
+        }) {
+          let [q, r] = (0, c.useState)(!1),
+            [s, t] = (0, c.useState)([]);
+          (0, c.useEffect)(() => {
+            if (0 === s.length) return;
+            let a = s.map((a) =>
+              setTimeout(() => t((b) => b.filter((b) => b.id !== a.id)), 800),
+            );
+            return () => a.forEach(clearTimeout);
+          }, [s]);
+          let u = (a) => {
+              if (p) return;
+              let b = a.currentTarget.getBoundingClientRect(),
+                c = (a.clientX ?? b.left + b.width / 2) - b.left,
+                d = (a.clientY ?? b.top + b.height / 2) - b.top;
+              (t((a) => {
+                let b, e;
+                return [
+                  ...a,
+                  ((b = Date.now() + Math.random()),
+                  (e = Array.from({ length: 14 }, (a, c) => ({
+                    id: `${b}-${c}`,
+                    angle: Math.random() * Math.PI * 2,
+                    distance: 40 + 60 * Math.random(),
+                    size: 4 + 10 * Math.random(),
+                    rotation: (Math.random() - 0.5) * 540,
+                    color: i[Math.floor(Math.random() * i.length)],
+                    type: j[Math.floor(Math.random() * j.length)],
+                  }))),
+                  { id: b, originX: c, originY: d, particles: e }),
+                ];
+              }),
+                k && k(a));
+            },
+            v = (0, b.jsxs)(e.motion.button, {
+              onClick: l ? void 0 : u,
+              disabled: p,
+              onHoverStart: () => r(!0),
+              onHoverEnd: () => r(!1),
+              whileHover: p ? {} : { scale: 1.05 },
+              whileTap: p ? {} : { scale: 0.92, scaleX: 1.06, scaleY: 0.84 },
+              transition: {
+                type: "spring",
+                stiffness: 600,
+                damping: 15,
+                mass: 1,
+              },
+              className: `relative inline-flex items-center justify-center font-nunito font-extrabold text-white bg-[#CC624C] border-none rounded-full overflow-visible ${m ? "px-9 py-[15px] text-[0.96rem]" : "px-[26px] py-[11px] text-[0.88rem]"} ${p ? "opacity-60 cursor-not-allowed" : "cursor-pointer"} ${o}`,
+              style: {
+                boxShadow:
+                  q && !p
+                    ? "0 8px 28px rgba(204,98,76,0.34)"
+                    : "0 3px 12px rgba(204,98,76,0.18)",
+              },
+              children: [
+                (0, b.jsx)("span", {
+                  className: "relative z-10 flex items-center gap-2",
+                  children: a,
+                }),
+                (0, b.jsx)("span", {
+                  "aria-hidden": !0,
+                  className:
+                    "absolute z-0 w-[18px] h-[18px] rounded-full bottom-[-1px] left-[14px] pointer-events-none",
+                  style: {
+                    background: n,
+                    transform: q ? "scale(1)" : "scale(0)",
+                    transformOrigin: "center bottom",
+                    transition: "transform .25s cubic-bezier(0.34,1.56,0.64,1)",
+                  },
+                }),
+                (0, b.jsx)("span", {
+                  className:
+                    "absolute inset-0 pointer-events-none overflow-visible z-20",
+                  children: (0, b.jsx)(f.AnimatePresence, {
+                    children: s.map((a) =>
+                      a.particles.map((c) =>
+                        (0, b.jsxs)(
+                          e.motion.div,
+                          {
+                            initial: {
+                              x: a.originX,
+                              y: a.originY,
+                              opacity: 1,
+                              scale: 0,
+                              rotate: 0,
+                            },
+                            animate: {
+                              x: a.originX + Math.cos(c.angle) * c.distance,
+                              y:
+                                a.originY + Math.sin(c.angle) * c.distance - 20,
+                              opacity: [1, 1, 0],
+                              scale: [0, 1, 0.5],
+                              rotate: c.rotation,
+                            },
+                            transition: {
+                              duration: 0.65,
+                              ease: "easeOut",
+                              times: [0, 0.3, 1],
+                            },
+                            style: {
+                              position: "absolute",
+                              top: 0,
+                              left: 0,
+                              width: c.size,
+                              height: c.size,
+                              borderRadius: "dot" === c.type ? "50%" : 0,
+                              background:
+                                "dot" === c.type ? c.color : "transparent",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            },
+                            children: [
+                              "star" === c.type &&
+                                (0, b.jsx)(g.Star, {
+                                  size: c.size,
+                                  strokeWidth: 0,
+                                  color: c.color,
+                                  fill: c.color,
+                                }),
+                              "sparkle" === c.type &&
+                                (0, b.jsx)(h, {
+                                  size: c.size,
+                                  strokeWidth: 0,
+                                  color: c.color,
+                                  fill: c.color,
+                                }),
+                            ],
+                          },
+                          c.id,
+                        ),
+                      ),
+                    ),
+                  }),
+                }),
+              ],
+            });
+          return l
+            ? (0, b.jsx)("div", {
+                onClick: u,
+                className: "inline-block",
+                style: { textDecoration: "none" },
+                children: (0, b.jsx)(d.TransitionLink, {
+                  href: l,
+                  style: { textDecoration: "none" },
+                  className: "inline-block",
+                  tabIndex: -1,
+                  children: v,
+                }),
+              })
+            : v;
+        },
+        "SecondaryButton",
+        0,
+        function ({ children: a, onClick: f, href: g, className: h = "" }) {
+          let [i, j] = (0, c.useState)(!1),
+            k = (0, b.jsx)(e.motion.button, {
+              onClick: f,
+              onHoverStart: () => j(!0),
+              onHoverEnd: () => j(!1),
+              whileTap: { scale: 0.94, scaleX: 1.04, scaleY: 0.88 },
+              transition: { type: "spring", stiffness: 600, damping: 15 },
+              className: `relative inline-flex items-center justify-center font-nunito font-extrabold rounded-full cursor-pointer whitespace-nowrap px-[25px] py-[10px] text-[0.88rem] ${h}`,
+              style: {
+                border: "2px solid #CC624C",
+                color: i ? "#fff" : "#CC624C",
+                background: i ? "#CC624C" : "transparent",
+                transition: "background .2s ease, color .2s ease",
+              },
+              children: a,
+            });
+          return g
+            ? (0, b.jsx)(d.TransitionLink, {
+                href: g,
+                style: { textDecoration: "none" },
+                className: "inline-block",
+                children: k,
+              })
+            : k;
+        },
+      ],
+      858301,
+    );
+  },
+  863414,
+  (a) => {
+    "use strict";
+    let b = (0, a.i(164831).default)("arrow-left", [
+      ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
+      ["path", { d: "M19 12H5", key: "x3x0zl" }],
+    ]);
+    a.s(["default", 0, b]);
+  },
+  219107,
+  (a) => {
+    "use strict";
+    var b = a.i(863414);
+    a.s(["ArrowLeft", () => b.default]);
+  },
+  759314,
+  (a) => {
+    "use strict";
+    let b = (0, a.i(164831).default)("arrow-right", [
+      ["path", { d: "M5 12h14", key: "1ays0h" }],
+      ["path", { d: "m12 5 7 7-7 7", key: "xquz4c" }],
+    ]);
+    a.s(["default", 0, b]);
+  },
+  818783,
+  (a) => {
+    "use strict";
+    var b = a.i(759314);
+    a.s(["ArrowRight", () => b.default]);
+  },
+  803463,
+  (a) => {
+    "use strict";
+    var b = a.i(187924),
+      c = a.i(572131),
+      d = a.i(219107),
+      e = a.i(818783),
+      f = a.i(544623),
+      g = a.i(858301),
+      h = a.i(50944),
+      i = a.i(762492),
+      j = a.i(262536);
+    let k = ["35576", "35578", "35580", "35581"];
+    a.s([
+      "default",
+      0,
+      function () {
+        let a = (0, h.useRouter)(),
+          {
+            cart: l,
+            orderType: m,
+            updateOrderData: n,
+            orderData: o,
+            updateQuantity: p,
+            clearCart: q,
+          } = (0, i.useStore)(),
+          { user: r } = (0, j.useAuth)(),
+          [s, t] = (0, c.useState)(o.name || ""),
+          [u, v] = (0, c.useState)(o.phone || ""),
+          [w, x] = (0, c.useState)(o.email || ""),
+          [y, z] = (0, c.useState)(o.notes || ""),
+          [A, B] = (0, c.useState)(o.address?.street || ""),
+          [C, D] = (0, c.useState)(o.address?.zip || ""),
+          [E, F] = (0, c.useState)(o.address?.city || ""),
+          [G, H] = (0, c.useState)("");
+        (0, c.useEffect)(() => {
+          r &&
+            (!s && r.displayName && t(r.displayName),
+            !w && r.email && x(r.email));
+        }, [r]);
+        let I = l.reduce(
+          (a, b) =>
+            a +
+            b.quantity *
+              ("number" == typeof b.price ? b.price : parseFloat(b.price)),
+          0,
+        );
+        return (0, b.jsxs)("div", {
+          className: "min-h-screen bg-[#f5efe8] flex flex-col md:flex-row",
+          children: [
+            (0, b.jsxs)("div", {
+              className: "flex-1 overflow-y-auto pb-32 md:pb-6",
+              children: [
+                (0, b.jsxs)("div", {
+                  className:
+                    "bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between md:hidden",
+                  children: [
+                    (0, b.jsx)("button", {
+                      onClick: () => a.back(),
+                      className:
+                        "w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm",
+                      children: (0, b.jsx)(d.ArrowLeft, {
+                        size: 20,
+                        color: "#2d1f19",
+                      }),
+                    }),
+                    (0, b.jsxs)("div", {
+                      className: "text-center",
+                      children: [
+                        (0, b.jsx)("div", {
+                          className:
+                            "font-calistoga text-lg text-[#2d1f19] leading-tight",
+                          children: "Kontaktdaten",
+                        }),
+                        (0, b.jsx)("div", {
+                          className:
+                            "font-nunito text-[11px] font-bold text-[#7a5a52]",
+                          children: "Schritt 1 von 3",
+                        }),
+                      ],
+                    }),
+                    (0, b.jsx)("div", { className: "w-10 h-10" }),
+                  ],
+                }),
+                (0, b.jsx)("div", {
+                  className: "px-5 pb-4 flex gap-1.5 md:mt-6",
+                  children: [!0, !1, !1].map((a, c) =>
+                    (0, b.jsx)(
+                      "div",
+                      {
+                        className: `flex-1 h-1 rounded-full ${a ? "bg-[#CC624C]" : "bg-[#eedfcc]"}`,
+                      },
+                      c,
+                    ),
+                  ),
+                }),
+                (0, b.jsxs)("div", {
+                  className: "px-5",
+                  children: [
+                    (0, b.jsxs)(f.FadeUp, {
+                      delay: 0.1,
+                      children: [
+                        (0, b.jsx)("div", {
+                          className:
+                            "font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-2.5",
+                          children: "Deine Daten",
+                        }),
+                        (0, b.jsxs)("div", {
+                          className:
+                            "bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]",
+                          children: [
+                            (0, b.jsx)("label", {
+                              htmlFor: "checkout-name",
+                              className:
+                                "block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]",
+                              children: "Name *",
+                            }),
+                            (0, b.jsx)("input", {
+                              id: "checkout-name",
+                              type: "text",
+                              value: s,
+                              onChange: (a) => t(a.target.value),
+                              placeholder: "Dein Vorname",
+                              autoComplete: "name",
+                              className:
+                                "font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40",
+                            }),
+                          ],
+                        }),
+                        (0, b.jsxs)("div", {
+                          className:
+                            "bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]",
+                          children: [
+                            (0, b.jsx)("label", {
+                              htmlFor: "checkout-email",
+                              className:
+                                "block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]",
+                              children: "E-Mail *",
+                            }),
+                            (0, b.jsx)("input", {
+                              id: "checkout-email",
+                              type: "email",
+                              value: w,
+                              onChange: (a) => x(a.target.value),
+                              placeholder: "name@example.com",
+                              autoComplete: "email",
+                              className:
+                                "font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40",
+                            }),
+                          ],
+                        }),
+                        (0, b.jsxs)("div", {
+                          className:
+                            "bg-white rounded-[18px] p-4 mb-5 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]",
+                          children: [
+                            (0, b.jsx)("label", {
+                              htmlFor: "checkout-phone",
+                              className:
+                                "block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]",
+                              children: "Handynummer *",
+                            }),
+                            (0, b.jsx)("input", {
+                              id: "checkout-phone",
+                              type: "tel",
+                              value: u,
+                              onChange: (a) => v(a.target.value),
+                              placeholder: "Für Rückfragen",
+                              autoComplete: "tel",
+                              className:
+                                "font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40",
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                    "delivery" === m &&
+                      (0, b.jsxs)(f.FadeUp, {
+                        delay: 0.2,
+                        children: [
+                          (0, b.jsx)("div", {
+                            className:
+                              "font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-2.5",
+                            children: "Lieferadresse",
+                          }),
+                          (0, b.jsxs)("div", {
+                            className:
+                              "bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]",
+                            children: [
+                              (0, b.jsx)("label", {
+                                htmlFor: "checkout-street",
+                                className:
+                                  "block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]",
+                                children: "Straße & Hausnr. *",
+                              }),
+                              (0, b.jsx)("input", {
+                                id: "checkout-street",
+                                type: "text",
+                                value: A,
+                                onChange: (a) => B(a.target.value),
+                                placeholder: "Musterstraße 12",
+                                autoComplete: "street-address",
+                                className:
+                                  "font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40",
+                              }),
+                            ],
+                          }),
+                          (0, b.jsxs)("div", {
+                            className: "grid grid-cols-[1fr_2fr] gap-3 mb-5",
+                            children: [
+                              (0, b.jsxs)("div", {
+                                className: `bg-white rounded-[18px] p-4 shadow-sm border-2 ${G ? "border-red-500" : "border-transparent focus-within:border-[#CC624C]"}`,
+                                children: [
+                                  (0, b.jsx)("label", {
+                                    htmlFor: "checkout-zip",
+                                    className:
+                                      "block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]",
+                                    children: "PLZ *",
+                                  }),
+                                  (0, b.jsx)("input", {
+                                    id: "checkout-zip",
+                                    type: "text",
+                                    value: C,
+                                    onChange: (a) => {
+                                      (D(a.target.value), H(""));
+                                    },
+                                    placeholder: "35576",
+                                    autoComplete: "postal-code",
+                                    "aria-invalid": !!G,
+                                    "aria-describedby": G
+                                      ? "zone-error"
+                                      : void 0,
+                                    className:
+                                      "font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40",
+                                  }),
+                                ],
+                              }),
+                              (0, b.jsxs)("div", {
+                                className:
+                                  "bg-white rounded-[18px] p-4 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]",
+                                children: [
+                                  (0, b.jsx)("label", {
+                                    htmlFor: "checkout-city",
+                                    className:
+                                      "block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]",
+                                    children: "Stadt *",
+                                  }),
+                                  (0, b.jsx)("input", {
+                                    id: "checkout-city",
+                                    type: "text",
+                                    value: E,
+                                    onChange: (a) => F(a.target.value),
+                                    placeholder: "Wetzlar",
+                                    autoComplete: "address-level2",
+                                    className:
+                                      "font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40",
+                                  }),
+                                ],
+                              }),
+                            ],
+                          }),
+                          (0, b.jsx)("div", {
+                            "aria-live": "polite",
+                            "aria-atomic": "true",
+                            children:
+                              G &&
+                              (0, b.jsx)("div", {
+                                id: "zone-error",
+                                className:
+                                  "text-red-500 font-nunito text-sm font-bold mb-4",
+                                children: G,
+                              }),
+                          }),
+                        ],
+                      }),
+                    (0, b.jsxs)(f.FadeUp, {
+                      delay: 0.3,
+                      children: [
+                        (0, b.jsx)("div", {
+                          className:
+                            "font-nunito text-[11px] font-black text-[#CC624C] tracking-[1.4px] uppercase mb-2.5",
+                          children: "Zusätzliche Infos",
+                        }),
+                        (0, b.jsxs)("div", {
+                          className:
+                            "bg-white rounded-[18px] p-4 mb-6 shadow-sm border-2 border-transparent focus-within:border-[#CC624C]",
+                          children: [
+                            (0, b.jsx)("label", {
+                              htmlFor: "checkout-notes",
+                              className:
+                                "block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]",
+                              children: "Anmerkungen (Optional)",
+                            }),
+                            (0, b.jsx)("textarea", {
+                              id: "checkout-notes",
+                              value: y,
+                              onChange: (a) => z(a.target.value),
+                              placeholder: "Z.B. Klingel ist defekt...",
+                              className:
+                                "font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full resize-none min-h-[60px] placeholder:opacity-40",
+                            }),
+                          ],
+                        }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+            (0, b.jsxs)("div", {
+              className:
+                "w-full md:w-[380px] bg-[#fef8f5] border-t md:border-t-0 md:border-l border-[#eedfcc] flex flex-col fixed md:relative bottom-0 left-0 right-0 z-40 max-h-[50vh] md:max-h-none overflow-y-auto",
+              children: [
+                (0, b.jsxs)("div", {
+                  className: "hidden md:block px-6 pt-8 pb-4",
+                  children: [
+                    (0, b.jsx)("div", {
+                      className: "font-calistoga text-2xl text-[#2d1f19]",
+                      children: "Dein Warenkorb",
+                    }),
+                    (0, b.jsx)("button", {
+                      onClick: () => {
+                        confirm("Wirklich leeren?") && q();
+                      },
+                      className:
+                        "text-[12px] font-extrabold text-[#7a5a52] underline mt-1",
+                      children: "Leeren",
+                    }),
+                  ],
+                }),
+                (0, b.jsxs)("div", {
+                  className: "px-5 md:px-6 flex-1 py-4",
+                  children: [
+                    (0, b.jsxs)("div", {
+                      className:
+                        "flex justify-between items-center mb-4 md:hidden",
+                      children: [
+                        (0, b.jsxs)("span", {
+                          className: "font-calistoga text-xl text-[#2d1f19]",
+                          children: [I.toFixed(2).replace(".", ","), " €"],
+                        }),
+                        (0, b.jsxs)("span", {
+                          className:
+                            "font-nunito text-sm text-[#7a5a52] font-bold",
+                          children: [
+                            l.reduce((a, b) => a + b.quantity, 0),
+                            " Artikel",
+                          ],
+                        }),
+                      ],
+                    }),
+                    (0, b.jsx)("div", {
+                      className: "hidden md:block space-y-3 mb-6",
+                      children: l.map((a) => {
+                        let c =
+                          "number" == typeof a.price
+                            ? a.price
+                            : parseFloat(a.price);
+                        return (0, b.jsxs)(
+                          "div",
+                          {
+                            className:
+                              "flex justify-between gap-3 bg-white p-3 rounded-2xl shadow-sm",
+                            children: [
+                              (0, b.jsxs)("div", {
+                                className: "flex-1 min-w-0",
+                                children: [
+                                  (0, b.jsxs)("div", {
+                                    className: "flex items-baseline gap-2",
+                                    children: [
+                                      (0, b.jsxs)("span", {
+                                        className:
+                                          "font-nunito font-extrabold text-[#CC624C] text-[13px]",
+                                        children: [a.quantity, "×"],
+                                      }),
+                                      (0, b.jsx)("span", {
+                                        className:
+                                          "font-nunito font-bold text-[14px] text-[#2d1f19] truncate",
+                                        children: a.name,
+                                      }),
+                                    ],
+                                  }),
+                                  a.variant &&
+                                    (0, b.jsx)("div", {
+                                      className:
+                                        "font-nunito text-[11px] text-[#7a5a52] ml-5",
+                                      children: a.variant,
+                                    }),
+                                ],
+                              }),
+                              (0, b.jsxs)("span", {
+                                className:
+                                  "font-calistoga text-[14px] text-[#CC624C]",
+                                children: [
+                                  (a.quantity * c).toFixed(2).replace(".", ","),
+                                  " €",
+                                ],
+                              }),
+                            ],
+                          },
+                          a.id,
+                        );
+                      }),
+                    }),
+                    (0, b.jsxs)(g.PrimaryButton, {
+                      onClick: () => {
+                        let b;
+                        if (0 === l.length)
+                          return void alert("Dein Warenkorb ist leer.");
+                        if (!s || !u || !w)
+                          return void alert(
+                            "Bitte fülle alle Pflichtfelder (Name, Handynummer, E-Mail) aus.",
+                          );
+                        if ("delivery" === m) {
+                          if (!A || !C || !E)
+                            return void alert(
+                              "Bitte gib deine vollständige Lieferadresse an.",
+                            );
+                          if (!k.includes(C))
+                            return void H(
+                              "Sorry, wir liefern aktuell leider nicht in deine Postleitzahl.",
+                            );
+                          (H(""), (b = { street: A, zip: C, city: E }));
+                        }
+                        (n({
+                          name: s,
+                          phone: u,
+                          email: w,
+                          notes: y,
+                          address: b,
+                        }),
+                          a.push("/pickup-time"));
+                      },
+                      className:
+                        "w-full flex justify-center items-center gap-2",
+                      children: [
+                        "Weiter zu ",
+                        "delivery" === m ? "Lieferzeit" : "Abholzeit",
+                        (0, b.jsx)(e.ArrowRight, { size: 18 }),
+                      ],
+                    }),
+                  ],
+                }),
+              ],
+            }),
+          ],
+        });
+      },
+    ]);
+  },
+];
+
+//# sourceMappingURL=_0x7vr6-._.js.map

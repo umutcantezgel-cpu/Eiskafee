@@ -71,7 +71,7 @@ export default function LoyaltyPage() {
             onClick={() => window.history.back()}
             className="w-12 h-12 bg-white/60 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-transform"
           >
-            <ArrowLeft className="w-6 h-6 text-[#CC624C]" />
+            <ArrowLeft className="w-6 h-6 text-[#b34832]" />
           </button>
         </div>
 
@@ -80,7 +80,7 @@ export default function LoyaltyPage() {
           <GiganticTypography
             as="h1"
             highlightWords={["Treue."]}
-            highlightColor="#CC624C"
+            highlightColor="#b34832"
             className="text-center justify-center max-w-[1200px] mx-auto"
           >
             Wir belohnen deine Treue.
@@ -93,7 +93,7 @@ export default function LoyaltyPage() {
             <div className="mb-8 transform scale-150">
               <LoyaltyCoin />
             </div>
-            <div className="text-sm font-black text-[#CC624C] tracking-widest uppercase mb-2">
+            <div className="text-sm font-black text-[#b34832] tracking-widest uppercase mb-2">
               Dein Guthaben
             </div>
             <div className="font-calistoga text-8xl text-charcoal">
@@ -207,7 +207,7 @@ export default function LoyaltyPage() {
                     </div>
                   </div>
                   <div
-                    className={`font-calistoga text-3xl md:text-4xl ${item.amount > 0 ? "text-[#3a9d52]" : "text-[#CC624C]"}`}
+                    className={`font-calistoga text-3xl md:text-4xl ${item.amount > 0 ? "text-[#3a9d52]" : "text-[#b34832]"}`}
                   >
                     {item.amount > 0 ? "+" : ""}
                     {item.amount}

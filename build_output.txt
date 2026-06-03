@@ -1,0 +1,68 @@
+▲ Next.js 16.2.6 (Turbopack)
+- Environments: .env.local
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 17.8s
+  Running TypeScript ...
+  Finished TypeScript in 6.3s ...
+  Collecting page data using 13 workers ...
+⚠ Using edge runtime on a page currently disables static generation for that page
+  Generating static pages using 13 workers (0/45) ...
+  Generating static pages using 13 workers (11/45) 
+  Generating static pages using 13 workers (22/45) 
+  Generating static pages using 13 workers (33/45) 
+✓ Generating static pages using 13 workers (45/45) in 579ms
+  Finalizing page optimization ...
+
+Route (app)                                         Revalidate  Expire
+┌ ○ /                                                       1m      1y
+├ ○ /_not-found
+├ ○ /about
+├ ○ /admin
+├ ○ /admin/menu
+├ ○ /admin/orders
+├ ○ /admin/settings
+├ ○ /admin/users
+├ ○ /agb
+├ ƒ /api/admin/seed
+├ ƒ /api/mcp
+├ ○ /auth
+├ ○ /bubble-waffles-wetzlar                                 1m      1y
+├ ○ /checkout
+├ ○ /confirmation
+├ ○ /cookie-richtlinie
+├ ○ /datenschutz
+├ ○ /eisdiele-wetzlar-special-shakes                        1m      1y
+├ ○ /events-catering-hessen                                 1m      1y
+├ ○ /faq
+├ ○ /firebase-test
+├ ○ /gutscheine
+├ ○ /icon.svg
+├ ○ /impressum
+├ ○ /kontakt
+├ ○ /legal
+├ ○ /lieferservice-desserts-lahn-dill                       1m      1y
+├ ○ /loyalty
+├ ○ /menu                                                   1m      1y
+├ ○ /order-hub
+├ ○ /order-review
+├ ○ /order-status
+├ ƒ /order-status/[orderId]/opengraph-image-1ekr2y
+├ ○ /password-reset
+├ ○ /pickup-time
+├ ○ /poc
+├ ○ /profile
+├ ○ /profile/orders
+├ ○ /reservierung
+├ ○ /robots.txt
+├ ○ /sitemap.xml
+├ ○ /support
+├ ○ /test-realtime
+├ ○ /vegane-desserts-wetzlar                                1m      1y
+├ ○ /visit
+└ ○ /widerruf
+
+
+○  (Static)   prerendered as static content
+ƒ  (Dynamic)  server-rendered on demand
+

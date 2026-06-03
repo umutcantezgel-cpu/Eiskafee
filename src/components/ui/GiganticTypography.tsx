@@ -17,7 +17,7 @@ export function GiganticTypography({
   className = "",
   delay = 0,
   highlightWords = [],
-  highlightColor = "#CC624C",
+  highlightColor = "#b34832",
   as = "div",
 }: GiganticTypographyProps) {
   const reduced = useReducedMotion();

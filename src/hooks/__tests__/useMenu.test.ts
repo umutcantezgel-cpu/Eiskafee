@@ -1,10 +1,11 @@
-import { renderHook, waitFor } from '@testing-library/react';
-import { describe, it, expect, vi, beforeEach } from 'vitest';
-import { useMenu } from '../useMenu';
-import * as firestore from 'firebase/firestore';
+import { renderHook, waitFor } from "@testing-library/react";
+import { describe, it, expect, vi, beforeEach } from "vitest";
+import { useMenu } from "../useMenu";
+import { HF_DATA } from "@/lib/data";
+import * as firestore from "firebase/firestore";
 
-vi.mock('firebase/firestore', async () => {
-  const actual = await vi.importActual('firebase/firestore');
+vi.mock("firebase/firestore", async () => {
+  const actual = await vi.importActual("firebase/firestore");
   return {
     ...actual,
     collection: vi.fn(),
@@ -15,21 +16,21 @@ vi.mock('firebase/firestore', async () => {
   };
 });
 
-vi.mock('@/lib/firebase', () => ({
+vi.mock("@/lib/firebase", () => ({
   db: {},
 }));
 
-describe('useMenu', () => {
+describe("useMenu", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  it('should fetch menu items and update state', async () => {
+  it("should fetch menu items and update state", async () => {
     const mockData = [
-      { id: '1', data: () => ({ name: 'Waffle', category: 'Waffles' }) },
-      { id: '2', data: () => ({ name: 'Coffee', category: 'Drinks' }) },
+      { id: "1", data: () => ({ name: "Waffle", category: "Waffles" }) },
+      { id: "2", data: () => ({ name: "Coffee", category: "Drinks" }) },
     ];
-    
+
     // Mock onSnapshot implementation
     vi.mocked(firestore.onSnapshot).mockImplementation((query, callback) => {
       // @ts-ignore
@@ -45,18 +46,20 @@ describe('useMenu', () => {
     });
 
     expect(result.current.items).toHaveLength(2);
-    expect(result.current.items[0].name).toBe('Waffle');
+    expect(result.current.items[0].name).toBe("Waffle");
     expect(result.current.error).toBeNull();
   });
 
-  it('should handle errors in onSnapshot', async () => {
-    const mockError = new Error('Permission denied');
-    
-    vi.mocked(firestore.onSnapshot).mockImplementation((query, callback, errorCallback) => {
-      // @ts-ignore
-      errorCallback(mockError);
-      return vi.fn();
-    });
+  it("should handle errors in onSnapshot", async () => {
+    const mockError = new Error("Permission denied");
+
+    vi.mocked(firestore.onSnapshot).mockImplementation(
+      (query, callback, errorCallback) => {
+        // @ts-ignore
+        errorCallback(mockError);
+        return vi.fn();
+      },
+    );
 
     const { result } = renderHook(() => useMenu());
 
@@ -65,11 +68,15 @@ describe('useMenu', () => {
     });
 
     expect(result.current.error).toBe(mockError);
-    expect(result.current.items).toHaveLength(0);
+    const totalFallbackItems = Object.values(HF_DATA.menu).reduce(
+      (acc, cat: any) => acc + cat.items.length,
+      0,
+    );
+    expect(result.current.items).toHaveLength(totalFallbackItems);
   });
 
-  it('should query by category if provided', () => {
-    renderHook(() => useMenu('boxen'));
-    expect(firestore.where).toHaveBeenCalledWith('category', '==', 'boxen');
+  it("should query by category if provided", () => {
+    renderHook(() => useMenu("boxen"));
+    expect(firestore.where).toHaveBeenCalledWith("category", "==", "boxen");
   });
 });

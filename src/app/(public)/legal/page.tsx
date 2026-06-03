@@ -35,7 +35,7 @@ import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
 
 function LegalIcon({
   children,
-  color = "#CC624C",
+  color = "#b34832",
 }: {
   children: React.ReactNode;
   color?: string;
@@ -111,7 +111,7 @@ function AccordionSection({
               fontFamily: "var(--font-nunito), sans-serif",
               fontSize: "0.72rem",
               fontWeight: 800,
-              color: "#CC624C",
+              color: "#b34832",
               textTransform: "uppercase",
               letterSpacing: "0.08em",
             }}
@@ -166,7 +166,7 @@ function AccordionSection({
 /** Cookie pill badge */
 function CookieBadge({ category }: { category: string }) {
   const colors: Record<string, { bg: string; text: string }> = {
-    Notwendig: { bg: "#CC624C", text: "#fefefe" },
+    Notwendig: { bg: "#b34832", text: "#fefefe" },
     Funktional: { bg: "#E4C0A8", text: "#2d1f19" },
     Statistik: { bg: "#9a7060", text: "#fefefe" },
     Marketing: { bg: "#5c3d35", text: "#fefefe" },
@@ -211,7 +211,7 @@ function RightCard({ right, article }: { right: string; article: string }) {
           marginBottom: 2,
         }}
       >
-        <CheckCircle2 size={14} color="#CC624C" />
+        <CheckCircle2 size={14} color="#b34832" />
         <span
           style={{ fontWeight: 800, color: "#2d1f19", fontSize: "0.85rem" }}
         >
@@ -270,7 +270,7 @@ export default function LegalPage() {
           left: 0,
           right: 0,
           height: 3,
-          background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
+          background: "linear-gradient(90deg, #b34832, #E4C0A8)",
           transformOrigin: "left",
           scaleX,
           zIndex: 100,
@@ -330,13 +330,13 @@ export default function LegalPage() {
               marginBottom: 16,
             }}
           >
-            <Shield size={14} color="#CC624C" />
+            <Shield size={14} color="#b34832" />
             <span
               style={{
                 fontFamily: "var(--font-nunito), sans-serif",
                 fontSize: "0.75rem",
                 fontWeight: 800,
-                color: "#CC624C",
+                color: "#b34832",
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
               }}
@@ -391,7 +391,7 @@ export default function LegalPage() {
                 gap: 6,
                 background:
                   activeSection === item.id
-                    ? "#CC624C"
+                    ? "#b34832"
                     : "rgba(245,239,232,0.8)",
                 color: activeSection === item.id ? "#fefefe" : "#5c3d35",
                 padding: "8px 18px",
@@ -439,7 +439,7 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <Building2 size={24} color="#CC624C" /> Impressum
+            <Building2 size={24} color="#b34832" /> Impressum
           </motion.h2>
 
           <div
@@ -467,7 +467,7 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <Building2 size={16} color="#CC624C" />
+                <Building2 size={16} color="#b34832" />
                 <h3
                   style={{
                     fontFamily: "var(--font-calistoga), serif",
@@ -516,7 +516,7 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <Phone size={16} color="#CC624C" />
+                <Phone size={16} color="#b34832" />
                 <h3
                   style={{
                     fontFamily: "var(--font-calistoga), serif",
@@ -542,7 +542,7 @@ export default function LegalPage() {
                 WhatsApp: {BUSINESS.whatsappDisplay}
                 <br />
                 E-Mail:{" "}
-                <span style={{ color: "#CC624C", fontWeight: 700 }}>
+                <span style={{ color: "#b34832", fontWeight: 700 }}>
                   hallo@hey-fede.de
                 </span>
               </p>
@@ -566,7 +566,7 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <FileText size={16} color="#CC624C" />
+                <FileText size={16} color="#b34832" />
                 <h3
                   style={{
                     fontFamily: "var(--font-calistoga), serif",
@@ -598,7 +598,7 @@ export default function LegalPage() {
                     fontFamily: "monospace",
                     fontSize: "0.85rem",
                     marginTop: 6,
-                    color: "#CC624C",
+                    color: "#b34832",
                     fontWeight: "bold",
                   }}
                 >
@@ -625,7 +625,7 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <Info size={16} color="#CC624C" />
+                <Info size={16} color="#b34832" />
                 <h3
                   style={{
                     fontFamily: "var(--font-calistoga), serif",
@@ -679,7 +679,7 @@ export default function LegalPage() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: "#CC624C",
+                color: "#b34832",
                 fontWeight: 700,
                 textDecoration: "underline",
                 textUnderlineOffset: 3,
@@ -715,7 +715,7 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <Shield size={24} color="#CC624C" /> Datenschutzerklärung
+            <Shield size={24} color="#b34832" /> Datenschutzerklärung
           </motion.h2>
 
           <AccordionSection
@@ -730,7 +730,7 @@ export default function LegalPage() {
               {FULL_ADDRESS}
               <br />
               E-Mail:{" "}
-              <span style={{ fontWeight: 700, color: "#CC624C" }}>
+              <span style={{ fontWeight: 700, color: "#b34832" }}>
                 datenschutz@hey-fede.de
               </span>
             </p>
@@ -801,7 +801,7 @@ export default function LegalPage() {
                     style={{
                       fontSize: "0.72rem",
                       fontWeight: 800,
-                      color: "#CC624C",
+                      color: "#b34832",
                       marginBottom: 4,
                     }}
                   >
@@ -972,7 +972,7 @@ export default function LegalPage() {
             </div>
             <p style={{ marginTop: 16 }}>
               Kontaktiere uns unter{" "}
-              <span style={{ fontWeight: 700, color: "#CC624C" }}>
+              <span style={{ fontWeight: 700, color: "#b34832" }}>
                 datenschutz@hey-fede.de
               </span>
               .
@@ -1051,7 +1051,7 @@ export default function LegalPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color: "#CC624C",
+                  color: "#b34832",
                   fontWeight: 700,
                   textDecoration: "underline",
                   textUnderlineOffset: 3,
@@ -1085,7 +1085,7 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <CookieIcon size={24} color="#CC624C" /> Cookies & Tracking
+            <CookieIcon size={24} color="#b34832" /> Cookies & Tracking
           </motion.h2>
 
           <p
@@ -1205,7 +1205,7 @@ export default function LegalPage() {
               width: "100%",
               marginTop: 24,
               padding: "14px 28px",
-              background: "#CC624C",
+              background: "#b34832",
               color: "#fefefe",
               border: "none",
               borderRadius: 50,
@@ -1238,7 +1238,7 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <FileText size={24} color="#CC624C" /> AGB
+            <FileText size={24} color="#b34832" /> AGB
           </motion.h2>
 
           {/* TL;DR Box */}
@@ -1268,7 +1268,7 @@ export default function LegalPage() {
                 gap: 8,
               }}
             >
-              <Info size={16} color="#CC624C" /> Das Wichtigste in Kürze
+              <Info size={16} color="#b34832" /> Das Wichtigste in Kürze
             </h3>
             <div style={{ display: "grid", gap: 8 }}>
               {[
@@ -1281,7 +1281,7 @@ export default function LegalPage() {
                   key={item}
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
                 >
-                  <CheckCircle2 size={14} color="#CC624C" />
+                  <CheckCircle2 size={14} color="#b34832" />
                   <span>{item}</span>
                 </div>
               ))}

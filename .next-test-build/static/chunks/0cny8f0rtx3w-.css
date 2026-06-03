@@ -1,0 +1,200 @@
+#cc-main {
+  --cc-font-family: var(--font-nunito), "Nunito", sans-serif;
+  --cc-bg: #f5efe8eb;
+  --cc-primary-color: #2d1f19;
+  --cc-secondary-color: #5c3d35;
+  --cc-btn-primary-bg: #cc624c;
+  --cc-btn-primary-color: #fefefe;
+  --cc-btn-primary-hover-bg: #b8553f;
+  --cc-btn-primary-hover-color: #fefefe;
+  --cc-btn-secondary-bg: #eedfccb3;
+  --cc-btn-secondary-color: #2d1f19;
+  --cc-btn-secondary-hover-bg: #e4c0a8;
+  --cc-btn-secondary-hover-color: #2d1f19;
+  --cc-btn-border-radius: 50px;
+  --cc-modal-border-radius: 24px;
+  --cc-toggle-on-bg: #cc624c;
+  --cc-toggle-off-bg: #e4c0a8;
+  --cc-toggle-readonly-bg: #9a7060;
+  --cc-cookie-category-block-bg: #eedfcc80;
+  --cc-separator-border-color: #e4c0a880;
+  --cc-overlay-bg: #2d1f1999;
+  --cc-link-color: #cc624c;
+  --cc-footer-bg: #eedfcc80;
+  --cc-footer-color: #5c3d35;
+  --cc-footer-border-color: #e4c0a866;
+}
+#cc-main .cm {
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid #e4c0a859;
+  animation: 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.8s both cc-slideUp;
+  box-shadow:
+    0 24px 64px #2d1f192e,
+    inset 0 0 0 1px #ffffff4d;
+}
+@keyframes cc-slideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(40px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+#cc-main .cm__title,
+#cc-main .pm__title {
+  font-family: var(--font-calistoga), "Calistoga", serif;
+  color: #2d1f19;
+  letter-spacing: -0.01em;
+}
+#cc-main .cm__title {
+  font-size: 1.3rem;
+}
+#cc-main .cm__desc,
+#cc-main .pm__body {
+  color: #5c3d35;
+  font-size: 0.88rem;
+  line-height: 1.72;
+}
+#cc-main .cm__btn {
+  letter-spacing: 0.03em;
+  padding: 12px 28px;
+  font-size: 0.84rem;
+  font-weight: 800;
+  transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+#cc-main .cm__btn:active {
+  transform: scale(0.96);
+}
+#cc-main .cm__btn--accept-all {
+  box-shadow: 0 4px 16px #cc624c4d;
+}
+#cc-main .cm__btn--accept-all:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px #cc624c66;
+}
+#cc-main .cm__btn--accept-necessary {
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  border: 1px solid #e4c0a880;
+}
+#cc-main .cm__btn--manage {
+  color: #cc624c;
+  text-underline-offset: 3px;
+  padding: 8px 4px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: underline;
+}
+#cc-main .cm__btn--manage:hover {
+  color: #b8553f;
+}
+#cc-main .pm {
+  -webkit-backdrop-filter: blur(20px) saturate(1.4);
+  border: 1px solid #e4c0a84d;
+  box-shadow:
+    0 32px 80px #2d1f1933,
+    inset 0 0 0 1px #ffffff40;
+}
+#cc-main .pm__section-title {
+  font-family: var(--font-calistoga), "Calistoga", serif;
+  color: #2d1f19;
+  font-size: 1rem;
+}
+#cc-main .pm__section-desc {
+  font-size: 0.84rem;
+  line-height: 1.7;
+}
+#cc-main .pm__toggle .toggle__icon {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+#cc-main .pm__toggle input:checked ~ .toggle__icon {
+  transform: translate(100%);
+}
+#cc-main .pm__table {
+  border: 1px solid #e4c0a866;
+  border-radius: 14px;
+  overflow: hidden;
+}
+#cc-main .pm__table td,
+#cc-main .pm__table th {
+  border-color: #e4c0a84d;
+  padding: 10px 14px;
+  font-size: 0.78rem;
+}
+#cc-main .pm__table th {
+  color: #2d1f19;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background: #eedfcc99;
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+#cc-main .pm__table tr:hover td {
+  background: #eedfcc4d;
+}
+#cc-main a.cc-link {
+  color: #cc624c;
+  text-underline-offset: 3px;
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1.5px;
+  transition: color 0.2s;
+}
+#cc-main a.cc-link:hover {
+  color: #b8553f;
+}
+#cc-main .pm__section {
+  border-radius: 16px;
+  transition: background 0.3s;
+}
+#cc-main .pm__section:hover {
+  background: #eedfcc40;
+}
+#cc-main .pm__close-btn {
+  transition:
+    transform 0.2s,
+    background 0.2s;
+}
+#cc-main .pm__close-btn:hover {
+  background: #cc624c1a;
+  transform: rotate(90deg);
+}
+@media (max-width: 640px) {
+  #cc-main .cm {
+    border-radius: 20px;
+    margin: 12px;
+  }
+  #cc-main .cm__btn {
+    padding: 12px 20px;
+    font-size: 0.82rem;
+  }
+  #cc-main .cm__title {
+    font-size: 1.15rem;
+  }
+}
+#cc-main .cm-wrapper {
+  display: none !important;
+}
+.gm-style .gmnoprint a,
+.gm-style .gmnoprint span,
+.gm-style .gm-style-cc,
+.gm-style .gmnoscreen,
+.gm-style div[style*="position: relative"] > div:last-child > div,
+.gm-style a[href*="maps.google.com/maps"],
+.gm-style a[href*="google.com/intl"],
+.gm-style .gm-style-cc,
+.gm-style .gm-bundled-control .gmnoprint,
+.gm-style a[title="Open this area in Google Maps (opens a new window)"],
+button[title="Keyboard\ shortcuts"],
+button[title="Tastenkombinationen"] {
+  display: none !important;
+}
+.gm-style img[alt="Google"] {
+  opacity: 0.3 !important;
+  transform-origin: 0 100% !important;
+  transform: scale(0.7) !important;
+}

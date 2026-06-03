@@ -1,0 +1,444 @@
+
+> hey-fede-app@0.1.0 lint
+> eslint .
+
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/build/chunks/[turbopack]_runtime.js
+   10:5  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  622:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  643:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  664:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  811:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/build/chunks/node_modules_13sb.px._.js
+  5995:1   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6219:36  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6683:9   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6686:13  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6689:40  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/build/chunks/[turbopack]_runtime.js
+    10:5   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   622:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   643:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   664:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   851:5   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1234:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1505:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1591:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1649:13  warning  Unused eslint-disable directive (no problems were reported from 'no-eval')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/build/chunks/node_modules_13sb.px._.js
+  6004:1   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6231:25  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6237:36  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6708:9   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6711:13  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6714:40  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/[turbopack]_runtime.js
+    23:5   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   635:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   656:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   677:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   864:5   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1247:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1518:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1604:1   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1662:13  warning  Unused eslint-disable directive (no problems were reported from 'no-eval')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_09mnb07._.js
+   3270:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+   4254:13  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+   4299:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+   4324:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+   4331:66  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+   4417:49  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+   4920:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   4923:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   5825:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   6445:17  warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+  10063:69  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  10072:84  warning  Unused eslint-disable directive (no problems were reported from 'no-new-func')
+  10074:40  warning  Unused eslint-disable directive (no problems were reported from 'no-new-func')
+  10166:70  warning  Unused eslint-disable directive (no problems were reported from 'no-invalid-this')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_0bj73.-._.js
+  1312:9  error  Definition for rule 'react-hooks/rules-of-hooks' was not found  react-hooks/rules-of-hooks
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_0dg~fvp._.js
+   1564:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+   1572:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+   1917:9   warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+   4098:13  warning  Unused eslint-disable directive (no problems were reported from 'no-self-assign')
+   5472:9   error    Definition for rule 'react-hooks/rules-of-hooks' was not found                       react-hooks/rules-of-hooks
+  15793:13  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  16371:15  warning  Unused eslint-disable directive (no problems were reported from 'prefer-const')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_0iplwdq._.js
+   2502:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+   3486:13  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+   3531:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+   3556:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+   3563:66  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+   3649:49  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+   4152:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   4155:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   5057:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   5677:17  warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+   9295:69  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+   9304:84  warning  Unused eslint-disable directive (no problems were reported from 'no-new-func')
+   9306:40  warning  Unused eslint-disable directive (no problems were reported from 'no-new-func')
+   9398:70  warning  Unused eslint-disable directive (no problems were reported from 'no-invalid-this')
+  10090:13  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  10668:15  warning  Unused eslint-disable directive (no problems were reported from 'prefer-const')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_@firebase_auth_dist_node-esm_0rwcf4k._.js
+  1135:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  1441:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  3045:9   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+  3216:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3220:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3229:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3233:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3238:1   error  Definition for rule '@typescript-eslint/no-require-imports' was not found    @typescript-eslint/no-require-imports
+  3515:5   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_@firebase_auth_dist_node-esm_0~l.1j~._.js
+  1135:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  1441:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  3045:9   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+  3216:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3220:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3229:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3233:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3238:1   error  Definition for rule '@typescript-eslint/no-require-imports' was not found    @typescript-eslint/no-require-imports
+  3515:5   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_@firebase_firestore_dist_common-b12d6a5a_node_mjs_0h_g_dy._.js
+    548:29  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1650:24  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1654:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1724:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   2304:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   2405:1   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+   2459:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   2761:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   3985:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   9814:35  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  12258:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  18409:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  23187:9   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  26782:5   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  27069:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  27071:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  27320:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  28751:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  28756:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  28895:13  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  28913:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  30748:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_@firebase_firestore_dist_index_node_mjs_00nsxz2._.js
+   208:5   error  Definition for rule '@typescript-eslint/no-unused-vars' was not found   @typescript-eslint/no-unused-vars
+   351:5   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found  @typescript-eslint/no-explicit-any
+   943:13  error  Definition for rule '@typescript-eslint/no-explicit-any' was not found  @typescript-eslint/no-explicit-any
+  1748:5   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found  @typescript-eslint/no-explicit-any
+  1768:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found  @typescript-eslint/no-explicit-any
+  1905:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found  @typescript-eslint/no-explicit-any
+  2698:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found  @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_@grpc_grpc-js_0-44_a.._.js
+    225:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+    760:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+    987:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   1034:15  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2639:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2872:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2886:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2921:23  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2932:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2943:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2956:17  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   2992:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   3001:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   3024:54  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   3033:47  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   3233:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   3309:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   3405:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   3591:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   6063:9   warning  Unused eslint-disable directive (no problems were reported from 'prefer-const')
+   8915:29  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   8939:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   8978:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+   9129:13  error    Definition for rule '@typescript-eslint/no-this-alias' was not found             @typescript-eslint/no-this-alias
+  10015:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+  11415:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+  11772:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+  12063:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+  12063:97  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found           @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_@opentelemetry_api_build_esm_03dtv9k._.js
+  1644:9   warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  1646:13  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  1663:21  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  1666:25  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_canvas-confetti_dist_confetti_module_mjs_0s-.hx0._.js
+  196:21  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_framer-motion_dist_es_0g~saq0._.js
+  3043:5  error  Definition for rule 'react-hooks/exhaustive-deps' was not found  react-hooks/exhaustive-deps
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_motion-dom_dist_es_0_ral5b._.js
+  872:35  error  Definition for rule 'redos-detector/no-unsafe-regex' was not found  redos-detector/no-unsafe-regex
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_next_077qk4.._.js
+  5079:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+  5087:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_next_0a187pt._.js
+   551:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+   559:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+   904:9   warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+  3085:13  warning  Unused eslint-disable directive (no problems were reported from 'no-self-assign')
+  4459:9   error    Definition for rule 'react-hooks/rules-of-hooks' was not found                       react-hooks/rules-of-hooks
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_next_10xxa-q._.js
+   2982:5  error  Definition for rule 'react-hooks/rules-of-hooks' was not found         react-hooks/rules-of-hooks
+   6618:9  error  Definition for rule 'react-hooks/rules-of-hooks' was not found         react-hooks/rules-of-hooks
+  13143:1  error  Definition for rule 'import/no-extraneous-dependencies' was not found  import/no-extraneous-dependencies
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_next_dist_0zkd5gf._.js
+  1210:9  error  Definition for rule 'react-hooks/rules-of-hooks' was not found  react-hooks/rules-of-hooks
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_next_dist_esm_0gybpgt._.js
+  12293:1    error    Definition for rule '@typescript-eslint/no-unused-vars' was not found                    @typescript-eslint/no-unused-vars
+  15332:1    error    Definition for rule '@next/internal/no-ambiguous-jsx' was not found                      @next/internal/no-ambiguous-jsx
+  15336:1    error    Definition for rule 'import/no-extraneous-dependencies' was not found                    import/no-extraneous-dependencies
+  15338:1    error    Definition for rule 'import/no-extraneous-dependencies' was not found                    import/no-extraneous-dependencies
+  16493:81   warning  Unused eslint-disable directive (no problems were reported from 'eqeqeq')
+  16496:55   warning  Unused eslint-disable directive (no problems were reported from 'eqeqeq')
+  16631:29   warning  Unused eslint-disable directive (no problems were reported from 'no-fallthrough')
+  16913:179  warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-syntax')
+  17126:1    error    Definition for rule 'import/no-extraneous-dependencies' was not found                    import/no-extraneous-dependencies
+  17128:1    error    Definition for rule 'import/no-extraneous-dependencies' was not found                    import/no-extraneous-dependencies
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/server/chunks/ssr/node_modules_protobufjs_0s.~0de._.js
+   178:266  warning  Unused eslint-disable directive (no problems were reported from 'no-invalid-this')
+  1526:5    error    Definition for rule 'valid-jsdoc' was not found                                                                                    valid-jsdoc
+  1610:4    error    Definition for rule 'valid-jsdoc' was not found                                                                                    valid-jsdoc
+  1700:1    warning  Unused eslint-disable directive (no problems were reported from 'no-invalid-this')
+  1780:1    warning  Unused eslint-disable directive (no problems were reported from 'no-invalid-this')
+  1942:47   warning  Unused eslint-disable directive (no problems were reported from 'no-empty-function')
+  2274:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline')
+  2342:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline')
+  2391:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline')
+  2418:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline')
+  2469:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline', 'block-scoped-var', or 'no-redeclare')
+  2503:13   warning  Unused eslint-disable directive (no problems were reported from 'no-fallthrough')
+  2527:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline', 'block-scoped-var', or 'no-redeclare')
+  2564:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline', 'block-scoped-var', or 'no-redeclare')
+  2577:13   warning  Unused eslint-disable directive (no problems were reported from 'no-fallthrough')
+  2599:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline', 'block-scoped-var', or 'no-redeclare')
+  2875:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline')
+  3276:47   warning  Unused eslint-disable directive (no problems were reported from 'no-empty-function')
+  4406:1    warning  Unused eslint-disable directive (no problems were reported from 'no-warning-comments')
+  4904:5    warning  Unused eslint-disable directive (no problems were reported from 'no-unexpected-multiline', 'block-scoped-var', or 'no-redeclare')
+  5235:5    warning  Unused eslint-disable directive (no problems were reported from 'callback-return')
+  5527:5    warning  Unused eslint-disable directive (no problems were reported from 'callback-return')
+  5683:13   warning  Unused eslint-disable directive (no problems were reported from 'no-fallthrough')
+  5761:17   warning  Unused eslint-disable directive (no problems were reported from 'no-fallthrough')
+  6945:67   warning  Unused eslint-disable directive (no problems were reported from 'radix')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_03kob2f._.js
+  1489:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+  1497:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+  1883:9   warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+  4103:13  warning  Unused eslint-disable directive (no problems were reported from 'no-self-assign')
+  5508:13  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  6086:15  warning  Unused eslint-disable directive (no problems were reported from 'prefer-const')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_07hc2iw._.js
+  2510:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  3494:13  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  3539:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  3564:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  3571:66  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+  3657:49  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+  4143:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  4146:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  5048:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  5668:17  warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+  8936:13  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+  9514:15  warning  Unused eslint-disable directive (no problems were reported from 'prefer-const')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_0rkyw76._.js
+  3279:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  4263:13  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  4308:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  4333:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  4340:66  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+  4426:49  error    Definition for rule '@typescript-eslint/ban-types' was not found                          @typescript-eslint/ban-types
+  4912:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  4915:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  5817:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  6437:17  warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_0~4671z._.js
+  2122:9   warning  Unused eslint-disable directive (no problems were reported)
+  3216:17  warning  Unused eslint-disable directive (no problems were reported)
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_@firebase_auth_dist_esm_0.z.mlo._.js
+  1138:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  1450:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  3057:9   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+  3270:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3274:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3283:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3287:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3367:1   error  Definition for rule '@typescript-eslint/no-require-imports' was not found    @typescript-eslint/no-require-imports
+  3650:5   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+  7047:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  7589:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  7807:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_@firebase_auth_dist_esm_13e08gx._.js
+  1138:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  1450:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  3057:9   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+  3270:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3274:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3283:13  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3287:12  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found        @typescript-eslint/no-unused-vars
+  3367:1   error  Definition for rule '@typescript-eslint/no-require-imports' was not found    @typescript-eslint/no-require-imports
+  3650:5   error  Definition for rule '@typescript-eslint/no-floating-promises' was not found  @typescript-eslint/no-floating-promises
+  7047:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  7589:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+  7807:9   error  Definition for rule '@typescript-eslint/no-explicit-any' was not found       @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_@firebase_firestore_dist_02guerc._.js
+    493:37  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+    890:15  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1329:28  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1332:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1390:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1871:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1944:1   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+   1980:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   2204:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   3070:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   7196:45  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   9137:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  13322:1   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  13713:25  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  13800:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  13805:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  16292:5   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  16487:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  16489:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  16661:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17792:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17796:20  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17895:13  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17908:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  19413:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  19670:5   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found                     @typescript-eslint/no-unused-vars
+  19801:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20231:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20612:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20627:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20760:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  21279:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_@firebase_firestore_dist_047gdek._.js
+    493:37  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+    890:15  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1329:28  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1332:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1390:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1871:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   1944:1   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+   1980:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   2204:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   3070:1   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   7196:45  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+   9137:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  13322:1   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  13713:25  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  13800:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  13805:5   warning  Unused eslint-disable directive (no problems were reported from 'no-restricted-globals')
+  16292:5   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  16487:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  16489:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  16661:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17792:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17796:20  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17895:13  error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  17908:9   error    Definition for rule '@typescript-eslint/no-floating-promises' was not found               @typescript-eslint/no-floating-promises
+  19413:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  19670:5   error    Definition for rule '@typescript-eslint/no-unused-vars' was not found                     @typescript-eslint/no-unused-vars
+  19801:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20231:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20612:5   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20627:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  20760:9   error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+  21279:13  error    Definition for rule '@typescript-eslint/no-explicit-any' was not found                    @typescript-eslint/no-explicit-any
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_canvas-confetti_dist_confetti_module_mjs_0yfsgy6._.js
+  196:21  warning  Unused eslint-disable directive (no problems were reported from 'no-console')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_framer-motion_dist_es_09eu67u._.js
+  3232:5  error  Definition for rule 'react-hooks/exhaustive-deps' was not found  react-hooks/exhaustive-deps
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_motion-dom_dist_es_0scxki-._.js
+  872:35  error  Definition for rule 'redos-detector/no-unsafe-regex' was not found  redos-detector/no-unsafe-regex
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_next_0-y5wuu._.js
+   470:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+   478:17  warning  Unused eslint-disable directive (no problems were reported from 'no-control-regex')
+   864:9   warning  Unused eslint-disable directive (no problems were reported from 'default-case')
+  3084:13  warning  Unused eslint-disable directive (no problems were reported from 'no-self-assign')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_next_dist_115brz8._.js
+  1677:5  error  Definition for rule '@next/internal/typechecked-require' was not found  @next/internal/typechecked-require
+  3729:9  error  Definition for rule 'react-hooks/rules-of-hooks' was not found          react-hooks/rules-of-hooks
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_next_dist_client_0fhqo1d._.js
+    959:9  error  Definition for rule 'react-hooks/rules-of-hooks' was not found          react-hooks/rules-of-hooks
+   1339:5  error  Definition for rule 'react-hooks/rules-of-hooks' was not found          react-hooks/rules-of-hooks
+  14137:9  error  Definition for rule 'react-hooks/rules-of-hooks' was not found          react-hooks/rules-of-hooks
+  14303:9  error  Definition for rule 'react-hooks/rules-of-hooks' was not found          react-hooks/rules-of-hooks
+  15221:1  error  Definition for rule '@next/internal/typechecked-require' was not found  @next/internal/typechecked-require
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/node_modules_next_dist_compiled_0rpq4pf._.js
+  686:35  warning  Unused eslint-disable directive (no problems were reported from 'no-proto')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/dev/static/chunks/turbopack-_0p44nws._.js
+    20:5  error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   597:5  error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+   880:5  error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1263:1  error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1543:5  error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  1955:5  error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  2125:5  error    Definition for rule '@typescript-eslint/no-unused-vars' was not found       @typescript-eslint/no-unused-vars
+  2224:5  warning  Unused eslint-disable directive (no problems were reported from 'no-eval')
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/server/chunks/[turbopack]_runtime.js
+   23:5  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  635:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  656:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  677:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  824:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+
+/Users/umurey/Downloads/Hey Fedee/hey-fede-app/.next_bak/server/chunks/ssr/[turbopack]_runtime.js
+   23:5  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  635:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  656:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  677:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+  824:1  error  Definition for rule '@typescript-eslint/no-unused-vars' was not found  @typescript-eslint/no-unused-vars
+
+✖ 352 problems (249 errors, 103 warnings)
+  0 errors and 103 warnings potentially fixable with the `--fix` option.
+

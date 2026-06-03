@@ -3,7 +3,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 
-export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children: React.ReactNode, frostingColor?: string }) {
+export function ScratchCard({
+  children,
+  frostingColor = "#eedfcc",
+}: {
+  children: React.ReactNode;
+  frostingColor?: string;
+}) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
@@ -14,12 +20,13 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
-    const wasRevealed = sessionStorage.getItem('heyfede_scratch_revealed') === 'true';
+    const wasRevealed =
+      sessionStorage.getItem("heyfede_scratch_revealed") === "true";
     if (wasRevealed) {
       setRevealed(true);
     }
-    setReduced(window.matchMedia('(prefers-reduced-motion: reduce)').matches);
-    
+    setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
     const canvas = canvasRef.current;
     const container = containerRef.current;
     if (!canvas || !container) return;
@@ -30,29 +37,35 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
       if (r.width === 0 || r.height === 0) return;
       canvas.width = r.width * dpr;
       canvas.height = r.height * dpr;
-      canvas.style.width = r.width + 'px';
-      canvas.style.height = r.height + 'px';
-      const ctx = canvas.getContext('2d', { willReadFrequently: true });
+      canvas.style.width = r.width + "px";
+      canvas.style.height = r.height + "px";
+      const ctx = canvas.getContext("2d", { willReadFrequently: true });
       if (!ctx) return;
       ctx.scale(dpr, dpr);
       ctxRef.current = ctx;
 
       ctx.fillStyle = frostingColor;
       ctx.fillRect(0, 0, r.width, r.height);
-      ctx.fillStyle = 'rgba(204,98,76,0.06)';
+      ctx.fillStyle = "rgba(204,98,76,0.06)";
       for (let i = 0; i < 30; i++) {
         ctx.beginPath();
-        ctx.arc(Math.random()*r.width, Math.random()*r.height, 10+Math.random()*30, 0, Math.PI*2);
+        ctx.arc(
+          Math.random() * r.width,
+          Math.random() * r.height,
+          10 + Math.random() * 30,
+          0,
+          Math.PI * 2,
+        );
         ctx.fill();
       }
-      ctx.fillStyle = '#CC624C';
-      ctx.font = 'bold 22px Nunito, sans-serif';
-      ctx.textAlign = 'center';
-      ctx.textBaseline = 'middle';
-      ctx.fillText('Rubbel mich frei! ✨', r.width/2, r.height/2 - 4);
-      ctx.font = '600 12px Nunito, sans-serif';
-      ctx.fillStyle = 'rgba(204,98,76,0.7)';
-      ctx.fillText('Wische über das Ticket', r.width/2, r.height/2 + 22);
+      ctx.fillStyle = "#b34832";
+      ctx.font = "bold 22px Nunito, sans-serif";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText("Rubbel mich frei! ✨", r.width / 2, r.height / 2 - 4);
+      ctx.font = "600 12px Nunito, sans-serif";
+      ctx.fillStyle = "rgba(204,98,76,0.7)";
+      ctx.fillText("Wische über das Ticket", r.width / 2, r.height / 2 + 22);
     };
 
     setup();
@@ -74,19 +87,24 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
     const ctx = ctxRef.current;
     if (!c || !ctx) return;
     const img = ctx.getImageData(0, 0, c.width, c.height).data;
-    let cleared = 0, total = 0;
+    let cleared = 0,
+      total = 0;
     for (let i = 3; i < img.length; i += 32) {
       total++;
       if (img[i] === 0) cleared++;
     }
     if (cleared / total > 0.5 && !isRevealed) {
       setRevealed(true);
-      sessionStorage.setItem('heyfede_scratch_revealed', 'true');
-      import('canvas-confetti').then(({ default: confetti }) => {
+      sessionStorage.setItem("heyfede_scratch_revealed", "true");
+      import("canvas-confetti").then(({ default: confetti }) => {
         confetti({
-          particleCount: 150, spread: 80, origin: { y: 0.55 },
-          colors: ['#CC624C', '#E4C0A8', '#eedfcc', '#fff8f1'],
-          zIndex: 9999, shapes: ['circle', 'square'], scalar: 1.1,
+          particleCount: 150,
+          spread: 80,
+          origin: { y: 0.55 },
+          colors: ["#b34832", "#E4C0A8", "#eedfcc", "#fff8f1"],
+          zIndex: 9999,
+          shapes: ["circle", "square"],
+          scalar: 1.1,
         });
       });
       if (navigator.vibrate) navigator.vibrate([60, 30, 60]);
@@ -101,15 +119,15 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
     }
     lastRef.current = getPos(e);
   };
-  
+
   const onMove = (e: React.PointerEvent) => {
     if (!drawingRef.current || isRevealed) return;
     const p = getPos(e);
     const ctx = ctxRef.current;
     if (!ctx) return;
-    ctx.globalCompositeOperation = 'destination-out';
-    ctx.lineCap = 'round'; 
-    ctx.lineJoin = 'round'; 
+    ctx.globalCompositeOperation = "destination-out";
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
     ctx.lineWidth = 45;
     ctx.beginPath();
     ctx.moveTo(lastRef.current.x, lastRef.current.y);
@@ -118,26 +136,30 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
     lastRef.current = p;
     checkProgress();
   };
-  
-  const onUp = () => { 
-    drawingRef.current = false; 
-    if (!isRevealed) checkProgress(); 
+
+  const onUp = () => {
+    drawingRef.current = false;
+    if (!isRevealed) checkProgress();
   };
 
-  const animateProps = isRevealed && !reduced ? {
-    x: [-8, 8, -5, 5, 0], y: [-2, 2, -1, 1, 0],
-    boxShadow: [
-      '0px 0px 0px rgba(204,98,76,0)',
-      '0px 0px 60px rgba(204,98,76,0.6)',
-      '0px 8px 28px rgba(204,98,76,0.18)',
-    ],
-  } : {};
+  const animateProps =
+    isRevealed && !reduced
+      ? {
+          x: [-8, 8, -5, 5, 0],
+          y: [-2, 2, -1, 1, 0],
+          boxShadow: [
+            "0px 0px 0px rgba(204,98,76,0)",
+            "0px 0px 60px rgba(204,98,76,0.6)",
+            "0px 8px 28px rgba(204,98,76,0.18)",
+          ],
+        }
+      : {};
 
   return (
-    <div ref={containerRef} style={{ position: 'relative', borderRadius: 22 }}>
+    <div ref={containerRef} style={{ position: "relative", borderRadius: 22 }}>
       <motion.div
         animate={animateProps}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
         style={{ borderRadius: 22 }}
       >
         {children}
@@ -150,11 +172,14 @@ export function ScratchCard({ children, frostingColor = '#eedfcc' }: { children:
         onPointerUp={onUp}
         onPointerLeave={onUp}
         style={{
-          position: 'absolute', inset: 0, zIndex: 10,
-          touchAction: 'none', cursor: 'crosshair',
+          position: "absolute",
+          inset: 0,
+          zIndex: 10,
+          touchAction: "none",
+          cursor: "crosshair",
           opacity: isRevealed ? 0 : 1,
-          pointerEvents: isRevealed ? 'none' : 'auto',
-          transition: 'opacity .5s ease',
+          pointerEvents: isRevealed ? "none" : "auto",
+          transition: "opacity .5s ease",
           borderRadius: 22,
         }}
       />

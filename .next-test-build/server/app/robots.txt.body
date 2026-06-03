@@ -1,0 +1,34 @@
+User-Agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /profile/
+Disallow: /checkout/
+Disallow: /order-status/
+Disallow: /order-review/
+Disallow: /pickup-time/
+Disallow: /confirmation/
+Disallow: /password-reset/
+Disallow: /auth/
+
+User-Agent: GPTBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-Agent: ClaudeBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-Agent: PerplexityBot
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+User-Agent: Google-Extended
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+Sitemap: https://hey-fede.de/sitemap.xml

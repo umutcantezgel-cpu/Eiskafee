@@ -60,7 +60,7 @@ export default function VisitPage() {
             style={{ borderRadius: "56% 44% 48% 52%/52% 60% 40% 48%" }}
           />
           <div
-            className="absolute bottom-[10%] right-[6%] w-[160px] h-[160px] bg-[#CC624C] opacity-10"
+            className="absolute bottom-[10%] right-[6%] w-[160px] h-[160px] bg-[#b34832] opacity-10"
             style={{ borderRadius: "42% 58% 55% 45%" }}
           />
 
@@ -162,11 +162,11 @@ export default function VisitPage() {
                           )}
                         </div>
                         <div
-                          className={`w-14 h-14 rounded-xl shrink-0 flex items-center justify-center ${c.accent ? "bg-[#CC624C]" : "bg-[#E4C0A8]"}`}
+                          className={`w-14 h-14 rounded-xl shrink-0 flex items-center justify-center ${c.accent ? "bg-[#b34832]" : "bg-[#E4C0A8]"}`}
                         >
                           <c.Icon
                             size={24}
-                            color={c.accent ? "#fefefe" : "#CC624C"}
+                            color={c.accent ? "#fefefe" : "#b34832"}
                             strokeWidth={1.8}
                           />
                         </div>
@@ -176,12 +176,12 @@ export default function VisitPage() {
 
                   {/* No-fee badge */}
                   <div className="mt-4.5 bg-[rgba(204,98,76,0.07)] border-[1.5px] border-[rgba(204,98,76,0.18)] rounded-xl p-[13px_17px] flex gap-2.5 items-center">
-                    <div className="w-[26px] h-[26px] bg-[#CC624C] rounded-full flex items-center justify-center shrink-0">
+                    <div className="w-[26px] h-[26px] bg-[#b34832] rounded-full flex items-center justify-center shrink-0">
                       <span className="text-white text-[0.75rem] font-black">
                         ✓
                       </span>
                     </div>
-                    <p className="font-nunito text-[0.83rem] text-[#CC624C] font-extrabold">
+                    <p className="font-nunito text-[0.83rem] text-[#b34832] font-extrabold">
                       Keine Liefergebühr bei Lieferando — frisch direkt zu dir!
                     </p>
                   </div>

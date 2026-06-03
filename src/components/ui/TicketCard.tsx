@@ -13,7 +13,7 @@ export function TicketCard({
 }: TicketCardProps) {
   return (
     <div
-      className={`relative border-2 border-dashed border-[#CC624C] rounded-2xl bg-white overflow-visible ${className}`}
+      className={`relative border-2 border-dashed border-[#b34832] rounded-2xl bg-white overflow-visible ${className}`}
       style={{ margin: "0 14px" }}
     >
       {/* Left perforation hole */}

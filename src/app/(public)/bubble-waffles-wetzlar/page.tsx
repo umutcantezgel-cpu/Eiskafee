@@ -145,7 +145,7 @@ export default function BubbleWafflePage() {
       {/* Cross Linking / CTA */}
       <section className="py-24 bg-terracotta relative text-center text-white overflow-hidden">
         <div className="absolute top-0 left-0 w-full -translate-y-1">
-          <WaveDivider fromColor="#ffffff" toColor="#CC624C" variant={1} />
+          <WaveDivider fromColor="#ffffff" toColor="#b34832" variant={1} />
         </div>
         <FadeUp className="max-w-2xl mx-auto px-6 relative z-10 pt-12">
           <h2 className="font-calistoga text-4xl mb-6">

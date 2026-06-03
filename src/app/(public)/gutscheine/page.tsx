@@ -25,7 +25,7 @@ export default function GutscheinePage() {
         <GiganticTypography
           as="h1"
           highlightWords={["Freude."]}
-          highlightColor="#CC624C"
+          highlightColor="#b34832"
           className="text-center justify-center max-w-[1200px] mx-auto"
         >
           Verschenke Freude.

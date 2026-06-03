@@ -9,7 +9,7 @@
   --cc-bg: rgba(245, 239, 232, 0.92);
   --cc-primary-color: #2d1f19;
   --cc-secondary-color: #5c3d35;
-  --cc-btn-primary-bg: #cc624c;
+  --cc-btn-primary-bg: #b34832;
   --cc-btn-primary-color: #fefefe;
   --cc-btn-primary-hover-bg: #b8553f;
   --cc-btn-primary-hover-color: #fefefe;
@@ -19,13 +19,13 @@
   --cc-btn-secondary-hover-color: #2d1f19;
   --cc-btn-border-radius: 50px;
   --cc-modal-border-radius: 24px;
-  --cc-toggle-on-bg: #cc624c;
+  --cc-toggle-on-bg: #b34832;
   --cc-toggle-off-bg: #e4c0a8;
   --cc-toggle-readonly-bg: #9a7060;
   --cc-cookie-category-block-bg: rgba(238, 223, 204, 0.5);
   --cc-separator-border-color: rgba(228, 192, 168, 0.5);
   --cc-overlay-bg: rgba(45, 31, 25, 0.6);
-  --cc-link-color: #cc624c;
+  --cc-link-color: #b34832;
   --cc-footer-bg: rgba(238, 223, 204, 0.5);
   --cc-footer-color: #5c3d35;
   --cc-footer-border-color: rgba(228, 192, 168, 0.4);
@@ -109,7 +109,7 @@
 #cc-main .cm__btn--manage {
   font-weight: 700;
   font-size: 0.78rem;
-  color: #cc624c;
+  color: #b34832;
   text-decoration: underline;
   text-underline-offset: 3px;
   padding: 8px 4px;
@@ -178,7 +178,7 @@
 
 /* ─── Links ─── */
 #cc-main a.cc-link {
-  color: #cc624c;
+  color: #b34832;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
