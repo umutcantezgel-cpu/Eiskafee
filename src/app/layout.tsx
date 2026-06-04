@@ -49,13 +49,19 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col m-0 p-0 overflow-x-hidden font-body bg-bg-creme text-terracotta">
         <AuthProvider>
           <A11yProvider>
-            <SkipToContent />
-            <ToastContainer />
+            <div role="region" aria-label="Navigation überspringen">
+              <SkipToContent />
+            </div>
+            <div role="region" aria-label="Benachrichtigungen">
+              <ToastContainer />
+            </div>
             {children}
-            <CookieBanner />
-            <CookieRevoke />
-            <ScriptManager />
-            <AchievementBanner />
+            <aside aria-label="Cookie Einstellungen und Gamification">
+              <CookieBanner />
+              <CookieRevoke />
+              <ScriptManager />
+              <AchievementBanner />
+            </aside>
             <SyrupCursor />
             <Analytics />
             <SpeedInsights />
