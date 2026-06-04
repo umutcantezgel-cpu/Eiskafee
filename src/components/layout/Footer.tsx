@@ -118,7 +118,7 @@ export function Footer() {
             </div>
 
             <div className="mt-6 p-4 bg-cream rounded-2xl border-2 border-peach text-xs font-bold text-terracotta text-center transform -rotate-2">
-              ✓ Keine Liefergebühr bei Lieferando
+              ✓ Lieferung direkt nach Hause
             </div>
           </div>
 

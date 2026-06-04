@@ -62,7 +62,7 @@ server.tool(
 
 server.tool(
   "check_delivery_availability",
-  "Prüft anhand einer deutschen PLZ, ob Hey Fede! via Lieferando dorthin liefert.",
+  "Prüft anhand einer deutschen PLZ, ob Hey Fede! dorthin liefert.",
   {
     zipCode: z.string().describe("Die deutsche Postleitzahl (5-stellig)"),
   },
@@ -78,7 +78,7 @@ server.tool(
     }
 
     const message = isDeliverable
-      ? `Die PLZ ${zipCode} liegt vermutlich innerhalb unseres Liefergebiets! Bestelle jetzt über Lieferando ohne Liefergebühr: ${BUSINESS.lieferandoUrl}`
+      ? `Die PLZ ${zipCode} liegt vermutlich innerhalb unseres Liefergebiets! Bestelle jetzt über unsere Webseite ohne zusätzliche Liefergebühr.`
       : `Leider liegt die PLZ ${zipCode} wahrscheinlich außerhalb unseres 15km Lieferradius. Du kannst uns aber jederzeit im Café in der Wetzlarer Altstadt besuchen!`;
 
     return {

@@ -59,9 +59,9 @@ export default function ImpressumPage() {
               margin: 0,
             }}
           >
-            Hey Fede! Dessertbar & Café
+            Hey Fede - Dessertbar & Cafè
             <br />
-            Inhaberin: Federica Rossi
+            Inhaberin: {BUSINESS.founder}
             <br />
             {BUSINESS.street}
             <br />
@@ -123,6 +123,19 @@ export default function ImpressumPage() {
             >
               hallo@hey-fede.de
             </a>
+            <br />
+            <span
+              style={{
+                fontSize: "0.75rem",
+                opacity: 0.8,
+                display: "block",
+                marginTop: "4px",
+              }}
+            >
+              Hinweis: Wir prüfen dieses Postfach nur sehr unregelmäßig. Für
+              schnelle Anliegen bitten wir dich, uns anzurufen oder vor Ort
+              vorbeizukommen!
+            </span>
           </p>
         </motion.div>
 
@@ -180,7 +193,7 @@ export default function ImpressumPage() {
                 fontWeight: "bold",
               }}
             >
-              [IN BEARBEITUNG]
+              {BUSINESS.vatId}
             </span>
           </p>
         </motion.div>
@@ -226,7 +239,7 @@ export default function ImpressumPage() {
           >
             Verantwortlich für den Inhalt:
             <br />
-            Federica Rossi
+            {BUSINESS.founder}
             <br />
             {FULL_ADDRESS}
           </p>

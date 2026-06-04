@@ -542,14 +542,16 @@ export function VisitSEO() {
           dich entscheidest – Wetzlar bietet die perfekte Kulisse für jeden
           Freiluft-Genießer.
         </p>
-        <h3 style={h3Style}>Lieferando – Dein Dessert kommt direkt zu dir</h3>
+        <h3 style={h3Style}>
+          Online Bestellen – Dein Dessert kommt direkt zu dir
+        </h3>
         <p style={pStyle}>
           Manchmal möchte man das Haus einfach nicht verlassen. Es regnet, der
           Filmabend ist bereits im vollen Gange, oder man liegt am Sonntag
           gemütlich im Bett und hat plötzlich unglaubliche Lust auf etwas Süßes.
-          Für genau diese Momente haben wir unsere Partnerschaft mit Lieferando
+          Für genau diese Momente haben wir unseren eigenen Lieferservice
           eingerichtet. Du kannst unser gesamtes Sortiment ganz unkompliziert
-          über die App oder die Website zu dir nach Hause bestellen.
+          über unsere Website zu dir nach Hause bestellen.
         </p>
         <p style={pStyle}>
           Das Besondere daran: Wir berechnen keine Liefergebühren! Dein Dessert

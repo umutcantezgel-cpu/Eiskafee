@@ -34,6 +34,7 @@ export default function AdminSettingsPage() {
     emergencyNotice: "",
     openingHours: "Mi-Sa 12-19 Uhr, So 13-19 Uhr",
     deliveryZones: "35576, 35578",
+    isDeliveryActive: true,
   });
   const [isSaving, setIsSaving] = useState(false);
 
@@ -62,6 +63,7 @@ export default function AdminSettingsPage() {
         openingHours:
           (settings as any).openingHours || "Mi-Sa 12-19 Uhr, So 13-19 Uhr",
         deliveryZones: (settings as any).deliveryZones || "35576, 35578",
+        isDeliveryActive: (settings as any).isDeliveryActive ?? true,
       });
     }
     fetchPromoCodes();
@@ -316,6 +318,34 @@ export default function AdminSettingsPage() {
                 }
                 className="w-full px-4 py-3 rounded-xl bg-sand border border-peach focus:outline-none focus:border-terracotta font-bold text-charcoal"
               />
+            </div>
+
+            <div className="flex items-center justify-between p-4 bg-sand rounded-xl border border-peach">
+              <div>
+                <label className="text-sm font-bold text-brown mb-1 block">
+                  Lieferservice aktivieren
+                </label>
+                <p className="text-xs text-charcoal/60 font-bold">
+                  Schaltet die Lieferoption im Bestell-Hub ein oder aus.
+                </p>
+              </div>
+              <button
+                type="button"
+                onClick={() =>
+                  setLocalSettings({
+                    ...localSettings,
+                    isDeliveryActive: !localSettings.isDeliveryActive,
+                  })
+                }
+                className={`relative flex h-8 w-14 items-center rounded-full p-1 transition-colors duration-300 ${localSettings.isDeliveryActive ? "bg-mint" : "bg-red-500"}`}
+              >
+                <motion.div
+                  layout
+                  className="h-6 w-6 rounded-full bg-white shadow-md"
+                  animate={{ x: localSettings.isDeliveryActive ? 24 : 0 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                />
+              </button>
             </div>
 
             <button

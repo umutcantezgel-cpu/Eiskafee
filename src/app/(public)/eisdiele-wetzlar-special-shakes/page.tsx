@@ -110,11 +110,9 @@ export default function EisdielePage() {
             <p>
               Wer Eis liebt, wird unsere 500ml Eisbecher vergöttern. Wir
               schichten cremiges Softeis im perfekten Wechsel mit fruchtigen
-              Soßen, Nuss-Nougat-Creme und knusprigen Toppings. Egal ob du
-              deinen Eisbecher nach dem Spaziergang durch Wetzlar direkt bei uns
-              im Café genießt, oder ihn dir entspannt über Lieferando nach
-              Lahnau oder Aßlar bestellst – die Qualität bleibt kompromisslos
-              hoch.
+              Soßen, Nuss-Nougat-Creme und knusprigen Toppings. Egal ob du im
+              Café genießt oder bequem direkt über unsere Webseite zu dir nach
+              Hause bestellst – die Qualität bleibt kompromisslos hoch.
             </p>
           </div>
         </FadeUp>

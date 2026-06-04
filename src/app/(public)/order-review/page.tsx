@@ -294,7 +294,9 @@ export default function OrderReviewPage() {
           <div className="h-[1px] bg-[#E4C0A8] my-1.5" />
           <div className="flex justify-between items-baseline mt-2">
             <span className="font-nunito font-black text-[13px] text-[#2d1f19]">
-              Vor Ort zahlen
+              {orderType === "delivery"
+                ? "Bar oder Karte bei Lieferung"
+                : "Bar oder Karte vor Ort"}
             </span>
             <span className="font-calistoga text-[24px] text-[#b34832]">
               {totalAfterDiscount.toFixed(2).replace(".", ",")} €

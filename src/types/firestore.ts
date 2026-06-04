@@ -86,6 +86,9 @@ export type StoreSettings = {
   currentWaitTime: number; // in minutes
   bannerText?: string;
   emergencyNotice?: string;
+  isDeliveryActive?: boolean;
+  openingHours?: string;
+  deliveryZones?: string;
 };
 
 export type AnalyticsDaily = {

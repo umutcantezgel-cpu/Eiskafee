@@ -34,7 +34,7 @@ import { Compass } from "lucide-react";
 export const metadata = buildMetadata({
   title: "Besuche uns · Anfahrt, Öffnungszeiten & Kontakt",
   description:
-    "Besuche Hey Fede! in der Langgasse 68, Wetzlar. Alle Infos zu Anfahrt, Parken, Öffnungszeiten und Lieferando-Bestellungen.",
+    "Besuche Hey Fede! in der Langgasse 68, Wetzlar. Alle Infos zu Anfahrt, Parken, Öffnungszeiten und Lieferungen.",
   path: "/visit",
   keywords: [
     "Anfahrt Hey Fede",
@@ -124,12 +124,12 @@ export default function VisitPage() {
                   <div className="flex flex-col gap-3">
                     {[
                       {
-                        id: "lieferando",
-                        title: "Lieferando",
-                        sub: "Keine Liefergebühr · Direkt nach Hause",
+                        id: "lieferung",
+                        title: "Lieferung",
+                        sub: "Direkt nach Hause",
                         Icon: Truck,
                         accent: true,
-                        href: BUSINESS.lieferandoUrl,
+                        href: "/order-hub",
                       },
                       {
                         id: "abholung",
@@ -172,18 +172,6 @@ export default function VisitPage() {
                         </div>
                       </div>
                     ))}
-                  </div>
-
-                  {/* No-fee badge */}
-                  <div className="mt-4.5 bg-[rgba(204,98,76,0.07)] border-[1.5px] border-[rgba(204,98,76,0.18)] rounded-xl p-[13px_17px] flex gap-2.5 items-center">
-                    <div className="w-[26px] h-[26px] bg-[#b34832] rounded-full flex items-center justify-center shrink-0">
-                      <span className="text-white text-[0.75rem] font-black">
-                        ✓
-                      </span>
-                    </div>
-                    <p className="font-nunito text-[0.83rem] text-[#b34832] font-extrabold">
-                      Keine Liefergebühr bei Lieferando — frisch direkt zu dir!
-                    </p>
                   </div>
                 </div>
               </div>

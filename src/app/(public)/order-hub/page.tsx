@@ -8,34 +8,17 @@ import { PrimaryButton } from "@/components/ui/Btn";
 import { useRouter } from "next/navigation";
 import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
+import { useStoreSettings } from "@/hooks/useStoreSettings";
 import { useStore, OrderType } from "@/store/useStore";
 
 export default function OrderHubPage() {
   const router = useRouter();
   const { setOrderType } = useStore();
-  const [isOnline, setIsOnline] = useState<boolean | null>(null);
-  const [loading, setLoading] = useState(true);
+  const { settings, loading } = useStoreSettings();
   const [selected, setSelected] = useState<OrderType>(null);
 
-  useEffect(() => {
-    async function checkStoreStatus() {
-      try {
-        const docRef = doc(db, "store_settings", "main");
-        const snap = await getDoc(docRef);
-        if (snap.exists() && snap.data()?.isOnline !== undefined) {
-          setIsOnline(snap.data().isOnline);
-        } else {
-          setIsOnline(true); // Fallback if document doesn't exist
-        }
-      } catch (err) {
-        console.error("Fehler beim Abrufen der Store-Settings:", err);
-        setIsOnline(true); // Fallback on error
-      } finally {
-        setLoading(false);
-      }
-    }
-    checkStoreStatus();
-  }, []);
+  const isOnline = settings?.isOnline ?? true;
+  const isDeliveryActive = settings?.isDeliveryActive ?? true;
 
   const handleNext = () => {
     if (!selected) return;
@@ -74,7 +57,7 @@ export default function OrderHubPage() {
           </div>
         ) : (
           <div className="space-y-3">
-            {isOnline === false && (
+            {!isOnline && (
               <FadeUp className="bg-[rgba(204,98,76,0.1)] border-2 border-[#b34832] rounded-[18px] p-4 flex gap-3 items-start mb-6">
                 <Icons.AlertCircle
                   size={20}
@@ -99,6 +82,7 @@ export default function OrderHubPage() {
                 desc: "Ofenfrisch im Laden abholen",
                 icon: Icons.Store,
                 disabled: !isOnline,
+                hidden: false,
               },
               {
                 id: "delivery",
@@ -106,6 +90,7 @@ export default function OrderHubPage() {
                 desc: "Bequem nach Hause liefern lassen",
                 icon: Icons.Truck,
                 disabled: !isOnline,
+                hidden: !isDeliveryActive,
               },
               {
                 id: "in-store",
@@ -113,56 +98,61 @@ export default function OrderHubPage() {
                 desc: "Reserviere einen Tisch vor Ort",
                 icon: Icons.Utensils,
                 disabled: false,
-              }, // Maybe in-store is possible even if online is paused? Or disabled too. Let's make it disabled for now if online is off, or actually the prompt says "sind die Choices disabled".
-            ].map((choice, i) => {
-              const disabled = choice.disabled;
-              const isSelected = selected === choice.id;
+                hidden: false,
+              },
+            ]
+              .filter((c) => !c.hidden)
+              .map((choice, i) => {
+                const disabled = choice.disabled;
+                const isSelected = selected === choice.id;
 
-              return (
-                <FadeUp key={choice.id} delay={0.1 + i * 0.1}>
-                  <button
-                    disabled={disabled}
-                    onClick={() => setSelected(choice.id as OrderType)}
-                    className={`w-full text-left rounded-[20px] p-[16px_18px] flex items-center gap-4 transition-all border-2 ${
-                      disabled
-                        ? "opacity-40 bg-white border-transparent cursor-not-allowed"
-                        : isSelected
-                          ? "bg-[#b34832] text-white border-[#b34832] shadow-[0_8px_20px_rgba(204,98,76,0.25)]"
-                          : "bg-white text-[#2d1f19] border-transparent shadow-sm"
-                    }`}
-                  >
-                    <div
-                      className={`w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? "bg-[rgba(255,255,255,0.2)]" : "bg-[#f5efe8]"}`}
+                return (
+                  <FadeUp key={choice.id} delay={0.1 + i * 0.1}>
+                    <button
+                      disabled={disabled}
+                      onClick={() => setSelected(choice.id as OrderType)}
+                      className={`w-full text-left rounded-[20px] p-[16px_18px] flex items-center gap-4 transition-all border-2 ${
+                        disabled
+                          ? "opacity-40 bg-white border-transparent cursor-not-allowed"
+                          : isSelected
+                            ? "bg-[#b34832] text-white border-[#b34832] shadow-[0_8px_20px_rgba(204,98,76,0.25)]"
+                            : "bg-white text-[#2d1f19] border-transparent shadow-sm"
+                      }`}
                     >
-                      <choice.icon
-                        size={22}
-                        className={isSelected ? "text-white" : "text-[#b34832]"}
-                        strokeWidth={1.8}
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <div className="font-calistoga text-[17px] mb-0.5">
-                        {choice.title}
-                      </div>
                       <div
-                        className={`font-nunito text-[12px] font-bold ${isSelected ? "text-[rgba(255,255,255,0.8)]" : "text-[#7a5a52]"}`}
+                        className={`w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? "bg-[rgba(255,255,255,0.2)]" : "bg-[#f5efe8]"}`}
                       >
-                        {choice.desc}
-                      </div>
-                    </div>
-                    {isSelected && (
-                      <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
-                        <Icons.Check
-                          size={14}
-                          className="text-[#b34832]"
-                          strokeWidth={3}
+                        <choice.icon
+                          size={22}
+                          className={
+                            isSelected ? "text-white" : "text-[#b34832]"
+                          }
+                          strokeWidth={1.8}
                         />
                       </div>
-                    )}
-                  </button>
-                </FadeUp>
-              );
-            })}
+                      <div className="flex-1">
+                        <div className="font-calistoga text-[17px] mb-0.5">
+                          {choice.title}
+                        </div>
+                        <div
+                          className={`font-nunito text-[12px] font-bold ${isSelected ? "text-[rgba(255,255,255,0.8)]" : "text-[#7a5a52]"}`}
+                        >
+                          {choice.desc}
+                        </div>
+                      </div>
+                      {isSelected && (
+                        <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
+                          <Icons.Check
+                            size={14}
+                            className="text-[#b34832]"
+                            strokeWidth={3}
+                          />
+                        </div>
+                      )}
+                    </button>
+                  </FadeUp>
+                );
+              })}
           </div>
         )}
       </div>

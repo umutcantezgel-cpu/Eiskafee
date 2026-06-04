@@ -13,14 +13,14 @@ export const revalidate = 60;
 export const metadata = buildMetadata({
   title: "Dessert Lieferservice Wetzlar & Lahn-Dill-Kreis | Hey Fede!",
   description:
-    "Süßigkeiten, Bubble Waffles und Eis direkt nach Hause bestellen. 0€ Liefergebühr via Lieferando. Wir liefern in Wetzlar, Lahnau, Solms und Umgebung.",
+    "Süßigkeiten, Bubble Waffles und Eis direkt nach Hause bestellen. Wir liefern in Wetzlar, Lahnau, Solms und Umgebung.",
   path: "/lieferservice-desserts-lahn-dill",
   keywords: [
     "Dessert bestellen Wetzlar",
     "Süßigkeiten Lieferservice",
     "Waffeln bestellen Lahn-Dill-Kreis",
     "Eis Lieferservice Wetzlar",
-    "Lieferando Dessert",
+    "Dessert Lieferservice",
     "Essen bestellen Gießen Umgebung",
     "Hey Fede Lieferservice",
     "Nachtisch bestellen",
@@ -71,9 +71,8 @@ function getDeliverySchema() {
       offers: {
         "@type": "Offer",
         priceCurrency: "EUR",
-        price: "0.00",
-        name: "Kostenlose Lieferung über Lieferando",
-        deliveryChargeSpecification: {
+        name: "Lieferung direkt nach Hause",
+        priceSpecification: {
           "@type": "DeliveryChargeSpecification",
           price: "0.00",
           priceCurrency: "EUR",
@@ -90,9 +89,6 @@ export default function LieferservicePage() {
     <div className="bg-bg-creme">
       <section className="relative pt-[120px] pb-24 bg-terracotta text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <div className="inline-block px-4 py-1.5 bg-white text-terracotta font-nunito font-bold rounded-full text-sm mb-6 shadow-sm">
-            0€ Liefergebühr via Lieferando
-          </div>
           <h1 className="font-calistoga text-5xl md:text-7xl mb-6 leading-[1.1]">
             Der süßeste Lieferservice
             <br />
@@ -105,11 +101,11 @@ export default function LieferservicePage() {
             Lahn-Dill-Kreis.
           </p>
           <PrimaryButton
-            href={BUSINESS.lieferandoUrl}
+            href="/order-hub"
             sectionBg="#ffffff"
             className="text-terracotta shadow-lg"
           >
-            Jetzt über Lieferando bestellen →
+            Jetzt online bestellen →
           </PrimaryButton>
         </div>
         <div className="absolute bottom-0 left-0 w-full translate-y-1">
@@ -167,8 +163,8 @@ export default function LieferservicePage() {
             Stell dir vor: Es ist ein verregneter Sonntagabend in Hessen. Der
             letzte Tatort läuft im Fernsehen, und plötzlich packt dich dieser
             unbändige Heißhunger auf etwas Süßes. Früher musstest du dich in
-            Gießen oder Wetzlar noch ins Auto setzen – heute öffnest du einfach
-            Lieferando.
+            Gießen oder Wetzlar noch ins Auto setzen – heute bestellst du
+            einfach online bei uns.
           </p>
           <p>
             Unser Dessert-Lieferservice schließt eine gewaltige Lücke in der
@@ -176,13 +172,6 @@ export default function LieferservicePage() {
             zu Hause, als Nervennahrung für Studierende der THM, die bis tief in
             die Nacht an Hausarbeiten tippen, oder als Highlight auf eurer
             WG-Party: Hey Fede! liefert das volle Dessertbar-Erlebnis.
-          </p>
-          <h3>Bestelle ohne Liefergebühr</h3>
-          <p>
-            Wir möchten, dass du den puren Genuss ohne versteckte Kosten
-            erlebst. Deshalb bieten wir bei Bestellungen über unseren
-            Lieferando-Partner-Shop <strong>0€ Liefergebühr</strong> an (ab
-            einem geringen Mindestbestellwert, abhängig von deiner PLZ).
           </p>
         </FadeUp>
       </section>
