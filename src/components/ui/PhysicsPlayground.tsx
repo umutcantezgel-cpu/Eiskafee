@@ -164,7 +164,18 @@ export default function PhysicsPlayground({ size = 360 }: { size?: number }) {
   }, []);
 
   if (!mounted || reduced || !matterAvailable) {
-    return <div className="w-full h-full bg-[#E4C0A8] rounded-[24px]"></div>;
+    return (
+      <div
+        className="w-full h-full bg-[#E4C0A8] relative overflow-hidden"
+        style={{ borderRadius: "54% 46% 56% 44%/50% 54% 46% 50%" }}
+      >
+        <img
+          src="https://images.unsplash.com/photo-1596450514735-111a2fe02935?auto=format&fit=crop&q=80&w=800"
+          alt="Bubble Waffle"
+          className="w-full h-full object-cover opacity-90 mix-blend-multiply"
+        />
+      </div>
+    );
   }
 
   const handleDoubleClick = (e: React.MouseEvent<HTMLDivElement>) => {

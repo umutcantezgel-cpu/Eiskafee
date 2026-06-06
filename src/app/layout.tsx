@@ -38,6 +38,11 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: import("next").Viewport = {
+  themeColor: "#f5efe8",
+  colorScheme: "light",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
