@@ -27,7 +27,7 @@ function MenuContent() {
   };
 
   return (
-    <div className="bg-transparent min-h-[200vh] relative z-10 font-nunito">
+    <div className="bg-transparent min-h-[200vh] relative z-10 font-body">
       {/* Massive Scroll Hero */}
       <section className="min-h-[100vh] flex flex-col justify-center items-center px-6 relative pt-20">
         <div className="absolute right-0 top-40 w-48 h-48 opacity-70 pointer-events-none transform rotate-[20deg] z-0">
@@ -42,13 +42,13 @@ function MenuContent() {
         <GiganticTypography
           as="h1"
           highlightWords={["Süßes!"]}
-          highlightColor="#b34832"
+          highlightColor="#CC624C"
           className="text-center justify-center max-w-[1200px] mx-auto z-10"
         >
           Gönn dir was Süßes!
         </GiganticTypography>
 
-        <p className="font-nunito text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80 z-10">
+        <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80 z-10">
           Alles frisch, hausgemacht und mit viel Liebe zubereitet. Wähl deinen
           Favoriten.
         </p>

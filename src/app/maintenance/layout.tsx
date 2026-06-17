@@ -9,7 +9,11 @@ export default function MaintenanceLayout({
   return (
     <>
       {/* We intentionally omit the Header, Footer, CartDrawer etc. */}
-      <main id="main-content" className="flex-grow relative z-10 min-h-screen">
+      <main
+        id="main-content"
+        role="main"
+        className="flex-grow relative z-10 min-h-screen"
+      >
         {children}
         <SpeedInsights />
       </main>

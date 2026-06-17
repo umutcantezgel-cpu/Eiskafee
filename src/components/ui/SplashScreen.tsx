@@ -71,7 +71,7 @@ export function SplashScreen() {
           >
             <h1
               style={{
-                fontFamily: "var(--font-calistoga), serif",
+                fontFamily: "var(--font-heading), serif",
                 fontSize: "clamp(2.5rem, 8vw, 3.5rem)",
                 color: "#fffdd0",
                 margin: 0,
@@ -81,7 +81,7 @@ export function SplashScreen() {
             </h1>
             <p
               style={{
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 color: "#fffdd0",
                 fontWeight: 700,
                 letterSpacing: "0.15em",
@@ -105,7 +105,7 @@ export function SplashScreen() {
             }}
           >
             <motion.path
-              fill="#b34832"
+              fill="#CC624C"
               initial={{ d: paths.initial }}
               animate={{
                 d: [

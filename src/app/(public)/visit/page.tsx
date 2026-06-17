@@ -51,25 +51,25 @@ export const metadata = buildMetadata({
 export default function VisitPage() {
   return (
     <>
-      <div className="min-h-screen bg-[#f5efe8] animate-fade-in">
+      <div className="min-h-screen bg-cream animate-fade-in">
         {/* Hero */}
-        <section className="bg-[#eedfcc] pt-[110px] px-6 pb-[88px] relative overflow-hidden">
-          <div className="absolute inset-0 opacity-[0.22] dot-bg" />
+        <section className="bg-beige pt-[110px] px-6 pb-[88px] relative overflow-hidden">
+          <div className="absolute inset-0 hf-dot-bg pointer-events-none" />
           <div
-            className="absolute top-[14%] left-[4%] w-[220px] h-[220px] bg-[#E4C0A8] opacity-50 animate-blob-float"
+            className="absolute top-[14%] left-[4%] w-[220px] h-[220px] bg-peach opacity-50 animate-blob-float"
             style={{ borderRadius: "56% 44% 48% 52%/52% 60% 40% 48%" }}
           />
           <div
-            className="absolute bottom-[10%] right-[6%] w-[160px] h-[160px] bg-[#b34832] opacity-10"
+            className="absolute bottom-[10%] right-[6%] w-[160px] h-[160px] bg-terracotta opacity-10"
             style={{ borderRadius: "42% 58% 55% 45%" }}
           />
 
           <div className="relative z-10 max-w-[700px] mx-auto text-center">
-            <h1 className="font-calistoga text-[clamp(2.4rem,6vw,4.2rem)] text-[#2d1f19] mb-3.5 leading-[1.05]">
+            <h1 className="font-heading text-[clamp(2.4rem,6vw,4.2rem)] text-brown mb-3.5 leading-[1.05]">
               Komm uns besuchen!
             </h1>
-            <p className="font-nunito text-[1.04rem] text-[#5c3d35]">
-              Wir freuen uns auf dich — vor Ort oder bequem per Lieferung.
+            <p className="font-body text-[1.04rem] text-brown-mid">
+              Wir freuen uns auf dich - vor Ort oder bequem per Lieferung.
             </p>
           </div>
 
@@ -78,10 +78,11 @@ export default function VisitPage() {
               viewBox="0 0 1440 44"
               className="block w-full h-[44px]"
               preserveAspectRatio="none"
+              aria-hidden="true"
             >
               <path
                 d="M0,22 C480,48 960,0 1440,26 L1440,44 L0,44 Z"
-                fill="#f5efe8"
+                fill="#F5EFE8"
               />
             </svg>
           </div>
@@ -93,7 +94,7 @@ export default function VisitPage() {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-13 items-start">
               {/* ── Left: Map + Contact ── */}
               <div>
-                <h2 className="font-calistoga text-[1.7rem] text-[#2d1f19] mb-5.5">
+                <h2 className="font-heading text-[1.7rem] text-brown mb-5.5">
                   So findest du uns
                 </h2>
 
@@ -110,7 +111,7 @@ export default function VisitPage() {
               <div className="flex flex-col gap-8">
                 {/* Opening hours */}
                 <div>
-                  <h2 className="font-calistoga text-[1.7rem] text-[#2d1f19] mb-4.5">
+                  <h2 className="font-heading text-[1.7rem] text-brown mb-4.5">
                     Öffnungszeiten
                   </h2>
                   <ClientHoursTable />
@@ -118,7 +119,7 @@ export default function VisitPage() {
 
                 {/* Order / pickup CTAs */}
                 <div>
-                  <h2 className="font-calistoga text-[1.7rem] text-[#2d1f19] mb-4">
+                  <h2 className="font-heading text-[1.7rem] text-brown mb-4">
                     Bestellen & Abholen
                   </h2>
                   <div className="flex flex-col gap-3">
@@ -142,13 +143,13 @@ export default function VisitPage() {
                     ].map((c) => (
                       <div
                         key={c.id}
-                        className="group bg-[#eedfcc] rounded-[18px] p-5 flex justify-between items-center gap-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_22px_rgba(204,98,76,0.13)]"
+                        className="group bg-beige rounded-[18px] p-5 flex justify-between items-center gap-3.5 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_6px_22px_rgba(204,98,76,0.13)]"
                       >
                         <div>
-                          <div className="font-calistoga text-[1.1rem] text-[#2d1f19] mb-1">
+                          <div className="font-heading text-[1.1rem] text-brown mb-1">
                             {c.title}
                           </div>
-                          <div className="font-nunito text-[0.8rem] text-[#9a7060] mb-3">
+                          <div className="font-body text-[0.8rem] text-bark-soft mb-3">
                             {c.sub}
                           </div>
                           {c.accent ? (
@@ -162,11 +163,11 @@ export default function VisitPage() {
                           )}
                         </div>
                         <div
-                          className={`w-14 h-14 rounded-xl shrink-0 flex items-center justify-center ${c.accent ? "bg-[#b34832]" : "bg-[#E4C0A8]"}`}
+                          className={`w-14 h-14 rounded-xl shrink-0 flex items-center justify-center ${c.accent ? "bg-terracotta" : "bg-peach"}`}
                         >
                           <c.Icon
                             size={24}
-                            color={c.accent ? "#fefefe" : "#b34832"}
+                            color={c.accent ? "#fefefe" : "#CC624C"}
                             strokeWidth={1.8}
                           />
                         </div>
@@ -183,10 +184,10 @@ export default function VisitPage() {
         <section className="py-20 bg-white border-t border-peach/30">
           <FadeUp className="max-w-[1200px] mx-auto px-6">
             <div className="text-center mb-12">
-              <h2 className="font-calistoga text-[2rem] text-charcoal mb-4">
+              <h2 className="font-heading text-[2rem] text-charcoal mb-4">
                 Unsere Nachbarschaft
               </h2>
-              <p className="font-nunito text-charcoal/80 max-w-[600px] mx-auto">
+              <p className="font-body text-charcoal/80 max-w-[600px] mx-auto">
                 Hey Fede! liegt im Herzen der historischen Altstadt Wetzlars.
                 Verbinde deinen Besuch bei uns mit einem Spaziergang zu diesen
                 wunderschönen Sehenswürdigkeiten in unmittelbarer Nähe.
@@ -204,7 +205,7 @@ export default function VisitPage() {
                 >
                   <div className="flex items-start justify-between gap-3 mb-3">
                     <h3
-                      className="font-calistoga text-xl text-terracotta group-hover:text-[#b05240] transition-colors flex-1 min-w-0 break-words"
+                      className="font-heading text-xl text-terracotta group-hover:text-terracotta-deep transition-colors flex-1 min-w-0 break-words"
                       style={{
                         wordBreak: "break-word",
                         WebkitHyphens: "auto",
@@ -214,12 +215,12 @@ export default function VisitPage() {
                     >
                       {landmark.name}
                     </h3>
-                    <div className="flex shrink-0 items-center gap-1.5 bg-[#eedfcc] text-brown text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap">
+                    <div className="flex shrink-0 items-center gap-1.5 bg-beige text-brown text-xs font-bold px-2.5 py-1 rounded-full whitespace-nowrap">
                       <Compass size={14} />
                       {landmark.distanceStr}
                     </div>
                   </div>
-                  <p className="font-nunito text-sm text-charcoal/80 leading-relaxed">
+                  <p className="font-body text-sm text-charcoal/80 leading-relaxed">
                     {landmark.description}
                   </p>
                   <div className="mt-4 text-xs font-bold text-terracotta flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">

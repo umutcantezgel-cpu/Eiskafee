@@ -2,7 +2,7 @@ import React from "react";
 import { BUSINESS } from "@/lib/seo/business-data";
 
 const h2Style: React.CSSProperties = {
-  fontFamily: "var(--font-calistoga), serif",
+  fontFamily: "var(--font-heading), serif",
   fontSize: "1.4rem",
   color: "#2d1f19",
   marginTop: 40,
@@ -15,7 +15,7 @@ const pStyle: React.CSSProperties = {
 };
 
 const h3Style: React.CSSProperties = {
-  fontFamily: "var(--font-calistoga), serif",
+  fontFamily: "var(--font-heading), serif",
   fontSize: "1.15rem",
   color: "#3a2820",
   marginTop: 24,
@@ -25,13 +25,13 @@ const h3Style: React.CSSProperties = {
 export function MenuSEO() {
   return (
     <section
-      aria-label="Hey Fede! Menü — Ausführliche Beschreibungen"
+      aria-label="Hey Fede! Menü - Ausführliche Beschreibungen"
       role="region"
       style={{
         background: "#faf6f1",
         borderTop: "1px solid rgba(228,192,168,0.3)",
         padding: "60px 20px",
-        fontFamily: "var(--font-nunito), sans-serif",
+        fontFamily: "var(--font-body), sans-serif",
         color: "#5c3d35",
         lineHeight: 1.8,
         maxWidth: 800,
@@ -74,7 +74,7 @@ export function MenuSEO() {
         bei uns einkehrst, dich mit alten Freunden zum ausführlichen Brunch
         triffst, nach einem Einkaufsbummel in der Wetzlarer Fußgängerzone neue
         Energie tanken möchtest oder dir einfach selbst nach Feierabend eine
-        wohlverdiente Auszeit gönnst – wir sind hier, um dir diesen Moment so
+        wohlverdiente Auszeit gönnst - wir sind hier, um dir diesen Moment so
         süß, so ehrlich und so unvergesslich wie möglich zu machen. Unsere Türen
         stehen für jeden offen, der die Liebe zum Detail genauso schätzt wie
         wir.
@@ -121,7 +121,7 @@ export function MenuSEO() {
         die langsam auf der Zunge schmilzt und ein komplexes, langanhaltendes
         und tiefes Aroma am Gaumen hinterlässt. Ob weiße Schokolade, die nach
         echter Kakaobutter schmeckt, cremige Vollmilchschokolade oder
-        tiefgründige, leicht bittere Zartbitterschokolade – wir verwenden
+        tiefgründige, leicht bittere Zartbitterschokolade - wir verwenden
         ausschließlich Kuvertüren von Meister-Chocolatiers, die ihr Handwerk von
         der Röstung der Bohne bis zum Conchieren meisterhaft verstehen. Unsere
         Vanille ist keine chemische Essenz aus dem Labor und kein billiges
@@ -169,7 +169,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Bubble Waffles — Die süße Sensation aus Hongkong und ihre Reise an die
+        Bubble Waffles - Die süße Sensation aus Hongkong und ihre Reise an die
         Lahn
       </h2>
       <p style={pStyle}>
@@ -213,8 +213,8 @@ export function MenuSEO() {
         Wenn du bei uns an der Theke eine Bubble Waffle bestellst, gießen wir
         den tagesfrischen Teig direkt vor deinen Augen in unsere extrem heißen,
         speziell für uns importierten Waffeleisen. Für genau die richtige, exakt
-        gestoppte Zeit – nicht eine einzige Sekunde zu lang, damit sie nicht
-        verbrennt, und nicht zu kurz, damit sie nicht matschig bleibt – wird die
+        gestoppte Zeit - nicht eine einzige Sekunde zu lang, damit sie nicht
+        verbrennt, und nicht zu kurz, damit sie nicht matschig bleibt - wird die
         Waffel gebacken, bevor sie heiß und dampfend herausgenommen und mit
         einem geübten Handgriff sofort zu einem eleganten Kegel geformt wird. In
         diesen ersten, entscheidenden Minuten nach dem Backen entsteht die
@@ -236,7 +236,7 @@ export function MenuSEO() {
         gebackenen Waffel lässt das Eis in der Mitte ganz leicht anschmelzen,
         sodass sich die unterschiedlichen Aromen und Temperaturen auf
         unvergleichlich harmonische Weise verbinden. Jeder einzelne Bissen
-        bietet dir ein völlig neues Texturerlebnis – knusprig, cremig, warm und
+        bietet dir ein völlig neues Texturerlebnis - knusprig, cremig, warm und
         eiskalt zugleich.
       </p>
       <ul style={{ ...pStyle, paddingLeft: 24 }}>
@@ -267,7 +267,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Crêpes — Französische Handwerkskunst trifft auf Wetzlarer Charme
+        Crêpes - Französische Handwerkskunst trifft auf Wetzlarer Charme
       </h2>
       <p style={pStyle}>
         Es gibt in der gesamten kulinarischen Welt wohl kaum ein Dessert oder
@@ -295,8 +295,8 @@ export function MenuSEO() {
         Ausstreichen auf der kochend heißen, gusseisernen Crêpière nicht reißen
         oder klumpen lässt. Es ist ein fast schon meditativer, hypnotisierender
         Prozess, unseren Köchen dabei zuzusehen, wie der flüssige Teig mit einem
-        extrem schnellen, fließenden Schwung des Teigverteilers – dem
-        traditionellen Holzwerkzeug namens Rozell – hauchdünn und
+        extrem schnellen, fließenden Schwung des Teigverteilers - dem
+        traditionellen Holzwerkzeug namens Rozell - hauchdünn und
         millimetergenau gleichmäßig zu einem perfekten, großen Kreis geformt
         wird. Innerhalb von Bruchteilen von Sekunden verwandelt sich die weiße
         Flüssigkeit, mikroskopisch kleine Bläschen steigen an die Oberfläche,
@@ -326,8 +326,8 @@ export function MenuSEO() {
         etwas Deftiges, Herzhaftes hast, bereiten wir mit der gleichen Hingabe
         herzhafte Varianten zu. Gefüllt mit herzhaft geschmolzenem, würzigem
         Käse, verfeinert mit frischen, aromatischen Kräutern und belegt mit
-        ausgewählten, regionalen Zutaten. Diese herzhaften Crêpes – in ihrer
-        Heimat oft als Galettes bezeichnet – sind das absolut perfekte, leichte
+        ausgewählten, regionalen Zutaten. Diese herzhaften Crêpes - in ihrer
+        Heimat oft als Galettes bezeichnet - sind das absolut perfekte, leichte
         Mittagessen oder der ideale Snack bei einem ausgedehnten Spaziergang
         durch die verwinkelten Gassen der Wetzlarer Altstadt. Jeder einzelne
         Crêpe wird direkt vor deinen Augen auf Bestellung frisch zubereitet,
@@ -344,7 +344,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Pancakes — Der amerikanische Traum, neu interpretiert an der Lahn
+        Pancakes - Der amerikanische Traum, neu interpretiert an der Lahn
       </h2>
       <p style={pStyle}>
         Pancakes sind längst kein rein amerikanisches Frühstück mehr, sie sind
@@ -388,7 +388,7 @@ export function MenuSEO() {
         bevor der warme, bernsteinfarbene Ahornsirup langsam von der Spitze an
         den Seiten hinunterläuft und vom porösen, aufnahmefähigen Teig
         aufgesaugt wird. Und um es klar zu betonen: Wir verwenden ausschließlich
-        echten, naturreinen, hochwertigen kanadischen Ahornsirup – keinen mit
+        echten, naturreinen, hochwertigen kanadischen Ahornsirup - keinen mit
         künstlichen Aromen versetzten Zuckersirup aus der Plastikflasche.
       </p>
       <p style={pStyle}>
@@ -418,7 +418,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Eisbecher 500ml — Löffel für Löffel pures Glück in Übergröße
+        Eisbecher 500ml - Löffel für Löffel pures Glück in Übergröße
       </h2>
       <p style={pStyle}>
         Ein Eisbecher ist für unser Team bei Hey Fede! weit mehr als nur ein
@@ -431,7 +431,7 @@ export function MenuSEO() {
         Manufaktur servieren wir diese aufwendigen Kreationen ganz bewusst in
         sehr großzügigen, schweren 500-Milliliter-Gläsern, denn wir sind der
         festen Überzeugung: Wenn es um handwerklich wirklich gutes, cremiges Eis
-        geht, ist weniger definitiv nicht mehr – in diesem Fall ist mehr einfach
+        geht, ist weniger definitiv nicht mehr - in diesem Fall ist mehr einfach
         mehr.
       </p>
       <p style={pStyle}>
@@ -441,7 +441,7 @@ export function MenuSEO() {
         ohne künstliche Luftaufschlagung hergestellt werden. Unser Pistazieneis,
         zum Beispiel, leuchtet nicht in einem künstlichen Neongrün, sondern hat
         die blassgrüne Farbe echter Nüsse und schmeckt unfassbar intensiv nach
-        gerösteten, hochwertigen sizilianischen Pistazien – tief nussig und
+        gerösteten, hochwertigen sizilianischen Pistazien - tief nussig und
         abgerundet mit einer kaum wahrnehmbaren, aber wichtigen Prise Salz.
         Unser Fruchtsorbet hingegen enthält einen so extrem hohen Fruchtanteil,
         dass es in Konsistenz und Geschmack fast an gefrorenen, puren
@@ -499,7 +499,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Special Shakes — Wenn Desserts völlig flüssig werden und Grenzen
+        Special Shakes - Wenn Desserts völlig flüssig werden und Grenzen
         verschwinden
       </h2>
       <p style={pStyle}>
@@ -511,7 +511,7 @@ export function MenuSEO() {
         Unsere Special Shakes sind keine einfachen, durstlöschenden Getränke
         mehr; sie sind vollwertige, gigantische, flüssige Desserts, die optisch
         wie auch geschmacklich alle bisherigen Regeln der Café-Kultur brechen.
-        Wir nennen sie in unserem Team gerne "Freakshakes" mit Stil – opulente,
+        Wir nennen sie in unserem Team gerne "Freakshakes" mit Stil - opulente,
         verrückte Kreationen, die das Auge begeistern, die Kamera-Linsen auf
         sich ziehen und den Gaumen gnadenlos verwöhnen.
       </p>
@@ -569,7 +569,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Fede Boxen — Gemeinsam schmeckt es am besten, ein süßes Fest im Karton
+        Fede Boxen - Gemeinsam schmeckt es am besten, ein süßes Fest im Karton
       </h2>
       <p style={pStyle}>
         In einer modernen Welt, die sich gefühlt jeden Tag ein bisschen
@@ -642,7 +642,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Kuchen & Cookies — Handgemacht, ofenwarm und mit kompromissloser Liebe
+        Kuchen & Cookies - Handgemacht, ofenwarm und mit kompromissloser Liebe
         gebacken
       </h2>
       <p style={pStyle}>
@@ -692,7 +692,7 @@ export function MenuSEO() {
         überreifer Frucht sind, dass sie fast auf der Zunge zergehen, verfeinert
         mit sanft gerösteten, herben Walnüssen, die für den nötigen Biss sorgen.
         Unser mächtiger New York Cheesecake ist mittlerweile geradezu legendär
-        in der gesamten Wetzlarer Altstadt – gebacken auf einem extradicken,
+        in der gesamten Wetzlarer Altstadt - gebacken auf einem extradicken,
         knusprig-buttrigen Keksboden, mit einer unglaublich cremigen, dichten,
         fast schon schweren Käsemasse, die wir großzügig mit echter Vanille
         verfeinern. Im warmen Sommer backen wir luftig-leichte Biskuitrollen,
@@ -703,7 +703,7 @@ export function MenuSEO() {
         gibt es absolut keine industriellen Fertigmischungen, keine künstlichen
         Konservierungsstoffe, sondern einfach nur ehrliches, durchdachtes und
         handgemachtes Backwerk, das genau so tröstlich schmeckt, wie damals bei
-        Oma am Sonntagnachmittag – nur versehen mit einem modernen, raffinierten
+        Oma am Sonntagnachmittag - nur versehen mit einem modernen, raffinierten
         Twist.
       </p>
       <p style={pStyle}>
@@ -716,7 +716,7 @@ export function MenuSEO() {
       </p>
 
       <h2 style={h2Style}>
-        Getränke — Von der schonend gerösteten Kaffeebohne bis zum japanischen
+        Getränke - Von der schonend gerösteten Kaffeebohne bis zum japanischen
         Matcha
       </h2>
       <p style={pStyle}>
@@ -741,7 +741,7 @@ export function MenuSEO() {
         Vom starken, fast schon sirupartigen, ristretto-artigen Espresso, der
         dich sofort wachrüttelt, über den perfekt ausbalancierten Flat White mit
         seinem glänzenden, samtigen Mikroschaum bis hin zum ausladenden,
-        cremigen Latte Macchiato im großen, hohen Glas – jeder einzelne Kaffee
+        cremigen Latte Macchiato im großen, hohen Glas - jeder einzelne Kaffee
         wird bei uns mit einer digitalen Waage und einer Stoppuhr exakt bezogen,
         um Überextraktion und Bitterkeit zu vermeiden. Wir bieten zudem eine
         erfreulich große Vielzahl an hochwertigen pflanzlichen Milchalternativen

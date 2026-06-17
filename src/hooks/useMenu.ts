@@ -35,6 +35,9 @@ function getLocalFallback(category?: string): MenuItem[] {
       icon: "🍽️",
       color: "peach",
       available: true,
+      image: item.image,
+      imageAlt: item.imageAlt,
+      imageTitle: item.imageTitle,
     } as MenuItem;
   };
 
@@ -72,13 +75,27 @@ export function useMenu(category?: string) {
     const unsub = onSnapshot(
       q,
       (snap) => {
+        const localItems = getLocalFallback(category);
+
         if (snap.docs.length === 0) {
-          // Fallback to local data if Firebase is empty
-          setItems(getLocalFallback(category));
+          setItems(localItems);
         } else {
-          setItems(
-            snap.docs.map((d) => ({ id: d.id, ...d.data() }) as MenuItem),
-          );
+          // Use HF_DATA as the single source of truth for name/price/desc,
+          // but preserve the 'available' status from Firebase if it exists.
+          const fbItems = new Map(snap.docs.map((d) => [d.id, d.data()]));
+
+          const merged = localItems.map((local) => {
+            const fb = fbItems.get(local.id);
+            return {
+              ...local,
+              available:
+                fb !== undefined && fb.available !== undefined
+                  ? fb.available
+                  : local.available,
+            };
+          });
+
+          setItems(merged);
         }
         setLoading(false);
         setError(null);

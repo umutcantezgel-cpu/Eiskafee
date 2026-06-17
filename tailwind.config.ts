@@ -21,6 +21,7 @@ const config: Config = {
         cream: {
           DEFAULT: "var(--color-bg-creme)", // Fallback for existing components
           pure: "#fefefe",
+          warm: "#fef8f5",
         },
         beige: {
           DEFAULT: "var(--color-beige)",
@@ -41,6 +42,7 @@ const config: Config = {
         },
         // System Feedback — NEVER as brand accent
         mint: "#25D366", // WhatsApp, Success
+        success: "#3a9d52", // Order success, achievements
         ruby: "#ff4d4d", // Errors, Destructive
         // Loyalty Coin
         coin: {
@@ -50,6 +52,9 @@ const config: Config = {
         // ── Backward compat (migrate to canonical tokens) ──
         terra: { DEFAULT: "#CC624C", dark: "#B8553F" },
         bark: { DEFAULT: "#2d1f19", mid: "#5c3d35", soft: "#9a7060" },
+        // ── Semantic aliases used across components ──
+        charcoal: "var(--color-brown)",
+        sand: "var(--color-beige)",
       },
 
       /* ═══ §6 · TYPOGRAPHY ══════════════════════════════════ */

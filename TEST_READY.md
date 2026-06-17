@@ -1,44 +1,31 @@
 # E2E Test Suite Ready
 
-The E2E test suite has been successfully generated following the requirement-driven, opaque-box methodology defined in `TEST_INFRA.md`.
+## Test Runner
+
+- Command: `npx playwright test`
+- Expected: all tests pass with exit code 0
 
 ## Coverage Summary
 
-| Tier      | Description                      | Test Count (per browser) | Status    |
-| --------- | -------------------------------- | ------------------------ | --------- |
-| Tier 1    | Static Navigation & Core Content | 29                       | READY     |
-| Tier 2    | Interactive / Component States   | 20                       | READY     |
-| Tier 3    | Forms / State                    | 11                       | READY     |
-| Tier 4    | Scenarios / Flows                | 5                        | READY     |
-| **Total** |                                  | **65**                   | **READY** |
-
-> _Note: Running across 3 browsers (Chromium, Firefox, WebKit) yields a total of 195 test executions._
+| Tier                   | Count (Tests) | Count (Runs) | Description                                             |
+| ---------------------- | ------------: | -----------: | ------------------------------------------------------- |
+| Sanity                 |             1 |            3 | Basic accessibility & homepage reachability             |
+| 1. Feature Coverage    |            46 |          138 | Core user-facing routes, SEO, & accessibility           |
+| 2. Boundary & Corner   |            10 |           30 | Input validation, API authorization, rate limiting      |
+| 3. Cross-Feature       |             5 |           15 | Multi-step navigation and business details consistency  |
+| 4. Real-World Workload |             7 |           21 | Full user flow simulation & AI agent semantic discovery |
+| **Total**              |        **69** |      **207** | Across Chromium, Firefox, and WebKit                    |
 
 ## Feature Checklist
 
-- [x] **Tier 1: Core Navigation & Static Content**
-  - Verified Home, Menu, About, Visit, FAQ, Kontakt, Gutscheine, Reservierung, Legal pages.
-  - Verified global layout (Header, Footer, Navigation).
-  - Verified custom 404 page.
-  - Verified A11y and Responsive designs.
-- [x] **Tier 2: Interactive Master-Features (Client Components)**
-  - Verified `SyrupCursor` tracking and cleanup.
-  - Verified `LiquidTransition` routing without tree crashes.
-  - Verified `PhysicsPlayground` (Matter.js) Canvas mounting, interaction safety, and memory cleanup.
-  - Verified `ScratchCard` visually mounts and supports gestures.
-  - Verified global Hydration & Memory Safety across rapid navigation.
-- [x] **Tier 3: Form Submissions & State Management**
-  - Verified Zustand Cart management (add, drawer toggle, checkout).
-  - Verified Firebase Auth forms and validations.
-  - Verified Support Forms (Kontakt, Reservierung).
-  - Verified Order Flow fragments (Hub, Checkout, Pickup-Time, Review, Confirmation, Status).
-- [x] **Tier 4: Real-World Application Scenarios**
-  - Verified Scenario 1: The Hungry Guest (End-to-End Order Flow).
-  - Verified Scenario 2: The Playful Visitor (Hydration & Memory Safety Check).
-  - Verified Scenario 3: Global Accessibility & Setup (A11y & Auth).
-  - Verified Customer Happy-Path and Admin Realtime Kanban Flows.
-
-## Next Steps
-
-- Execute the suite in the CI pipeline against the production build.
-- Review Playwright HTML report artifacts for visual regressions.
+| Feature / Area                                   | Sanity | Tier 1 | Tier 2 | Tier 3 | Tier 4 |
+| ------------------------------------------------ | :----: | :----: | :----: | :----: | :----: |
+| Homepage (`/`)                                   |   ✓    |   6    |   ✓    |   ✓    |   ✓    |
+| Menu Page (`/menu`)                              |   -    |   6    |   ✓    |   ✓    |   ✓    |
+| About Page (`/about`)                            |   -    |   6    |   ✓    |   ✓    |   -    |
+| Contact Page (`/kontakt`)                        |   -    |   6    |   ✓    |   ✓    |   -    |
+| Reservation Page (`/reservierung`)               |   -    |   6    |   ✓    |   ✓    |   -    |
+| FAQ Page (`/support#faq`)                        |   -    |   6    |   ✓    |   ✓    |   -    |
+| Sub-pages (5 routes)                             |   -    |   10   |   -    |   -    |   -    |
+| AI Agent API Endpoints                           |   -    |   -    |   ✓    |   ✓    |   ✓    |
+| LLM Resource Files (`llms.txt`, `llms-full.txt`) |   -    |   -    |   -    |   -    |   ✓    |

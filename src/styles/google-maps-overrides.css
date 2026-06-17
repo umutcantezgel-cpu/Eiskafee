@@ -31,7 +31,7 @@ button[title="Tastenkombinationen"] {
   display: none !important;
 }
 
-/* Google logo — minimal size */
+/* Google logo - minimal size */
 .gm-style img[alt="Google"] {
   opacity: 0.3 !important;
   transform: scale(0.7) !important;

@@ -1,10 +1,10 @@
-'use client';
+"use client";
 
-import React, { useEffect, useRef } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { twMerge } from 'tailwind-merge';
-import { X } from 'lucide-react';
-import FocusTrap from 'focus-trap-react';
+import React, { useEffect, useRef } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { twMerge } from "tailwind-merge";
+import { X } from "lucide-react";
+import FocusTrap from "focus-trap-react";
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,7 +14,13 @@ interface ModalProps {
   className?: string;
 }
 
-export function Modal({ isOpen, onClose, title, children, className }: ModalProps) {
+export function Modal({
+  isOpen,
+  onClose,
+  title,
+  children,
+  className,
+}: ModalProps) {
   const prefersReducedMotion = useReducedMotion();
   const overlayRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -24,17 +30,17 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
     if (!isOpen) return;
 
     const originalStyle = window.getComputedStyle(document.body).overflow;
-    document.body.style.overflow = 'hidden';
+    document.body.style.overflow = "hidden";
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
+      if (e.key === "Escape") onClose();
     };
 
-    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
 
     return () => {
       document.body.style.overflow = originalStyle;
-      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener("keydown", handleKeyDown);
     };
   }, [isOpen, onClose]);
 
@@ -62,19 +68,38 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
               aria-modal="true"
               aria-labelledby={title ? "modal-title" : undefined}
               tabIndex={-1}
-              initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
-              animate={prefersReducedMotion ? { opacity: 1 } : { opacity: 1, scale: 1, y: 0 }}
-              exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, scale: 0.95, y: 20 }}
+              initial={
+                prefersReducedMotion
+                  ? { opacity: 0 }
+                  : { opacity: 0, scale: 0.95, y: 20 }
+              }
+              animate={
+                prefersReducedMotion
+                  ? { opacity: 1 }
+                  : { opacity: 1, scale: 1, y: 0 }
+              }
+              exit={
+                prefersReducedMotion
+                  ? { opacity: 0 }
+                  : { opacity: 0, scale: 0.95, y: 20 }
+              }
               transition={{ type: "spring", stiffness: 300, damping: 25 }}
               className={twMerge(
                 "relative w-full max-w-lg bg-cream rounded-3xl shadow-clay flex flex-col max-h-[90vh]",
-                className
+                className,
               )}
             >
               {/* Header */}
               <div className="flex items-center justify-between p-6 pb-4 border-b border-sand">
-                {title && <h2 id="modal-title" className="font-calistoga text-2xl text-charcoal">{title}</h2>}
-                <button 
+                {title && (
+                  <h2
+                    id="modal-title"
+                    className="font-heading text-2xl text-charcoal"
+                  >
+                    {title}
+                  </h2>
+                )}
+                <button
                   onClick={onClose}
                   className="ml-auto w-10 h-10 flex items-center justify-center rounded-full bg-sand/50 text-charcoal hover:bg-terracotta hover:text-cream transition-colors focus-visible:ring-4 focus-visible:ring-terracotta/30"
                   aria-label="Schließen"
@@ -82,7 +107,7 @@ export function Modal({ isOpen, onClose, title, children, className }: ModalProp
                   <X className="w-5 h-5" />
                 </button>
               </div>
-              
+
               {/* Body */}
               <div className="p-6 overflow-y-auto overscroll-contain">
                 {children}

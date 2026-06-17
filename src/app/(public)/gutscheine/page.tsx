@@ -19,19 +19,19 @@ export default function GutscheinePage() {
   const ticketRotate = useTransform(scrollYProgress, [0, 1], [-10, 10]);
 
   return (
-    <div className="min-h-[300vh] bg-transparent text-charcoal font-nunito relative">
+    <div className="min-h-[300vh] bg-transparent text-charcoal font-body relative">
       {/* SECTION 1: Massive Intro */}
       <section className="min-h-[100vh] flex flex-col justify-center items-center px-6 relative pt-20">
         <GiganticTypography
           as="h1"
           highlightWords={["Freude."]}
-          highlightColor="#b34832"
+          highlightColor="#CC624C"
           className="text-center justify-center max-w-[1200px] mx-auto"
         >
           Verschenke Freude.
         </GiganticTypography>
 
-        <p className="font-nunito text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
+        <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
           Scroll weiter, um deinen Liebsten einen süßen Moment zu kreieren.
         </p>
 
@@ -60,10 +60,10 @@ export default function GutscheinePage() {
                 Hey Fede! Gutschein
               </div>
               <div className="flex items-baseline gap-4 mt-2">
-                <span className="font-calistoga text-8xl md:text-[120px] leading-none">
+                <span className="font-heading text-8xl md:text-[120px] leading-none">
                   {amount === "Frei" ? "??" : amount}
                 </span>
-                <span className="font-calistoga text-5xl opacity-90">€</span>
+                <span className="font-heading text-5xl opacity-90">€</span>
               </div>
               <div className="text-sm mt-8 opacity-90 font-bold uppercase tracking-wider">
                 Einlösbar im Laden · 36 Monate gültig
@@ -85,7 +85,7 @@ export default function GutscheinePage() {
                   <button
                     key={v}
                     onClick={() => setAmount(v)}
-                    className={`rounded-2xl py-4 text-center font-calistoga text-2xl transition-all shadow-sm ${
+                    className={`rounded-2xl py-4 text-center font-heading text-2xl transition-all shadow-sm ${
                       amount === v
                         ? "bg-terracotta text-white scale-105 shadow-clay"
                         : "bg-white/50 text-charcoal hover:bg-white/80"
@@ -111,7 +111,7 @@ export default function GutscheinePage() {
                     <Icons.Mail size={24} className="text-terracotta" />
                   </div>
                   <div className="flex-1 text-left">
-                    <div className="font-calistoga text-xl text-charcoal">
+                    <div className="font-heading text-xl text-charcoal">
                       Per E-Mail
                     </div>
                     <div className="text-sm font-bold text-brown/70 mt-1">
@@ -131,7 +131,7 @@ export default function GutscheinePage() {
                     <Icons.Gift size={24} className="text-terracotta" />
                   </div>
                   <div className="flex-1 text-left">
-                    <div className="font-calistoga text-xl text-charcoal">
+                    <div className="font-heading text-xl text-charcoal">
                       Edler Umschlag
                     </div>
                     <div className="text-sm font-bold text-brown/70 mt-1">
@@ -148,10 +148,15 @@ export default function GutscheinePage() {
             {/* Config */}
             <div className="space-y-4">
               <div>
-                <label className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">
+                <label
+                  htmlFor="gift-message"
+                  className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
+                >
                   Nachricht (optional)
                 </label>
                 <textarea
+                  id="gift-message"
+                  name="gift-message"
                   value={message}
                   onChange={(e) => setMessage(e.target.value)}
                   placeholder="Alles Liebe..."
@@ -160,10 +165,15 @@ export default function GutscheinePage() {
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">
+                  <label
+                    htmlFor="gift-recipient-name"
+                    className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
+                  >
                     An (Name)
                   </label>
                   <input
+                    id="gift-recipient-name"
+                    name="gift-recipient-name"
                     type="text"
                     value={recipientName}
                     onChange={(e) => setRecipientName(e.target.value)}
@@ -171,10 +181,15 @@ export default function GutscheinePage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">
+                  <label
+                    htmlFor="gift-recipient-email"
+                    className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
+                  >
                     E-Mail
                   </label>
                   <input
+                    id="gift-recipient-email"
+                    name="gift-recipient-email"
                     type="email"
                     value={recipientEmail}
                     onChange={(e) => setRecipientEmail(e.target.value)}

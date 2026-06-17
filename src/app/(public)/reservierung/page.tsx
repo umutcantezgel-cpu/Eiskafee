@@ -4,6 +4,9 @@ import React, { useState } from "react";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import * as Icons from "lucide-react";
+import { SchemaScripts } from "@/components/seo/SchemaScripts";
+import { buildBreadcrumbSchema } from "@/lib/seo/schema/pages";
+import { SITE, BUSINESS } from "@/lib/seo/business-data";
 
 export default function ReservierungPage() {
   const [guests, setGuests] = useState(4);
@@ -43,14 +46,14 @@ export default function ReservierungPage() {
   const requests = ["Geburtstag", "Date", "Familientreffen", "Sonstiges"];
 
   return (
-    <div className="min-h-screen bg-[#f5efe8]">
-      <div className="bg-[#E4C0A8] pt-[110px] px-6 pb-12 text-center relative overflow-hidden">
-        <div className="absolute inset-0 opacity-[0.3] dot-bg" />
+    <div className="min-h-screen bg-cream">
+      <div className="bg-peach pt-[110px] px-6 pb-12 text-center relative overflow-hidden">
+        <div className="absolute inset-0 hf-dot-bg pointer-events-none" />
         <div className="relative z-10">
-          <h1 className="font-calistoga text-[2.2rem] text-[#2d1f19] mb-3">
+          <h1 className="font-heading text-[2.2rem] text-brown mb-3">
             Tisch reservieren
           </h1>
-          <p className="font-nunito text-[#5c3d35] max-w-sm mx-auto text-sm">
+          <p className="font-body text-brown-mid max-w-sm mx-auto text-sm">
             Plane deinen Besuch
           </p>
         </div>
@@ -60,34 +63,34 @@ export default function ReservierungPage() {
         <FadeUp className="space-y-8">
           {/* Guests */}
           <div>
-            <div className="text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-3">
+            <h2 className="text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
               Anzahl Gäste
-            </div>
+            </h2>
             <div className="bg-white rounded-2xl p-4 flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <Icons.Users
                   size={22}
-                  className="text-[#b34832]"
+                  className="text-terracotta"
                   strokeWidth={1.8}
                 />
-                <span className="font-calistoga text-xl text-[#2d1f19]">
+                <span className="font-heading text-xl text-brown">
                   {guests} Personen
                 </span>
               </div>
-              <div className="flex items-center bg-[#eedfcc] rounded-full p-1 gap-1">
+              <div className="flex items-center bg-beige rounded-full p-1 gap-1">
                 <button
                   onClick={() => setGuests(Math.max(1, guests - 1))}
                   className="w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-sm"
                 >
                   <Icons.Minus
                     size={16}
-                    className="text-[#2d1f19]"
+                    className="text-brown"
                     strokeWidth={2.5}
                   />
                 </button>
                 <button
                   onClick={() => setGuests(guests + 1)}
-                  className="w-8 h-8 rounded-full bg-[#b34832] flex items-center justify-center shadow-sm"
+                  className="w-8 h-8 rounded-full bg-terracotta flex items-center justify-center shadow-sm"
                 >
                   <Icons.Plus
                     size={16}
@@ -101,9 +104,9 @@ export default function ReservierungPage() {
 
           {/* Date */}
           <div>
-            <div className="text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-3">
+            <h2 className="text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
               Datum
-            </div>
+            </h2>
             <div className="flex gap-2 overflow-x-auto pb-2 -mx-6 px-6 no-scrollbar">
               {dates.map((d) => (
                 <button
@@ -111,8 +114,8 @@ export default function ReservierungPage() {
                   onClick={() => setSelectedDate(d.d)}
                   className={`shrink-0 w-[70px] py-3 rounded-2xl text-center transition-colors border-2 ${
                     selectedDate === d.d
-                      ? "bg-[#b34832] text-white border-[#b34832]"
-                      : "bg-white text-[#2d1f19] border-[#eedfcc]"
+                      ? "bg-terracotta text-white border-terracotta"
+                      : "bg-white text-brown border-beige"
                   }`}
                 >
                   <div
@@ -120,7 +123,7 @@ export default function ReservierungPage() {
                   >
                     {d.w}
                   </div>
-                  <div className="font-calistoga text-xl mt-1 leading-none">
+                  <div className="font-heading text-xl mt-1 leading-none">
                     {d.d}
                   </div>
                   <div
@@ -135,9 +138,9 @@ export default function ReservierungPage() {
 
           {/* Time */}
           <div>
-            <div className="text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-3">
+            <h2 className="text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
               Uhrzeit · Fr 25.01
-            </div>
+            </h2>
             <div className="grid grid-cols-4 gap-2">
               {times.map((t, i) => {
                 const disabled = i === 2;
@@ -149,10 +152,10 @@ export default function ReservierungPage() {
                     onClick={() => setSelectedTime(t)}
                     className={`rounded-xl py-2.5 text-center text-sm font-extrabold transition-colors border-2 ${
                       disabled
-                        ? "bg-white text-[#2d1f19] opacity-40 line-through border-[#eedfcc]"
+                        ? "bg-white text-brown opacity-40 line-through border-beige"
                         : isSelected
-                          ? "bg-[#b34832] text-white border-[#b34832]"
-                          : "bg-white text-[#2d1f19] border-transparent"
+                          ? "bg-terracotta text-white border-terracotta"
+                          : "bg-white text-brown border-transparent"
                     }`}
                   >
                     {t}
@@ -164,9 +167,9 @@ export default function ReservierungPage() {
 
           {/* Area */}
           <div>
-            <div className="text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-3">
+            <h2 className="text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
               Bereich (optional)
-            </div>
+            </h2>
             <div className="grid grid-cols-2 gap-2">
               {areas.map((a) => {
                 const isSelected = selectedArea === a.t;
@@ -176,16 +179,12 @@ export default function ReservierungPage() {
                     key={a.t}
                     onClick={() => setSelectedArea(a.t)}
                     className={`rounded-2xl p-3 flex items-center gap-2.5 transition-colors ${
-                      isSelected
-                        ? "bg-[#2d1f19] text-white"
-                        : "bg-white text-[#2d1f19]"
+                      isSelected ? "bg-brown text-white" : "bg-white text-brown"
                     }`}
                   >
                     <Icon
                       size={16}
-                      className={
-                        isSelected ? "text-[#E4C0A8]" : "text-[#b34832]"
-                      }
+                      className={isSelected ? "text-peach" : "text-terracotta"}
                       strokeWidth={1.8}
                     />
                     <span className="text-xs font-extrabold">{a.t}</span>
@@ -197,9 +196,9 @@ export default function ReservierungPage() {
 
           {/* Special Requests */}
           <div>
-            <div className="text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-3">
+            <h2 className="text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
               Besonderer Anlass?
-            </div>
+            </h2>
             <div className="flex flex-wrap gap-2">
               {requests.map((r) => {
                 const isSelected = specialRequest === r;
@@ -209,8 +208,8 @@ export default function ReservierungPage() {
                     onClick={() => setSpecialRequest(r)}
                     className={`px-4 py-2 rounded-full text-xs font-extrabold transition-colors border-2 ${
                       isSelected
-                        ? "bg-[#b34832] text-white border-[#b34832]"
-                        : "bg-white text-[#2d1f19] border-[#eedfcc]"
+                        ? "bg-terracotta text-white border-terracotta"
+                        : "bg-white text-brown border-beige"
                     }`}
                   >
                     {r}
@@ -222,13 +221,13 @@ export default function ReservierungPage() {
         </FadeUp>
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 bg-[#fef8f5] border-t border-[#eedfcc] p-4 z-50">
+      <div className="fixed bottom-0 left-0 right-0 bg-cream-warm border-t border-beige p-4 z-50">
         <div className="max-w-[500px] mx-auto">
-          <div className="bg-[#eedfcc] rounded-xl p-3 mb-3 flex justify-between items-center text-xs">
-            <span className="font-bold text-[#5c3d35]">
+          <div className="bg-beige rounded-xl p-3 mb-3 flex justify-between items-center text-xs">
+            <span className="font-bold text-brown-mid">
               Fr 25.01 · {selectedTime} · {guests} Personen
             </span>
-            <span className="font-black text-[#b34832] text-[11px]">
+            <span className="font-black text-terracotta text-[11px]">
               BEARBEITEN
             </span>
           </div>
@@ -237,6 +236,40 @@ export default function ReservierungPage() {
           </PrimaryButton>
         </div>
       </div>
+
+      <SchemaScripts
+        schema={[
+          buildBreadcrumbSchema([
+            { name: "Reservierung", path: "/reservierung" },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "ReserveAction",
+            target: {
+              "@type": "EntryPoint",
+              urlTemplate: `${SITE.url}/reservierung`,
+              inLanguage: "de",
+              actionPlatform: [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/IOSPlatform",
+                "http://schema.org/AndroidPlatform",
+              ],
+            },
+            object: {
+              "@type": "FoodEstablishment",
+              "@id": `${SITE.url}/#restaurant`,
+              name: BUSINESS.name,
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: BUSINESS.street,
+                addressLocality: BUSINESS.city,
+                postalCode: BUSINESS.postalCode,
+                addressCountry: BUSINESS.country,
+              },
+            },
+          },
+        ]}
+      />
     </div>
   );
 }

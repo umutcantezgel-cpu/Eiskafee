@@ -21,7 +21,7 @@ export default defineConfig({
   /* Shared settings for all the projects below. */
   use: {
     /* Base URL set to local production server */
-    baseURL: "http://localhost:39485",
+    baseURL: "http://127.0.0.1:39486",
 
     /* Collect trace when retrying the failed test */
     trace: "on-first-retry",
@@ -50,8 +50,8 @@ export default defineConfig({
 
   /* Run local dev server before starting tests, using production build */
   webServer: {
-    command: "npm run build && PORT=39485 npm run start",
-    url: "http://localhost:39485",
+    command: "PORT=39486 npx next start -H 127.0.0.1",
+    url: "http://127.0.0.1:39486",
     reuseExistingServer: !process.env.CI,
     timeout: 120 * 1000,
   },

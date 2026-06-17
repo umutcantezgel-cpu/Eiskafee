@@ -7,7 +7,7 @@ export const store_settings = {
   busy_mode: false,
   pickup_time_estimate_mins: 15,
   phone: BUSINESS.phone,
-  emergencyNotice: null
+  emergencyNotice: null,
 };
 
 export const HF_DATA: AppData = {
@@ -22,148 +22,728 @@ export const HF_DATA: AppData = {
     reviewCount: 84,
   },
   categories: [
-    { id: "boxen", label: "Fede Boxen", icon: "Package" },
-    { id: "bubble", label: "Bubble Waffle", icon: "Layers" },
+    { id: "eis-getraenke", label: "Eis - Getränke", icon: "Coffee" },
+    { id: "kalte-getraenke", label: "Kalte Getränke", icon: "Droplets" },
+    { id: "warme-getraenke", label: "Warme Getränke", icon: "Coffee" },
+    { id: "eisbecher", label: "Eisbecher", icon: "IceCream" },
+    { id: "kinderbecher", label: "Kinderbecher", icon: "Cake" },
+    { id: "special-shake", label: "Special Shake", icon: "Coffee" },
+    { id: "fede-boxen", label: "Fede Boxen", icon: "Package" },
     { id: "crepes", label: "Crêpes", icon: "Cake" },
-    { id: "kuchen", label: "Kuchen", icon: "Cake" },
-    { id: "cookies", label: "Cookies", icon: "Cookie" },
-    { id: "eisbecher", label: "Eisbecher 500ml", icon: "Coffee" },
-    { id: "shakes", label: "Special Shakes", icon: "Coffee" },
-    { id: "iced", label: "Iced Drinks", icon: "Droplets" },
-    { id: "stullen", label: "Stullen", icon: "Sandwich" },
-    { id: "getraenke", label: "Getränke", icon: "Droplets" },
+    { id: "crepes-herzhaft", label: "Crêpes Herzhaft", icon: "Sandwich" },
+    { id: "bubble-waffle", label: "Bubble Waffle", icon: "Layers" },
   ],
   menu: {
-    boxen: {
-      desc: "Legendäre Sharing-Boxen — perfekt für Gruppen & Familien.",
+    "eis-getraenke": {
+      desc: "",
       items: [
         {
-          id: "fede-friends",
-          name: "Fede & Friends",
-          price: "25,00 €",
-          tag: "Sharing Box",
-          ticket: true,
-          desc: "12 Pancakes · Bubble Waffle · 3 Fruchtsorten · 3 Mini-Croissants · 3 Mini-Schokobrötchen · 3 Mini-Windbeutel · 3 Schokosbällchen · 4 Soßen",
+          id: "eg1",
+          name: "Eisschokolade (0,3l)",
+          price: "6,00€",
+          desc: "2 Eiskugeln, Kakao, Sahne, Schokosoße",
+          image: "/assets/menu/eisschokolade.png",
+          imageAlt:
+            "Eine köstliche Eisschokolade serviert mit zwei cremigen Kugeln Eis, reichlich Kakaopulver, Sahnehaube und Schokosoße verziert",
+          imageTitle: "Eisschokolade (0,3l)",
         },
         {
-          id: "pancake-picknick",
-          name: "Pancake Picknick",
-          price: "7,00 €",
-          tag: "",
-          ticket: true,
-          desc: "12 Pancakes · 2 Fruchtsorten · Soße nach Wahl",
+          id: "eg2",
+          name: "Eisschokolade (0,5l)",
+          price: "7,00€",
+          desc: "3 Eiskugeln, Kakao, Sahne, Schokosoße",
+          image: "/assets/menu/eisschokolade.png",
+          imageAlt:
+            "Große Eisschokolade mit drei Kugeln feinstem Vanilleeis, kakaohaltigem Getränk, cremiger Sahne und Schokoladensoße verziert",
+          imageTitle: "Eisschokolade (0,5l)",
         },
         {
-          id: "mix-box",
-          name: "Mix Box",
-          price: "15,00 €",
-          tag: "Beliebt",
-          ticket: true,
-          desc: "12 Pancakes · Bubble Waffle · 3 Fruchtsorten · 2 Soßen",
+          id: "eg3",
+          name: "Eiskaffee (0,3l)",
+          price: "6,00€",
+          desc: "2 Eiskugeln, Kaffee, Sahne, Kaffee-Soße",
+          image: "/assets/menu/eiskaffee.png",
+          imageAlt:
+            "Erfrischender Eiskaffee mit zwei Kugeln Vanilleeis, kräftigem Kaffee, einer Sahnehaube und feiner Kaffeesoße dekoriert",
+          imageTitle: "Eiskaffee (0,3l)",
         },
         {
-          id: "nutella-box",
-          name: "Nutella Box",
-          price: "15,00 €",
-          tag: "",
-          ticket: true,
-          desc: "10 Pancakes · Bubble Waffle · 1 Fruchtsorte · 2× Nutella · 3 Mini-Croissants · 3 Schokosbällchen",
+          id: "eg4",
+          name: "Eiskaffee (0,5l)",
+          price: "7,00€",
+          desc: "3 Eiskugeln, Kaffee, Sahne, Kaffee-Soße",
+          image: "/assets/menu/eiskaffee.png",
+          imageAlt:
+            "Großer Eiskaffee mit drei Kugeln Vanilleeis, starkem Kaffee, frischer Schlagsahne und süßer Kaffeesoße garniert",
+          imageTitle: "Eiskaffee (0,5l)",
+        },
+        {
+          id: "eg5",
+          name: "Milchshake (0,3l)",
+          price: "5,50€",
+          desc: "",
+          image: "/assets/menu/milchshake.png",
+          imageAlt:
+            "Cremiger, frisch gemixter Milchshake mit zwei Kugeln Eis nach Wahl, perfekt zubereitet für süßen Genuss",
+          imageTitle: "Milchshake (0,3l)",
+        },
+        {
+          id: "eg6",
+          name: "Milchshake (0,5l)",
+          price: "6,50€",
+          desc: "",
+          image: "/assets/menu/milchshake.png",
+          imageAlt:
+            "Großer, frisch zubereiteter Milchshake mit drei Kugeln Premium-Eis, cremig geschlagen für erfrischenden Geschmack",
+          imageTitle: "Milchshake (0,5l)",
         },
       ],
     },
-    bubble: {
-      desc: "Knusprig, luftig, unwiderstehlich — mit Soßen & Toppings frei kreierbar.",
-      note: "Deine Leckerei kannst du mit Soßen & Toppings deiner Wahl selbst kreieren!",
+    "kalte-getraenke": {
+      desc: "mit Eiswürfel",
       items: [
-        { id: "b1", name: "Puderzucker", price: "3,80 €", desc: "Klassisch mit Puderzucker bestäubt" },
-        { id: "b2", name: "Soße nach Wahl", price: "5,00 €", desc: "Mit deiner Lieblingssoße" },
-        { id: "b3", name: "Eis + Sahne", price: "6,50 €", desc: "Mit Eiskugel & Sahne (oder 2 Eiskugeln statt Sahne)" },
-        { id: "b4", name: "Deluxe", price: "8,80 €", tag: "Beliebt", desc: "Eis + Sahne + 3 Toppings + Soße · auch mit 2 Eiskugeln möglich" },
+        {
+          id: "kg1",
+          name: "Iced Americano",
+          price: "5,00€",
+          desc: "",
+          image: "/assets/menu/iced-americano.png",
+          imageAlt:
+            "Klassischer Iced Americano aus frisch gebrühten Espressoschüssen, serviert auf Eiswürfeln für eine kühle Erfrischung",
+          imageTitle: "Iced Americano",
+        },
+        {
+          id: "kg2",
+          name: "Iced Latte Macchiato",
+          price: "6,00€",
+          desc: "Sirup nach Wahl",
+          image: "/assets/menu/latte-macchiato.png",
+          imageAlt:
+            "Kalter Iced Latte Macchiato mit cremig geschäumter Milch, kräftigem Espresso und feinem Sirup nach Wahl verfeinert",
+          imageTitle: "Iced Latte Macchiato",
+        },
+        {
+          id: "kg3",
+          name: "Iced Matcha Latte",
+          price: "6,00€",
+          desc: "Traditional Matcha mit Milch",
+          image: "/assets/menu/iced-matcha-latte.png",
+          imageAlt:
+            "Erfrischender Iced Matcha Latte zubereitet mit traditionellem japanischen Matcha-Grüntee und kalter, cremiger Milch",
+          imageTitle: "Iced Matcha Latte",
+        },
+        {
+          id: "kg4",
+          name: "Matcha Erdbeere",
+          price: "7,50€",
+          desc: "mit Erdbeerpüree (Hausgemacht)",
+          image: "/assets/menu/matcha-erdbeere.png",
+          imageAlt:
+            "Iced Matcha Latte kombiniert mit hausgemachtem süßem Erdbeerpüree für eine fruchtig-herbe Erfrischung",
+          imageTitle: "Matcha Erdbeere",
+        },
+        {
+          id: "kg5",
+          name: "Matcha Mango",
+          price: "7,50€",
+          desc: "mit Mangopüree (Hausgemacht)",
+          image: "/assets/menu/matcha-mango.png",
+          imageAlt:
+            "Matcha Mango Kaltgetränk zubereitet mit aromatischem Mangopüree und cremigem Matcha für exotischen Genuss",
+          imageTitle: "Matcha Mango",
+        },
+        {
+          id: "kg-ext1",
+          name: "Extra: Hafer, Soja, Kokos",
+          price: "0,50€",
+          desc: "",
+        },
+        { id: "kg-ext2", name: "Extra: Sirup", price: "1,00€", desc: "" },
       ],
     },
-    crepes: {
-      desc: "Hauchdünn und vielseitig — von klassisch bis fruchtig.",
-      note: "Deine Leckerei kannst du mit Soßen & Toppings selbst kreieren!",
+    "warme-getraenke": {
+      desc: "",
       items: [
-        { id: "c1", name: "Puderzucker / Zimt", price: "3,50 €", desc: "Der Klassiker" },
-        { id: "c2", name: "Nutella", price: "4,50 €", desc: "Mit reichlich Nutella" },
-        { id: "c3", name: "Nutella + Topping", price: "5,50 €", desc: "Nutella + Topping deiner Wahl" },
-        { id: "c4", name: "Fruit Fiesta", price: "5,00 €", tag: "Empfohlen", desc: "Verschiedene Früchte & eine Soße" },
-      ],
-    },
-    kuchen: {
-      desc: "Täglich frisch gebacken — schau in unsere Vitrine!",
-      items: [
-        { id: "k1", name: "Kuchen des Tages", price: "Auf Anfrage", tag: "Täglich frisch", desc: "Täglich wechselnde Sorten in unserer Vitrine" },
-        { id: "k2", name: "Tortenstück", price: "Auf Anfrage", desc: "Auswahl an Tortenspezialitäten" },
-      ],
-    },
-    cookies: {
-      desc: "Frisch gebacken, knusprig, in verschiedenen Sorten.",
-      items: [
-        { id: "co1", name: "Cookies", price: "Auf Anfrage", tag: "Frisch", desc: "Täglich frisch gebacken in verschiedenen Sorten" },
+        {
+          id: "wg1",
+          name: "Kaffee",
+          price: "2,50€",
+          desc: "",
+          image: "/assets/menu/kaffee.png",
+          imageAlt:
+            "Tasse frisch gebrühter, aromatischer Kaffee zubereitet aus erlesenen Bohnen für den perfekten Kaffeegenuss",
+          imageTitle: "Kaffee",
+        },
+        {
+          id: "wg2",
+          name: "Espresso",
+          price: "2,50€",
+          desc: "",
+          image: "/assets/menu/espresso.png",
+          imageAlt:
+            "Klassischer Espresso mit einer dichten, goldbraunen Crema, intensiv und aromatisch im Geschmack",
+          imageTitle: "Espresso",
+        },
+        {
+          id: "wg3",
+          name: "Doppio Espresso",
+          price: "4,00€",
+          desc: "",
+          image: "/assets/menu/doppio-espresso.png",
+          imageAlt:
+            "Doppelter Espresso zubereitet aus frisch gemahlenen Kaffeebohnen für einen kräftigen und belebenden Genuss",
+          imageTitle: "Doppio Espresso",
+        },
+        {
+          id: "wg4",
+          name: "Cappuccino",
+          price: "3,50€",
+          desc: "",
+          image: "/assets/menu/cappuccino.png",
+          imageAlt:
+            "Cappuccino mit einem kräftigen Espresso, warmer Milch und einer samtigen Haube aus Milchschaum",
+          imageTitle: "Cappuccino",
+        },
+        {
+          id: "wg5",
+          name: "Milchkaffee",
+          price: "3,50€",
+          desc: "",
+          image: "/assets/menu/kaffee.png",
+          imageAlt:
+            "Klassischer Milchkaffee zubereitet mit frisch gebrühtem Kaffee und einem hohen Anteil warmer Milch",
+          imageTitle: "Milchkaffee",
+        },
+        {
+          id: "wg6",
+          name: "Latte Macchiato",
+          price: "4,00€",
+          desc: "",
+          image: "/assets/menu/latte-macchiato.png",
+          imageAlt:
+            "Schichtgetränk Latte Macchiato mit heißer Milch, cremigem Milchschaum und einem frisch aufgebrühten Espresso",
+          imageTitle: "Latte Macchiato",
+        },
+        {
+          id: "wg7",
+          name: "Affogato",
+          price: "4,00€",
+          desc: "",
+          image: "/assets/menu/affogato.png",
+          imageAlt:
+            "Traditioneller italienischer Affogato bestehend aus einer Kugel Vanilleeis, übergossen mit einem heißen Espresso",
+          imageTitle: "Affogato",
+        },
+        {
+          id: "wg8",
+          name: "Kakao",
+          price: "2,50€",
+          desc: "",
+          image: "/assets/menu/kakao.png",
+          imageAlt:
+            "Warmer, süßer Kakao zubereitet mit cremiger Milch für gemütliche Momete im Hey Fede Café",
+          imageTitle: "Kakao",
+        },
+        {
+          id: "wg9",
+          name: "Tee",
+          price: "2,50€",
+          desc: "",
+          image: "/assets/menu/tee.png",
+          imageAlt:
+            "Heißer Tee zubereitet aus ausgewählten Kräutern und Früchten, serviert in einer gemütlichen Tasse",
+          imageTitle: "Tee",
+        },
+        {
+          id: "wg-ext1",
+          name: "Extra: Hafer, Soja, Kokos",
+          price: "0,50€",
+          desc: "",
+        },
+        { id: "wg-ext2", name: "Extra: Sirup", price: "1,00€", desc: "" },
       ],
     },
     eisbecher: {
-      desc: "Großzügige 500ml Eisbecher — ein Traum für Eisliebhaber.",
+      desc: "",
       items: [
-        { id: "e1", name: "Bananasplit", price: "7,50 €", desc: "500ml Eisbecher" },
-        { id: "e2", name: "Walnuss", price: "8,00 €", desc: "500ml Eisbecher" },
-        { id: "e3", name: "Schoko", price: "7,00 €", desc: "500ml Eisbecher" },
-        { id: "e4", name: "Frucht", price: "7,50 €", desc: "500ml Eisbecher" },
-        { id: "e5", name: "Spaghetti", price: "7,00 €", tag: "Klassiker", desc: "500ml Eisbecher" },
-        { id: "e6", name: "Erdbeer", price: "7,50 €", desc: "500ml Eisbecher" },
+        {
+          id: "eb1",
+          name: "Schoko",
+          price: "8,00€",
+          desc: "",
+          image: "/assets/menu/eisbecher-schoko.png",
+          imageAlt:
+            "Schokoladen-Eisbecher verziert mit verschiedenen Eissorten, cremiger Sahne und einer feinen Schokoladensoße",
+          imageTitle: "Schoko",
+        },
+        {
+          id: "eb2",
+          name: "Haselnuss",
+          price: "8,50€",
+          desc: "",
+          image: "/assets/menu/eisbecher-haselnuss.png",
+          imageAlt:
+            "Köstlicher Haselnuss-Eisbecher verfeinert mit aromatischen Premium-Nusseissorten, extra knackigen ganzen Haselnüssen und einer süßen Karamellsoße",
+          imageTitle: "Haselnuss",
+        },
+        {
+          id: "eb3",
+          name: "Walnuss",
+          price: "9,00€",
+          desc: "",
+          image: "/assets/menu/eisbecher-walnuss.png",
+          imageAlt:
+            "Exklusiver Walnuss-Eisbecher serviert mit cremigen Premium-Eiskugeln, extra knackigen Walnüssen, einer großen Sahnehaube und süßem Nusslikör-Aroma",
+          imageTitle: "Walnuss",
+        },
+        {
+          id: "eb4",
+          name: "Erdbeere",
+          price: "9,00€",
+          desc: "",
+          image: "/assets/menu/eisbecher-erdbeere.png",
+          imageAlt:
+            "Erdbeer-Eisbecher mit fruchtigen Kugel Eis, frischen Erdbeerscheiben, Schlagsahne und hausgemachter Erdbeersoße",
+          imageTitle: "Erdbeere",
+        },
+        {
+          id: "eb5",
+          name: "Frucht",
+          price: "8,50€",
+          desc: "",
+          image: "/assets/menu/eisbecher-frucht.png",
+          imageAlt:
+            "Fruchtiger Eisbecher angerichtet mit gemischtem Saisonsalat aus Früchten, verschiedenen Kugel Eis und Sahne",
+          imageTitle: "Frucht",
+        },
+        {
+          id: "eb6",
+          name: "Bananasplit",
+          price: "8,50€",
+          desc: "",
+          image: "/assets/menu/eisbecher-bananasplit.png",
+          imageAlt:
+            "Klassischer Bananensplit Eisbecher mit einer halbierten Banane, Vanilleeis, Sahnehaube und warmer Schokoladensoße",
+          imageTitle: "Bananasplit",
+        },
+        {
+          id: "eb7",
+          name: "Amarena",
+          price: "8,50€",
+          desc: "",
+          image: "/assets/menu/eisbecher-amarena.png",
+          imageAlt:
+            "Amarena-Eisbecher garniert mit cremigem Eis, süßen Amarena-Kirschen, Sahne und feiner Kirschsoße",
+          imageTitle: "Amarena",
+        },
+        {
+          id: "eb8",
+          name: "Spaghetti",
+          price: "8,50€",
+          desc: "",
+          image: "/assets/menu/kinderbecher-spaghetti.png",
+          imageAlt:
+            "Spaghetti-Eisbecher zubereitet aus Vanilleeis, Erdbeersoße und geraspelter weißer Schokolade für die klassische Optik",
+          imageTitle: "Spaghetti",
+        },
       ],
     },
-    shakes: {
-      desc: "0,4l frisch gemixt mit Sahne — alle Sorten 6,50 €.",
+    kinderbecher: {
+      desc: "",
       items: [
-        { id: "s1", name: "Nutella Shake", price: "6,50 €", desc: "0,4l + Sahne" },
-        { id: "s2", name: "Cheesecake Shake", price: "6,50 €", desc: "0,4l + Sahne" },
-        { id: "s3", name: "Oreo Shake", price: "6,50 €", tag: "Beliebt", desc: "0,4l + Sahne" },
-        { id: "s4", name: "Snickers Shake", price: "6,50 €", desc: "0,4l + Sahne" },
-        { id: "s5", name: "Lotus Shake", price: "6,50 €", desc: "0,4l + Sahne" },
-        { id: "s6", name: "Bueno Shake", price: "6,50 €", desc: "0,4l + Sahne" },
+        {
+          id: "kb1",
+          name: "Zuckerwatte",
+          price: "4,50€",
+          desc: "eine Eiskugel, Sahne & Zuckerwatte",
+          image: "/assets/menu/kinderbecher-zuckerwatte.png",
+          imageAlt:
+            "Zuckerwatte Kinderbecher serviert mit einer Kugel Eis, frischer Schlagsahne und bunter Zuckerwatte dekoriert",
+          imageTitle: "Zuckerwatte",
+        },
+        {
+          id: "kb2",
+          name: "Regenbogen",
+          price: "4,50€",
+          desc: "eine Eiskugel, Sahne & Streusel",
+          image: "/assets/menu/kinderbecher-regenbogen.png",
+          imageAlt:
+            "Regenbogen Kinderbecher zubereitet mit einer Eiskugel, Sahnehaube und vielen bunten Streuseln verziert",
+          imageTitle: "Regenbogen",
+        },
+        {
+          id: "kb3",
+          name: "Marshmallow",
+          price: "4,50€",
+          desc: "eine Eiskugel, Sahne & Marshmallows",
+          image: "/assets/menu/kinderbecher-marshmallow.png",
+          imageAlt:
+            "Marshmallow Kinderbecher bestehend aus einer Kugel Eis nach Wahl, Sahne and weichen Marshmallows",
+          imageTitle: "Marshmallow",
+        },
+        {
+          id: "kb4",
+          name: "Spaghetti",
+          price: "5,50€",
+          desc: "mit Smarties",
+          image: "/assets/menu/kinderbecher-spaghetti.png",
+          imageAlt:
+            "Kinder-Spaghetti-Eisbecher dekoriert mit Vanilleeis, fruchtiger Erdbeersoße und einer Handvoll bunten Smarties",
+          imageTitle: "Spaghetti",
+        },
       ],
     },
-    iced: {
-      desc: "Frisch zubereitet, eiskalt serviert.",
+    "special-shake": {
+      desc: "0,4l + Sahne · je 7,50€",
       items: [
-        { id: "i1", name: "Iced Matcha", price: "ab 4,50 €", tag: "Trend", desc: "Hochwertiger Matcha, kalt aufgegossen" },
-        { id: "i2", name: "Iced Coffee", price: "ab 4,50 €", desc: "Cold Brew über Eis" },
-        { id: "i3", name: "Iced Latte", price: "ab 4,50 €", desc: "Espresso, Milch & Eis" },
+        {
+          id: "ss1",
+          name: "Nutella<sup>G, H, F</sup>",
+          price: "7,50€",
+          desc: "",
+          image: "/assets/menu/special-shake-nutella.png",
+          imageAlt:
+            "Cremiger Nutella Special Shake frisch zubereitet mit echter Nutella, Milch und einer Sahnehaube",
+          imageTitle: "NutellaG, H, F",
+        },
+        {
+          id: "ss2",
+          name: "Oreo<sup>G, F, A</sup>",
+          price: "7,50€",
+          desc: "",
+          image: "/assets/menu/special-shake-oreo.png",
+          imageAlt:
+            "Oreo Special Shake gemixt mit knusprigen Oreo-Keksen, kalter Milch, Sahne und Keksbröseln",
+          imageTitle: "OreoG, F, A",
+        },
+        {
+          id: "ss3",
+          name: "Snickers<sup>G, E</sup>",
+          price: "7,50€",
+          desc: "",
+          image: "/assets/menu/special-shake-snickers.png",
+          imageAlt:
+            "Erdnussiger Snickers Special Shake zubereitet mit Snickers-Riegeln, Karamellsoße, Milch und frischer Sahne",
+          imageTitle: "SnickersG, E",
+        },
+        {
+          id: "ss4",
+          name: "Bueno<sup>G, H, F</sup>",
+          price: "7,50€",
+          desc: "",
+          image: "/assets/menu/special-shake-bueno.png",
+          imageAlt:
+            "Bueno Special Shake gemixt mit knusprigen Kinder Bueno Riegeln, Milch und feiner Sahnehaube",
+          imageTitle: "BuenoG, H, F",
+        },
+        {
+          id: "ss5",
+          name: "Lotus<sup>G, F, A</sup>",
+          price: "7,50€",
+          desc: "",
+          image: "/assets/menu/special-shake-lotus.png",
+          imageAlt:
+            "Lotus Special Shake zubereitet mit originalen Lotus Biscoff Keksen, Milch, Sahne und Kekssoße",
+          imageTitle: "LotusG, F, A",
+        },
+        {
+          id: "ss6",
+          name: "Cheesecake<sup>G, L</sup>",
+          price: "7,50€",
+          desc: "",
+          image: "/assets/menu/special-shake-cheesecake.png",
+          imageAlt:
+            "Cheesecake Special Shake cremig gemixt mit Frischkäse-Aroma, Milch, Sahne und feinen Keksbröseln",
+          imageTitle: "CheesecakeG, L",
+        },
       ],
     },
-    stullen: {
-      desc: "Herzhaftes für zwischendurch.",
+    "fede-boxen": {
+      desc: "To Go und vor Ort!",
       items: [
-        { id: "st1", name: "Stullen", price: "Auf Anfrage", desc: "Belegte Brote nach Verfügbarkeit" },
+        {
+          id: "fb1",
+          name: "Fruit Fiesta",
+          price: "6,50€",
+          desc: "versch. Früchte & eine Soße",
+          image: "/assets/menu/fede-box-fruit-fiesta.png",
+          imageAlt:
+            "Fruit Fiesta Box gefüllt mit einer bunten Auswahl an frischen Früchten und einer Soße nach Wahl",
+          imageTitle: "Fruit Fiesta",
+        },
+        {
+          id: "fb2",
+          name: "Pancake Picknick<sup>A, C, G</sup>",
+          price: "8,50€",
+          desc: "12 Pancakes, 2 Fruchtsorten, eine Soße",
+          image: "/assets/menu/fede-box-pancake-picknick.png",
+          imageAlt:
+            "Pancake Picknick Box mit 12 warmen Pancakes, zwei verschiedenen frischen Fruchtsorten und einer süßen Soße",
+          imageTitle: "Pancake PicknickA, C, G",
+        },
+        {
+          id: "fb3",
+          name: "Mix Box<sup>A, C, G</sup>",
+          price: "15,00€",
+          desc: "12 Pancakes, Bubble Waffle, 3 Fruchtsorten, 2 Soßen",
+          image: "/assets/menu/fede-box-mix-box.png",
+          imageAlt:
+            "Mix Box bestehend aus 12 Pancakes, einer warmen Bubble Waffel, drei Fruchtsorten und zwei Soßen",
+          imageTitle: "Mix BoxA, C, G",
+        },
+        {
+          id: "fb4",
+          name: "Pancake Picknick klein",
+          price: "6,00€",
+          desc: "6 Pancakes, eine Fruchtsorte, eine Soße",
+          image: "/assets/menu/fede-box-pancake-picknick.png",
+          imageAlt:
+            "Kleine Pancake Picknick Box mit 6 flaumigen Pancakes, einer Fruchtsorte und einer süßen Soße",
+          imageTitle: "Pancake Picknick klein",
+        },
+        {
+          id: "fb5",
+          name: "Fede & Friends<sup>A, C, G, H</sup>",
+          price: "30,00€",
+          desc: "12 Pancakes, eine Bubble Waffle, ein Crêpes, 3 mini Croissants, versch. Früchte, Cookies, 4 Soßen nach Wahl",
+          image: "/assets/menu/fede-box-fede-and-friends.png",
+          imageAlt:
+            "Große Fede and Friends Box gefüllt mit Pancakes, Waffel, Crêpe, Croissants, Früchten und vier leckeren Soßen",
+          imageTitle: "Fede & FriendsA, C, G, H",
+        },
       ],
     },
-    getraenke: {
-      desc: "Kalte Getränke für jeden Geschmack.",
+    crepes: {
+      desc: "Unsere Fruchtsorten sind SAISONBEDINGT erhältlich",
       items: [
-        { id: "g1", name: "Eisschokolade 0,2l", price: "4,50 €", desc: "" },
-        { id: "g2", name: "Eisschokolade 0,4l", price: "6,50 €", desc: "" },
-        { id: "g3", name: "Eiskaffee 0,3l", price: "4,50 €", desc: "" },
-        { id: "g4", name: "Eiskaffee 0,5l", price: "6,50 €", desc: "" },
-        { id: "g5", name: "Milchshake 0,3l", price: "4,50 €", desc: "" },
-        { id: "g6", name: "Milchshake 0,5l", price: "5,50 €", desc: "" },
+        {
+          id: "cr1",
+          name: "Puderzucker oder Zimt / Zucker<sup>A, C, G</sup>",
+          price: "4,00€",
+          desc: "",
+          image: "/assets/menu/crepe-puderzucker.png",
+          imageAlt:
+            "Klassischer warmer Crêpe wahlweise mit feinem Puderzucker oder Zimt und Zucker bestäubt",
+          imageTitle: "Puderzucker oder Zimt / ZuckerA, C, G",
+        },
+        {
+          id: "cr2",
+          name: "Nutella<sup>A, C, G, H, F</sup>",
+          price: "5,50€",
+          desc: "",
+          image: "/assets/menu/crepe-nutella.png",
+          imageAlt:
+            "Warmer französischer Crêpe großzügig bestrichen mit cremiger Nutella für den Schokoladengenuss",
+          imageTitle: "NutellaA, C, G, H, F",
+        },
+        {
+          id: "cr3",
+          name: "Eigene Kreation<sup>A, C, G</sup>",
+          price: "7,00€",
+          desc: "1x Topping + 1x Soße",
+          image: "/assets/menu/bubble-waffle-eigene-kreation.png",
+          imageAlt:
+            "Eigene Crêpe Kreation individuell zusammengestellt mit einem leckeren Topping und einer süßen Soße",
+          imageTitle: "Eigene KreationA, C, G",
+        },
+        {
+          id: "cr4",
+          name: "Crêpes Kinder Riegel<sup>A, C, G, F</sup>",
+          price: "5,50€",
+          desc: "",
+          image: "/assets/menu/crepe-kinder-riegel.png",
+          imageAlt:
+            "Süßer Crêpe gefüllt mit geschmolzenen Kinder Riegeln, warm serviert für Schokoladenliebhaber",
+          imageTitle: "Crêpes Kinder RiegelA, C, G, F",
+        },
+        {
+          id: "cr5",
+          name: "Crêpes Yogurette<sup>A, C, G, F, H</sup>",
+          price: "5,50€",
+          desc: "",
+          image: "/assets/menu/crepe-yogurette.png",
+          imageAlt:
+            "Fruchtig-schokoladiger, warmer Crêpe reichlich gefüllt mit sanft geschmolzenen Yogurette-Riegeln und einer extra feinen Erdbeernote",
+          imageTitle: "Crêpes YoguretteA, C, G, F, H",
+        },
+        {
+          id: "cr6",
+          name: "Crêpes Pistazie<sup>A, C, G, H</sup>",
+          price: "6,00€",
+          desc: "",
+          image: "/assets/menu/crepe-pistazie.png",
+          imageAlt:
+            "Exklusiver Crêpe bestrichen mit hochwertiger Pistaziencreme und garniert mit gehackten Pistazienkernen",
+          imageTitle: "Crêpes PistazieA, C, G, H",
+        },
+        {
+          id: "cr7",
+          name: "Crêpes Lotus<sup>F, A, C, G</sup>",
+          price: "7,00€",
+          desc: "",
+          image: "/assets/menu/crepe-lotus.png",
+          imageAlt:
+            "Süßer Crêpe gefüllt mit feiner Lotus Biscoff Creme und knusprigen Lotus Keksbröseln",
+          imageTitle: "Crêpes LotusF, A, C, G",
+        },
+        {
+          id: "cr8",
+          name: "Crêpes Bueno<sup>A, C, G, F, H</sup>",
+          price: "7,00€",
+          desc: "",
+          image: "/assets/menu/crepe-bueno.png",
+          imageAlt:
+            "Süßer Crêpe gefüllt mit geschmolzenen Kinder Bueno Stücken und cremiger Haselnusssoße",
+          imageTitle: "Crêpes Bueno",
+        },
+      ],
+    },
+    "crepes-herzhaft": {
+      desc: "Allergene: A, C, G",
+      items: [
+        {
+          id: "crh1",
+          name: "Schinken & Käse<sup>A, C, G</sup>",
+          price: "7,00€",
+          desc: "",
+          image: "/assets/menu/crepe-herzhaft-schinken-kaese.png",
+          imageAlt:
+            "Herzhafter Crêpe gefüllt mit saftigem Kochschinken und zart schmelzendem Käse warm serviert",
+          imageTitle: "Schinken & KäseA, C, G",
+        },
+        {
+          id: "crh2",
+          name: "Salami & Käse<sup>A, C, G</sup>",
+          price: "7,00€",
+          desc: "",
+          image: "/assets/menu/crepe-herzhaft-salami-kaese.png",
+          imageAlt:
+            "Herzhafter Crêpe belegt mit würziger Salami und geschmolzenem Käse für den herzhaften Appetit",
+          imageTitle: "Salami & KäseA, C, G",
+        },
+        {
+          id: "crh3",
+          name: "Caprese (Tomate / Mozzarella)<sup>A, C, G</sup>",
+          price: "8,00€",
+          desc: "",
+          image: "/assets/menu/crepe-herzhaft-caprese.png",
+          imageAlt:
+            "Vegetarischer herzhafter Crêpe belegt mit Tomatenscheiben, cremigem Mozzarella und frischem Basilikum",
+          imageTitle: "Caprese (Tomate / Mozzarella)A, C, G",
+        },
+      ],
+    },
+    "bubble-waffle": {
+      desc: "fluffig, knusprig, warm · Allergene: A, C, G",
+      items: [
+        {
+          id: "bw1",
+          name: "Puderzucker<sup>A, C, G</sup>",
+          price: "4,50€",
+          desc: "",
+          image: "/assets/menu/bubble-waffle-puderzucker.png",
+          imageAlt:
+            "Eine fluffige warme Bubble Waffle klassisch bestäubt mit feinem Puderzucker serviert",
+          imageTitle: "PuderzuckerA, C, G",
+        },
+        {
+          id: "bw2",
+          name: "Soße nach Wahl<sup>A, C, G</sup>",
+          price: "6,00€",
+          desc: "",
+          image: "/assets/menu/bubble-waffle-sosse.png",
+          imageAlt:
+            "Frisch gebackene Bubble Waffle serviert mit einer süßen Soße nach Wahl des Kunden",
+          imageTitle: "Soße nach WahlA, C, G",
+        },
+        {
+          id: "bw3",
+          name: "Eis + Sahne<sup>A, C, G</sup>",
+          price: "7,50€",
+          desc: "oder zwei Eiskugeln statt Sahne",
+          image: "/assets/menu/bubble-waffle-eis-sahne.png",
+          imageAlt:
+            "Warme Bubble Waffle serviert mit einer Kugel Eis und einer portion frischer Schlagsahne",
+          imageTitle: "Eis + SahneA, C, G",
+        },
+        {
+          id: "bw4",
+          name: "Eigene Kreation<sup>A, C, G</sup>",
+          price: "11,00€",
+          desc: "Eis + Sahne + 3 Toppings + Soße oder zwei Eiskugeln statt Sahne",
+          image: "/assets/menu/bubble-waffle-eigene-kreation.png",
+          imageAlt:
+            "Eigene Bubble Waffle Kreation serviert mit Eis, Sahne, drei Toppings und einer Soße nach Wahl",
+          imageTitle: "Eigene KreationA, C, G",
+        },
       ],
     },
   },
   bestsellers: [
-    { id: "bs1", name: "Fede & Friends Box", desc: "Das ultimative Sharing-Erlebnis für Gruppen", price: "25,00 €", tag: "Bestseller", icon: "Package" },
-    { id: "bs2", name: "Bubble Waffle Deluxe", desc: "Eis + Sahne + 3 Toppings nach Wahl", price: "8,80 €", tag: "Beliebt", icon: "Layers" },
-    { id: "bs3", name: "Oreo Special Shake", desc: "0,4l · frisch gemixt mit Sahne", price: "6,50 €", tag: "", icon: "Coffee" },
-    { id: "bs4", name: "Pancake Picknick", desc: "12 Pancakes · 2 Fruchtsorten · Soße", price: "7,00 €", tag: "", icon: "Cake" },
+    {
+      id: "bs1",
+      name: "Fede & Friends Box",
+      desc: "Das ultimative Sharing-Erlebnis für Gruppen",
+      price: "25,00 €",
+      tag: "Bestseller",
+      icon: "Package",
+    },
+    {
+      id: "bs2",
+      name: "Bubble Waffle Deluxe",
+      desc: "Eis + Sahne + 3 Toppings nach Wahl",
+      price: "8,80 €",
+      tag: "Beliebt",
+      icon: "Layers",
+    },
+    {
+      id: "bs3",
+      name: "Oreo Special Shake",
+      desc: "0,4l · frisch gemixt mit Sahne",
+      price: "6,50 €",
+      tag: "",
+      icon: "Coffee",
+    },
+    {
+      id: "bs4",
+      name: "Pancake Picknick",
+      desc: "12 Pancakes · 2 Fruchtsorten · Soße",
+      price: "7,00 €",
+      tag: "",
+      icon: "Cake",
+    },
   ],
   reviews: [
-    { id: "r1", name: "Sarah M.", stars: 5, text: "Die Bubble Waffeln sind absolute Weltklasse! So frisch und knusprig. Das Personal ist super nett und zuvorkommend." },
-    { id: "r2", name: "Thomas K.", stars: 5, text: "Bestes Dessertcafé in Wetzlar! Die Pancake Box ist ein Traum. Kommen definitiv wieder!" },
-    { id: "r3", name: "Lisa R.", stars: 5, text: "Mit den Kindern dort gewesen — die Kinderecke ist super! Die Special Shakes schmecken einfach himmlisch." },
-    { id: "r4", name: "Marco S.", stars: 4, text: "Tolles Ambiente, leckere Desserts. Die Mix Box ist perfekt zum Teilen. Gerne wieder!" },
-    { id: "r5", name: "Julia W.", stars: 5, text: "Absolute Empfehlung! Alles selbst gemacht, man schmeckt die Qualität sofort. Mein neues Lieblingscafé!" },
+    {
+      id: "r1",
+      name: "Sarah M.",
+      stars: 5,
+      text: "Die Bubble Waffeln sind absolute Weltklasse! So frisch und knusprig. Das Personal ist super nett und zuvorkommend.",
+    },
+    {
+      id: "r2",
+      name: "Thomas K.",
+      stars: 5,
+      text: "Bestes Dessertcafé in Wetzlar! Die Pancake Box ist ein Traum. Kommen definitiv wieder!",
+    },
+    {
+      id: "r3",
+      name: "Lisa R.",
+      stars: 5,
+      text: "Mit den Kindern dort gewesen - die Kinderecke ist super! Die Special Shakes schmecken einfach himmlisch.",
+    },
+    {
+      id: "r4",
+      name: "Marco S.",
+      stars: 4,
+      text: "Tolles Ambiente, leckere Desserts. Die Mix Box ist perfekt zum Teilen. Gerne wieder!",
+    },
+    {
+      id: "r5",
+      name: "Julia W.",
+      stars: 5,
+      text: "Absolute Empfehlung! Alles selbst gemacht, man schmeckt die Qualität sofort. Mein neues Lieblingscafé!",
+    },
   ],
 };
 

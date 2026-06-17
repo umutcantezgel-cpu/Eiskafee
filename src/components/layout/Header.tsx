@@ -17,7 +17,6 @@ import { useStore } from "@/store/useStore";
 import { useStoreSettings } from "@/hooks/useStoreSettings";
 import { MobileMenu } from "./MobileMenu";
 import { PromoBanner } from "./PromoBanner";
-import { ScrollProgressBar } from "@/components/atoms/ScrollProgressBar";
 import { twMerge } from "tailwind-merge";
 
 export function Header() {
@@ -54,12 +53,13 @@ export function Header() {
 
   return (
     <>
-      <ScrollProgressBar />
-
-      <div className="fixed top-0 left-0 right-0 z-[900] flex flex-col">
+      <header
+        role="banner"
+        className="fixed top-0 left-0 right-0 z-[900] flex flex-col"
+      >
         {settings?.bannerText && <PromoBanner text={settings.bannerText} />}
 
-        <motion.header
+        <motion.div
           style={
             prefersReducedMotion
               ? {
@@ -91,6 +91,7 @@ export function Header() {
 
             {/* Middle: Navigation */}
             <nav
+              role="navigation"
               aria-label="Hauptnavigation"
               className="hidden md:flex items-center gap-2"
             >
@@ -117,8 +118,8 @@ export function Header() {
             <div className="flex items-center gap-3">
               {/* PrimaryCTA Desktop */}
               <div className="hidden md:block">
-                <TransitionLink href="/menu" tabIndex={-1}>
-                  <PrimaryCTA className="py-2.5 text-sm" showArrow>
+                <TransitionLink href="/menu">
+                  <PrimaryCTA className="py-2.5 text-sm" showArrow as="div">
                     Jetzt bestellen
                   </PrimaryCTA>
                 </TransitionLink>
@@ -149,14 +150,16 @@ export function Header() {
               <button
                 className="md:hidden w-11 h-11 flex items-center justify-center bg-transparent border-none text-charcoal"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                aria-label="Menü öffnen"
+                aria-expanded={mobileMenuOpen}
+                aria-controls="mobile-navigation"
+                aria-label={mobileMenuOpen ? "Menü schließen" : "Menü öffnen"}
               >
                 <HamburgerIcon className="w-8 h-8" />
               </button>
             </div>
           </div>
-        </motion.header>
-      </div>
+        </motion.div>
+      </header>
 
       <MobileMenu
         isOpen={mobileMenuOpen}

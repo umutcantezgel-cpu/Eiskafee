@@ -89,10 +89,10 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5efe8] flex flex-col md:flex-row">
+    <div className="min-h-screen bg-cream flex flex-col md:flex-row">
       {/* ─── LEFT COLUMN: FORM ─── */}
       <div className="flex-1 overflow-y-auto pb-32 md:pb-6">
-        <div className="bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between md:hidden">
+        <div className="bg-cream sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between md:hidden">
           <button
             onClick={() => router.back()}
             className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm"
@@ -100,10 +100,10 @@ export default function CheckoutPage() {
             <Icons.ArrowLeft size={20} color="#2d1f19" />
           </button>
           <div className="text-center">
-            <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">
+            <div className="font-heading text-lg text-brown leading-tight">
               Kontaktdaten
             </div>
-            <div className="font-nunito text-[11px] font-bold text-[#7a5a52]">
+            <div className="font-body text-[11px] font-bold text-brown-muted">
               Schritt 1 von 3
             </div>
           </div>
@@ -115,21 +115,21 @@ export default function CheckoutPage() {
           {[true, false, false].map((active, i) => (
             <div
               key={i}
-              className={`flex-1 h-1 rounded-full ${active ? "bg-[#b34832]" : "bg-[#eedfcc]"}`}
+              className={`flex-1 h-1 rounded-full ${active ? "bg-terracotta" : "bg-beige"}`}
             />
           ))}
         </div>
 
         <div className="px-5">
           <FadeUp delay={0.1}>
-            <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+            <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-2.5">
               Deine Daten
             </div>
 
-            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-terracotta">
               <label
                 htmlFor="checkout-name"
-                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                className="block font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px]"
               >
                 Name *
               </label>
@@ -140,14 +140,14 @@ export default function CheckoutPage() {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Dein Vorname"
                 autoComplete="name"
-                className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
+                className="font-body text-[14px] font-bold text-brown mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
               />
             </div>
 
-            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+            <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-terracotta">
               <label
                 htmlFor="checkout-email"
-                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                className="block font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px]"
               >
                 E-Mail *
               </label>
@@ -158,14 +158,14 @@ export default function CheckoutPage() {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="name@example.com"
                 autoComplete="email"
-                className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
+                className="font-body text-[14px] font-bold text-brown mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
               />
             </div>
 
-            <div className="bg-white rounded-[18px] p-4 mb-5 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+            <div className="bg-white rounded-[18px] p-4 mb-5 shadow-sm border-2 border-transparent focus-within:border-terracotta">
               <label
                 htmlFor="checkout-phone"
-                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                className="block font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px]"
               >
                 Handynummer *
               </label>
@@ -176,21 +176,21 @@ export default function CheckoutPage() {
                 onChange={(e) => setPhone(e.target.value)}
                 placeholder="Für Rückfragen"
                 autoComplete="tel"
-                className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
+                className="font-body text-[14px] font-bold text-brown mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
               />
             </div>
           </FadeUp>
 
           {orderType === "delivery" && (
             <FadeUp delay={0.2}>
-              <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+              <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-2.5">
                 Lieferadresse
               </div>
 
-              <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+              <div className="bg-white rounded-[18px] p-4 mb-3 shadow-sm border-2 border-transparent focus-within:border-terracotta">
                 <label
                   htmlFor="checkout-street"
-                  className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                  className="block font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px]"
                 >
                   Straße & Hausnr. *
                 </label>
@@ -201,17 +201,17 @@ export default function CheckoutPage() {
                   onChange={(e) => setStreet(e.target.value)}
                   placeholder="Musterstraße 12"
                   autoComplete="street-address"
-                  className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
+                  className="font-body text-[14px] font-bold text-brown mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
                 />
               </div>
 
               <div className="grid grid-cols-[1fr_2fr] gap-3 mb-5">
                 <div
-                  className={`bg-white rounded-[18px] p-4 shadow-sm border-2 ${zoneError ? "border-red-500" : "border-transparent focus-within:border-[#b34832]"}`}
+                  className={`bg-white rounded-[18px] p-4 shadow-sm border-2 ${zoneError ? "border-red-500" : "border-transparent focus-within:border-terracotta"}`}
                 >
                   <label
                     htmlFor="checkout-zip"
-                    className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                    className="block font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px]"
                   >
                     PLZ *
                   </label>
@@ -227,13 +227,13 @@ export default function CheckoutPage() {
                     autoComplete="postal-code"
                     aria-invalid={!!zoneError}
                     aria-describedby={zoneError ? "zone-error" : undefined}
-                    className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
+                    className="font-body text-[14px] font-bold text-brown mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
                   />
                 </div>
-                <div className="bg-white rounded-[18px] p-4 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+                <div className="bg-white rounded-[18px] p-4 shadow-sm border-2 border-transparent focus-within:border-terracotta">
                   <label
                     htmlFor="checkout-city"
-                    className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                    className="block font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px]"
                   >
                     Stadt *
                   </label>
@@ -244,7 +244,7 @@ export default function CheckoutPage() {
                     onChange={(e) => setCity(e.target.value)}
                     placeholder="Wetzlar"
                     autoComplete="address-level2"
-                    className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
+                    className="font-body text-[14px] font-bold text-brown mt-0.5 bg-transparent border-none outline-none w-full placeholder:opacity-40"
                   />
                 </div>
               </div>
@@ -252,7 +252,7 @@ export default function CheckoutPage() {
                 {zoneError && (
                   <div
                     id="zone-error"
-                    className="text-red-500 font-nunito text-sm font-bold mb-4"
+                    className="text-red-500 font-body text-sm font-bold mb-4"
                   >
                     {zoneError}
                   </div>
@@ -262,13 +262,13 @@ export default function CheckoutPage() {
           )}
 
           <FadeUp delay={0.3}>
-            <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+            <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-2.5">
               Zusätzliche Infos
             </div>
-            <div className="bg-white rounded-[18px] p-4 mb-6 shadow-sm border-2 border-transparent focus-within:border-[#b34832]">
+            <div className="bg-white rounded-[18px] p-4 mb-6 shadow-sm border-2 border-transparent focus-within:border-terracotta">
               <label
                 htmlFor="checkout-notes"
-                className="block font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px]"
+                className="block font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px]"
               >
                 Anmerkungen (Optional)
               </label>
@@ -277,7 +277,7 @@ export default function CheckoutPage() {
                 value={notes}
                 onChange={(e) => setNotes(e.target.value)}
                 placeholder="Z.B. Klingel ist defekt..."
-                className="font-nunito text-[14px] font-bold text-[#2d1f19] mt-0.5 bg-transparent border-none outline-none w-full resize-none min-h-[60px] placeholder:opacity-40"
+                className="font-body text-[14px] font-bold text-brown mt-0.5 bg-transparent border-none outline-none w-full resize-none min-h-[60px] placeholder:opacity-40"
               />
             </div>
           </FadeUp>
@@ -285,16 +285,14 @@ export default function CheckoutPage() {
       </div>
 
       {/* ─── RIGHT COLUMN: CART SUMMARY ─── */}
-      <div className="w-full md:w-[380px] bg-[#fef8f5] border-t md:border-t-0 md:border-l border-[#eedfcc] flex flex-col fixed md:relative bottom-0 left-0 right-0 z-40 max-h-[50vh] md:max-h-none overflow-y-auto">
+      <div className="w-full md:w-[380px] bg-cream-warm border-t md:border-t-0 md:border-l border-beige flex flex-col fixed md:relative bottom-0 left-0 right-0 z-40 max-h-[50vh] md:max-h-none overflow-y-auto">
         <div className="hidden md:block px-6 pt-8 pb-4">
-          <div className="font-calistoga text-2xl text-[#2d1f19]">
-            Dein Warenkorb
-          </div>
+          <div className="font-heading text-2xl text-brown">Dein Warenkorb</div>
           <button
             onClick={() => {
               if (confirm("Wirklich leeren?")) clearCart();
             }}
-            className="text-[12px] font-extrabold text-[#7a5a52] underline mt-1"
+            className="text-[12px] font-extrabold text-brown-muted underline mt-1"
           >
             Leeren
           </button>
@@ -302,10 +300,10 @@ export default function CheckoutPage() {
 
         <div className="px-5 md:px-6 flex-1 py-4">
           <div className="flex justify-between items-center mb-4 md:hidden">
-            <span className="font-calistoga text-xl text-[#2d1f19]">
+            <span className="font-heading text-xl text-brown">
               {total.toFixed(2).replace(".", ",")} €
             </span>
-            <span className="font-nunito text-sm text-[#7a5a52] font-bold">
+            <span className="font-body text-sm text-brown-muted font-bold">
               {cart.reduce((s, i) => s + i.quantity, 0)} Artikel
             </span>
           </div>
@@ -321,20 +319,20 @@ export default function CheckoutPage() {
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-baseline gap-2">
-                      <span className="font-nunito font-extrabold text-[#b34832] text-[13px]">
+                      <span className="font-body font-extrabold text-terracotta text-[13px]">
                         {it.quantity}×
                       </span>
-                      <span className="font-nunito font-bold text-[14px] text-[#2d1f19] truncate">
+                      <span className="font-body font-bold text-[14px] text-brown truncate">
                         {it.name}
                       </span>
                     </div>
                     {it.variant && (
-                      <div className="font-nunito text-[11px] text-[#7a5a52] ml-5">
+                      <div className="font-body text-[11px] text-brown-muted ml-5">
                         {it.variant}
                       </div>
                     )}
                   </div>
-                  <span className="font-calistoga text-[14px] text-[#b34832]">
+                  <span className="font-heading text-[14px] text-terracotta">
                     {(it.quantity * itemPrice).toFixed(2).replace(".", ",")} €
                   </span>
                 </div>

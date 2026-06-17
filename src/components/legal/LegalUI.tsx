@@ -10,7 +10,7 @@ import { ChevronDown, CheckCircle2, Shield } from "lucide-react";
 
 export function LegalIcon({
   children,
-  color = "#b34832",
+  color = "#CC624C",
 }: {
   children: React.ReactNode;
   color?: string;
@@ -84,10 +84,10 @@ export function AccordionSection({
           {number && (
             <span
               style={{
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 fontSize: "0.72rem",
                 fontWeight: 800,
-                color: "#b34832",
+                color: "#CC624C",
                 textTransform: "uppercase",
                 letterSpacing: "0.08em",
               }}
@@ -97,7 +97,7 @@ export function AccordionSection({
           )}
           <div
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "1.05rem",
               color: "#2d1f19",
             }}
@@ -125,7 +125,7 @@ export function AccordionSection({
             <div
               style={{
                 padding: "0 20px 20px 64px",
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 color: "#5c3d35",
                 fontSize: "0.9rem",
                 lineHeight: 1.72,
@@ -143,7 +143,7 @@ export function AccordionSection({
 /** Cookie pill badge */
 export function CookieBadge({ category }: { category: string }) {
   const colors: Record<string, { bg: string; text: string }> = {
-    Notwendig: { bg: "#b34832", text: "#fefefe" },
+    Notwendig: { bg: "#CC624C", text: "#fefefe" },
     Funktional: { bg: "#E4C0A8", text: "#2d1f19" },
     Statistik: { bg: "#7a584c", text: "#fefefe" },
     Marketing: { bg: "#5c3d35", text: "#fefefe" },
@@ -166,7 +166,7 @@ export function CookieBadge({ category }: { category: string }) {
   );
 }
 
-/** Right card — one of the Betroffenenrechte */
+/** Right card - one of the Betroffenenrechte */
 export function RightCard({
   right,
   article,
@@ -194,7 +194,7 @@ export function RightCard({
           marginBottom: 2,
         }}
       >
-        <CheckCircle2 size={14} color="#b34832" />
+        <CheckCircle2 size={14} color="#CC624C" />
         <span
           style={{ fontWeight: 800, color: "#2d1f19", fontSize: "0.85rem" }}
         >
@@ -239,7 +239,7 @@ export function LegalPageLayout({
           left: 0,
           right: 0,
           height: 3,
-          background: "linear-gradient(90deg, #b34832, #E4C0A8)",
+          background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
           transformOrigin: "left",
           scaleX,
           zIndex: 100,
@@ -249,7 +249,7 @@ export function LegalPageLayout({
       {/* Hero Header */}
       <div
         style={{
-          background: "linear-gradient(180deg, #eedfcc 0%, #f5efe8 100%)",
+          background: "linear-gradient(180deg, #eedfcc 0%, #F5EFE8 100%)",
           paddingTop: 120,
           paddingBottom: 48,
           textAlign: "center",
@@ -299,13 +299,13 @@ export function LegalPageLayout({
               marginBottom: 16,
             }}
           >
-            <Shield size={14} color="#b34832" />
+            <Shield size={14} color="#CC624C" />
             <span
               style={{
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 fontSize: "0.75rem",
                 fontWeight: 800,
-                color: "#b34832",
+                color: "#CC624C",
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
               }}
@@ -316,7 +316,7 @@ export function LegalPageLayout({
 
           <h1
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "clamp(2rem, 5vw, 3rem)",
               color: "#2d1f19",
               margin: "0 0 8px",
@@ -326,7 +326,7 @@ export function LegalPageLayout({
           </h1>
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               color: "#5c3d35",
               fontSize: "1rem",
               margin: 0,
@@ -351,9 +351,9 @@ export function LegalPageLayout({
           style={{
             marginTop: 56,
             padding: "16px 24px",
-            background: "linear-gradient(135deg, #eedfcc 0%, #f5efe8 100%)",
+            background: "linear-gradient(135deg, #eedfcc 0%, #F5EFE8 100%)",
             borderRadius: 16,
-            fontFamily: "var(--font-nunito), sans-serif",
+            fontFamily: "var(--font-body), sans-serif",
             fontSize: "0.78rem",
             color: "#7a584c",
             textAlign: "center",

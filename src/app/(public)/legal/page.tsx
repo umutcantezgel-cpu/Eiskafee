@@ -35,7 +35,7 @@ import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
 
 function LegalIcon({
   children,
-  color = "#b34832",
+  color = "#A0402C",
 }: {
   children: React.ReactNode;
   color?: string;
@@ -108,10 +108,10 @@ function AccordionSection({
         <div style={{ flex: 1 }}>
           <span
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontSize: "0.72rem",
               fontWeight: 800,
-              color: "#b34832",
+              color: "#A0402C",
               textTransform: "uppercase",
               letterSpacing: "0.08em",
             }}
@@ -120,7 +120,7 @@ function AccordionSection({
           </span>
           <div
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "1.05rem",
               color: "#2d1f19",
             }}
@@ -148,7 +148,7 @@ function AccordionSection({
             <div
               style={{
                 padding: "0 20px 20px 64px",
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 color: "#5c3d35",
                 fontSize: "0.9rem",
                 lineHeight: 1.72,
@@ -166,9 +166,9 @@ function AccordionSection({
 /** Cookie pill badge */
 function CookieBadge({ category }: { category: string }) {
   const colors: Record<string, { bg: string; text: string }> = {
-    Notwendig: { bg: "#b34832", text: "#fefefe" },
+    Notwendig: { bg: "#A0402C", text: "#fefefe" },
     Funktional: { bg: "#E4C0A8", text: "#2d1f19" },
-    Statistik: { bg: "#9a7060", text: "#fefefe" },
+    Statistik: { bg: "#754C3E", text: "#fefefe" },
     Marketing: { bg: "#5c3d35", text: "#fefefe" },
   };
   const c = colors[category] || colors.Notwendig;
@@ -189,7 +189,7 @@ function CookieBadge({ category }: { category: string }) {
   );
 }
 
-/** Right card — one of the Betroffenenrechte */
+/** Right card - one of the Betroffenenrechte */
 function RightCard({ right, article }: { right: string; article: string }) {
   return (
     <motion.div
@@ -211,14 +211,14 @@ function RightCard({ right, article }: { right: string; article: string }) {
           marginBottom: 2,
         }}
       >
-        <CheckCircle2 size={14} color="#b34832" />
+        <CheckCircle2 size={14} color="#A0402C" />
         <span
           style={{ fontWeight: 800, color: "#2d1f19", fontSize: "0.85rem" }}
         >
           {right}
         </span>
       </div>
-      <span style={{ fontSize: "0.72rem", color: "#9a7060", fontWeight: 600 }}>
+      <span style={{ fontSize: "0.72rem", color: "#754C3E", fontWeight: 600 }}>
         {article}
       </span>
     </motion.div>
@@ -270,7 +270,7 @@ export default function LegalPage() {
           left: 0,
           right: 0,
           height: 3,
-          background: "linear-gradient(90deg, #b34832, #E4C0A8)",
+          background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
           transformOrigin: "left",
           scaleX,
           zIndex: 100,
@@ -280,7 +280,7 @@ export default function LegalPage() {
       {/* Hero Header */}
       <div
         style={{
-          background: "linear-gradient(180deg, #eedfcc 0%, #f5efe8 100%)",
+          background: "linear-gradient(180deg, #eedfcc 0%, #F5EFE8 100%)",
           paddingTop: 120,
           paddingBottom: 48,
           textAlign: "center",
@@ -330,13 +330,13 @@ export default function LegalPage() {
               marginBottom: 16,
             }}
           >
-            <Shield size={14} color="#b34832" />
+            <Shield size={14} color="#A0402C" />
             <span
               style={{
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 fontSize: "0.75rem",
                 fontWeight: 800,
-                color: "#b34832",
+                color: "#A0402C",
                 textTransform: "uppercase",
                 letterSpacing: "0.1em",
               }}
@@ -347,7 +347,7 @@ export default function LegalPage() {
 
           <h1
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "clamp(2rem, 5vw, 3rem)",
               color: "#2d1f19",
               margin: "0 0 8px",
@@ -357,7 +357,7 @@ export default function LegalPage() {
           </h1>
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               color: "#5c3d35",
               fontSize: "1rem",
               margin: 0,
@@ -391,12 +391,12 @@ export default function LegalPage() {
                 gap: 6,
                 background:
                   activeSection === item.id
-                    ? "#b34832"
+                    ? "#A0402C"
                     : "rgba(245,239,232,0.8)",
                 color: activeSection === item.id ? "#fefefe" : "#5c3d35",
                 padding: "8px 18px",
                 borderRadius: 50,
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 fontWeight: 800,
                 fontSize: "0.8rem",
                 textDecoration: "none",
@@ -428,7 +428,7 @@ export default function LegalPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "1.8rem",
               color: "#2d1f19",
               marginBottom: 28,
@@ -439,7 +439,7 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <Building2 size={24} color="#b34832" /> Impressum
+            <Building2 size={24} color="#A0402C" /> Impressum
           </motion.h2>
 
           <div
@@ -453,7 +453,7 @@ export default function LegalPage() {
             <motion.div
               whileHover={{ y: -4 }}
               style={{
-                background: "#f5efe8",
+                background: "#F5EFE8",
                 borderRadius: 20,
                 padding: 24,
                 border: "1px solid rgba(228,192,168,0.3)",
@@ -467,10 +467,10 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <Building2 size={16} color="#b34832" />
+                <Building2 size={16} color="#A0402C" />
                 <h3
                   style={{
-                    fontFamily: "var(--font-calistoga), serif",
+                    fontFamily: "var(--font-heading), serif",
                     color: "#2d1f19",
                     fontSize: "0.95rem",
                     margin: 0,
@@ -481,7 +481,7 @@ export default function LegalPage() {
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-nunito), sans-serif",
+                  fontFamily: "var(--font-body), sans-serif",
                   color: "#5c3d35",
                   fontSize: "0.88rem",
                   lineHeight: 1.7,
@@ -502,7 +502,7 @@ export default function LegalPage() {
             <motion.div
               whileHover={{ y: -4 }}
               style={{
-                background: "#f5efe8",
+                background: "#F5EFE8",
                 borderRadius: 20,
                 padding: 24,
                 border: "1px solid rgba(228,192,168,0.3)",
@@ -516,10 +516,10 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <Phone size={16} color="#b34832" />
+                <Phone size={16} color="#A0402C" />
                 <h3
                   style={{
-                    fontFamily: "var(--font-calistoga), serif",
+                    fontFamily: "var(--font-heading), serif",
                     color: "#2d1f19",
                     fontSize: "0.95rem",
                     margin: 0,
@@ -530,7 +530,7 @@ export default function LegalPage() {
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-nunito), sans-serif",
+                  fontFamily: "var(--font-body), sans-serif",
                   color: "#5c3d35",
                   fontSize: "0.88rem",
                   lineHeight: 1.7,
@@ -542,7 +542,7 @@ export default function LegalPage() {
                 WhatsApp: {BUSINESS.whatsappDisplay}
                 <br />
                 E-Mail:{" "}
-                <span style={{ color: "#b34832", fontWeight: 700 }}>
+                <span style={{ color: "#A0402C", fontWeight: 700 }}>
                   hallo@hey-fede.de
                 </span>
                 <br />
@@ -564,7 +564,7 @@ export default function LegalPage() {
             <motion.div
               whileHover={{ y: -4 }}
               style={{
-                background: "#f5efe8",
+                background: "#F5EFE8",
                 borderRadius: 20,
                 padding: 24,
                 border: "1px solid rgba(228,192,168,0.3)",
@@ -578,10 +578,10 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <FileText size={16} color="#b34832" />
+                <FileText size={16} color="#A0402C" />
                 <h3
                   style={{
-                    fontFamily: "var(--font-calistoga), serif",
+                    fontFamily: "var(--font-heading), serif",
                     color: "#2d1f19",
                     fontSize: "0.95rem",
                     margin: 0,
@@ -592,7 +592,7 @@ export default function LegalPage() {
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-nunito), sans-serif",
+                  fontFamily: "var(--font-body), sans-serif",
                   color: "#5c3d35",
                   fontSize: "0.88rem",
                   lineHeight: 1.7,
@@ -610,7 +610,7 @@ export default function LegalPage() {
                     fontFamily: "monospace",
                     fontSize: "0.85rem",
                     marginTop: 6,
-                    color: "#b34832",
+                    color: "#A0402C",
                     fontWeight: "bold",
                   }}
                 >
@@ -623,7 +623,7 @@ export default function LegalPage() {
             <motion.div
               whileHover={{ y: -4 }}
               style={{
-                background: "#f5efe8",
+                background: "#F5EFE8",
                 borderRadius: 20,
                 padding: 24,
                 border: "1px solid rgba(228,192,168,0.3)",
@@ -637,10 +637,10 @@ export default function LegalPage() {
                   marginBottom: 12,
                 }}
               >
-                <Info size={16} color="#b34832" />
+                <Info size={16} color="#A0402C" />
                 <h3
                   style={{
-                    fontFamily: "var(--font-calistoga), serif",
+                    fontFamily: "var(--font-heading), serif",
                     color: "#2d1f19",
                     fontSize: "0.95rem",
                     margin: 0,
@@ -651,7 +651,7 @@ export default function LegalPage() {
               </div>
               <p
                 style={{
-                  fontFamily: "var(--font-nunito), sans-serif",
+                  fontFamily: "var(--font-body), sans-serif",
                   color: "#5c3d35",
                   fontSize: "0.88rem",
                   lineHeight: 1.7,
@@ -673,12 +673,12 @@ export default function LegalPage() {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             style={{
-              background: "linear-gradient(135deg, #eedfcc 0%, #f5efe8 100%)",
+              background: "linear-gradient(135deg, #eedfcc 0%, #F5EFE8 100%)",
               padding: 20,
               borderRadius: 16,
               marginTop: 20,
               fontSize: "0.85rem",
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               color: "#5c3d35",
               border: "1px solid rgba(228,192,168,0.3)",
             }}
@@ -691,7 +691,7 @@ export default function LegalPage() {
               target="_blank"
               rel="noopener noreferrer"
               style={{
-                color: "#b34832",
+                color: "#A0402C",
                 fontWeight: 700,
                 textDecoration: "underline",
                 textUnderlineOffset: 3,
@@ -716,7 +716,7 @@ export default function LegalPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "1.8rem",
               color: "#2d1f19",
               marginBottom: 28,
@@ -727,7 +727,7 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <Shield size={24} color="#b34832" /> Datenschutzerklärung
+            <Shield size={24} color="#A0402C" /> Datenschutzerklärung
           </motion.h2>
 
           <AccordionSection
@@ -742,7 +742,7 @@ export default function LegalPage() {
               {FULL_ADDRESS}
               <br />
               E-Mail:{" "}
-              <span style={{ fontWeight: 700, color: "#b34832" }}>
+              <span style={{ fontWeight: 700, color: "#A0402C" }}>
                 datenschutz@hey-fede.de
               </span>
             </p>
@@ -799,39 +799,38 @@ export default function LegalPage() {
                   title: "Berechtigtes Interesse",
                   desc: "Server-Logs, Website-Sicherheit",
                 },
-              ].map((r) => (
+              ].map((r, i) => (
                 <div
-                  key={r.art}
+                  key={i}
                   style={{
-                    background: "rgba(238,223,204,0.5)",
-                    borderRadius: 14,
-                    padding: 16,
-                    border: "1px solid rgba(228,192,168,0.3)",
+                    background: "rgba(245,239,232,0.5)",
+                    padding: 12,
+                    borderRadius: 12,
+                    border: "1px solid rgba(228,192,168,0.2)",
                   }}
                 >
-                  <div
+                  <strong
                     style={{
-                      fontSize: "0.72rem",
-                      fontWeight: 800,
-                      color: "#b34832",
-                      marginBottom: 4,
+                      display: "block",
+                      fontSize: "0.75rem",
+                      color: "#A0402C",
                     }}
                   >
                     {r.art}
-                  </div>
-                  <div
+                  </strong>
+                  <strong
                     style={{
-                      fontWeight: 800,
+                      display: "block",
+                      fontSize: "0.9rem",
                       color: "#2d1f19",
-                      fontSize: "0.88rem",
                     }}
                   >
                     {r.title}
-                  </div>
+                  </strong>
                   <div
                     style={{
                       fontSize: "0.8rem",
-                      color: "#9a7060",
+                      color: "#754C3E",
                       marginTop: 4,
                     }}
                   >
@@ -984,7 +983,7 @@ export default function LegalPage() {
             </div>
             <p style={{ marginTop: 16 }}>
               Kontaktiere uns unter{" "}
-              <span style={{ fontWeight: 700, color: "#b34832" }}>
+              <span style={{ fontWeight: 700, color: "#A0402C" }}>
                 datenschutz@hey-fede.de
               </span>
               .
@@ -1063,7 +1062,7 @@ export default function LegalPage() {
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{
-                  color: "#b34832",
+                  color: "#A0402C",
                   fontWeight: 700,
                   textDecoration: "underline",
                   textUnderlineOffset: 3,
@@ -1086,7 +1085,7 @@ export default function LegalPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "1.8rem",
               color: "#2d1f19",
               marginBottom: 12,
@@ -1097,12 +1096,12 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <CookieIcon size={24} color="#b34832" /> Cookies & Tracking
+            <CookieIcon size={24} color="#A0402C" /> Cookies & Tracking
           </motion.h2>
 
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontSize: "0.9rem",
               color: "#5c3d35",
               lineHeight: 1.72,
@@ -1162,7 +1161,7 @@ export default function LegalPage() {
                   display: "flex",
                   alignItems: "center",
                   gap: 16,
-                  background: "#f5efe8",
+                  background: "#F5EFE8",
                   borderRadius: 16,
                   padding: "14px 20px",
                   border: "1px solid rgba(228,192,168,0.3)",
@@ -1193,7 +1192,7 @@ export default function LegalPage() {
                 <span
                   style={{
                     fontSize: "0.75rem",
-                    color: "#9a7060",
+                    color: "#754C3E",
                     minWidth: 70,
                   }}
                 >
@@ -1208,7 +1207,8 @@ export default function LegalPage() {
           <motion.button
             whileHover={{ scale: 1.03, y: -2 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => CookieConsentLib.showPreferences()}
+            type="button"
+            data-cc="show-preferencesModal"
             style={{
               display: "flex",
               alignItems: "center",
@@ -1217,12 +1217,12 @@ export default function LegalPage() {
               width: "100%",
               marginTop: 24,
               padding: "14px 28px",
-              background: "#b34832",
+              background: "#A0402C",
               color: "#fefefe",
               border: "none",
               borderRadius: 50,
               cursor: "pointer",
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontWeight: 800,
               fontSize: "0.88rem",
               boxShadow: "0 6px 20px rgba(204,98,76,0.3)",
@@ -1239,7 +1239,7 @@ export default function LegalPage() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "1.8rem",
               color: "#2d1f19",
               marginBottom: 28,
@@ -1250,7 +1250,7 @@ export default function LegalPage() {
               gap: 12,
             }}
           >
-            <FileText size={24} color="#b34832" /> AGB
+            <FileText size={24} color="#A0402C" /> AGB
           </motion.h2>
 
           {/* TL;DR Box */}
@@ -1263,7 +1263,7 @@ export default function LegalPage() {
               padding: 24,
               borderRadius: 20,
               marginBottom: 32,
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontSize: "0.88rem",
               color: "#5c3d35",
               border: "1px solid rgba(228,192,168,0.3)",
@@ -1271,7 +1271,7 @@ export default function LegalPage() {
           >
             <h3
               style={{
-                fontFamily: "var(--font-calistoga), serif",
+                fontFamily: "var(--font-heading), serif",
                 color: "#2d1f19",
                 fontSize: "1rem",
                 margin: "0 0 14px",
@@ -1280,7 +1280,7 @@ export default function LegalPage() {
                 gap: 8,
               }}
             >
-              <Info size={16} color="#b34832" /> Das Wichtigste in Kürze
+              <Info size={16} color="#A0402C" /> Das Wichtigste in Kürze
             </h3>
             <div style={{ display: "grid", gap: 8 }}>
               {[
@@ -1293,7 +1293,7 @@ export default function LegalPage() {
                   key={item}
                   style={{ display: "flex", alignItems: "center", gap: 8 }}
                 >
-                  <CheckCircle2 size={14} color="#b34832" />
+                  <CheckCircle2 size={14} color="#A0402C" />
                   <span>{item}</span>
                 </div>
               ))}
@@ -1315,7 +1315,7 @@ export default function LegalPage() {
             {
               n: "§ 3",
               t: "Preise & Bezahlung",
-              c: "Alle Preise inkl. gesetzl. MwSt. (7% für Speisen zum Mitnehmen, 19% Verzehr vor Ort). Bezahlt wird ausschließlich vor Ort — bar, mit EC- oder Kreditkarte.",
+              c: "Alle Preise inkl. gesetzl. MwSt. (7% für Speisen zum Mitnehmen, 19% Verzehr vor Ort). Bezahlt wird ausschließlich vor Ort - bar, mit EC- oder Kreditkarte.",
             },
             {
               n: "§ 4",
@@ -1347,11 +1347,11 @@ export default function LegalPage() {
           style={{
             marginTop: 56,
             padding: "16px 24px",
-            background: "linear-gradient(135deg, #eedfcc 0%, #f5efe8 100%)",
+            background: "linear-gradient(135deg, #eedfcc 0%, #F5EFE8 100%)",
             borderRadius: 16,
-            fontFamily: "var(--font-nunito), sans-serif",
+            fontFamily: "var(--font-body), sans-serif",
             fontSize: "0.78rem",
-            color: "#9a7060",
+            color: "#754C3E",
             textAlign: "center",
             border: "1px solid rgba(228,192,168,0.3)",
           }}

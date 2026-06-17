@@ -43,6 +43,8 @@ export default function ProfilePage() {
   const orderCount = orders.length;
 
   const handleLogout = async () => {
+    // ✅ Clear server-side session cookie first
+    await fetch("/api/auth/session", { method: "DELETE" });
     await signOut(auth);
   };
 
@@ -101,22 +103,22 @@ export default function ProfilePage() {
 
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-[#f5efe8] text-[#2d1f19] font-nunito pb-20">
+      <div className="min-h-screen bg-cream text-brown font-body pb-20">
         {/* Hero header */}
-        <div className="bg-[#E4C0A8] pt-12 pb-10 px-6 relative overflow-hidden">
+        <div className="bg-peach pt-12 pb-10 px-6 relative overflow-hidden">
           <div className="absolute -top-8 -right-8 w-40 h-40 bg-[rgba(245,239,232,0.4)] rounded-[58%_42%_52%_48%/48%_58%_42%_52%]"></div>
           <div className="relative flex items-center gap-4">
-            <div className="w-16 h-16 rounded-full bg-[#b34832] flex items-center justify-center text-white font-calistoga text-2xl shadow-sm">
+            <div className="w-16 h-16 rounded-full bg-terracotta flex items-center justify-center text-white font-heading text-2xl shadow-sm">
               {name?.[0]?.toUpperCase() || "H"}
             </div>
             <div>
-              <div className="text-[10px] font-black text-[#b34832] tracking-widest uppercase">
+              <div className="text-[10px] font-black text-terracotta tracking-widest uppercase">
                 Mein Konto
               </div>
-              <div className="font-calistoga text-2xl text-[#2d1f19] mt-0.5 leading-none">
+              <div className="font-heading text-2xl text-brown mt-0.5 leading-none">
                 {name || "Gast"}
               </div>
-              <div className="text-xs text-[#7a5a52] mt-1.5 font-bold">
+              <div className="text-xs text-brown-muted mt-1.5 font-bold">
                 Mitglied seit{" "}
                 {dbUser?.createdAt
                   ? new Date(dbUser.createdAt).getFullYear()
@@ -130,23 +132,21 @@ export default function ProfilePage() {
         <div className="-mt-4 mx-5 bg-white rounded-[18px] p-4 shadow-sm relative z-10 flex divide-x divide-[#eedfcc]">
           <TransitionLink
             href="/profile/orders"
-            className="flex-1 text-center py-2 block hover:bg-[#f5efe8] rounded-l-xl transition-colors"
+            className="flex-1 text-center py-2 block hover:bg-cream rounded-l-xl transition-colors"
           >
-            <div className="text-2xl font-calistoga text-[#2d1f19]">
-              {orderCount}
-            </div>
-            <div className="text-[11px] font-bold text-[#7a5a52] mt-1 uppercase tracking-wide">
+            <div className="text-2xl font-heading text-brown">{orderCount}</div>
+            <div className="text-[11px] font-bold text-brown-muted mt-1 uppercase tracking-wide">
               Bestellungen
             </div>
           </TransitionLink>
           <TransitionLink
             href="/loyalty"
-            className="flex-1 text-center py-2 block hover:bg-[#f5efe8] rounded-r-xl transition-colors"
+            className="flex-1 text-center py-2 block hover:bg-cream rounded-r-xl transition-colors"
           >
-            <div className="text-2xl font-calistoga text-[#2d1f19] flex items-center justify-center gap-1">
-              <Gift className="w-5 h-5 text-[#b34832]" />
+            <div className="text-2xl font-heading text-brown flex items-center justify-center gap-1">
+              <Gift className="w-5 h-5 text-terracotta" />
             </div>
-            <div className="text-[11px] font-bold text-[#7a5a52] mt-1 uppercase tracking-wide">
+            <div className="text-[11px] font-bold text-brown-muted mt-1 uppercase tracking-wide">
               Rewards
             </div>
           </TransitionLink>
@@ -156,7 +156,7 @@ export default function ProfilePage() {
           {/* Sektion 1: Persönliche Daten & Geburtstag */}
           <FadeUp delay={0.1}>
             <div className="flex justify-between items-baseline mb-2.5">
-              <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase">
+              <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase">
                 Persönliche Daten
               </div>
               <button
@@ -164,7 +164,7 @@ export default function ProfilePage() {
                   isEditingData ? handleSaveData() : setIsEditingData(true)
                 }
                 disabled={savingData}
-                className="font-nunito text-[11px] font-extrabold text-[#b34832] underline"
+                className="font-body text-[11px] font-extrabold text-terracotta underline"
               >
                 {savingData
                   ? "..."
@@ -174,10 +174,10 @@ export default function ProfilePage() {
               </button>
             </div>
             <div className="bg-white rounded-[18px] p-1 shadow-sm">
-              <div className="p-3.5 border-b border-[#eedfcc] flex gap-3 items-center">
-                <User size={18} className="text-[#b34832]" />
+              <div className="p-3.5 border-b border-beige flex gap-3 items-center">
+                <User size={18} className="text-terracotta" />
                 <div className="flex-1">
-                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">
+                  <div className="font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-wider mb-0.5">
                     Name
                   </div>
                   {isEditingData ? (
@@ -185,19 +185,19 @@ export default function ProfilePage() {
                       type="text"
                       value={name}
                       onChange={(e) => setName(e.target.value)}
-                      className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none"
+                      className="w-full font-bold text-brown bg-cream px-2 py-1 rounded outline-none"
                     />
                   ) : (
-                    <div className="font-bold text-[#2d1f19] text-[13px]">
+                    <div className="font-bold text-brown text-[13px]">
                       {name}
                     </div>
                   )}
                 </div>
               </div>
-              <div className="p-3.5 border-b border-[#eedfcc] flex gap-3 items-center">
+              <div className="p-3.5 border-b border-beige flex gap-3 items-center">
                 <div className="w-[18px]" />
                 <div className="flex-1">
-                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">
+                  <div className="font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-wider mb-0.5">
                     Handy
                   </div>
                   {isEditingData ? (
@@ -205,19 +205,19 @@ export default function ProfilePage() {
                       type="tel"
                       value={phone}
                       onChange={(e) => setPhone(e.target.value)}
-                      className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none"
+                      className="w-full font-bold text-brown bg-cream px-2 py-1 rounded outline-none"
                     />
                   ) : (
-                    <div className="font-bold text-[#2d1f19] text-[13px]">
-                      {phone || "—"}
+                    <div className="font-bold text-brown text-[13px]">
+                      {phone || "-"}
                     </div>
                   )}
                 </div>
               </div>
               <div className="p-3.5 flex gap-3 items-center">
-                <Calendar size={18} className="text-[#b34832]" />
+                <Calendar size={18} className="text-terracotta" />
                 <div className="flex-1">
-                  <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-wider mb-0.5">
+                  <div className="font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-wider mb-0.5">
                     Geburtstag (für Überraschungen 🎁)
                   </div>
                   {isEditingData ? (
@@ -225,13 +225,13 @@ export default function ProfilePage() {
                       type="date"
                       value={birthday}
                       onChange={(e) => setBirthday(e.target.value)}
-                      className="w-full font-bold text-[#2d1f19] bg-[#f5efe8] px-2 py-1 rounded outline-none"
+                      className="w-full font-bold text-brown bg-cream px-2 py-1 rounded outline-none"
                     />
                   ) : (
-                    <div className="font-bold text-[#2d1f19] text-[13px]">
+                    <div className="font-bold text-brown text-[13px]">
                       {birthday
                         ? new Date(birthday).toLocaleDateString("de-DE")
-                        : "—"}
+                        : "-"}
                     </div>
                   )}
                 </div>
@@ -242,7 +242,7 @@ export default function ProfilePage() {
           {/* Sektion 2: Adressen */}
           <FadeUp delay={0.2}>
             <div className="flex justify-between items-baseline mb-2.5">
-              <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase">
+              <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase">
                 Lieferadressen
               </div>
             </div>
@@ -254,12 +254,12 @@ export default function ProfilePage() {
                   className="bg-white rounded-[18px] p-3.5 shadow-sm flex items-center justify-between"
                 >
                   <div className="flex items-center gap-3">
-                    <MapPin size={18} className="text-[#b34832]" />
+                    <MapPin size={18} className="text-terracotta" />
                     <div>
-                      <div className="font-bold text-[#2d1f19] text-[13px]">
+                      <div className="font-bold text-brown text-[13px]">
                         {addr.street}
                       </div>
-                      <div className="text-[11px] text-[#7a5a52] font-semibold">
+                      <div className="text-[11px] text-brown-muted font-semibold">
                         {addr.zip} {addr.city}
                       </div>
                     </div>
@@ -267,7 +267,7 @@ export default function ProfilePage() {
                   <button
                     onClick={() => handleDeleteAddress(i)}
                     disabled={savingData}
-                    className="w-8 h-8 rounded-full bg-[#f5efe8] flex items-center justify-center text-[#b34832] hover:bg-[#eedfcc]"
+                    className="w-8 h-8 rounded-full bg-cream flex items-center justify-center text-terracotta hover:bg-beige"
                   >
                     <Trash2 size={14} />
                   </button>
@@ -275,7 +275,7 @@ export default function ProfilePage() {
               ))}
 
               {isAddingAddress ? (
-                <div className="bg-white rounded-[18px] p-4 shadow-sm border border-[#b34832]">
+                <div className="bg-white rounded-[18px] p-4 shadow-sm border border-terracotta">
                   <div className="space-y-2.5">
                     <input
                       type="text"
@@ -284,7 +284,7 @@ export default function ProfilePage() {
                       onChange={(e) =>
                         setNewAddress({ ...newAddress, street: e.target.value })
                       }
-                      className="w-full font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none"
+                      className="w-full font-bold text-brown text-sm bg-cream px-3 py-2 rounded-xl outline-none"
                     />
                     <div className="flex gap-2">
                       <input
@@ -294,7 +294,7 @@ export default function ProfilePage() {
                         onChange={(e) =>
                           setNewAddress({ ...newAddress, zip: e.target.value })
                         }
-                        className="w-1/3 font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none"
+                        className="w-1/3 font-bold text-brown text-sm bg-cream px-3 py-2 rounded-xl outline-none"
                       />
                       <input
                         type="text"
@@ -303,7 +303,7 @@ export default function ProfilePage() {
                         onChange={(e) =>
                           setNewAddress({ ...newAddress, city: e.target.value })
                         }
-                        className="flex-1 font-bold text-[#2d1f19] text-sm bg-[#f5efe8] px-3 py-2 rounded-xl outline-none"
+                        className="flex-1 font-bold text-brown text-sm bg-cream px-3 py-2 rounded-xl outline-none"
                       />
                     </div>
                   </div>
@@ -311,14 +311,14 @@ export default function ProfilePage() {
                     <button
                       onClick={handleAddAddress}
                       disabled={savingData}
-                      className="flex-1 bg-[#b34832] text-white font-bold text-[12px] py-2 rounded-xl"
+                      className="flex-1 bg-terracotta text-white font-bold text-[12px] py-2 rounded-xl"
                     >
                       Hinzufügen
                     </button>
                     <button
                       onClick={() => setIsAddingAddress(false)}
                       disabled={savingData}
-                      className="flex-1 bg-[#eedfcc] text-[#2d1f19] font-bold text-[12px] py-2 rounded-xl"
+                      className="flex-1 bg-beige text-brown font-bold text-[12px] py-2 rounded-xl"
                     >
                       Abbrechen
                     </button>
@@ -327,7 +327,7 @@ export default function ProfilePage() {
               ) : (
                 <button
                   onClick={() => setIsAddingAddress(true)}
-                  className="w-full bg-[rgba(255,255,255,0.6)] rounded-[18px] p-3.5 flex items-center justify-center gap-2 border-2 border-dashed border-[#E4C0A8] text-[#b34832] font-extrabold text-[12.5px] hover:bg-white transition-colors"
+                  className="w-full bg-[rgba(255,255,255,0.6)] rounded-[18px] p-3.5 flex items-center justify-center gap-2 border-2 border-dashed border-peach text-terracotta font-extrabold text-[12.5px] hover:bg-white transition-colors"
                 >
                   <Plus size={16} /> Neue Adresse
                 </button>
@@ -342,8 +342,8 @@ export default function ProfilePage() {
             onClick={handleLogout}
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-[rgba(204,98,76,0.1)] hover:bg-[rgba(204,98,76,0.15)] transition-colors"
           >
-            <LogOut size={16} className="text-[#b34832]" strokeWidth={2} />
-            <span className="text-[13px] font-bold text-[#b34832]">
+            <LogOut size={16} className="text-terracotta" strokeWidth={2} />
+            <span className="text-[13px] font-bold text-terracotta">
               Abmelden
             </span>
           </button>

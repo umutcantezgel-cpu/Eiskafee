@@ -25,10 +25,21 @@ describe("useMenu", () => {
     vi.clearAllMocks();
   });
 
-  it("should fetch menu items and update state", async () => {
+  it("should fetch menu items and merge availability from Firestore", async () => {
+    const totalLocalItems = Object.values(HF_DATA.menu).reduce(
+      (acc, cat: any) => acc + cat.items.length,
+      0,
+    );
+
     const mockData = [
-      { id: "1", data: () => ({ name: "Waffle", category: "Waffles" }) },
-      { id: "2", data: () => ({ name: "Coffee", category: "Drinks" }) },
+      {
+        id: "Eisschokolade (0,3l)",
+        data: () => ({
+          name: "Eisschokolade (0,3l)",
+          category: "eis-getraenke",
+          available: false,
+        }),
+      },
     ];
 
     // Mock onSnapshot implementation
@@ -45,8 +56,22 @@ describe("useMenu", () => {
       expect(result.current.loading).toBe(false);
     });
 
-    expect(result.current.items).toHaveLength(2);
-    expect(result.current.items[0].name).toBe("Waffle");
+    expect(result.current.items).toHaveLength(totalLocalItems);
+
+    // Find the item "Eisschokolade (0,3l)" and verify it is unavailable (since Firestore marked it false)
+    const eisschokolade = result.current.items.find(
+      (item) => item.name === "Eisschokolade (0,3l)",
+    );
+    expect(eisschokolade).toBeDefined();
+    expect(eisschokolade?.available).toBe(false);
+
+    // Other items should still be available: true
+    const eiskaffee = result.current.items.find(
+      (item) => item.name === "Eiskaffee (0,3l)",
+    );
+    expect(eiskaffee).toBeDefined();
+    expect(eiskaffee?.available).toBe(true);
+
     expect(result.current.error).toBeNull();
   });
 

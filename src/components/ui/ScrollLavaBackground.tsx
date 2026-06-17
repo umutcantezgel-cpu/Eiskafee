@@ -55,8 +55,8 @@ export function ScrollLavaBackground() {
   if (reduced) {
     return (
       <div className="fixed inset-0 pointer-events-none -z-10 opacity-30">
-        <div className="absolute top-[10%] right-[10%] w-[40vw] h-[40vw] bg-[#E4C0A8] rounded-full blur-3xl opacity-40" />
-        <div className="absolute bottom-[10%] left-[10%] w-[50vw] h-[50vw] bg-[#b34832] rounded-full blur-3xl opacity-20" />
+        <div className="absolute top-[10%] right-[10%] w-[40vw] h-[40vw] bg-peach rounded-full blur-3xl opacity-40" />
+        <div className="absolute bottom-[10%] left-[10%] w-[50vw] h-[50vw] bg-terracotta rounded-full blur-3xl opacity-20" />
       </div>
     );
   }
@@ -67,7 +67,7 @@ export function ScrollLavaBackground() {
       className="fixed inset-0 pointer-events-none -z-10 overflow-hidden"
     >
       {/* Background Grid Texture */}
-      <div className="absolute inset-0 opacity-[0.22] dot-bg" />
+      <div className="absolute inset-0 hf-dot-bg pointer-events-none" />
 
       {/* Blob 1: Terracotta */}
       <motion.div
@@ -78,7 +78,7 @@ export function ScrollLavaBackground() {
           rotate: blob1Rotate,
           borderRadius: "58% 42% 52% 48%/48% 58% 42% 52%",
         }}
-        className="absolute -top-[10%] -right-[10%] w-[60vw] max-w-[800px] aspect-square bg-[#b34832] opacity-20 mix-blend-multiply blur-[8px]"
+        className="absolute -top-[10%] -right-[10%] w-[60vw] max-w-[800px] aspect-square bg-terracotta opacity-20 mix-blend-multiply blur-[8px]"
       />
 
       {/* Blob 2: Peach */}
@@ -90,7 +90,7 @@ export function ScrollLavaBackground() {
           rotate: blob2Rotate,
           borderRadius: "45% 55% 40% 60%/55% 45% 60% 40%",
         }}
-        className="absolute top-[20%] -left-[20%] w-[70vw] max-w-[900px] aspect-square bg-[#E4C0A8] opacity-40 mix-blend-multiply blur-[12px]"
+        className="absolute top-[20%] -left-[20%] w-[70vw] max-w-[900px] aspect-square bg-peach opacity-40 mix-blend-multiply blur-[12px]"
       />
 
       {/* Blob 3: Brown (Subtle depth) */}
@@ -101,7 +101,7 @@ export function ScrollLavaBackground() {
           rotate: blob3Rotate,
           borderRadius: "60% 40% 55% 45%/45% 55% 40% 60%",
         }}
-        className="absolute top-[40%] right-[20%] w-[40vw] max-w-[600px] aspect-square bg-[#9a7060] opacity-10 mix-blend-multiply blur-[20px]"
+        className="absolute top-[40%] right-[20%] w-[40vw] max-w-[600px] aspect-square bg-bark-soft opacity-10 mix-blend-multiply blur-[20px]"
       />
     </div>
   );

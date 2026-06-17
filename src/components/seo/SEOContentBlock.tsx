@@ -4,7 +4,7 @@ import React from "react";
 export function SEOContentBlock({
   visible = true,
   children,
-  ariaLabel = "Über Hey Fede! — Hintergrundinformationen",
+  ariaLabel = "Über Hey Fede! - Hintergrundinformationen",
 }: {
   visible?: boolean;
   children: React.ReactNode;

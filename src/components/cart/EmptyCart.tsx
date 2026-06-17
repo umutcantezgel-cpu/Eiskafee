@@ -15,7 +15,8 @@ export const EmptyCart = () => {
       <div className="w-48 h-48 mb-8 relative">
         <svg
           viewBox="0 0 100 100"
-          className="w-full h-full text-[#eedfcc] fill-current"
+          className="w-full h-full text-beige fill-current"
+          aria-hidden="true"
         >
           {/* A cute empty bag illustration */}
           <path d="M25,40 L75,40 L65,85 L35,85 Z" opacity="0.5" />
@@ -30,17 +31,17 @@ export const EmptyCart = () => {
             cx="40"
             cy="60"
             r="4"
-            className="text-[#b34832] fill-current"
+            className="text-terracotta fill-current"
           />
           <circle
             cx="60"
             cy="60"
             r="4"
-            className="text-[#b34832] fill-current"
+            className="text-terracotta fill-current"
           />
           <path
             d="M45,70 Q50,75 55,70"
-            stroke="#b34832"
+            stroke="#CC624C"
             strokeWidth="3"
             fill="none"
             strokeLinecap="round"
@@ -48,17 +49,15 @@ export const EmptyCart = () => {
         </svg>
       </div>
 
-      <h3 className="font-calistoga text-3xl text-[#2d1f19] mb-3">
-        Gähnende Leere!
-      </h3>
-      <p className="font-nunito text-[#7a5a52] leading-relaxed mb-8 max-w-[250px]">
+      <h3 className="font-heading text-3xl text-brown mb-3">Gähnende Leere!</h3>
+      <p className="font-body text-brown-muted leading-relaxed mb-8 max-w-[250px]">
         Dein Warenkorb ist noch hungrig. Zeit für ein paar süße Waffeln!
       </p>
 
       <TransitionLink
         href="/menu"
         onClick={closeCart}
-        className="bg-[#b34832] text-[#f5efe8] px-8 py-4 rounded-full font-bold text-lg shadow-clay hover:bg-[#a84936] transition-colors"
+        className="bg-terracotta text-cream px-8 py-4 rounded-full font-bold text-lg shadow-clay hover:bg-terracotta-deep transition-colors"
       >
         Jetzt bestellen
       </TransitionLink>

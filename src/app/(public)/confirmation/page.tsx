@@ -40,16 +40,16 @@ function ConfirmationContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center">
-        <Icons.Loader2 className="animate-spin text-[#b34832]" size={32} />
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <Icons.Loader2 className="animate-spin text-terracotta" size={32} />
       </div>
     );
   }
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-[#f5efe8] flex flex-col items-center justify-center px-5">
-        <h1 className="font-calistoga text-2xl text-[#2d1f19] mb-4">
+      <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-5">
+        <h1 className="font-heading text-2xl text-brown mb-4">
           Bestellung nicht gefunden
         </h1>
         <TransitionLink href="/">
@@ -71,27 +71,27 @@ function ConfirmationContent() {
       });
 
   return (
-    <div className="min-h-screen bg-[#f5efe8] flex flex-col">
+    <div className="min-h-screen bg-cream flex flex-col">
       {/* Hero confetti area */}
       <div className="pt-8 px-6 text-center relative">
         <FadeUp
           delay={0.1}
-          className="mx-auto mt-2.5 mb-4 w-[84px] h-[84px] rounded-full bg-[#b34832] flex items-center justify-center shadow-[0_12px_28px_rgba(204,98,76,0.32)] relative"
+          className="mx-auto mt-2.5 mb-4 w-[84px] h-[84px] rounded-full bg-terracotta flex items-center justify-center shadow-[0_12px_28px_rgba(204,98,76,0.32)] relative"
         >
           <Icons.Check size={42} color="white" strokeWidth={2.5} />
           {/* sparkles */}
           <div className="absolute -top-2 -right-3">
-            <Icons.Sparkles size={20} color="#b34832" strokeWidth={1.5} />
+            <Icons.Sparkles size={20} color="#CC624C" strokeWidth={1.5} />
           </div>
           <div className="absolute -bottom-1.5 -left-3">
             <Icons.Sparkles size={14} color="#E4C0A8" strokeWidth={1.5} />
           </div>
         </FadeUp>
         <FadeUp delay={0.2}>
-          <h1 className="font-calistoga text-[26px] text-[#2d1f19] leading-[1.1]">
+          <h1 className="font-heading text-[26px] text-brown leading-[1.1]">
             Bestellung bestätigt!
           </h1>
-          <p className="font-nunito text-[13px] text-[#5c3d35] mt-1.5 leading-relaxed max-w-[280px] mx-auto">
+          <p className="font-body text-[13px] text-brown-mid mt-1.5 leading-relaxed max-w-[280px] mx-auto">
             Wir bereiten alles frisch vor. Bestätigung per SMS an deine Nummer.
           </p>
         </FadeUp>
@@ -101,38 +101,38 @@ function ConfirmationContent() {
       <div className="px-5 pt-6">
         <FadeUp
           delay={0.3}
-          className="border-2 border-dashed border-[#b34832] rounded-[20px] bg-white relative shadow-sm"
+          className="border-2 border-dashed border-terracotta rounded-[20px] bg-white relative shadow-sm"
         >
           {/* Cutouts */}
-          <div className="absolute -left-[13px] top-[42%] w-[26px] h-[26px] rounded-full bg-[#f5efe8] border-2 border-dashed border-[#E4C0A8] border-l-transparent border-t-transparent -rotate-45" />
-          <div className="absolute -right-[13px] top-[42%] w-[26px] h-[26px] rounded-full bg-[#f5efe8] border-2 border-dashed border-[#E4C0A8] border-r-transparent border-b-transparent -rotate-45" />
+          <div className="absolute -left-[13px] top-[42%] w-[26px] h-[26px] rounded-full bg-cream border-2 border-dashed border-peach border-l-transparent border-t-transparent -rotate-45" />
+          <div className="absolute -right-[13px] top-[42%] w-[26px] h-[26px] rounded-full bg-cream border-2 border-dashed border-peach border-r-transparent border-b-transparent -rotate-45" />
 
-          <div className="p-[18px_22px_14px] text-center border-b-2 border-dashed border-[#eedfcc]">
-            <div className="font-nunito text-[10px] font-black text-[#7a5a52] tracking-[1.4px] uppercase">
+          <div className="p-[18px_22px_14px] text-center border-b-2 border-dashed border-beige">
+            <div className="font-body text-[10px] font-black text-brown-muted tracking-[1.4px] uppercase">
               Bestellnummer
             </div>
-            <div className="font-calistoga text-[30px] text-[#b34832] mt-1 tracking-wide">
+            <div className="font-heading text-[30px] text-terracotta mt-1 tracking-wide">
               {order.orderNumber || `#HF-XXXX`}
             </div>
           </div>
 
           <div className="p-[18px_22px] flex gap-3.5 items-center">
-            <div className="w-[88px] h-[88px] bg-[#2d1f19] rounded-[12px] p-[7px] shrink-0">
+            <div className="w-[88px] h-[88px] bg-brown rounded-[12px] p-[7px] shrink-0">
               <div className="w-full h-full bg-white rounded-[6px] flex flex-col items-center justify-center p-1">
                 <Icons.QrCode size={40} color="#2d1f19" strokeWidth={1.5} />
-                <span className="font-nunito text-[10px] font-bold text-[#2d1f19] mt-1">
+                <span className="font-body text-[10px] font-bold text-brown mt-1">
                   {order.orderNumber}
                 </span>
               </div>
             </div>
             <div>
-              <div className="font-nunito text-[10px] font-black text-[#b34832] tracking-[1.4px] uppercase">
+              <div className="font-body text-[10px] font-black text-terracotta tracking-[1.4px] uppercase">
                 Abholung
               </div>
-              <div className="font-calistoga text-[18px] text-[#2d1f19] mt-1 leading-[1.1]">
+              <div className="font-heading text-[18px] text-brown mt-1 leading-[1.1]">
                 {dateDisplay} · {order.pickupTime}
               </div>
-              <div className="font-nunito text-[11.5px] text-[#7a5a52] mt-1.5 leading-snug">
+              <div className="font-body text-[11.5px] text-brown-muted mt-1.5 leading-snug">
                 {BUSINESS.street}
                 <br />
                 {BUSINESS.postalCode} {BUSINESS.city}
@@ -146,12 +146,12 @@ function ConfirmationContent() {
       <div className="p-[18px_20px]">
         <FadeUp
           delay={0.4}
-          className="bg-[#eedfcc] rounded-[14px] p-[10px_14px] flex justify-between items-center shadow-sm"
+          className="bg-beige rounded-[14px] p-[10px_14px] flex justify-between items-center shadow-sm"
         >
-          <span className="font-nunito text-[12px] font-extrabold text-[#2d1f19]">
+          <span className="font-body text-[12px] font-extrabold text-brown">
             {itemCount} Artikel · vor Ort zu zahlen
           </span>
-          <span className="font-calistoga text-[17px] text-[#b34832]">
+          <span className="font-heading text-[17px] text-terracotta">
             {(order.total || 0).toFixed(2).replace(".", ",")} €
           </span>
         </FadeUp>
@@ -169,7 +169,7 @@ function ConfirmationContent() {
             </PrimaryButton>
           </TransitionLink>
           <TransitionLink href="/" className="block w-full">
-            <button className="w-full py-3.5 rounded-[16px] border-2 border-[#E4C0A8] text-[#2d1f19] font-extrabold font-nunito text-[15px] bg-transparent active:bg-[rgba(228,192,168,0.2)] transition-colors">
+            <button className="w-full py-3.5 rounded-[16px] border-2 border-peach text-brown font-extrabold font-body text-[15px] bg-transparent active:bg-[rgba(228,192,168,0.2)] transition-colors">
               Zur Startseite
             </button>
           </TransitionLink>
@@ -183,8 +183,8 @@ export default function ConfirmationPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center">
-          <Icons.Loader2 className="animate-spin text-[#b34832]" size={32} />
+        <div className="min-h-screen bg-cream flex items-center justify-center">
+          <Icons.Loader2 className="animate-spin text-terracotta" size={32} />
         </div>
       }
     >

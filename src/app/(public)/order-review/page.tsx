@@ -117,9 +117,9 @@ export default function OrderReviewPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5efe8] flex flex-col">
+    <div className="min-h-screen bg-cream flex flex-col">
       {/* Header */}
-      <div className="bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
+      <div className="bg-cream sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
         <button
           onClick={() => router.back()}
           className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm"
@@ -127,10 +127,10 @@ export default function OrderReviewPage() {
           <Icons.ArrowLeft size={20} color="#2d1f19" />
         </button>
         <div className="text-center">
-          <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">
+          <div className="font-heading text-lg text-brown leading-tight">
             Übersicht
           </div>
-          <div className="font-nunito text-[11px] font-bold text-[#7a5a52]">
+          <div className="font-body text-[11px] font-bold text-brown-muted">
             Schritt 3 von 3
           </div>
         </div>
@@ -141,7 +141,7 @@ export default function OrderReviewPage() {
         {[true, true, true].map((active, i) => (
           <div
             key={i}
-            className={`flex-1 h-1 rounded-full ${active ? "bg-[#b34832]" : "bg-[#eedfcc]"}`}
+            className={`flex-1 h-1 rounded-full ${active ? "bg-terracotta" : "bg-beige"}`}
           />
         ))}
       </div>
@@ -150,24 +150,24 @@ export default function OrderReviewPage() {
         {/* Time Card */}
         <FadeUp
           delay={0.1}
-          className="bg-[#E4C0A8] rounded-[20px] p-[16px_18px] mb-3.5 relative overflow-hidden shadow-sm"
+          className="bg-peach rounded-[20px] p-[16px_18px] mb-3.5 relative overflow-hidden shadow-sm"
         >
           <div className="absolute -top-5 -right-5 w-[90px] h-[90px] bg-[rgba(245,239,232,0.4)] rounded-full" />
           <div className="relative z-10">
-            <div className="font-nunito text-[10px] font-black text-[#b34832] tracking-[1.4px] uppercase">
+            <div className="font-body text-[10px] font-black text-terracotta tracking-[1.4px] uppercase">
               {orderType === "delivery" ? "Lieferung" : "Abholung"}
             </div>
             <div className="flex items-baseline gap-2 mt-1">
-              <div className="font-calistoga text-[26px] text-[#2d1f19] leading-none">
+              <div className="font-heading text-[26px] text-brown leading-none">
                 {dateDisplay} · {orderData.pickupTime}
               </div>
             </div>
-            <div className="font-nunito text-[11.5px] text-[#5c3d35] mt-1.5 font-bold">
+            <div className="font-body text-[11.5px] text-brown-mid mt-1.5 font-bold">
               {orderType === "delivery"
                 ? `${orderData.address?.street}, ${orderData.address?.zip} ${orderData.address?.city}`
                 : `${BUSINESS.street} · ${BUSINESS.city}`}
             </div>
-            <div className="font-nunito text-[11px] text-[#5c3d35] mt-2 opacity-80">
+            <div className="font-body text-[11px] text-brown-mid mt-2 opacity-80">
               {orderData.name} · {orderData.phone}
             </div>
           </div>
@@ -181,22 +181,22 @@ export default function OrderReviewPage() {
           {cart.map((it, i, a) => (
             <div
               key={it.id}
-              className={`p-3 flex justify-between gap-2.5 ${i < a.length - 1 ? "border-b border-[#eedfcc]" : ""}`}
+              className={`p-3 flex justify-between gap-2.5 ${i < a.length - 1 ? "border-b border-beige" : ""}`}
             >
               <div className="flex-1 min-w-0">
                 <div className="flex gap-2 mb-0.5 items-baseline">
-                  <span className="font-nunito font-extrabold text-[12.5px] text-[#7a5a52]">
+                  <span className="font-body font-extrabold text-[12.5px] text-brown-muted">
                     {it.quantity}×
                   </span>
-                  <span className="font-nunito font-extrabold text-[13px] text-[#2d1f19]">
+                  <span className="font-body font-extrabold text-[13px] text-brown">
                     {it.name}
                   </span>
                 </div>
-                <div className="font-nunito text-[11px] text-[#7a5a52] ml-[23px]">
+                <div className="font-body text-[11px] text-brown-muted ml-[23px]">
                   {it.variant || (it as any).desc || ""}
                 </div>
               </div>
-              <span className="font-calistoga text-[14px] text-[#b34832]">
+              <span className="font-heading text-[14px] text-terracotta">
                 {(
                   it.quantity *
                   (typeof it.price === "number"
@@ -214,15 +214,15 @@ export default function OrderReviewPage() {
         {/* Promo Code Input */}
         <FadeUp
           delay={0.3}
-          className="bg-white rounded-[18px] p-4 mb-3.5 shadow-sm border-2 border-transparent focus-within:border-[#b34832]"
+          className="bg-white rounded-[18px] p-4 mb-3.5 shadow-sm border-2 border-transparent focus-within:border-terracotta"
         >
-          <div className="font-nunito text-[10px] font-extrabold text-[#7a5a52] uppercase tracking-[1px] mb-2">
+          <div className="font-body text-[10px] font-extrabold text-brown-muted uppercase tracking-[1px] mb-2">
             Gutscheincode
           </div>
           {appliedPromo ? (
-            <div className="flex justify-between items-center bg-[#eedfcc] p-3 rounded-[12px]">
-              <div className="flex items-center gap-2 text-[#2d1f19] font-bold text-sm">
-                <Icons.Tag size={16} className="text-[#b34832]" />
+            <div className="flex justify-between items-center bg-beige p-3 rounded-[12px]">
+              <div className="flex items-center gap-2 text-brown font-bold text-sm">
+                <Icons.Tag size={16} className="text-terracotta" />
                 {appliedPromo}
               </div>
               <button
@@ -230,7 +230,7 @@ export default function OrderReviewPage() {
                   setAppliedPromo(null);
                   setDiscountValue(0);
                 }}
-                className="text-[#b34832]"
+                className="text-terracotta"
               >
                 <Icons.X size={18} />
               </button>
@@ -243,18 +243,18 @@ export default function OrderReviewPage() {
                   value={promoCode}
                   onChange={(e) => setPromoCode(e.target.value)}
                   placeholder="Code eingeben"
-                  className="font-nunito text-[14px] font-bold text-[#2d1f19] bg-[#f5efe8] rounded-[12px] px-3 py-2 outline-none flex-1 placeholder:opacity-50 uppercase"
+                  className="font-body text-[14px] font-bold text-brown bg-cream rounded-[12px] px-3 py-2 outline-none flex-1 placeholder:opacity-50 uppercase"
                 />
                 <button
                   onClick={handleApplyPromo}
                   disabled={!promoCode || isApplyingPromo}
-                  className="bg-[#2d1f19] text-white px-4 rounded-[12px] font-nunito text-[12px] font-bold disabled:opacity-50"
+                  className="bg-brown text-white px-4 rounded-[12px] font-body text-[12px] font-bold disabled:opacity-50"
                 >
                   {isApplyingPromo ? "..." : "Einlösen"}
                 </button>
               </div>
               {promoError && (
-                <div className="text-red-500 font-nunito text-[11px] font-bold mt-2">
+                <div className="text-red-500 font-body text-[11px] font-bold mt-2">
                   {promoError}
                 </div>
               )}
@@ -265,40 +265,40 @@ export default function OrderReviewPage() {
         {/* Summary */}
         <FadeUp
           delay={0.4}
-          className="bg-[#eedfcc] rounded-[18px] p-[14px_16px] shadow-sm mb-3.5"
+          className="bg-beige rounded-[18px] p-[14px_16px] shadow-sm mb-3.5"
         >
-          <div className="flex justify-between font-nunito text-[12.5px] text-[#5c3d35] mb-1.5">
+          <div className="flex justify-between font-body text-[12.5px] text-brown-mid mb-1.5">
             <span>Zwischensumme</span>
             <span className="font-bold">
               {subtotal.toFixed(2).replace(".", ",")} €
             </span>
           </div>
           {discountValue > 0 && (
-            <div className="flex justify-between font-nunito text-[12.5px] text-[#b34832] mb-1.5 font-bold">
+            <div className="flex justify-between font-body text-[12.5px] text-terracotta mb-1.5 font-bold">
               <span>Rabatt</span>
               <span>– {discountValue.toFixed(2).replace(".", ",")} €</span>
             </div>
           )}
           {orderType === "delivery" && (
-            <div className="flex justify-between font-nunito text-[12.5px] text-[#5c3d35] mb-1.5">
+            <div className="flex justify-between font-body text-[12.5px] text-brown-mid mb-1.5">
               <span>Liefergebühr</span>
               <span className="font-bold">0,00 €</span>
             </div>
           )}
-          <div className="flex justify-between font-nunito text-[12.5px] text-[#5c3d35] mb-2">
+          <div className="flex justify-between font-body text-[12.5px] text-brown-mid mb-2">
             <span>inkl. 7% MwSt.</span>
             <span className="font-bold">
               {tax.toFixed(2).replace(".", ",")} €
             </span>
           </div>
-          <div className="h-[1px] bg-[#E4C0A8] my-1.5" />
+          <div className="h-[1px] bg-peach my-1.5" />
           <div className="flex justify-between items-baseline mt-2">
-            <span className="font-nunito font-black text-[13px] text-[#2d1f19]">
+            <span className="font-body font-black text-[13px] text-brown">
               {orderType === "delivery"
                 ? "Bar oder Karte bei Lieferung"
                 : "Bar oder Karte vor Ort"}
             </span>
-            <span className="font-calistoga text-[24px] text-[#b34832]">
+            <span className="font-heading text-[24px] text-terracotta">
               {totalAfterDiscount.toFixed(2).replace(".", ",")} €
             </span>
           </div>
@@ -307,17 +307,17 @@ export default function OrderReviewPage() {
         {orderData.notes && (
           <FadeUp
             delay={0.5}
-            className="font-nunito text-[12px] text-[#7a5a52] bg-white rounded-[14px] p-3 italic"
+            className="font-body text-[12px] text-brown-muted bg-white rounded-[14px] p-3 italic"
           >
             "{orderData.notes}"
           </FadeUp>
         )}
       </div>
 
-      <div className="p-[14px_20px_20px] bg-[#f5efe8] border-t border-[#eedfcc]">
-        <div className="font-nunito text-[10.5px] text-[#7a5a52] text-center mb-2.5 leading-tight">
+      <div className="p-[14px_20px_20px] bg-cream border-t border-beige">
+        <div className="font-body text-[10.5px] text-brown-muted text-center mb-2.5 leading-tight">
           Mit „Bestellung absenden" akzeptierst du unsere{" "}
-          <span className="text-[#b34832] font-extrabold">
+          <span className="text-terracotta font-extrabold">
             AGB & Vorbestellbedingungen
           </span>
         </div>

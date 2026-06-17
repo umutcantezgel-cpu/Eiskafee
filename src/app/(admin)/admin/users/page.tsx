@@ -107,7 +107,16 @@ export default function AdminUsersPage() {
       )
     ) {
       try {
-        await updateDoc(doc(db, "users", selectedUser.id), { role: newRole });
+        // ✅ Use server-side API route with Custom Claims instead of direct Firestore write
+        const res = await fetch("/api/auth/set-admin", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ targetUid: selectedUser.id, newRole }),
+        });
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || "Failed to update role");
+        }
         setUsers(
           users.map((u) =>
             u.id === selectedUser.id ? { ...u, role: newRole } : u,
@@ -115,9 +124,9 @@ export default function AdminUsersPage() {
         );
         setSelectedUser({ ...selectedUser, role: newRole });
         addToast({ title: "Rolle aktualisiert", type: "success" });
-      } catch (e) {
+      } catch (e: any) {
         console.error(e);
-        addToast({ title: "Fehler", type: "error" });
+        addToast({ title: e.message || "Fehler", type: "error" });
       }
     }
   };
@@ -164,7 +173,7 @@ export default function AdminUsersPage() {
       <div className="flex-1">
         <div className="mb-8 flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
           <div>
-            <h1 className="font-calistoga text-4xl text-charcoal mb-2">
+            <h1 className="font-heading text-4xl text-charcoal mb-2">
               Nutzer & Support
             </h1>
             <p className="font-bold text-charcoal/60">
@@ -210,16 +219,16 @@ export default function AdminUsersPage() {
             <table className="w-full text-left border-collapse">
               <thead>
                 <tr className="border-b border-peach bg-sand/50">
-                  <th className="py-3 px-6 font-calistoga text-terracotta">
+                  <th className="py-3 px-6 font-heading text-terracotta">
                     Name
                   </th>
-                  <th className="py-3 px-6 font-calistoga text-terracotta">
+                  <th className="py-3 px-6 font-heading text-terracotta">
                     E-Mail
                   </th>
-                  <th className="py-3 px-6 font-calistoga text-terracotta text-center">
+                  <th className="py-3 px-6 font-heading text-terracotta text-center">
                     Rolle
                   </th>
-                  <th className="py-3 px-6 font-calistoga text-terracotta text-right">
+                  <th className="py-3 px-6 font-heading text-terracotta text-right">
                     Details
                   </th>
                 </tr>
@@ -294,7 +303,7 @@ export default function AdminUsersPage() {
         <div className="w-96 bg-cream rounded-3xl border border-peach shadow-sm flex flex-col h-[calc(100vh-8rem)] sticky top-8">
           <div className="p-6 border-b border-peach flex justify-between items-start">
             <div>
-              <div className="font-calistoga text-2xl text-charcoal line-clamp-1">
+              <div className="font-heading text-2xl text-charcoal line-clamp-1">
                 {selectedUser.name || "Ohne Name"}
               </div>
               <div className="text-sm text-charcoal/60 font-bold">
@@ -312,7 +321,7 @@ export default function AdminUsersPage() {
           <div className="p-6 flex-1 overflow-y-auto space-y-8">
             {/* Rolle */}
             <div>
-              <h4 className="font-nunito text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
+              <h4 className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
                 Rechteverwaltung
               </h4>
               <div className="flex gap-2">
@@ -335,12 +344,12 @@ export default function AdminUsersPage() {
 
             {/* Coins */}
             <div>
-              <h4 className="font-nunito text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
+              <h4 className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
                 Loyalty Coins
               </h4>
               <div className="bg-sand rounded-2xl p-4 flex justify-between items-center mb-3">
                 <span className="font-bold text-charcoal">Guthaben:</span>
-                <span className="font-calistoga text-2xl text-terracotta">
+                <span className="font-heading text-2xl text-terracotta">
                   {userBalance}
                 </span>
               </div>
@@ -365,7 +374,7 @@ export default function AdminUsersPage() {
 
             {/* Orders */}
             <div>
-              <h4 className="font-nunito text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
+              <h4 className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-3">
                 Bestellhistorie ({userOrders.length})
               </h4>
               <div className="space-y-2">

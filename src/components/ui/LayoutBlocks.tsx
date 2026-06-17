@@ -15,9 +15,9 @@ export function SectionTitle({
     <div className={`mb-10 md:mb-12 ${center ? "text-center" : ""}`}>
       <h2
         style={{
-          fontFamily: "var(--font-calistoga), serif",
+          fontFamily: "var(--font-heading), serif",
           fontSize: "clamp(1.7rem,4vw,2.8rem)",
-          color: light ? "#f5efe8" : "#2d1f19",
+          color: light ? "#F5EFE8" : "#2d1f19",
           lineHeight: 1.1,
           marginBottom: 8,
         }}
@@ -45,7 +45,7 @@ export function StampBadge({
   text,
   size = 88,
   rotate = -12,
-  color = "#b34832",
+  color = "#CC624C",
 }: {
   text: string;
   size?: number;
@@ -81,7 +81,7 @@ export function StampBadge({
         />
         <text
           fontSize="9"
-          fontFamily="var(--font-nunito), sans-serif"
+          fontFamily="var(--font-body), sans-serif"
           fontWeight="800"
           fill={color}
           letterSpacing="2"
@@ -97,7 +97,7 @@ export function StampBadge({
 
 export function TicketCard({
   children,
-  sectionBg = "#f5efe8",
+  sectionBg = "#F5EFE8",
   className = "",
 }: {
   children: React.ReactNode;
@@ -106,7 +106,7 @@ export function TicketCard({
 }) {
   return (
     <div
-      className={`relative border-2 border-dashed border-[#b34832] rounded-2xl bg-white overflow-visible ${className}`}
+      className={`relative border-2 border-dashed border-terracotta rounded-2xl bg-white overflow-visible ${className}`}
       style={{ margin: "0 14px" }}
     >
       <div

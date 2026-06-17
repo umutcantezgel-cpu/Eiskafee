@@ -29,12 +29,12 @@ export function FoodIcon({
 
   return (
     <div
-      className={`bg-[#E4C0A8] flex flex-col items-center justify-center gap-2 overflow-hidden flex-shrink-0 ${s.cls} ${radius} ${className}`}
+      className={`bg-peach flex flex-col items-center justify-center gap-2 overflow-hidden flex-shrink-0 ${s.cls} ${radius} ${className}`}
     >
       <LIcon
         size={s.px}
         strokeWidth={1.4}
-        color="#b34832"
+        color="#CC624C"
         style={{ opacity: 0.65 }}
       />
       {label && (
@@ -42,15 +42,15 @@ export function FoodIcon({
           style={{
             fontFamily: "monospace",
             fontSize: 9,
-            color: "#b34832",
-            opacity: 0.8,
+            color: "#2d1f19",
             textAlign: "center",
             lineHeight: 1.4,
             padding: "0 8px",
             whiteSpace: "pre-line",
+            fontWeight: "bold",
           }}
         >
-          {label.replace(/\\n/g, "\\n")}
+          {label.replace(/\\n/g, "\n")}
         </span>
       )}
     </div>

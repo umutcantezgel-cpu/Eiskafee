@@ -89,12 +89,12 @@ export default function LieferservicePage() {
     <div className="bg-bg-creme">
       <section className="relative pt-[120px] pb-24 bg-terracotta text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <h1 className="font-calistoga text-5xl md:text-7xl mb-6 leading-[1.1]">
+          <h1 className="font-heading text-5xl md:text-7xl mb-6 leading-[1.1]">
             Der süßeste Lieferservice
             <br />
             in Wetzlar
           </h1>
-          <p className="font-nunito text-lg text-cream/90 leading-relaxed mb-10 max-w-[600px] mx-auto">
+          <p className="font-body text-lg text-cream/90 leading-relaxed mb-10 max-w-[600px] mx-auto">
             Regenwetter in der Altstadt? Kein Problem! Mach es dir auf dem Sofa
             bequem. Wir bringen dir unsere frisch gebackenen Bubble Waffles,
             Crêpes und Premium-Eisbecher direkt an die Haustür – im gesamten
@@ -109,7 +109,7 @@ export default function LieferservicePage() {
           </PrimaryButton>
         </div>
         <div className="absolute bottom-0 left-0 w-full translate-y-1">
-          <WaveDivider fromColor="#b34832" toColor="#ffffff" variant={3} />
+          <WaveDivider fromColor="#CC624C" toColor="#ffffff" variant={3} />
         </div>
       </section>
 
@@ -144,10 +144,10 @@ export default function LieferservicePage() {
                 <div className="bg-white w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 shadow-sm">
                   {step.icon}
                 </div>
-                <h3 className="font-calistoga text-2xl text-charcoal mb-4">
+                <h3 className="font-heading text-2xl text-charcoal mb-4">
                   {step.title}
                 </h3>
-                <p className="font-nunito text-[#5c3d35] leading-relaxed">
+                <p className="font-body text-brown-mid leading-relaxed">
                   {step.desc}
                 </p>
               </div>
@@ -157,7 +157,7 @@ export default function LieferservicePage() {
       </section>
 
       <section className="py-24 bg-sand relative">
-        <FadeUp className="max-w-4xl mx-auto px-6 prose prose-lg prose-headings:font-calistoga prose-headings:text-charcoal prose-p:font-nunito prose-p:text-[#5c3d35]">
+        <FadeUp className="max-w-4xl mx-auto px-6 prose prose-lg prose-headings:font-heading prose-headings:text-charcoal prose-p:font-body prose-p:text-brown-mid">
           <h2>Dein Dessert-Delivery für jeden Anlass</h2>
           <p>
             Stell dir vor: Es ist ein verregneter Sonntagabend in Hessen. Der

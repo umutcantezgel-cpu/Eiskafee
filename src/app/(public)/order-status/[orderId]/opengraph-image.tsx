@@ -24,7 +24,7 @@ export default async function Image({
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        backgroundColor: "#f5efe8", // cream
+        backgroundColor: "#F5EFE8", // cream
         border: "16px solid #eedfcc", // beige
       }}
     >
@@ -34,7 +34,7 @@ export default async function Image({
           alignItems: "center",
           justifyContent: "center",
           marginBottom: "40px",
-          backgroundColor: "#b34832", // terracotta
+          backgroundColor: "#CC624C", // terracotta
           color: "#fefefe", // cream pure
           borderRadius: "100px",
           padding: "20px 40px",
@@ -64,7 +64,7 @@ export default async function Image({
         style={{
           fontSize: "48px",
           fontWeight: 500,
-          color: "#b34832", // terracotta
+          color: "#CC624C", // terracotta
           textAlign: "center",
         }}
       >

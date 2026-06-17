@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 export default function Loading() {
   return (
-    <div className="fixed inset-0 bg-[#f5efe8] z-50 flex flex-col items-center justify-center">
+    <div className="fixed inset-0 bg-cream z-50 flex flex-col items-center justify-center">
       {/* Pulsating Logo */}
       <motion.div
-        className="w-24 h-24 mb-8 bg-[#b34832] rounded-full flex items-center justify-center text-4xl shadow-clay"
+        className="w-24 h-24 mb-8 bg-terracotta rounded-full flex items-center justify-center text-4xl shadow-clay"
         animate={{
           scale: [1, 1.1, 1],
           boxShadow: [
@@ -23,7 +23,7 @@ export default function Loading() {
           ease: "easeInOut",
         }}
       >
-        <span className="font-calistoga text-white">HF</span>
+        <span className="font-heading text-white">HF</span>
       </motion.div>
 
       {/* Stagger Dots */}
@@ -31,7 +31,7 @@ export default function Loading() {
         {[0, 1, 2].map((dot) => (
           <motion.div
             key={dot}
-            className="w-3 h-3 bg-[#b34832] rounded-full"
+            className="w-3 h-3 bg-terracotta rounded-full"
             animate={{
               y: ["0%", "-50%", "0%"],
               opacity: [0.3, 1, 0.3],

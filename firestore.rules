@@ -2,76 +2,190 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    // Helper Functions
+    // ═══════════════════════════════════════════════════════
+    //  HELPER FUNCTIONS
+    // ═══════════════════════════════════════════════════════
+
+    // Admin check: uses Custom Claims (NOT Firestore documents!)
+    // Custom Claims are set server-side via Admin SDK and are cryptographically
+    // verified by Firebase — impossible to forge from the client.
     function isAdmin() {
       return request.auth != null
-          && exists(/databases/$(database)/documents/users/$(request.auth.uid))
-          && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin';
+          && request.auth.token.role == 'admin';
+    }
+
+    function isAuthenticated() {
+      return request.auth != null;
     }
 
     function isOwner(uid) {
-      return request.auth != null && request.auth.uid == uid;
+      return isAuthenticated() && request.auth.uid == uid;
     }
 
-    // Menu — public read, admin write
-    match /menu_items/{document=**} {
-      allow read:  if true;
+    // Check that ONLY the specified fields are being changed
+    function onlyUpdatesFields(allowedFields) {
+      return request.resource.data.diff(resource.data).affectedKeys().hasOnly(allowedFields);
+    }
+
+    // Check that specific protected fields are NOT being changed
+    function doesNotChangeFields(protectedFields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(protectedFields);
+    }
+
+    // ═══════════════════════════════════════════════════════
+    //  MENU ITEMS — Public read, Admin write
+    // ═══════════════════════════════════════════════════════
+    match /menu_items/{itemId} {
+      allow read: if true;
       allow write: if isAdmin();
     }
 
-    // Orders — guests can create, only owner/admin can read, only admin can update
+    // ═══════════════════════════════════════════════════════
+    //  ORDERS — Strict schema validation
+    //  Primary creation path: Server API (/api/orders/create)
+    //  using Admin SDK (bypasses these rules).
+    //  These rules serve as a defense-in-depth fallback.
+    // ═══════════════════════════════════════════════════════
     match /orders/{orderId} {
-      allow create: if true;
-      allow read:   if (resource != null && isOwner(resource.data.userId)) || isAdmin();
-      allow update: if isAdmin();
+      // Create: authenticated users only, strict schema
+      allow create: if isAuthenticated()
+        && request.resource.data.keys().hasAll(['items', 'total', 'status', 'createdAt'])
+        && request.resource.data.status == 'pending'
+        && request.resource.data.total is number
+        && request.resource.data.total > 0
+        && request.resource.data.items is list
+        && request.resource.data.items.size() > 0
+        && request.resource.data.items.size() <= 30
+        && request.resource.data.userId == request.auth.uid;
+
+      // Read: owner or admin only
+      allow read: if isAdmin()
+        || (isAuthenticated() && resource != null && resource.data.userId == request.auth.uid);
+
+      // Update: admin only, status changes only
+      allow update: if isAdmin()
+        && onlyUpdatesFields(['status']);
+
       allow delete: if isAdmin();
     }
 
-    // Users — owner or admin
+    // ═══════════════════════════════════════════════════════
+    //  USERS — Owner can read & update (but NEVER change role)
+    // ═══════════════════════════════════════════════════════
     match /users/{userId} {
-      allow read, write: if isOwner(userId) || isAdmin();
+      allow read: if isOwner(userId) || isAdmin();
+
+      // Create: only the owner, role MUST be 'customer'
+      allow create: if isOwner(userId)
+        && request.resource.data.role == 'customer'
+        && request.resource.data.keys().hasAll(['email', 'role', 'createdAt']);
+
+      // Update: owner may change profile data but NEVER role, uid, createdAt
+      allow update: if (isOwner(userId) && doesNotChangeFields(['role', 'uid', 'createdAt']))
+        || isAdmin();
+
+      allow delete: if false; // Users are never deleted from client
     }
 
-    // Store-Settings — public read, admin write
+    // ═══════════════════════════════════════════════════════
+    //  STORE SETTINGS — Public read, Admin write
+    // ═══════════════════════════════════════════════════════
     match /store_settings/{document=**} {
-      allow read:  if true;
+      allow read: if true;
       allow write: if isAdmin();
     }
 
-    // Analytics — admin only
+    // ═══════════════════════════════════════════════════════
+    //  ANALYTICS — Admin only (read + write)
+    // ═══════════════════════════════════════════════════════
     match /analytics_daily/{document=**} {
       allow read, write: if isAdmin();
     }
 
-    // Reviews — anyone can read approved, auth can create, admin can update
+    // ═══════════════════════════════════════════════════════
+    //  REVIEWS — Schema validation, approved flag
+    // ═══════════════════════════════════════════════════════
     match /reviews/{reviewId} {
-      allow read:   if (resource != null && resource.data.approved == true) || isAdmin();
-      allow create: if request.auth != null;
+      // Public: only approved reviews
+      allow read: if (resource != null && resource.data.approved == true) || isAdmin();
+
+      // Create: authenticated + schema validation
+      allow create: if isAuthenticated()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.rating is int
+        && request.resource.data.rating >= 1
+        && request.resource.data.rating <= 5
+        && request.resource.data.approved == false;
+
       allow update, delete: if isAdmin();
     }
 
-    // Promo codes
+    // ═══════════════════════════════════════════════════════
+    //  PROMO CODES — Public read (for client validation), Admin write
+    // ═══════════════════════════════════════════════════════
     match /promo_codes/{code} {
-      allow read:  if true;
+      allow read: if true;
       allow write: if isAdmin();
     }
 
-    // Delivery zones
+    // ═══════════════════════════════════════════════════════
+    //  DELIVERY ZONES — Public read, Admin write
+    // ═══════════════════════════════════════════════════════
     match /delivery_zones/{zone} {
-      allow read:  if true;
+      allow read: if true;
       allow write: if isAdmin();
     }
 
-    // Support
+    // ═══════════════════════════════════════════════════════
+    //  SUPPORT MESSAGES — Create with schema validation, Admin read
+    // ═══════════════════════════════════════════════════════
     match /support_messages/{msg} {
-      allow create: if true;
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'message', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string
+        && request.resource.data.email.size() > 0
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 2000;
+
       allow read, update, delete: if isAdmin();
     }
 
-    // Loyalty
+    // ═══════════════════════════════════════════════════════
+    //  LOYALTY POINTS — Owner read, Admin write
+    // ═══════════════════════════════════════════════════════
     match /loyalty_points/{uid} {
-      allow read:  if isOwner(uid) || isAdmin();
+      allow read: if isOwner(uid) || isAdmin();
       allow write: if isAdmin();
+
+      match /history/{entry} {
+        allow read: if isOwner(uid) || isAdmin();
+        allow write: if isAdmin();
+      }
+    }
+
+    // ═══════════════════════════════════════════════════════
+    //  CATERING REQUESTS — Create publicly (via App Check), Admin manage
+    // ═══════════════════════════════════════════════════════
+    match /catering_requests/{reqId} {
+      allow create: if request.resource.data.keys().hasAll(['name', 'email', 'message', 'createdAt'])
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() <= 100
+        && request.resource.data.email is string
+        && request.resource.data.message is string
+        && request.resource.data.message.size() <= 3000;
+
+      allow read, update, delete: if isAdmin();
+    }
+
+    // ═══════════════════════════════════════════════════════
+    //  CATCH-ALL: Everything else is DENIED
+    // ═══════════════════════════════════════════════════════
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }

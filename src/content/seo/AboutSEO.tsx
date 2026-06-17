@@ -1,8 +1,8 @@
 import React from "react";
 import { BUSINESS } from "@/lib/seo/business-data";
 /* ──────────────────────────────────────────────────────────────────────
-   AboutSEO — Long-form SEO content for /about
-   ~3 500 Wörter  ·  Cream background  ·  Calistoga h2  ·  Nunito text
+   AboutSEO - Long-form SEO content for /about
+   ~3 500 Wörter  ·  Cream background  ·  Recoleta h2  ·  Myriad text
    ──────────────────────────────────────────────────────────────────── */
 
 const seoSectionStyle: React.CSSProperties = {
@@ -12,7 +12,7 @@ const seoSectionStyle: React.CSSProperties = {
 };
 
 const h2Style: React.CSSProperties = {
-  fontFamily: "Calistoga, serif",
+  fontFamily: "var(--font-heading)",
   fontSize: "clamp(1.5rem, 3.2vw, 2.2rem)",
   color: "#2d1f19",
   lineHeight: 1.14,
@@ -21,16 +21,16 @@ const h2Style: React.CSSProperties = {
 };
 
 const h3Style: React.CSSProperties = {
-  fontFamily: "Calistoga, serif",
+  fontFamily: "var(--font-heading)",
   fontSize: "clamp(1.15rem, 2.2vw, 1.55rem)",
-  color: "#b34832",
+  color: "#CC624C",
   lineHeight: 1.2,
   marginBottom: 12,
   marginTop: 32,
 };
 
 const pStyle: React.CSSProperties = {
-  fontFamily: "Nunito, sans-serif",
+  fontFamily: "var(--font-body)",
   fontSize: "0.97rem",
   color: "#5c3d35",
   lineHeight: 1.88,
@@ -38,7 +38,7 @@ const pStyle: React.CSSProperties = {
 };
 
 const ulStyle: React.CSSProperties = {
-  fontFamily: "Nunito, sans-serif",
+  fontFamily: "var(--font-body)",
   fontSize: "0.97rem",
   color: "#5c3d35",
   lineHeight: 1.88,
@@ -53,7 +53,7 @@ const liStyle: React.CSSProperties = {
 const dividerStyle: React.CSSProperties = {
   width: 60,
   height: 3,
-  background: "linear-gradient(90deg, #b34832, #E4C0A8)",
+  background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
   borderRadius: 2,
   margin: "48px auto",
   border: "none",
@@ -62,12 +62,12 @@ const dividerStyle: React.CSSProperties = {
 export function AboutSEO() {
   return (
     <section
-      aria-label="Über Hey Fede! — Ausführliche Geschichte und Philosophie"
-      style={{ background: "#f5efe8", padding: "72px 0 80px" }}
+      aria-label="Über Hey Fede! - Ausführliche Geschichte und Philosophie"
+      style={{ background: "#F5EFE8", padding: "72px 0 80px" }}
     >
       <div style={seoSectionStyle} role="region">
         <h2 style={h2Style}>
-          Ein Funke, der zur Flamme wurde — Die Anfänge von Hey Fede!
+          Ein Funke, der zur Flamme wurde - Die Anfänge von Hey Fede!
         </h2>
 
         <p style={pStyle}>
@@ -91,14 +91,14 @@ export function AboutSEO() {
           Federica verbrachte unzählige Stunden in der heimischen Küche. Sie
           beobachtete mit der Neugier einer Forscherin und der Leidenschaft
           einer Künstlerin, wie aus ganz einfachen, scheinbar unscheinbaren
-          Grundzutaten – staubigem Mehl, frischen Eiern, cremiger Milch und
-          kristallinem Zucker – unter der Zugabe von wohliger Wärme, beständiger
+          Grundzutaten - staubigem Mehl, frischen Eiern, cremiger Milch und
+          kristallinem Zucker - unter der Zugabe von wohliger Wärme, beständiger
           Zeit und beharrlicher Hingabe etwas völlig Neues, geradezu Magisches
           entstand. Der unverwechselbare Duft von karamellisiertem Zucker, der
           langsam durch die heimischen Flure zog, das sanfte, leise zischende
           Schmelzen von goldgelber Butter in einer heißen Pfanne, das
           rhythmische, fast schon beruhigende Geräusch des Schneebesens, der
-          flüssige Sahne zu luftigen, weißen Wolken schlug – all das waren für
+          flüssige Sahne zu luftigen, weißen Wolken schlug - all das waren für
           sie nicht einfach nur physikalische oder chemische Küchenprozesse. Es
           war reine, ungeschriebene Poesie. Es war eine universelle Sprache der
           tiefen Zuneigung, die sie fließend und mit großer Begeisterung zu
@@ -139,7 +139,7 @@ export function AboutSEO() {
           verstecken durfte. Sie wusste mit jeder Faser ihres Körpers: Wenn sie
           es nicht zumindest mit all ihrer Kraft versuchte, würde sie es den
           verdammten Rest ihres Lebens zutiefst bereuen. Der finale Entschluss
-          zur tatsächlichen Gründung war schließlich gefallen – eine
+          zur tatsächlichen Gründung war schließlich gefallen - eine
           Entscheidung, die gleichermaßen von unbändigem, fast schon
           rücksichtslosem Mut und großem, ehrfürchtigem Respekt vor der
           bevorstehenden Herkulesaufgabe geprägt war.
@@ -148,7 +148,7 @@ export function AboutSEO() {
         <hr style={dividerStyle} />
 
         <h2 style={h2Style}>
-          Die Suche nach dem perfekten Zuhause — Warum Wetzlar die einzige
+          Die Suche nach dem perfekten Zuhause - Warum Wetzlar die einzige
           Antwort war
         </h2>
 
@@ -224,7 +224,7 @@ export function AboutSEO() {
           Leiden des jungen Werthers“ fand. Die spürbare Nähe zur sanft
           fließenden Lahn, deren grüne Ufer an sonnigen Tagen zu ausgedehnten,
           entspannenden Spaziergängen einladen, rundete das perfekte, idyllische
-          Bild ab. Hey Fede! sollte und durfte nur genau hier entstehen – tief
+          Bild ab. Hey Fede! sollte und durfte nur genau hier entstehen - tief
           eingebettet in die so reiche Historie Wetzlars, liebevoll umgeben von
           kulturellem Erbe und buchstäblich mitten im pulsierenden Leben der
           Menschen.
@@ -261,7 +261,7 @@ export function AboutSEO() {
         <hr style={dividerStyle} />
 
         <h2 style={h2Style}>
-          Die unumstößliche Philosophie — Ehrliches Handwerk, Zeit und absolute
+          Die unumstößliche Philosophie - Ehrliches Handwerk, Zeit und absolute
           Hingabe
         </h2>
 
@@ -343,7 +343,7 @@ export function AboutSEO() {
             und ihren Kindern zu essen geben. Wir kennen jeden einzelnen
             Bestandteil unserer sorgfältig ausgetüftelten Rezepte in- und
             auswendig. Ob es nun um komplexe Allergene, spezifische, persönliche
-            Ernährungsweisen oder einfach nur um kulinarische Neugier geht – wir
+            Ernährungsweisen oder einfach nur um kulinarische Neugier geht - wir
             stehen jederzeit offen, ehrlich und detailliert Rede und Antwort.
             Bei uns gibt es keine verborgenen Zutatenlisten.
           </li>
@@ -397,7 +397,7 @@ export function AboutSEO() {
         <hr style={dividerStyle} />
 
         <h2 style={h2Style}>
-          Eine Sinfonie der Sinne — Unsere Produkte und Kreationen im Detail
+          Eine Sinfonie der Sinne - Unsere Produkte und Kreationen im Detail
         </h2>
 
         <p style={pStyle}>
@@ -408,8 +408,8 @@ export function AboutSEO() {
           durchdachte Galerie von intensiven Geschmackserlebnissen, von denen
           jedes einzelne eine eigene, spannende Geschichte von Versuch, Irrtum
           und schließlichem Triumph erzählt. Unsere unangefochtenen Kernprodukte
-          – die ikonischen Bubble Waffles, die himmlisch weichen Pancakes und
-          die reichhaltigen Shakes – sind keine zufällige, schnelle Auswahl. Sie
+          - die ikonischen Bubble Waffles, die himmlisch weichen Pancakes und
+          die reichhaltigen Shakes - sind keine zufällige, schnelle Auswahl. Sie
           sind vielmehr das hart erarbeitete Ergebnis unzähliger Testläufe,
           kritischer Verkostungen im Freundeskreis und vieler schlafloser Nächte
           der Rezeptoptimierung. Wir haben es uns von Tag eins an zur absoluten
@@ -492,7 +492,7 @@ export function AboutSEO() {
           und gekrönt von einem langsam schmelzenden Stück bester Butter, oder
           in weit dekadenteren, moderneren Varianten mit reichhaltiger, grüner
           Pistaziencreme, säuerlich-frischen Beeren der Saison und großzügigen
-          Raspeln von zartschmelzender, weißer Schokolade – unsere Pancakes sind
+          Raspeln von zartschmelzender, weißer Schokolade - unsere Pancakes sind
           nicht weniger als eine warme, tröstliche Umarmung von innen heraus.
           Sie sind pures, unverfälschtes Soul Food in seiner reinsten,
           ehrlichsten und unwiderstehlichsten Form.
@@ -537,7 +537,7 @@ export function AboutSEO() {
         <hr style={dividerStyle} />
 
         <h2 style={h2Style}>
-          Herkunft, Qualität und tiefgreifendes Vertrauen — Unsere Zutaten und
+          Herkunft, Qualität und tiefgreifendes Vertrauen - Unsere Zutaten und
           Partner
         </h2>
 
@@ -551,7 +551,7 @@ export function AboutSEO() {
           qualitativ minderwertiges, schlechtes Produkt niemals durch bloße
           technische Zauberei in etwas Exzellentes verwandeln. Deshalb beginnt
           die eigentliche, wichtigste Arbeit bei Hey Fede! lange, lange bevor am
-          frühen Morgen der erste Schneebesen geschwungen wird – sie beginnt
+          frühen Morgen der erste Schneebesen geschwungen wird - sie beginnt
           tief an der Basis, bei der sorgfältigen, strengen Auswahl unserer
           Lieferanten und unserer landwirtschaftlichen Partner.
         </p>
@@ -652,7 +652,7 @@ export function AboutSEO() {
         <hr style={dividerStyle} />
 
         <h2 style={h2Style}>
-          Das pulsierende, laute Herz unserer Mission — Die Hey Fede! Community
+          Das pulsierende, laute Herz unserer Mission - Die Hey Fede! Community
         </h2>
 
         <p style={pStyle}>
@@ -720,8 +720,8 @@ export function AboutSEO() {
           vorzubereiten, wenn wir jemanden bereits von Weitem durch das große
           Fenster der Langgasse auf unseren Laden zukommen sehen. Dieser stetige
           persönliche Kontakt, dieser kurze, aber wichtige Moment des völlig
-          echten Austauschs – das kurze, freundliche Plaudern über das trübe
-          Wetter, die Kinder, die letzte Reise oder den stressigen neuen Job –
+          echten Austauschs - das kurze, freundliche Plaudern über das trübe
+          Wetter, die Kinder, die letzte Reise oder den stressigen neuen Job -
           exakt das sind die kleinen, unscheinbaren Dinge, die unsere tägliche
           Arbeit so unendlich, unbezahlbar wertvoll und erfüllend machen.
         </p>
@@ -743,7 +743,7 @@ export function AboutSEO() {
           und wir stehen in Krisen immer felsenfest füreinander ein. Diese
           spürbare, unglaublich positive Energie, die hinter unserer Theke
           herrscht, überträgt sich unsichtbar, aber unweigerlich auf den
-          gesamten Gastraum. Man kann dauerhaft gute Laune nicht vortäuschen –
+          gesamten Gastraum. Man kann dauerhaft gute Laune nicht vortäuschen -
           Menschen spüren das. Und wer Hey Fede! betritt, der spürt in der
           allerersten Sekunde, dass hier Menschen arbeiten, die ihren harten Job
           aufrichtig, aus tiefstem Herzen lieben.
@@ -752,7 +752,7 @@ export function AboutSEO() {
         <hr style={dividerStyle} />
 
         <h2 style={h2Style}>
-          Der weite Blick über den Tellerrand — Unsere Verantwortung für gelebte
+          Der weite Blick über den Tellerrand - Unsere Verantwortung für gelebte
           Nachhaltigkeit
         </h2>
 
@@ -876,7 +876,7 @@ export function AboutSEO() {
         <hr style={dividerStyle} />
 
         <h2 style={h2Style}>
-          Ein unendliches Kapitel — Die Zukunftsvisionen von Hey Fede!
+          Ein unendliches Kapitel - Die Zukunftsvisionen von Hey Fede!
         </h2>
 
         <p style={pStyle}>
@@ -920,7 +920,7 @@ export function AboutSEO() {
           wilden, heimischen Kräutern, heute fast vergessenen, seltenen Beeren
           und innovativen, überraschend floralen Noten zu kreieren. Darüber
           hinaus denken wir intensiv über neue, interaktive Formate für unsere
-          Community nach – wie etwa eigene Workshops, in denen Federica und ihr
+          Community nach - wie etwa eigene Workshops, in denen Federica und ihr
           erfahrenes Team ihr über die Jahre angesammeltes, kostbares Fachwissen
           endlich teilen können. Wie macht man zu Hause den absolut perfekten
           Waffelteig, der nicht zusammenfällt? Wie komponiert man einen
@@ -956,7 +956,7 @@ export function AboutSEO() {
           sehr wir uns in den nächsten Jahren weiterentwickeln werden, egal,
           welche völlig neuen, verrückten Kreationen wir vielleicht erfinden
           werden oder welche noch so glänzenden gastronomischen Auszeichnungen
-          wir vielleicht eines fernen Tages stolz erhalten mögen – Hey Fede!
+          wir vielleicht eines fernen Tages stolz erhalten mögen - Hey Fede!
           wird tief im Herzen immer der gleiche warme, extrem einladende und
           ehrliche Ort in der Wetzlarer Langgasse bleiben, den ihr heute kennt.
           Wir werden niemals, für kein Geld der Welt, die reine, handwerkliche

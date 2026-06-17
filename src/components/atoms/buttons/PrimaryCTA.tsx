@@ -1,14 +1,15 @@
-'use client';
+"use client";
 
-import React, { useState } from 'react';
-import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { twMerge } from 'tailwind-merge';
-import { ChevronRight } from 'lucide-react'; // utilitarische UI icon
+import React, { useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { twMerge } from "tailwind-merge";
+import { ChevronRight } from "lucide-react"; // utilitarische UI icon
 
 interface PrimaryCTAProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   showArrow?: boolean;
   className?: string;
   children: React.ReactNode;
+  as?: "button" | "div";
 }
 
 // Particle generator
@@ -16,7 +17,7 @@ const generateParticles = () => {
   return Array.from({ length: 8 }).map((_, i) => {
     const angle = (i * 360) / 8;
     // Radial explosion distance 40-60px
-    const distance = 40 + Math.random() * 20; 
+    const distance = 40 + Math.random() * 20;
     const radian = (angle * Math.PI) / 180;
     return {
       id: Math.random().toString(),
@@ -27,11 +28,18 @@ const generateParticles = () => {
   });
 };
 
-export function PrimaryCTA({ showArrow = false, className, children, onClick, ...props }: PrimaryCTAProps) {
+export function PrimaryCTA({
+  showArrow = false,
+  className,
+  children,
+  onClick,
+  as = "button",
+  ...props
+}: PrimaryCTAProps) {
   const [particles, setParticles] = useState<any[]>([]);
   const prefersReducedMotion = useReducedMotion();
 
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (e: any) => {
     if (!prefersReducedMotion) {
       setParticles(generateParticles());
       // Remove particles after animation
@@ -40,8 +48,10 @@ export function PrimaryCTA({ showArrow = false, className, children, onClick, ..
     if (onClick) onClick(e);
   };
 
+  const Component = as === "div" ? motion.div : motion.button;
+
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block w-full max-w-fit">
       <AnimatePresence>
         {particles.map((p) => (
           <motion.div
@@ -55,23 +65,23 @@ export function PrimaryCTA({ showArrow = false, className, children, onClick, ..
         ))}
       </AnimatePresence>
 
-      <motion.button
+      <Component
         whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
         transition={{ type: "spring", stiffness: 300, damping: 22 }}
         onClick={handleClick}
         className={twMerge(
           "relative flex items-center justify-center gap-2 px-6 py-3",
           "bg-terracotta text-cream font-bold rounded-full transition-all duration-300",
-          "hover:bg-[#C95039] hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-terracotta/30",
+          "hover:bg-terracotta-deep hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-terracotta/30",
           // The bitemark mask reveals on hover via tailwind classes
           "hover:[mask-image:url(#bitemark-right)] [mask-image:none]",
-          className
+          className,
         )}
         {...(props as any)}
       >
         <span>{children}</span>
         {showArrow && <ChevronRight className="w-5 h-5" />}
-      </motion.button>
+      </Component>
     </div>
   );
 }

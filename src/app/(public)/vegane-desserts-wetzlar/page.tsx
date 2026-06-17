@@ -50,15 +50,15 @@ export default function VeganeDessertsPage() {
     <div className="bg-bg-creme">
       <section className="relative pt-[120px] pb-24 bg-[#e6efeb] overflow-hidden border-b border-[#c8dbd1]">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
-          <div className="inline-block px-4 py-1.5 bg-[#4a7c59] text-white font-nunito font-bold rounded-full text-sm mb-6 shadow-sm">
+          <div className="inline-block px-4 py-1.5 bg-[#4a7c59] text-white font-body font-bold rounded-full text-sm mb-6 shadow-sm">
             Inklusiver Genuss in Mittelhessen
           </div>
-          <h1 className="font-calistoga text-5xl md:text-7xl text-[#2d4b36] mb-6 leading-[1.1]">
+          <h1 className="font-heading text-5xl md:text-7xl text-[#2d4b36] mb-6 leading-[1.1]">
             Vegane & Halal
             <br />
             Süßspeisen
           </h1>
-          <p className="font-nunito text-lg text-[#3e664b] leading-relaxed mb-10 max-w-[600px] mx-auto">
+          <p className="font-body text-lg text-[#3e664b] leading-relaxed mb-10 max-w-[600px] mx-auto">
             Gutes Essen sollte für alle da sein. Wir sind stolz darauf, eine der
             besten Anlaufstellen im Lahn-Dill-Kreis und dem Raum Gießen für
             pflanzliche Eiscreme und Halal-konforme Desserts zu sein.
@@ -81,7 +81,7 @@ export default function VeganeDessertsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
             <div>
-              <h2 className="font-calistoga text-3xl text-charcoal mb-6">
+              <h2 className="font-heading text-3xl text-charcoal mb-6">
                 Veganes Eis & Shakes
               </h2>
               <ul className="space-y-4">
@@ -93,13 +93,13 @@ export default function VeganeDessertsPage() {
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-6 h-6 text-[#4a7c59] shrink-0 mt-0.5" />
-                    <span className="font-nunito text-[#5c3d35] text-lg">
+                    <span className="font-body text-brown-mid text-lg">
                       {item}
                     </span>
                   </li>
                 ))}
               </ul>
-              <p className="font-nunito text-[#5c3d35] mt-6 leading-relaxed">
+              <p className="font-body text-brown-mid mt-6 leading-relaxed">
                 Egal ob du dich aus ethischen Gründen rein pflanzlich ernährst
                 oder laktoseintolerant bist – bei uns musst du auf nichts
                 verzichten. Genieße unsere veganen Fruit-Shakes, während du
@@ -107,11 +107,11 @@ export default function VeganeDessertsPage() {
               </p>
             </div>
 
-            <div className="bg-[#f5efe8] rounded-3xl p-8 border border-peach/30">
-              <h2 className="font-calistoga text-3xl text-charcoal mb-6">
+            <div className="bg-cream rounded-3xl p-8 border border-peach/30">
+              <h2 className="font-heading text-3xl text-charcoal mb-6">
                 Halal Transparenz
               </h2>
-              <p className="font-nunito text-[#5c3d35] leading-relaxed mb-4">
+              <p className="font-body text-brown-mid leading-relaxed mb-4">
                 Viele unserer Gäste aus Wetzlar, Gießen und Marburg legen großen
                 Wert auf Halal-konforme Ernährung. Bei uns gibt es volle
                 Transparenz:
@@ -124,7 +124,7 @@ export default function VeganeDessertsPage() {
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-3">
                     <CheckCircle2 className="w-6 h-6 text-terracotta shrink-0 mt-0.5" />
-                    <span className="font-nunito text-[#5c3d35]">{item}</span>
+                    <span className="font-body text-brown-mid">{item}</span>
                   </li>
                 ))}
               </ul>

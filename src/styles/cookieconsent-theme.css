@@ -1,15 +1,15 @@
 /* ═══════════════════════════════════════════════════════════════════
-   Hey Fede! — Cookie Consent Premium Theme
+   Hey Fede! - Cookie Consent Premium Theme
    Atomic Luxury Architecture · Glassmorphism + Motion
    ═══════════════════════════════════════════════════════════════════ */
 
 /* ─── Design Tokens ─── */
 #cc-main {
-  --cc-font-family: var(--font-nunito), "Nunito", sans-serif;
+  --cc-font-family: var(--font-body), "Myriad Variable Concept", sans-serif;
   --cc-bg: rgba(245, 239, 232, 0.92);
   --cc-primary-color: #2d1f19;
   --cc-secondary-color: #5c3d35;
-  --cc-btn-primary-bg: #b34832;
+  --cc-btn-primary-bg: #cc624c;
   --cc-btn-primary-color: #fefefe;
   --cc-btn-primary-hover-bg: #b8553f;
   --cc-btn-primary-hover-color: #fefefe;
@@ -19,13 +19,13 @@
   --cc-btn-secondary-hover-color: #2d1f19;
   --cc-btn-border-radius: 50px;
   --cc-modal-border-radius: 24px;
-  --cc-toggle-on-bg: #b34832;
+  --cc-toggle-on-bg: #cc624c;
   --cc-toggle-off-bg: #e4c0a8;
   --cc-toggle-readonly-bg: #9a7060;
   --cc-cookie-category-block-bg: rgba(238, 223, 204, 0.5);
   --cc-separator-border-color: rgba(228, 192, 168, 0.5);
   --cc-overlay-bg: rgba(45, 31, 25, 0.6);
-  --cc-link-color: #b34832;
+  --cc-link-color: #cc624c;
   --cc-footer-bg: rgba(238, 223, 204, 0.5);
   --cc-footer-color: #5c3d35;
   --cc-footer-border-color: rgba(228, 192, 168, 0.4);
@@ -54,10 +54,10 @@
   }
 }
 
-/* ─── Title — Calistoga Display ─── */
+/* ─── Title - Recoleta Display ─── */
 #cc-main .cm__title,
 #cc-main .pm__title {
-  font-family: var(--font-calistoga), "Calistoga", serif;
+  font-family: var(--font-heading), "Recoleta", serif;
   color: #2d1f19;
   letter-spacing: -0.01em;
 }
@@ -74,7 +74,7 @@
   color: #5c3d35;
 }
 
-/* ─── Buttons — Juicy with micro-interactions ─── */
+/* ─── Buttons - Juicy with micro-interactions ─── */
 #cc-main .cm__btn {
   padding: 12px 28px;
   font-weight: 800;
@@ -89,7 +89,7 @@
   transform: scale(0.96);
 }
 
-/* Primary CTA — Terracotta with glow */
+/* Primary CTA - Terracotta with glow */
 #cc-main .cm__btn--accept-all {
   box-shadow: 0 4px 16px rgba(204, 98, 76, 0.3);
 }
@@ -99,7 +99,7 @@
   transform: translateY(-1px);
 }
 
-/* Secondary — Frosted glass */
+/* Secondary - Frosted glass */
 #cc-main .cm__btn--accept-necessary {
   backdrop-filter: blur(8px);
   border: 1px solid rgba(228, 192, 168, 0.5);
@@ -109,7 +109,7 @@
 #cc-main .cm__btn--manage {
   font-weight: 700;
   font-size: 0.78rem;
-  color: #b34832;
+  color: #cc624c;
   text-decoration: underline;
   text-underline-offset: 3px;
   padding: 8px 4px;
@@ -130,7 +130,7 @@
 }
 
 #cc-main .pm__section-title {
-  font-family: var(--font-calistoga), "Calistoga", serif;
+  font-family: var(--font-heading), "Recoleta", serif;
   font-size: 1rem;
   color: #2d1f19;
 }
@@ -140,7 +140,7 @@
   line-height: 1.7;
 }
 
-/* ─── Toggle Switches — Pill style ─── */
+/* ─── Toggle Switches - Pill style ─── */
 #cc-main .pm__toggle .toggle__icon {
   transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
@@ -149,7 +149,7 @@
   transform: translateX(100%);
 }
 
-/* ─── Cookie Tables — Premium styling ─── */
+/* ─── Cookie Tables - Premium styling ─── */
 #cc-main .pm__table {
   border-radius: 14px;
   overflow: hidden;
@@ -178,7 +178,7 @@
 
 /* ─── Links ─── */
 #cc-main a.cc-link {
-  color: #b34832;
+  color: #cc624c;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
@@ -190,7 +190,7 @@
   color: #b8553f;
 }
 
-/* ─── Category Blocks — Card style ─── */
+/* ─── Category Blocks - Card style ─── */
 #cc-main .pm__section {
   border-radius: 16px;
   transition: background 0.3s ease;
@@ -200,7 +200,7 @@
   background: rgba(238, 223, 204, 0.25);
 }
 
-/* ─── Close button — Subtle ─── */
+/* ─── Close button - Subtle ─── */
 #cc-main .pm__close-btn {
   transition:
     transform 0.2s ease,

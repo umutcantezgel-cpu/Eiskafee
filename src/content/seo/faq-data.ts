@@ -30,7 +30,7 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Gibt es WLAN bei Hey Fede?",
-    a: "Ja, wir bieten kostenloses WLAN für unsere Gäste an. Genieße deine Bubble Waffle oder deinen Pancake und bleib dabei online – perfekt für eine gemütliche Pause in der Wetzlarer Altstadt.",
+    a: "Ja, wir bieten kostenloses WLAN für unsere Gäste an. Genieße deine Bubble Waffle oder deinen Pancake und bleib dabei online - perfekt für eine gemütliche Pause in der Wetzlarer Altstadt.",
   },
   {
     q: "Akzeptiert Hey Fede Kartenzahlung?",
@@ -48,15 +48,15 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Sind eure Bubble Waffles glutenfrei?",
-    a: "Unsere klassischen Bubble Waffles enthalten Gluten. Bitte sprich uns vor Ort an, wenn du Unverträglichkeiten hast – wir beraten dich gerne zu Alternativen und informieren dich über alle Inhaltsstoffe.",
+    a: "Unsere klassischen Bubble Waffles enthalten Gluten. Bitte sprich uns vor Ort an, wenn du Unverträglichkeiten hast - wir beraten dich gerne zu Alternativen und informieren dich über alle Inhaltsstoffe.",
   },
   {
     q: "Hat Hey Fede vegane Optionen?",
-    a: "Ja, wir bieten vegane Optionen an, darunter ausgewählte Eissorten und Toppings. Frag unser Team vor Ort nach den aktuell verfügbaren veganen Kreationen – wir erweitern unser Angebot regelmäßig.",
+    a: "Ja, wir bieten vegane Optionen an, darunter ausgewählte Eissorten und Toppings. Frag unser Team vor Ort nach den aktuell verfügbaren veganen Kreationen - wir erweitern unser Angebot regelmäßig.",
   },
   {
     q: "Gibt es bei Hey Fede vegetarische Desserts?",
-    a: "Auf jeden Fall! Der Großteil unserer Desserts ist vegetarisch. Von Bubble Waffles über Pancakes bis hin zu unseren Eiskreationen – als Vegetarier findest du bei uns eine große Auswahl in unserer Dessertbar in Wetzlar.",
+    a: "Auf jeden Fall! Der Großteil unserer Desserts ist vegetarisch. Von Bubble Waffles über Pancakes bis hin zu unseren Eiskreationen - als Vegetarier findest du bei uns eine große Auswahl in unserer Dessertbar in Wetzlar.",
   },
   {
     q: "Sind die Produkte bei Hey Fede Halal?",
@@ -64,11 +64,11 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Was ist die beliebteste Bestellung bei Hey Fede?",
-    a: "Unser absoluter Bestseller ist die Bubble Waffle mit Eis und frischen Toppings – die Kombination aus knuspriger Waffel und cremigem Eis begeistert unsere Gäste immer wieder. Auch unsere Fede & Friends Box ist sehr beliebt für Gruppen.",
+    a: "Unser absoluter Bestseller ist die Bubble Waffle mit Eis und frischen Toppings - die Kombination aus knuspriger Waffel und cremigem Eis begeistert unsere Gäste immer wieder. Auch unsere Fede & Friends Box ist sehr beliebt für Gruppen.",
   },
   {
     q: "Was ist die Fede & Friends Box?",
-    a: "Die Fede & Friends Box ist unsere Sharing-Box, perfekt zum Teilen mit Freunden oder der Familie. Sie enthält eine Auswahl unserer beliebtesten Desserts und Toppings – ideal für gemeinsame Genussmomente in Wetzlar oder zu Hause.",
+    a: "Die Fede & Friends Box ist unsere Sharing-Box, perfekt zum Teilen mit Freunden oder der Familie. Sie enthält eine Auswahl unserer beliebtesten Desserts und Toppings - ideal für gemeinsame Genussmomente in Wetzlar oder zu Hause.",
   },
   {
     q: "Macht Hey Fede die Pancakes selbst?",
@@ -102,7 +102,7 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Wie lange dauert die Zubereitung bei Hey Fede?",
-    a: "Da wir alles frisch zubereiten, dauert es in der Regel 5 bis 10 Minuten, bis deine Bestellung fertig ist. Bei hohem Andrang kann es etwas länger dauern – die Frische ist es aber definitiv wert!",
+    a: "Da wir alles frisch zubereiten, dauert es in der Regel 5 bis 10 Minuten, bis deine Bestellung fertig ist. Bei hohem Andrang kann es etwas länger dauern - die Frische ist es aber definitiv wert!",
   },
   {
     q: "Kann ich bei Hey Fede vorbestellen?",
@@ -110,7 +110,7 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Gibt es einen Mindestbestellwert bei Hey Fede?",
-    a: "Für Online-Bestellungen können Mindestbestellwerte gelten. Vor Ort in unserer Dessertbar in Wetzlar gibt es keinen Mindestbestellwert – jeder ist willkommen!",
+    a: "Für Online-Bestellungen können Mindestbestellwerte gelten. Vor Ort in unserer Dessertbar in Wetzlar gibt es keinen Mindestbestellwert - jeder ist willkommen!",
   },
   {
     q: "Welche Zahlungsarten akzeptiert Hey Fede?",
@@ -122,7 +122,7 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Gibt es Hey Fede Gutscheine?",
-    a: "Ja, wir bieten Gutscheine an – das perfekte Geschenk für alle Dessert-Liebhaber in Wetzlar! Du kannst sie direkt bei uns in der Dessertbar erwerben. Frag einfach unser Team vor Ort.",
+    a: "Ja, wir bieten Gutscheine an - das perfekte Geschenk für alle Dessert-Liebhaber in Wetzlar! Du kannst sie direkt bei uns in der Dessertbar erwerben. Frag einfach unser Team vor Ort.",
   },
 
   // ── Besuch & Anfahrt (10) ──────────────────────────────────────────
@@ -136,7 +136,7 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Wie weit ist Hey Fede vom Bahnhof Wetzlar?",
-    a: "Vom Bahnhof Wetzlar erreichst du unsere Dessertbar in der Altstadt in etwa 10 bis 15 Minuten zu Fuß. Der Weg führt dich durch die charmante Innenstadt – ein schöner Spaziergang bis zu deinem Dessert.",
+    a: "Vom Bahnhof Wetzlar erreichst du unsere Dessertbar in der Altstadt in etwa 10 bis 15 Minuten zu Fuß. Der Weg führt dich durch die charmante Innenstadt - ein schöner Spaziergang bis zu deinem Dessert.",
   },
   {
     q: "Kann man bei Hey Fede reservieren?",
@@ -164,6 +164,6 @@ export const FAQ_DATA: { q: string; a: string }[] = [
   },
   {
     q: "Wie ist die Atmosphäre bei Hey Fede?",
-    a: "Die Atmosphäre bei Hey Fede! ist modern, einladend und gemütlich. Unser Laden in der Wetzlarer Altstadt verbindet ein stylisches Ambiente mit einer warmen, freundlichen Stimmung – perfekt für einen süßen Zwischenstopp.",
+    a: "Die Atmosphäre bei Hey Fede! ist modern, einladend und gemütlich. Unser Laden in der Wetzlarer Altstadt verbindet ein stylisches Ambiente mit einer warmen, freundlichen Stimmung - perfekt für einen süßen Zwischenstopp.",
   },
 ];

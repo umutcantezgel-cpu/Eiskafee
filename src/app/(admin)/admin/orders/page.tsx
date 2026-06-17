@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useOrders } from '@/hooks/useOrders';
-import { KanbanBoard } from '@/components/admin/KanbanBoard';
+import React from "react";
+import { useOrders } from "@/hooks/useOrders";
+import { KanbanBoard } from "@/components/admin/KanbanBoard";
 
 export default function AdminOrdersPage() {
   const { orders, loading } = useOrders();
@@ -11,8 +11,12 @@ export default function AdminOrdersPage() {
     <div className="p-8 h-full flex flex-col">
       <div className="mb-6 flex justify-between items-end">
         <div>
-          <h1 className="font-calistoga text-4xl text-charcoal mb-2">KDS Kanban</h1>
-          <p className="font-bold text-charcoal/60">Bestellungen verwalten & bearbeiten</p>
+          <h1 className="font-heading text-4xl text-charcoal mb-2">
+            KDS Kanban
+          </h1>
+          <p className="font-bold text-charcoal/60">
+            Bestellungen verwalten & bearbeiten
+          </p>
         </div>
       </div>
 

@@ -1,13 +1,30 @@
 import { NextResponse } from "next/server";
 import { adminDb } from "@/lib/firebase-admin";
+import { requireAuth } from "@/lib/auth/requireAuth";
 import * as fs from "fs";
 import * as path from "path";
 
 export async function POST(request: Request) {
-  try {
-    // In a real app, verify admin authentication here via headers or cookies!
-    // We will allow it for development/demo purposes.
+  // ✅ Authentication: require admin session
+  const auth = await requireAuth({ requireAdmin: true });
+  if (!auth.authenticated) {
+    return NextResponse.json({ error: auth.error }, { status: auth.status });
+  }
 
+  // ✅ Production guard: seed is development-only
+  if (process.env.NODE_ENV === "production") {
+    return NextResponse.json(
+      { error: "Seed is disabled in production" },
+      { status: 403 },
+    );
+  }
+
+  // ✅ Audit log
+  console.log(
+    `[AUDIT] Seed initiated by admin ${auth.session.uid} (${auth.session.email}) at ${new Date().toISOString()}`,
+  );
+
+  try {
     // 1. Seed Menu Items
     const seedPath = path.join(process.cwd(), "seed-data.json");
     if (fs.existsSync(seedPath)) {

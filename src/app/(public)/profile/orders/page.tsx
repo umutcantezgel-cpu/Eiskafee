@@ -34,13 +34,13 @@ export default function ProfileOrdersPage() {
   const getStatusColor = (status: string) => {
     switch (status) {
       case "ready":
-        return "bg-[#3a9d52] text-white";
+        return "bg-success text-white";
       case "completed":
-        return "bg-[#2d1f19] text-white";
+        return "bg-brown text-white";
       case "cancelled":
         return "bg-red-500 text-white";
       default:
-        return "bg-[#b34832] text-white";
+        return "bg-terracotta text-white";
     }
   };
 
@@ -65,9 +65,9 @@ export default function ProfileOrdersPage() {
 
   return (
     <AuthGuard>
-      <div className="min-h-screen bg-[#f5efe8] flex flex-col">
+      <div className="min-h-screen bg-cream flex flex-col">
         {/* Header */}
-        <div className="bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
+        <div className="bg-cream sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
           <button
             onClick={() => router.push("/profile")}
             className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm"
@@ -75,7 +75,7 @@ export default function ProfileOrdersPage() {
             <Icons.ArrowLeft size={20} color="#2d1f19" />
           </button>
           <div className="text-center">
-            <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">
+            <div className="font-heading text-lg text-brown leading-tight">
               Bestellungen
             </div>
           </div>
@@ -86,25 +86,22 @@ export default function ProfileOrdersPage() {
           {loading ? (
             <div className="flex justify-center mt-10">
               <Icons.Loader2
-                className="animate-spin text-[#b34832]"
+                className="animate-spin text-terracotta"
                 size={32}
               />
             </div>
           ) : orders.length === 0 ? (
             <div className="text-center mt-20">
-              <Icons.Package
-                size={48}
-                className="mx-auto text-[#eedfcc] mb-4"
-              />
-              <div className="font-calistoga text-xl text-[#2d1f19] mb-2">
+              <Icons.Package size={48} className="mx-auto text-beige mb-4" />
+              <div className="font-heading text-xl text-brown mb-2">
                 Noch keine Bestellungen
               </div>
-              <div className="font-nunito text-[13px] text-[#7a5a52]">
+              <div className="font-body text-[13px] text-brown-muted">
                 Zeit für ein paar süße Momente!
               </div>
               <button
                 onClick={() => router.push("/menu")}
-                className="mt-6 bg-[#b34832] text-white px-6 py-2.5 rounded-xl font-bold text-sm"
+                className="mt-6 bg-terracotta text-white px-6 py-2.5 rounded-xl font-bold text-sm"
               >
                 Zur Speisekarte
               </button>
@@ -116,7 +113,7 @@ export default function ProfileOrdersPage() {
                   <div className="bg-white rounded-[18px] p-4 shadow-sm relative overflow-hidden">
                     <div className="flex justify-between items-start mb-3">
                       <div>
-                        <div className="font-nunito text-[10px] font-black text-[#b34832] tracking-widest uppercase mb-1">
+                        <div className="font-body text-[10px] font-black text-terracotta tracking-widest uppercase mb-1">
                           {new Date(order.createdAt).toLocaleDateString(
                             "de-DE",
                             {
@@ -126,7 +123,7 @@ export default function ProfileOrdersPage() {
                             },
                           )}
                         </div>
-                        <div className="font-calistoga text-[16px] text-[#2d1f19]">
+                        <div className="font-heading text-[16px] text-brown">
                           {order.total?.toFixed(2).replace(".", ",")} €
                         </div>
                       </div>
@@ -137,15 +134,17 @@ export default function ProfileOrdersPage() {
                       </div>
                     </div>
 
-                    <div className="border-t border-dashed border-[#eedfcc] pt-3 pb-4 mb-3 space-y-1.5">
+                    <div className="border-t border-dashed border-beige pt-3 pb-4 mb-3 space-y-1.5">
                       {order.items?.map((item: any, idx: number) => (
                         <div key={idx} className="flex gap-2">
-                          <span className="font-nunito font-extrabold text-[12px] text-[#7a5a52]">
+                          <span className="font-body font-extrabold text-[12px] text-brown-muted">
                             {item.quantity}×
                           </span>
-                          <span className="font-nunito font-bold text-[13px] text-[#2d1f19] flex-1">
-                            {item.name}{" "}
-                            <span className="text-[#7a5a52] font-normal text-[11px]">
+                          <span className="font-body font-bold text-[13px] text-brown flex-1">
+                            <span
+                              dangerouslySetInnerHTML={{ __html: item.name }}
+                            />{" "}
+                            <span className="text-brown-muted font-normal text-[11px]">
                               {item.variant ? `(${item.variant})` : ""}
                             </span>
                           </span>
@@ -155,7 +154,7 @@ export default function ProfileOrdersPage() {
 
                     <button
                       onClick={() => handleReorder(order)}
-                      className="w-full flex items-center justify-center gap-2 bg-[#f5efe8] text-[#b34832] py-2.5 rounded-[12px] font-bold text-[13px] hover:bg-[#eedfcc] transition-colors"
+                      className="w-full flex items-center justify-center gap-2 bg-cream text-terracotta py-2.5 rounded-[12px] font-bold text-[13px] hover:bg-beige transition-colors"
                     >
                       <Icons.RotateCcw size={16} />
                       Bestellung wiederholen

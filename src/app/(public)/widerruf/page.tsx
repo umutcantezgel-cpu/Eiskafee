@@ -23,7 +23,7 @@ export default function WiderrufPage() {
           padding: 24,
           borderRadius: 20,
           marginBottom: 32,
-          fontFamily: "var(--font-nunito), sans-serif",
+          fontFamily: "var(--font-body), sans-serif",
           fontSize: "0.9rem",
           color: "#5c3d35",
           border: "1px solid rgba(204, 98, 76, 0.3)",
@@ -31,8 +31,8 @@ export default function WiderrufPage() {
       >
         <h3
           style={{
-            fontFamily: "var(--font-calistoga), serif",
-            color: "#b34832",
+            fontFamily: "var(--font-heading), serif",
+            color: "#CC624C",
             fontSize: "1.2rem",
             margin: "0 0 14px",
             display: "flex",
@@ -40,7 +40,7 @@ export default function WiderrufPage() {
             gap: 8,
           }}
         >
-          <AlertTriangle size={20} color="#b34832" /> Ausschluss des
+          <AlertTriangle size={20} color="#CC624C" /> Ausschluss des
           Widerrufsrechts
         </h3>
         <p style={{ margin: 0, lineHeight: 1.6 }}>

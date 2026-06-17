@@ -78,10 +78,23 @@ export function ProductCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
       onClick={onClick}
-      whileHover={prefersReducedMotion ? undefined : { y: -5 }}
+      onKeyDown={
+        onClick
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
+      role={onClick ? "button" : undefined}
+      tabIndex={onClick ? 0 : undefined}
+      whileHover={prefersReducedMotion || !onClick ? undefined : { y: -5 }}
       transition={{ type: "spring", stiffness: 300, damping: 20 }}
       className={twMerge(
-        "relative flex flex-col p-5 rounded-2xl bg-white shadow-clay cursor-pointer",
+        "relative flex flex-col p-5 rounded-2xl bg-white shadow-clay",
+        onClick && "cursor-pointer",
         "transition-shadow duration-300 hover:shadow-lg",
         className,
       )}

@@ -64,14 +64,14 @@ export default function LoyaltyPage() {
 
   return (
     <AuthGuard>
-      <div className="min-h-[300vh] bg-transparent text-[#2d1f19] font-nunito relative">
+      <div className="min-h-[300vh] bg-transparent text-brown font-body relative">
         {/* Absolute Back Button */}
         <div className="fixed top-24 left-6 z-50">
           <button
             onClick={() => window.history.back()}
             className="w-12 h-12 bg-white/60 backdrop-blur-md rounded-full flex items-center justify-center hover:scale-110 transition-transform"
           >
-            <ArrowLeft className="w-6 h-6 text-[#b34832]" />
+            <ArrowLeft className="w-6 h-6 text-terracotta" />
           </button>
         </div>
 
@@ -80,7 +80,7 @@ export default function LoyaltyPage() {
           <GiganticTypography
             as="h1"
             highlightWords={["Treue."]}
-            highlightColor="#b34832"
+            highlightColor="#CC624C"
             className="text-center justify-center max-w-[1200px] mx-auto"
           >
             Wir belohnen deine Treue.
@@ -93,10 +93,10 @@ export default function LoyaltyPage() {
             <div className="mb-8 transform scale-150">
               <LoyaltyCoin />
             </div>
-            <div className="text-sm font-black text-[#b34832] tracking-widest uppercase mb-2">
+            <div className="text-sm font-black text-terracotta tracking-widest uppercase mb-2">
               Dein Guthaben
             </div>
-            <div className="font-calistoga text-8xl text-charcoal">
+            <div className="font-heading text-8xl text-charcoal">
               {loading ? "..." : balance}
             </div>
           </motion.div>
@@ -138,14 +138,14 @@ export default function LoyaltyPage() {
                     {ach.icon}
                   </div>
                   <div className="text-center md:text-left">
-                    <div className="font-calistoga text-3xl text-charcoal mb-2">
+                    <div className="font-heading text-3xl text-charcoal mb-2">
                       {ach.title}
                     </div>
                     <div className="text-lg font-bold text-brown/80">
                       {ach.description}
                     </div>
                     {ach.coinReward && ach.coinReward > 0 && (
-                      <div className="inline-block bg-[#eedfcc] px-4 py-2 rounded-full text-sm font-black text-terracotta uppercase tracking-wider mt-4">
+                      <div className="inline-block bg-beige px-4 py-2 rounded-full text-sm font-black text-terracotta uppercase tracking-wider mt-4">
                         +{ach.coinReward} Coins
                       </div>
                     )}
@@ -166,7 +166,7 @@ export default function LoyaltyPage() {
                     <Lock className="w-8 h-8" />
                   </div>
                   <div className="text-center md:text-left">
-                    <div className="font-calistoga text-3xl text-charcoal mb-2 blur-[2px]">
+                    <div className="font-heading text-3xl text-charcoal mb-2 blur-[2px]">
                       Verborgenes Rätsel
                     </div>
                     <div className="text-lg font-bold text-brown/60 blur-[3px] select-none">
@@ -197,7 +197,7 @@ export default function LoyaltyPage() {
                   className={`p-6 md:p-8 flex justify-between items-center ${idx !== history.length - 1 ? "border-b border-peach/50" : ""}`}
                 >
                   <div>
-                    <div className="font-calistoga text-xl md:text-2xl text-charcoal">
+                    <div className="font-heading text-xl md:text-2xl text-charcoal">
                       {item.description || "Punkte gesammelt"}
                     </div>
                     <div className="text-sm font-bold text-brown/70 mt-1">
@@ -207,7 +207,7 @@ export default function LoyaltyPage() {
                     </div>
                   </div>
                   <div
-                    className={`font-calistoga text-3xl md:text-4xl ${item.amount > 0 ? "text-[#3a9d52]" : "text-[#b34832]"}`}
+                    className={`font-heading text-3xl md:text-4xl ${item.amount > 0 ? "text-success" : "text-terracotta"}`}
                   >
                     {item.amount > 0 ? "+" : ""}
                     {item.amount}

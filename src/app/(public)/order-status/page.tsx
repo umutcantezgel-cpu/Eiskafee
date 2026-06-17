@@ -59,7 +59,7 @@ function OrderStatusContent() {
                     particleCount: 150,
                     spread: 70,
                     origin: { y: 0.6 },
-                    colors: ["#b34832", "#E4C0A8", "#eedfcc"],
+                    colors: ["#CC624C", "#E4C0A8", "#eedfcc"],
                   });
                 });
                 try {
@@ -89,21 +89,21 @@ function OrderStatusContent() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center">
-        <Icons.Loader2 className="animate-spin text-[#b34832]" size={32} />
+      <div className="min-h-screen bg-cream flex items-center justify-center">
+        <Icons.Loader2 className="animate-spin text-terracotta" size={32} />
       </div>
     );
   }
 
   if (!order) {
     return (
-      <div className="min-h-screen bg-[#f5efe8] flex flex-col items-center justify-center px-5">
-        <h1 className="font-calistoga text-2xl text-[#2d1f19] mb-4">
+      <div className="min-h-screen bg-cream flex flex-col items-center justify-center px-5">
+        <h1 className="font-heading text-2xl text-brown mb-4">
           Bestellung nicht gefunden
         </h1>
         <button
           onClick={() => router.push("/")}
-          className="font-nunito font-bold underline text-[#b34832]"
+          className="font-body font-bold underline text-terracotta"
         >
           Zurück zur Startseite
         </button>
@@ -153,9 +153,9 @@ function OrderStatusContent() {
         });
 
   return (
-    <div className="min-h-screen bg-[#f5efe8] flex flex-col">
+    <div className="min-h-screen bg-cream flex flex-col">
       {/* Header */}
-      <div className="bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
+      <div className="bg-cream sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
         <button
           onClick={() => router.back()}
           className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm"
@@ -163,10 +163,10 @@ function OrderStatusContent() {
           <Icons.ArrowLeft size={20} color="#2d1f19" />
         </button>
         <div className="text-center">
-          <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">
+          <div className="font-heading text-lg text-brown leading-tight">
             Bestellung {order.orderNumber}
           </div>
-          <div className="font-nunito text-[11px] font-bold text-[#7a5a52]">
+          <div className="font-body text-[11px] font-bold text-brown-muted">
             Geschätzt {order.pickupTime}
           </div>
         </div>
@@ -177,17 +177,17 @@ function OrderStatusContent() {
         {/* Big status pill */}
         <FadeUp
           delay={0.1}
-          className="bg-[#b34832] rounded-[22px] p-[20px_22px] text-white mb-4 relative overflow-hidden shadow-md"
+          className="bg-terracotta rounded-[22px] p-[20px_22px] text-white mb-4 relative overflow-hidden shadow-md"
         >
           <div className="absolute -top-5 -right-2.5 w-[110px] h-[110px] bg-[rgba(255,248,241,0.16)] rounded-full" />
           <div className="relative z-10">
-            <div className="font-nunito text-[10px] font-black tracking-[1.4px] uppercase opacity-85">
+            <div className="font-body text-[10px] font-black tracking-[1.4px] uppercase opacity-85">
               Aktueller Status
             </div>
-            <div className="font-calistoga text-[24px] leading-[1.15] mt-1">
+            <div className="font-heading text-[24px] leading-[1.15] mt-1">
               {getStatusText()}
             </div>
-            <div className="font-nunito text-[12px] mt-2 opacity-90 font-bold">
+            <div className="font-body text-[12px] mt-2 opacity-90 font-bold">
               {status === "ready"
                 ? "Abholung jetzt möglich"
                 : `Geplant für ${dateDisplay} · ${order.pickupTime}`}
@@ -206,12 +206,12 @@ function OrderStatusContent() {
               >
                 {i < steps.length - 1 && (
                   <div
-                    className={`absolute left-[17px] top-[34px] bottom-0 w-0.5 ${s.done ? "bg-[#b34832]" : "bg-[#eedfcc]"}`}
+                    className={`absolute left-[17px] top-[34px] bottom-0 w-0.5 ${s.done ? "bg-terracotta" : "bg-beige"}`}
                   />
                 )}
                 <div
                   className={`w-9 h-9 rounded-full flex items-center justify-center shrink-0 z-10 transition-colors ${
-                    isDoneOrActive ? "bg-[#b34832]" : "bg-[#eedfcc]"
+                    isDoneOrActive ? "bg-terracotta" : "bg-beige"
                   } ${s.active ? "shadow-[0_0_0_5px_rgba(204,98,76,0.18)]" : ""}`}
                 >
                   <s.ic
@@ -222,7 +222,7 @@ function OrderStatusContent() {
                 </div>
                 <div className="flex-1 pt-1.5">
                   <div
-                    className={`font-nunito font-black text-[13px] ${isDoneOrActive ? "text-[#2d1f19]" : "text-[#7a5a52]"}`}
+                    className={`font-body font-black text-[13px] ${isDoneOrActive ? "text-brown" : "text-brown-muted"}`}
                   >
                     {s.t}
                   </div>
@@ -237,21 +237,21 @@ function OrderStatusContent() {
           delay={0.3}
           className="bg-white rounded-[18px] p-3.5 flex gap-3 items-start mb-2.5 shadow-sm"
         >
-          <div className="w-[42px] h-[42px] rounded-full bg-[#E4C0A8] flex items-center justify-center shrink-0">
-            <Icons.MapPin size={20} color="#b34832" strokeWidth={2} />
+          <div className="w-[42px] h-[42px] rounded-full bg-peach flex items-center justify-center shrink-0">
+            <Icons.MapPin size={20} color="#CC624C" strokeWidth={2} />
           </div>
           <div className="flex-1">
-            <div className="font-calistoga text-[14px] text-[#2d1f19]">
+            <div className="font-heading text-[14px] text-brown">
               {BUSINESS.street} · {BUSINESS.city}
             </div>
-            <div className="font-nunito text-[11.5px] text-[#7a5a52] mt-[1px]">
+            <div className="font-body text-[11.5px] text-brown-muted mt-[1px]">
               Tipp: Bestellnummer {order.orderNumber} nennen
             </div>
             <div className="flex gap-2 mt-2.5">
-              <div className="px-3 py-1.5 rounded-full bg-[#eedfcc] font-nunito text-[11px] font-extrabold text-[#b34832]">
+              <div className="px-3 py-1.5 rounded-full bg-beige font-body text-[11px] font-extrabold text-terracotta">
                 Route →
               </div>
-              <div className="px-3 py-1.5 rounded-full bg-[#eedfcc] font-nunito text-[11px] font-extrabold text-[#b34832]">
+              <div className="px-3 py-1.5 rounded-full bg-beige font-body text-[11px] font-extrabold text-terracotta">
                 Anrufen
               </div>
             </div>
@@ -260,7 +260,7 @@ function OrderStatusContent() {
       </div>
 
       {/* Bottom Nav */}
-      <div className="bg-[#f5efe8] border-t border-[#eedfcc] pb-8 pt-3 px-6 flex justify-around items-center">
+      <div className="bg-cream border-t border-beige pb-8 pt-3 px-6 flex justify-around items-center">
         {[
           { icon: Icons.Home, label: "Home", to: "/" },
           { icon: Icons.ShoppingBag, label: "Order", to: "/order-hub" },
@@ -270,13 +270,13 @@ function OrderStatusContent() {
           <TransitionLink
             key={item.label}
             href={item.to}
-            className={`flex flex-col items-center gap-1 ${item.label === "Order" ? "text-[#b34832] opacity-100" : "text-[#5c3d35] opacity-50"}`}
+            className={`flex flex-col items-center gap-1 ${item.label === "Order" ? "text-terracotta opacity-100" : "text-brown-mid opacity-50"}`}
           >
             <item.icon
               size={22}
               strokeWidth={item.label === "Order" ? 2.5 : 2}
             />
-            <span className={`text-[10px] font-nunito font-bold`}>
+            <span className={`text-[10px] font-body font-bold`}>
               {item.label}
             </span>
           </TransitionLink>
@@ -290,8 +290,8 @@ export default function OrderStatusPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen bg-[#f5efe8] flex items-center justify-center">
-          <Icons.Loader2 className="animate-spin text-[#b34832]" size={32} />
+        <div className="min-h-screen bg-cream flex items-center justify-center">
+          <Icons.Loader2 className="animate-spin text-terracotta" size={32} />
         </div>
       }
     >

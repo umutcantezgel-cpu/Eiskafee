@@ -57,7 +57,7 @@ export function CartDrawer() {
               {/* Header */}
               <div className="px-6 py-5 flex items-center justify-between border-b border-sand">
                 <div>
-                  <h2 className="font-calistoga text-2xl text-charcoal">
+                  <h2 className="font-heading text-2xl text-charcoal">
                     Warenkorb
                   </h2>
                   <p className="font-bold text-sm text-brown mt-1">
@@ -117,9 +117,10 @@ export function CartDrawer() {
                         >
                           <div className="bg-white rounded-2xl p-4 flex gap-4 items-center shadow-sm border border-sand">
                             <div className="flex-1 min-w-0">
-                              <div className="font-bold text-base text-charcoal mb-1 truncate">
-                                {item.name}
-                              </div>
+                              <div
+                                className="font-bold text-base text-charcoal mb-1 truncate"
+                                dangerouslySetInnerHTML={{ __html: item.name }}
+                              />
                               <div className="text-sm text-terracotta font-bold mb-3">
                                 {(item.price * item.quantity)
                                   .toFixed(2)
@@ -164,7 +165,7 @@ export function CartDrawer() {
                 <div className="p-6 bg-cream border-t border-sand shadow-[0_-10px_20px_rgba(0,0,0,0.03)] relative z-10">
                   <div className="flex justify-between items-end mb-6">
                     <span className="font-bold text-brown">Gesamt</span>
-                    <span className="font-calistoga text-3xl text-terracotta leading-none">
+                    <span className="font-heading text-3xl text-terracotta leading-none">
                       {total.toFixed(2).replace(".", ",")} €
                     </span>
                   </div>
@@ -177,6 +178,7 @@ export function CartDrawer() {
                     <PrimaryCTA
                       className="w-full justify-center text-lg py-4"
                       showArrow
+                      as="div"
                     >
                       Weiter zur Kasse
                     </PrimaryCTA>

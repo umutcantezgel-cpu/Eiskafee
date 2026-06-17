@@ -1,101 +1,95 @@
-# E2E Test Infrastructure
+# TEST_INFRA.md - Test-Infrastruktur & E2E-Spezifikation
 
-## 1. Test Philosophy
+Dieses Dokument beschreibt die Test-Infrastruktur und die E2E-Teststrategie für das Projekt **Hey Fede!**. Die E2E-Testsuite basiert auf Playwright und verifiziert die korrekte Umsetzung aller SEO-, A11y-, Markdown-Mirroring-, API- und Docker-Anforderungen.
 
-- **Requirement-Driven**: Tests must rigorously validate the requirements outlined in the `ORIGINAL_REQUEST.md`, specifically focusing on the Next.js 14/15 App Router application and its strict Server/Client component separation.
-- **Opaque-Box Testing**: Testing must validate end-to-end user journeys from the outside in, without relying on internal component implementation details. External dependencies like Firebase should use the Firebase Local Emulator Suite to ensure determinism and avoid mutating production databases while genuinely evaluating security rules.
-- **Scope Disclaimer**: Checking source code directives like `"use client"` and `useEffect` cleanups is OUT OF SCOPE for E2E testing and must be handled by static analysis.
-- **Progressive Testability**: Follow a strict 4-Tier strategy. Build confidence sequentially from simple static routes (Tier 1) to complex real-world scenarios (Tier 4).
-- **Safety & Stability**: Ensure absolute hydration safety. There must be zero React hydration mismatches, unhandled errors, or memory leaks across the interactive canvas and physics components.
-- **Accessibility (A11y)**: Automated baseline accessibility checks (e.g., contrast, ARIA labels) must be enforced across all key user journeys.
+---
 
-## 2. Test Architecture using Playwright
+## 1. Test-Architektur & Tiers
 
-- **Framework**: Playwright (`@playwright/test`) is selected for its robust Next.js support, canvas inspection, and cross-browser reliability.
-- **Environment**: Base URL configured to `http://localhost:3000`. Tests should run against the production build output (`npm run build && npm run start`) to accurately capture SSR/hydration behavior.
-- **Configuration (`playwright.config.ts`)**:
-  - **Browsers**: Chromium, WebKit, Firefox.
-  - **Error Monitoring**: Listen to `page.on('console')` and `page.on('pageerror')` globally to detect hydration mismatches (`Text content did not match`), unhandled React errors, or Matter.js canvas crashes. Playwright's `CDPSession` (Chrome DevTools Protocol) will be used to monitor JS heap size for memory leak detection.
-  - **Firebase Integration**: Use the Firebase Local Emulator Suite for Auth and Database reads/writes to keep tests fast, deterministic, and to accurately test security rules.
-- **Plugins**: Incorporate `@axe-core/playwright` for automated A11y scanning on critical pages.
+Die Testsuite ist in Tiers unterteilt, um eine klare Trennung zwischen statischen Validierungen, interaktiven Abläufen und API-Verhalten zu gewährleisten:
 
-## 3. Feature Inventory (Tiers 1-3)
+- **Tier 1: Static Navigation & Basic Layout**
+  - Prüft Erreichbarkeit aller 32+ Routen
+  - Verifiziert grundlegende HTML5-Struktur und Metadaten
+  - Verifiziert A11y-Grundregeln (Skip-Links, Titel, Landmarks)
 
-### Tier 1: Core Navigation & Static Content
+- **Tier 2: SEO, GEO & AEO (R1)**
+  - HTML5-Hierarchie-Validierung (H1-H6 ohne Lücken)
+  - Extraktion und Validierung der JSON-LD Schema.org Skripte im `<head>`
+  - Überprüfung von `<figure>`, `<figcaption>` und `alt`-Textlänge für Bilder (> 10 Wörter)
+  - RAG-Folgefragen-Präsenzprüfung
 
-Verifies that basic routing and server-rendered content load correctly without errors.
+- **Tier 3: Semantic Accessibility & Agent Readiness (R2)**
+  - Prüfung aller interaktiven Elemente auf `aria-label`, `role` und `tabindex`
+  - Eindeutigkeit von `id`- und `name`-Attributen bei Formular-Eingabefeldern
+  - Landmark-Vollständigkeit (`banner`, `main`, `contentinfo`, `navigation`)
 
-- **Home (`/`)**: SEO meta tags, basic layout loading.
-- **Core Pages**: `/menu`, `/about`, `/visit`.
-- **Info & Legal Pages**: `/faq`, `/kontakt`, `/gutscheine`, `/reservierung`, `/legal?tab=impressum`, `/legal?tab=privacy`.
-- **Global UI**: Header, Footer, navigation links functionality, Custom 404 (`not-found.tsx`).
-- **Global A11y**: Baseline `axe` checks on core pages ensuring no "Low Contrast" or "Missing Label" errors.
+- **Tier 4: Markdown Mirroring & Agentic API (R3 & R4)**
+  - Prüfung auf `<link rel="alternate" type="text/markdown">` im `<head>`
+  - Prüfung der Existenz und des Frontmatters von mindestens 10 `.md` Dateien unter `public/md/`
+  - Validierung der `llms.txt` und `llms-full.txt`
+  - API-Endpoints:
+    - `GET /api/ai-agent/health` (ohne Auth, 200 OK)
+    - `GET /api/ai-agent/read` (Auth-Prüfung, JSON-Struktur)
+    - `POST /api/ai-agent/action` (Auth-Prüfung, Validation-Fehler)
+    - Redis Rate Limiting (Simuliertes Rate-Limit / Mock)
 
-### Tier 2: Interactive Master-Features (Client Components)
+- **Tier 5: Docker Containerization (R5)**
+  - Überprüfung der Erreichbarkeit der Next.js-App im Docker-Container unter `http://localhost:39485`
 
-Verifies that advanced interactive components mount, run, and unmount safely.
+---
 
-- **SyrupCursor**: Renders correctly on desktop viewports.
-- **LiquidTransition**: Smooth page transitions without React tree crashes.
-- **PhysicsPlayground (Matter.js)**: `<canvas>` renders properly; no WebGL or RequestAnimationFrame (RAF) errors in console.
-- **ScratchCard**: Component mounts and is visually present.
-- **Hydration & Memory Safety**: Console must be free of hydration mismatches or unhandled errors across all interactive pages.
+## 2. Test-Spezifikationen nach Feature
 
-### Tier 3: Form Submissions & State Management
+### F1: GEO & AEO Content Refactoring
 
-Verifies isolated functional flows before chaining them into complete scenarios.
+- **Ziel**: Maximale RAG- und Search-Engine-Freundlichkeit.
+- **E2E-Tests**:
+  - `tests/e2e/tier2_seo_aeo.spec.ts`
+  - Extrahiert alle `<script type="application/ld+json">` und validiert JSON-Konformität sowie Schema.org-Typen.
+  - Prüft, ob `alt`-Attribute bei Bildern > 10 Wörter lang sind.
+  - Stellt sicher, dass das Content-Markup semantische HTML5-Container nutzt.
 
-- **Cart Management (Zustand)**: Open CartDrawer, add items, update quantities, remove items, verify total calculation.
-- **User Authentication**: Test login/register forms using the Firebase Local Emulator Suite, verify correct validation errors and successful submission.
-- **Support Forms**: Submit forms on `/kontakt` and `/reservierung` and verify success states.
-- **Order Flow Fragments**: Independent verification of `/order-hub`, `/checkout`, `/pickup-time`, `/order-review`, `/confirmation`, and `/order-status`.
+### F2: Semantic Accessibility & Agentic Readiness
 
-## 4. Real-World Application Scenarios for Tier 4
+- **Ziel**: Vollständige Barrierefreiheit und UCP-Readiness für autonome KI-Agenten.
+- **E2E-Tests**:
+  - `tests/e2e/tier3_accessibility.spec.ts`
+  - Verwendet Playwrights A11y-Scans bzw. prüft interaktive Elemente explizit ab.
+  - Verifiziert, dass Eingabefelder strukturierte `name`- und `id`-Attribute haben.
 
-These scenarios follow a requirement-driven, opaque-box methodology to validate the entire application flow.
+### F3: Markdown Mirroring (LLM-Native Indexierung)
 
-### Scenario 1: The Hungry Guest (End-to-End Order Flow)
+- **Ziel**: Bereitstellung von maschinenlesbaren Inhalten für Crawler und LLMs.
+- **E2E-Tests**:
+  - `tests/e2e/tier4_markdown_mirror.spec.ts`
+  - Prüft, ob jede öffentliche Seite ein `<link rel="alternate">` mit dem Typ `text/markdown` besitzt.
+  - Validiert, dass die verlinkten `.md`-Dateien existieren und valides YAML-Frontmatter mit `title`, `ai-summary` und `canonical` aufweisen.
 
-**Goal**: Validate the complete "Order-Flow" pages requested in `ORIGINAL_REQUEST.md`.
+### F4: KI-Agenten-API
 
-1. User lands on `/` and navigates to `/menu`.
-2. User adds multiple dessert items to the Cart.
-3. User proceeds to `/order-hub` and clicks "Checkout".
-4. User enters details on `/checkout`.
-5. User selects a valid time on `/pickup-time`.
-6. User reviews the order summary on `/order-review`.
-7. User confirms the order and is redirected to `/confirmation`.
-8. User checks the status on `/order-status`.
-   **Assertions**: The user can progress through all steps without errors. Cart state persists through steps, and order totals are accurate on the review page.
+- **Ziel**: Sichere und performante Schnittstelle für KI-Agenten.
+- **E2E-Tests**:
+  - `tests/e2e/tier4_agent_api.spec.ts`
+  - Testet API-Zugriff mit richtigem/falschem `X-API-Key` Header.
+  - Verifiziert Antwortstrukturen und Fehlerbehandlung der Endpunkte.
 
-### Scenario 2: The Playful Visitor (Hydration & Memory Safety Check)
+### F5: Docker Deployment
 
-**Goal**: Verify Hydration Safety and Memory Management criteria.
+- **Ziel**: Containerisierte Deploybarkeit ohne Vercel-Beeinträchtigung.
+- **E2E-Tests**:
+  - `tests/e2e/tier5_docker_deploy.spec.ts`
+  - Verifiziert, dass die App im Docker-Container läuft und korrekt reagiert.
 
-1. User visits `/` and interacts with the `SyrupCursor`.
-2. User navigates through the `LiquidTransition` to `/menu` and `/about`.
-3. User interacts with the `PhysicsPlayground` and tries the `ScratchCard` feature.
-4. User navigates back and forth between these interactive pages rapidly (e.g., 5 times).
-   **Assertions**:
+---
 
-- Console contains exactly zero "Hydration failed" or "Text content did not match" errors.
-- Console contains exactly zero "Uncaught Error" or Matter.js engine crashes.
-- System validates via Playwright's CDPSession (Chrome DevTools Protocol) that no memory leaks or uncleaned RAF loops occur.
+## 3. Playwright Konfiguration
 
-### Scenario 3: Global Accessibility & Setup (A11y & Auth)
+Die E2E-Tests werden gegen den lokalen Production Server gefahren:
 
-**Goal**: Verify A11y and Authenticated flows.
+- **Base URL**: `http://localhost:39485`
+- **Port**: `39485`
+- **Command**: `npm run build && PORT=39485 npm run start`
+- **Timeout**: 120s für den Server-Start
 
-1. Playwright navigates across Tier 1 static pages and the complete Order-Flow.
-2. Injects `@axe-core/playwright` and runs checks.
-3. Authenticated user logs in via `/auth`, verifies profile at `/profile`.
-   **Assertions**:
-
-- Axe reports 0 critical/serious violations.
-- Profile and secure areas load correctly based on authenticated session state via the Firebase Local Emulator Suite.
-
-## 5. Coverage Thresholds
-
-- **A11y**: 100% of tested pages must pass `@axe-core/playwright` with zero critical or serious violations.
-- **Hydration/Errors**: 0 hydration mismatches and 0 unhandled console errors are permitted across all Tier 1-4 tests.
-- **E2E Scenario Coverage**: Tier 4 scenarios must successfully pass in CI environments simulating a production build.
+Die Konfiguration befindet sich in `playwright.config.ts`.

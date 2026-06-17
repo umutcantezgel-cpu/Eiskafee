@@ -39,3 +39,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ✅ Security: Firebase Admin SDK keys (NEVER commit)
+*-adminsdk-*.json
+*-firebase-adminsdk-*.json
+
+# ✅ Build artifacts (should not be in repo)
+/.next-test-build/
+/.next_bak/
+
+# ✅ Agents
+/.agents/
+

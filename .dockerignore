@@ -1,0 +1,64 @@
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build outputs
+.next/
+out/
+build/
+dist/
+.next-test-build/
+tsconfig.tsbuildinfo
+
+# Debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environments
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# Vercel
+.vercel
+
+# IDEs and editors
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+
+# Testing and Coverage
+coverage/
+playwright-report/
+test-results/
+.lighthouseci/
+
+# Git
+.git/
+.github/
+.gitignore
+.husky/
+
+# Docker configuration files
+Dockerfile
+docker-compose*.yml
+.dockerignore
+
+# Test and documentation exclusions
+tests/
+test/
+docs/
+.docs/
+*.py
+*.md

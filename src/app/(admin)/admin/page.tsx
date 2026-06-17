@@ -49,9 +49,7 @@ export default function AdminDashboard() {
   return (
     <div className="p-8 max-w-6xl mx-auto">
       <div className="mb-8">
-        <h1 className="font-calistoga text-4xl text-charcoal mb-2">
-          Dashboard
-        </h1>
+        <h1 className="font-heading text-4xl text-charcoal mb-2">Dashboard</h1>
         <p className="font-bold text-charcoal/60">
           Tagesübersicht & Performance
         </p>
@@ -79,7 +77,7 @@ export default function AdminDashboard() {
                   <h3 className="font-bold text-charcoal/60 text-sm">
                     Umsatz Heute
                   </h3>
-                  <p className="font-calistoga text-3xl text-charcoal">
+                  <p className="font-heading text-3xl text-charcoal">
                     {today?.revenue.toFixed(2).replace(".", ",")} €
                   </p>
                 </div>
@@ -95,7 +93,7 @@ export default function AdminDashboard() {
                   <h3 className="font-bold text-charcoal/60 text-sm">
                     Bestellungen
                   </h3>
-                  <p className="font-calistoga text-3xl text-charcoal">
+                  <p className="font-heading text-3xl text-charcoal">
                     {today?.orderCount}
                   </p>
                 </div>
@@ -111,7 +109,7 @@ export default function AdminDashboard() {
                   <h3 className="font-bold text-charcoal/60 text-sm">
                     Top Item
                   </h3>
-                  <p className="font-calistoga text-xl text-charcoal line-clamp-1">
+                  <p className="font-heading text-xl text-charcoal line-clamp-1">
                     {today?.topItems?.[0]?.name || "-"}
                   </p>
                 </div>
@@ -127,7 +125,7 @@ export default function AdminDashboard() {
                   <h3 className="font-bold text-charcoal/60 text-sm">
                     Ø Bestellwert
                   </h3>
-                  <p className="font-calistoga text-3xl text-charcoal">
+                  <p className="font-heading text-3xl text-charcoal">
                     {today && today.orderCount > 0
                       ? (today.revenue / today.orderCount)
                           .toFixed(2)
@@ -142,7 +140,7 @@ export default function AdminDashboard() {
 
           {/* Chart */}
           <div className="bg-cream rounded-3xl p-6 shadow-sm border border-peach h-[400px]">
-            <h3 className="font-calistoga text-xl text-charcoal mb-6">
+            <h3 className="font-heading text-xl text-charcoal mb-6">
               Umsatz (Letzte 7 Tage)
             </h3>
             <RevenueChart data={data} />

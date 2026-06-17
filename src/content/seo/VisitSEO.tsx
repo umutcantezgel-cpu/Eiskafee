@@ -1,8 +1,8 @@
 import React from "react";
 import { BUSINESS } from "@/lib/seo/business-data";
 /* ──────────────────────────────────────────────────────────────────────
-   VisitSEO — Long-form SEO content for /visit
-   ~3 000 Wörter  ·  Cream background  ·  Calistoga h2  ·  Nunito text
+   VisitSEO - Long-form SEO content for /visit
+   ~3 000 Wörter  ·  Cream background  ·  Recoleta h2  ·  Myriad text
    ──────────────────────────────────────────────────────────────────── */
 
 const seoSectionStyle: React.CSSProperties = {
@@ -12,7 +12,7 @@ const seoSectionStyle: React.CSSProperties = {
 };
 
 const h2Style: React.CSSProperties = {
-  fontFamily: "Calistoga, serif",
+  fontFamily: "var(--font-heading)",
   fontSize: "clamp(1.5rem, 3.2vw, 2.2rem)",
   color: "#2d1f19",
   lineHeight: 1.14,
@@ -21,16 +21,16 @@ const h2Style: React.CSSProperties = {
 };
 
 const h3Style: React.CSSProperties = {
-  fontFamily: "Calistoga, serif",
+  fontFamily: "var(--font-heading)",
   fontSize: "clamp(1.15rem, 2.2vw, 1.55rem)",
-  color: "#b34832",
+  color: "#CC624C",
   lineHeight: 1.2,
   marginBottom: 12,
   marginTop: 32,
 };
 
 const pStyle: React.CSSProperties = {
-  fontFamily: "Nunito, sans-serif",
+  fontFamily: "var(--font-body)",
   fontSize: "0.97rem",
   color: "#5c3d35",
   lineHeight: 1.88,
@@ -38,7 +38,7 @@ const pStyle: React.CSSProperties = {
 };
 
 const ulStyle: React.CSSProperties = {
-  fontFamily: "Nunito, sans-serif",
+  fontFamily: "var(--font-body)",
   fontSize: "0.97rem",
   color: "#5c3d35",
   lineHeight: 1.88,
@@ -54,7 +54,7 @@ const liStyle: React.CSSProperties = {
 const dividerStyle: React.CSSProperties = {
   width: 60,
   height: 3,
-  background: "linear-gradient(90deg, #b34832, #E4C0A8)",
+  background: "linear-gradient(90deg, #CC624C, #E4C0A8)",
   borderRadius: 2,
   margin: "48px auto",
   border: "none",
@@ -63,15 +63,15 @@ const dividerStyle: React.CSSProperties = {
 export function VisitSEO() {
   return (
     <section
-      aria-label="Hey Fede! besuchen — Anfahrt, Öffnungszeiten und Tipps"
-      style={{ background: "#f5efe8", padding: "72px 0 80px" }}
+      aria-label="Hey Fede! besuchen - Anfahrt, Öffnungszeiten und Tipps"
+      style={{ background: "#F5EFE8", padding: "72px 0 80px" }}
     >
       <div style={seoSectionStyle} role="region">
         {/* ═══════════════════════════════════════════════════════════════
            A) WILLKOMMEN
            ═══════════════════════════════════════════════════════════════ */}
         <h2 style={h2Style}>
-          Willkommen in der Langgasse – Dein Zuhause für süße Momente in der
+          Willkommen in der Langgasse - Dein Zuhause für süße Momente in der
           Altstadt von Wetzlar
         </h2>
         <p style={pStyle}>
@@ -95,7 +95,7 @@ export function VisitSEO() {
           Wenn du dich unserer Tür näherst, wird dich vielleicht schon der
           unverwechselbare, warme Duft von frisch gebackenen Waffeln,
           geschmolzener Schokolade und aromatischem Kaffee begrüßen. Es ist ein
-          Duft, der Erinnerungen weckt – an gemütliche Sonntagnachmittage bei
+          Duft, der Erinnerungen weckt - an gemütliche Sonntagnachmittage bei
           den Großeltern, an ausgelassene Kindergeburtstage und an die pure,
           unbeschwerte Freude, die nur ein richtig gutes Dessert auslösen kann.
           Bei uns dreht sich alles um dieses Gefühl der Geborgenheit. Wir
@@ -104,7 +104,7 @@ export function VisitSEO() {
           romantisches Date planst, mit deinen Kindern einen besonderen
           Nachmittag verbringen möchtest oder einfach nur einen ruhigen Ort
           suchst, um ein gutes Buch zu lesen und dabei eine heiße Schokolade zu
-          trinken – bei Hey Fede! bist du genau richtig. Wir haben diesen Ort
+          trinken - bei Hey Fede! bist du genau richtig. Wir haben diesen Ort
           mit viel Liebe zum Detail gestaltet, um eine Atmosphäre zu schaffen,
           die genauso herzlich, authentisch und einzigartig ist wie die Stadt
           Wetzlar selbst.
@@ -116,26 +116,26 @@ export function VisitSEO() {
            B) SO FINDEST DU UNS
            ═══════════════════════════════════════════════════════════════ */}
         <h2 style={h2Style}>
-          So findest du Hey Fede! – Ein Spaziergang durch unsere Lieblingsstadt
+          So findest du Hey Fede! - Ein Spaziergang durch unsere Lieblingsstadt
         </h2>
         <p style={pStyle}>
-          Der Weg zu uns ist weit mehr als nur eine einfache Anreise – er ist
+          Der Weg zu uns ist weit mehr als nur eine einfache Anreise - er ist
           bereits der Beginn deines kleinen Wetzlar-Erlebnisses. Die Altstadt
           von Wetzlar ist geprägt von einer beeindruckenden Kompaktheit und
           einer Fußgängerzone, die zum entspannten Flanieren einlädt. Wir
           empfehlen unseren Gästen immer, sich Zeit für den Weg zu nehmen, denn
           es gibt an fast jeder Ecke etwas Neues zu entdecken. Von historischen
           Gebäuden über kleine, inhabergeführte Boutiquen bis hin zu versteckten
-          Innenhöfen – Wetzlar steckt voller Überraschungen.
+          Innenhöfen - Wetzlar steckt voller Überraschungen.
         </p>
         <h3 style={h3Style}>
-          Vom Bahnhof Wetzlar zu Fuß – Ein Weg, der sich lohnt
+          Vom Bahnhof Wetzlar zu Fuß - Ein Weg, der sich lohnt
         </h3>
         <p style={pStyle}>
           Wenn du mit dem Zug in Wetzlar ankommst, hast du die perfekte
           Gelegenheit, die Stadt Schritt für Schritt auf dich wirken zu lassen.
           Vom Hauptbahnhof bis zu uns in die {BUSINESS.street} sind es etwa 1,2
-          Kilometer – ein gemütlicher Spaziergang von rund 15 bis 20 Minuten,
+          Kilometer - ein gemütlicher Spaziergang von rund 15 bis 20 Minuten,
           der dich direkt durch das Herz der Stadt führt. Wenn du das
           Bahnhofsgebäude verlässt, folgst du zunächst der Bahnhofstraße, die
           dich sanft in Richtung Zentrum leitet. Du passierst belebte Kreuzungen
@@ -156,7 +156,7 @@ export function VisitSEO() {
           hier tauchst du ein in die Welt der Wetzlarer Geschichte. Die Straßen
           werden schmaler, die Häuser älter und charmanter. Du schlenderst über
           die Krämerstraße, vorbei an kleinen Geschäften und gemütlichen Cafés,
-          bis du schließlich die Langgasse erreichst. Folge ihr einfach weiter –
+          bis du schließlich die Langgasse erreichst. Folge ihr einfach weiter -
           du wirst unser einladendes Schaufenster und den fröhlichen Hey
           Fede!-Schriftzug schon bald entdecken.
         </p>
@@ -196,13 +196,13 @@ export function VisitSEO() {
            C) PARKEN
            ═══════════════════════════════════════════════════════════════ */}
         <h2 style={h2Style}>
-          Der große Wetzlar-Park-Guide – Entspannt ankommen und genießen
+          Der große Wetzlar-Park-Guide - Entspannt ankommen und genießen
         </h2>
         <p style={pStyle}>
           Wer mit dem Auto nach Wetzlar kommt, kennt vielleicht die kleine
           Herausforderung, die viele historische Städte mit sich bringen: Die
           Altstadt selbst ist verkehrsberuhigt und gehört den Fußgängern. Doch
-          keine Sorge – Wetzlar hat dieses Thema hervorragend gelöst. Es gibt
+          keine Sorge - Wetzlar hat dieses Thema hervorragend gelöst. Es gibt
           rund um die Altstadt eine Vielzahl von erstklassigen, gut
           ausgeschilderten und komfortablen Parkmöglichkeiten, die alle nur
           einen kurzen, schönen Spaziergang von uns entfernt liegen. Um dir die
@@ -213,7 +213,7 @@ export function VisitSEO() {
           Besuch bei uns von der ersten Minute an in vollen Zügen genießen.
         </p>
         <h3 style={h3Style}>
-          Parkplatz Domplatz – Der Klassiker im Herzen der Altstadt
+          Parkplatz Domplatz - Der Klassiker im Herzen der Altstadt
         </h3>
         <p style={pStyle}>
           Wenn du so nah wie möglich am Geschehen parken möchtest, ist der
@@ -237,7 +237,7 @@ export function VisitSEO() {
           perfekt auf eine süße Auszeit ein.
         </p>
         <h3 style={h3Style}>
-          Parkhaus Forum Wetzlar – Perfekt für längere Ausflüge
+          Parkhaus Forum Wetzlar - Perfekt für längere Ausflüge
         </h3>
         <p style={pStyle}>
           Planst du einen ausgedehnten Tag in Wetzlar, möchtest vielleicht erst
@@ -256,17 +256,17 @@ export function VisitSEO() {
           natürliches "Tor". Es ist ein wunderschöner Übergang von der modernen
           Shopping-Welt hinein in das historische, gemütliche Flair der
           Altstadt. Das Forum Wetzlar bietet zudem den Vorteil, dass du dir über
-          die Parkdauer keine großen Gedanken machen musst – dein Auto steht
+          die Parkdauer keine großen Gedanken machen musst - dein Auto steht
           sicher, im Trockenen und im Sommer angenehm kühl, während du ganz
           entspannt Wetzlar erkundest.
         </p>
         <h3 style={h3Style}>
-          Parkplatz Lahninsel – Romantisch, naturnah und wunderschön
+          Parkplatz Lahninsel - Romantisch, naturnah und wunderschön
         </h3>
         <p style={pStyle}>
           Unser absoluter Geheimtipp für alle, die Natur und Romantik lieben,
           ist der Parkplatz auf der Lahninsel. Dieser idyllische Parkplatz liegt
-          – wie der Name schon sagt – auf einer kleinen Insel im Fluss, umgeben
+          - wie der Name schon sagt - auf einer kleinen Insel im Fluss, umgeben
           von alten, schattenspendenden Bäumen und dem beruhigenden Rauschen des
           Wassers. Wenn du dein Auto hier abstellst, beginnt dein
           Wetzlar-Erlebnis sofort mit einem Hauch von Urlaub.
@@ -283,7 +283,7 @@ export function VisitSEO() {
           Parkplätze direkt in der Altstadt knapper werden.
         </p>
         <h3 style={h3Style}>
-          Parkhaus Altstadt (Am Stadion) – Die praktische Alternative
+          Parkhaus Altstadt (Am Stadion) - Die praktische Alternative
         </h3>
         <p style={pStyle}>
           Eine weitere, oft übersehene, aber äußerst praktische Möglichkeit ist
@@ -304,7 +304,7 @@ export function VisitSEO() {
            D) WETZLAR ERLEBEN
            ═══════════════════════════════════════════════════════════════ */}
         <h2 style={h2Style}>
-          Wetzlar erleben – Kultur, Geschichte und das perfekte Dessert
+          Wetzlar erleben - Kultur, Geschichte und das perfekte Dessert
         </h2>
         <p style={pStyle}>
           Einer der schönsten Aspekte von Hey Fede! ist unsere unschlagbare
@@ -319,10 +319,10 @@ export function VisitSEO() {
           nach deinem Dessert-Genuss auf keinen Fall verpassen solltest.
         </p>
         <h3 style={h3Style}>
-          Der Wetzlarer Dom – Ein unvergleichliches Meisterwerk der Architektur
+          Der Wetzlarer Dom - Ein unvergleichliches Meisterwerk der Architektur
         </h3>
         <p style={pStyle}>
-          Nur einen Steinwurf – genauer gesagt etwa 350 Meter – von uns entfernt
+          Nur einen Steinwurf - genauer gesagt etwa 350 Meter - von uns entfernt
           thront der imposante Wetzlarer Dom, offiziell der Dom Unserer Lieben
           Frau. Wenn du vor diesem massiven Bauwerk stehst, wird dir sofort
           auffallen, dass etwas anders ist: Der Dom wirkt unfertig. Und das ist
@@ -366,7 +366,7 @@ export function VisitSEO() {
           möchten.
         </p>
         <h3 style={h3Style}>
-          Die Alte Lahnbrücke – Romantik pur über dem fließenden Wasser
+          Die Alte Lahnbrücke - Romantik pur über dem fließenden Wasser
         </h3>
         <p style={pStyle}>
           Wenn du dem Trubel der Gassen für einen Moment entfliehen möchtest,
@@ -387,7 +387,7 @@ export function VisitSEO() {
           über dieses historische Wahrzeichen.
         </p>
         <h3 style={h3Style}>
-          Der Eisenmarkt – Das historische Herzstück der Altstadt
+          Der Eisenmarkt - Das historische Herzstück der Altstadt
         </h3>
         <p style={pStyle}>
           Nur etwa 100 Meter von Hey Fede! entfernt öffnet sich die Langgasse
@@ -413,7 +413,7 @@ export function VisitSEO() {
           regelmäßig Schauplatz wunderbarer Feste und Märkte. Ob das
           traditionelle Ochsenfest, das Menschen aus der ganzen Region anzieht,
           der fröhliche Gallusmarkt im Herbst mit seinen bunten Ständen und
-          Fahrgeschäften oder der zauberhafte Wetzlarer Weihnachtsmarkt – zu
+          Fahrgeschäften oder der zauberhafte Wetzlarer Weihnachtsmarkt - zu
           diesen Zeiten verwandelt sich die Innenstadt in ein magisches
           Lichtermeer.
         </p>
@@ -433,7 +433,7 @@ export function VisitSEO() {
            E) ÖFFNUNGSZEITEN
            ═══════════════════════════════════════════════════════════════ */}
         <h2 style={h2Style}>
-          Unsere Öffnungszeiten – Der perfekte Zeitpunkt für deinen Besuch
+          Unsere Öffnungszeiten - Der perfekte Zeitpunkt für deinen Besuch
         </h2>
         <p style={pStyle}>
           Wir möchten, dass Hey Fede! genau dann für dich da ist, wenn du Lust
@@ -445,7 +445,7 @@ export function VisitSEO() {
           Übersicht darüber, wann wir für dich da sind und welche Atmosphäre
           dich an den verschiedenen Tagen erwartet.
         </p>
-        <h3 style={h3Style}>Montag und Dienstag – Unsere kreativen Ruhetage</h3>
+        <h3 style={h3Style}>Montag und Dienstag - Unsere kreativen Ruhetage</h3>
         <p style={pStyle}>
           An Montagen und Dienstagen bleiben die Türen von Hey Fede!
           geschlossen. Diese zwei Tage sind für uns unglaublich wichtig. Wir
@@ -458,7 +458,7 @@ export function VisitSEO() {
           schmeckst.
         </p>
         <h3 style={h3Style}>
-          Mittwoch bis Freitag – Die perfekten Nachmittage für eine süße Auszeit
+          Mittwoch bis Freitag - Die perfekten Nachmittage für eine süße Auszeit
         </h3>
         <p style={pStyle}>
           Von Mittwoch bis Freitag öffnen wir unsere Türen pünktlich von 12:00
@@ -472,7 +472,7 @@ export function VisitSEO() {
           einen kurzen, persönlichen Plausch mit unserem Team.
         </p>
         <h3 style={h3Style}>
-          Der Samstag – Buntes Treiben, Wochenmarkt und pure Lebensfreude
+          Der Samstag - Buntes Treiben, Wochenmarkt und pure Lebensfreude
         </h3>
         <p style={pStyle}>
           Samstags (ebenfalls 12:00 bis 19:00 Uhr) pulsiert das Leben in
@@ -487,7 +487,7 @@ export function VisitSEO() {
           Tag für einen Besuch.
         </p>
         <h3 style={h3Style}>
-          Der Sonntag – Entschleunigung pur und Zeit für die Familie
+          Der Sonntag - Entschleunigung pur und Zeit für die Familie
         </h3>
         <p style={pStyle}>
           Der Sonntag ist in Wetzlar traditionell der Tag der Ruhe und der
@@ -524,7 +524,7 @@ export function VisitSEO() {
         <h3 style={h3Style}>Die schönsten Picknick-Spots rund um Hey Fede!</h3>
         <p style={pStyle}>
           Wetzlar ist eine grüne Stadt, die zahlreiche wunderschöne Parks und
-          Anlagen bietet – ideal für ein süßes Picknick an der frischen Luft.
+          Anlagen bietet - ideal für ein süßes Picknick an der frischen Luft.
           Wenn du dir dein Dessert bei uns als Take-Away holst, empfehlen wir
           dir besonders die Colchester-Anlage. Dieser weitläufige, gepflegte
           Park direkt am Ufer der Lahn ist nur wenige Gehminuten von der
@@ -539,11 +539,11 @@ export function VisitSEO() {
           um den Domplatz bieten großartige Möglichkeiten, sich kurz
           niederzulassen, das Treiben der Altstadt zu beobachten und dabei einen
           unserer erfrischenden Drinks zu schlürfen. Egal für welchen Ort du
-          dich entscheidest – Wetzlar bietet die perfekte Kulisse für jeden
+          dich entscheidest - Wetzlar bietet die perfekte Kulisse für jeden
           Freiluft-Genießer.
         </p>
         <h3 style={h3Style}>
-          Online Bestellen – Dein Dessert kommt direkt zu dir
+          Online Bestellen - Dein Dessert kommt direkt zu dir
         </h3>
         <p style={pStyle}>
           Manchmal möchte man das Haus einfach nicht verlassen. Es regnet, der
@@ -579,14 +579,14 @@ export function VisitSEO() {
           Location, um besondere Momente gemeinsam zu feiern. Ob es der fünfte
           Geburtstag deines Kindes ist, ein entspanntes Get-together mit den
           Kollegen nach einem langen Projekt oder ein runder Geburtstag im
-          Familienkreis – wir sorgen dafür, dass euer Event süß und
+          Familienkreis - wir sorgen dafür, dass euer Event süß und
           unvergesslich wird.
         </p>
         <h3 style={h3Style}>
           Strahlende Kinderaugen beim perfekten Kindergeburtstag
         </h3>
         <p style={pStyle}>
-          Kinder lieben Hey Fede! – und das beruht absolut auf Gegenseitigkeit.
+          Kinder lieben Hey Fede! - und das beruht absolut auf Gegenseitigkeit.
           Die bunten Farben, die unzähligen Toppings von Schokolinsen über
           Gummibärchen bis hin zu frischen Erdbeeren, und die Möglichkeit, sich
           sein ganz persönliches Traum-Dessert zusammenzustellen, machen unser
@@ -598,7 +598,7 @@ export function VisitSEO() {
           Wir reservieren einen großen, gemütlichen Bereich für euch. Jedes Kind
           bekommt die Möglichkeit, seine eigene Bubble Waffle oder seine
           Pancakes nach Herzenslust am Tisch selbst mit bunten Streuseln, Soßen
-          und Toppings zu dekorieren – ein interaktives Erlebnis, das
+          und Toppings zu dekorieren - ein interaktives Erlebnis, das
           unglaublich viel Spaß macht und für leuchtende Augen sorgt. Die Eltern
           können sich derweil entspannt zurücklehnen, einen fantastischen Kaffee
           genießen und dem fröhlichen Treiben zusehen, ohne sich am Ende um das
@@ -651,7 +651,7 @@ export function VisitSEO() {
             Verfügung, haben ausreichend Platz für Kinderwagen und unser Team
             hat immer ein Lächeln und Verständnis für die kleinen, lebhaften
             Gäste übrig. Wir wissen, dass ein Besuch mit kleinen Kindern
-            manchmal turbulent sein kann – bei uns dürft ihr euch entspannen.
+            manchmal turbulent sein kann - bei uns dürft ihr euch entspannen.
           </li>
           <li style={liStyle}>
             <strong>Hunde sind willkommen:</strong> Als echte Tierfreunde wissen
@@ -665,8 +665,8 @@ export function VisitSEO() {
             <strong>Kostenloses WLAN und Kartenzahlung:</strong> In unserer
             modernen Welt ist Vernetzung wichtig. Deshalb bieten wir all unseren
             Gästen schnelles, kostenfreies WLAN an. Du kannst ganz entspannt
-            arbeiten, deine Lieblingsmusik hören oder – worüber wir uns
-            besonders freuen – direkt ein Foto deines wunderschönen Desserts auf
+            arbeiten, deine Lieblingsmusik hören oder - worüber wir uns
+            besonders freuen - direkt ein Foto deines wunderschönen Desserts auf
             Instagram teilen und uns markieren. An der Kasse bist du völlig
             flexibel: Wir akzeptieren neben Bargeld alle gängigen EC- und
             Kreditkarten sowie kontaktlose Zahlungsarten per Smartphone oder

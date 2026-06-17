@@ -6,14 +6,14 @@ import Matter from "matter-js";
 import { FoodIcon } from "@/components/ui/FoodIcon"; // Changed from Ic to FoodIcon based on the project structure
 
 const DESSERT_ITEMS = [
-  { icon: "Cookie", color: "#b34832", size: 40, type: "circle" },
+  { icon: "Cookie", color: "#CC624C", size: 40, type: "circle" },
   { icon: "Cookie", color: "#E4C0A8", size: 38, type: "circle" },
   { icon: "Sparkles", color: "#eedfcc", size: 32, type: "circle" },
   { icon: "Coffee", color: "#5c3d35", size: 44, type: "circle" },
-  { icon: "Cake", color: "#b34832", size: 46, type: "square" },
-  { icon: "Heart", color: "#b34832", size: 34, type: "circle" },
+  { icon: "Cake", color: "#CC624C", size: 46, type: "square" },
+  { icon: "Heart", color: "#CC624C", size: 34, type: "circle" },
   { icon: "Star", color: "#E4C0A8", size: 30, type: "circle" },
-  { icon: "Package", color: "#f5efe8", size: 36, type: "circle" }, // Droplets changed to Package as it is available
+  { icon: "Package", color: "#F5EFE8", size: 36, type: "circle" }, // Droplets changed to Package as it is available
 ];
 
 import * as Icons from "lucide-react";
@@ -33,8 +33,13 @@ export default function PhysicsPlayground({ size = 360 }: { size?: number }) {
     return arr;
   }, []);
 
+  const [mounted, setMounted] = React.useState(false);
   useEffect(() => {
-    if (reduced || !matterAvailable) return;
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted || reduced || !matterAvailable) return;
     const Mt = Matter;
     const container = containerRef.current;
     if (!container) return;
@@ -156,17 +161,12 @@ export default function PhysicsPlayground({ size = 360 }: { size?: number }) {
       Mt.Engine.clear(engine);
       bodyRefs.current = [];
     };
-  }, [reduced, matterAvailable, items]);
-
-  const [mounted, setMounted] = React.useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  }, [reduced, matterAvailable, items, mounted]);
 
   if (!mounted || reduced || !matterAvailable) {
     return (
       <div
-        className="w-full h-full bg-[#E4C0A8] relative overflow-hidden"
+        className="w-full h-full bg-peach relative overflow-hidden"
         style={{ borderRadius: "54% 46% 56% 44%/50% 54% 46% 50%" }}
       >
         <img
@@ -214,11 +214,11 @@ export default function PhysicsPlayground({ size = 360 }: { size?: number }) {
 
       // Create subtle confetti
       const confettiColors = [
-        "#b34832",
+        "#CC624C",
         "#E4C0A8",
         "#eedfcc",
         "#5c3d35",
-        "#f5efe8",
+        "#F5EFE8",
       ];
       const confettiEl = document.createElement("div");
       confettiEl.style.position = "absolute";
@@ -277,7 +277,22 @@ export default function PhysicsPlayground({ size = 360 }: { size?: number }) {
     <div
       ref={containerRef}
       onDoubleClick={handleDoubleClick}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          const rect = containerRef.current?.getBoundingClientRect();
+          if (rect) {
+            handleDoubleClick({
+              clientX: rect.left + rect.width / 2,
+              clientY: rect.top + rect.height / 2,
+            } as any);
+          }
+        }
+      }}
       className="physics-container group"
+      role="button"
+      tabIndex={0}
+      aria-label="Waffel Physik-Spielplatz. Doppelklicken oder Enter drücken zum Spielen"
       style={{
         position: "relative",
         width: "100%",
@@ -298,7 +313,7 @@ export default function PhysicsPlayground({ size = 360 }: { size?: number }) {
           top: 20,
           left: "50%",
           transform: "translateX(-50%)",
-          fontFamily: "var(--font-nunito), sans-serif",
+          fontFamily: "var(--font-body), sans-serif",
           fontWeight: 800,
           fontSize: "0.85rem",
           color: "rgb(204, 98, 76)",

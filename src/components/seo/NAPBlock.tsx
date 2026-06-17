@@ -39,7 +39,7 @@ export function NAPBlock({
         itemType="https://schema.org/PostalAddress"
         className={
           isFooter
-            ? "text-[#5c3d35] font-nunito text-[0.95rem] leading-[1.8]"
+            ? "text-brown-mid font-body text-[0.95rem] leading-[1.8]"
             : "flex flex-col gap-2.5"
         }
       >
@@ -67,15 +67,15 @@ export function NAPBlock({
         ) : (
           <>
             {/* Visit / Support Variant */}
-            <div className="bg-[#eedfcc] rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
-              <div className="w-[38px] h-[38px] bg-[#b34832] rounded-full flex items-center justify-center shrink-0">
+            <div className="bg-beige rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
+              <div className="w-[38px] h-[38px] bg-terracotta rounded-full flex items-center justify-center shrink-0">
                 <MapPin size={16} color="#fefefe" strokeWidth={2} />
               </div>
               <div>
-                <div className="font-nunito font-black text-[0.74rem] text-[#9a7060] uppercase tracking-[0.8px] mb-[1px]">
+                <div className="font-body font-black text-[0.74rem] text-bark-soft uppercase tracking-[0.8px] mb-[1px]">
                   Adresse
                 </div>
-                <span className="font-nunito font-bold text-[0.88rem] text-[#2d1f19]">
+                <span className="font-body font-bold text-[0.88rem] text-brown">
                   <span itemProp="streetAddress">{BUSINESS.street}</span>,{" "}
                   <span itemProp="postalCode">{BUSINESS.postalCode}</span>{" "}
                   <span itemProp="addressLocality">{BUSINESS.city}</span>
@@ -83,51 +83,51 @@ export function NAPBlock({
               </div>
             </div>
 
-            <div className="bg-[#eedfcc] rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
-              <div className="w-[38px] h-[38px] bg-[#b34832] rounded-full flex items-center justify-center shrink-0">
+            <div className="bg-beige rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
+              <div className="w-[38px] h-[38px] bg-terracotta rounded-full flex items-center justify-center shrink-0">
                 <Phone size={16} color="#fefefe" strokeWidth={2} />
               </div>
               <div>
-                <div className="font-nunito font-black text-[0.74rem] text-[#9a7060] uppercase tracking-[0.8px] mb-[1px]">
+                <div className="font-body font-black text-[0.74rem] text-bark-soft uppercase tracking-[0.8px] mb-[1px]">
                   Telefon
                 </div>
                 <a
                   href={`tel:${BUSINESS.phoneTel}`}
-                  className="font-nunito font-bold text-[0.88rem] text-[#2d1f19] no-underline"
+                  className="font-body font-bold text-[0.88rem] text-brown no-underline"
                 >
                   {BUSINESS.phone}
                 </a>
               </div>
             </div>
 
-            <div className="bg-[#eedfcc] rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
-              <div className="w-[38px] h-[38px] bg-[#b34832] rounded-full flex items-center justify-center shrink-0">
+            <div className="bg-beige rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
+              <div className="w-[38px] h-[38px] bg-terracotta rounded-full flex items-center justify-center shrink-0">
                 <MessageCircle size={16} color="#fefefe" strokeWidth={2} />
               </div>
               <div>
-                <div className="font-nunito font-black text-[0.74rem] text-[#9a7060] uppercase tracking-[0.8px] mb-[1px]">
+                <div className="font-body font-black text-[0.74rem] text-bark-soft uppercase tracking-[0.8px] mb-[1px]">
                   WhatsApp
                 </div>
                 <a
                   href={`https://wa.me/${BUSINESS.whatsapp}`}
-                  className="font-nunito font-bold text-[0.88rem] text-[#2d1f19] no-underline"
+                  className="font-body font-bold text-[0.88rem] text-brown no-underline"
                 >
                   {BUSINESS.whatsappDisplay}
                 </a>
               </div>
             </div>
 
-            <div className="bg-[#eedfcc] rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
-              <div className="w-[38px] h-[38px] bg-[#b34832] rounded-full flex items-center justify-center shrink-0">
+            <div className="bg-beige rounded-[15px] p-[13px_17px] flex gap-[13px] items-center">
+              <div className="w-[38px] h-[38px] bg-terracotta rounded-full flex items-center justify-center shrink-0">
                 <Camera size={16} color="#fefefe" strokeWidth={2} />
               </div>
               <div>
-                <div className="font-nunito font-black text-[0.74rem] text-[#9a7060] uppercase tracking-[0.8px] mb-[1px]">
+                <div className="font-body font-black text-[0.74rem] text-bark-soft uppercase tracking-[0.8px] mb-[1px]">
                   Instagram
                 </div>
                 <a
                   href={BUSINESS.instagramUrl}
-                  className="font-nunito font-bold text-[0.88rem] text-[#2d1f19] no-underline"
+                  className="font-body font-bold text-[0.88rem] text-brown no-underline"
                 >
                   @{BUSINESS.instagram}
                 </a>

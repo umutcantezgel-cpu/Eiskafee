@@ -149,7 +149,7 @@ export default function AdminSettingsPage() {
   return (
     <div className="p-8 max-w-4xl mx-auto">
       <div className="mb-10">
-        <h1 className="font-calistoga text-4xl text-charcoal mb-2">
+        <h1 className="font-heading text-4xl text-charcoal mb-2">
           Einstellungen
         </h1>
         <p className="font-bold text-charcoal/60">
@@ -169,7 +169,7 @@ export default function AdminSettingsPage() {
             className={`p-8 rounded-3xl flex flex-col md:flex-row items-center justify-between gap-6 transition-colors duration-500 ${settings?.isOnline ? "bg-mint/20 border-mint/40" : "bg-red-500/10 border-red-500/20"} border-2`}
           >
             <div>
-              <h2 className="font-calistoga text-2xl text-charcoal mb-2 flex items-center gap-3">
+              <h2 className="font-heading text-2xl text-charcoal mb-2 flex items-center gap-3">
                 <Power
                   className={settings?.isOnline ? "text-mint" : "text-red-500"}
                 />
@@ -219,7 +219,7 @@ export default function AdminSettingsPage() {
             onSubmit={handleSaveSettings}
             className="bg-cream p-8 rounded-3xl border border-peach flex flex-col gap-6"
           >
-            <h2 className="font-calistoga text-2xl text-charcoal mb-2 border-b border-peach pb-4">
+            <h2 className="font-heading text-2xl text-charcoal mb-2 border-b border-peach pb-4">
               Allgemeine Einstellungen
             </h2>
 
@@ -359,7 +359,7 @@ export default function AdminSettingsPage() {
 
           {/* Promo Codes Section */}
           <div className="bg-cream p-8 rounded-3xl border border-peach flex flex-col gap-6">
-            <h2 className="font-calistoga text-2xl text-charcoal mb-2 border-b border-peach pb-4 flex items-center gap-2">
+            <h2 className="font-heading text-2xl text-charcoal mb-2 border-b border-peach pb-4 flex items-center gap-2">
               <Tag className="w-6 h-6 text-terracotta" /> Promo Codes
             </h2>
 
@@ -424,7 +424,7 @@ export default function AdminSettingsPage() {
                   className="flex justify-between items-center bg-white p-4 rounded-2xl border border-peach shadow-sm"
                 >
                   <div className="flex items-center gap-3">
-                    <div className="font-calistoga text-lg text-terracotta">
+                    <div className="font-heading text-lg text-terracotta">
                       {promo.id}
                     </div>
                     <span className="px-2 py-1 bg-sand text-brown rounded-full text-[10px] font-black uppercase tracking-widest">
@@ -451,7 +451,7 @@ export default function AdminSettingsPage() {
 
           {/* Database Seed Section */}
           <div className="bg-cream p-8 rounded-3xl border border-peach flex flex-col gap-6">
-            <h2 className="font-calistoga text-2xl text-charcoal mb-2 border-b border-peach pb-4 text-red-600">
+            <h2 className="font-heading text-2xl text-charcoal mb-2 border-b border-peach pb-4 text-red-600">
               Entwickler-Optionen
             </h2>
             <p className="font-bold text-charcoal/70">

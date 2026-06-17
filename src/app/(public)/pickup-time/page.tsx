@@ -82,9 +82,9 @@ export default function PickupTimePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5efe8] flex flex-col">
+    <div className="min-h-screen bg-cream flex flex-col">
       {/* Header */}
-      <div className="bg-[#f5efe8] sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
+      <div className="bg-cream sticky top-0 z-10 px-5 pt-4 pb-3 flex items-center justify-between">
         <button
           onClick={() => router.back()}
           className="w-10 h-10 flex items-center justify-center bg-white rounded-full shadow-sm"
@@ -92,10 +92,10 @@ export default function PickupTimePage() {
           <Icons.ArrowLeft size={20} color="#2d1f19" />
         </button>
         <div className="text-center">
-          <div className="font-calistoga text-lg text-[#2d1f19] leading-tight">
+          <div className="font-heading text-lg text-brown leading-tight">
             {orderType === "delivery" ? "Lieferzeit" : "Abholzeit"}
           </div>
-          <div className="font-nunito text-[11px] font-bold text-[#7a5a52]">
+          <div className="font-body text-[11px] font-bold text-brown-muted">
             Schritt 2 von 3
           </div>
         </div>
@@ -107,7 +107,7 @@ export default function PickupTimePage() {
         {[true, true, false].map((active, i) => (
           <div
             key={i}
-            className={`flex-1 h-1 rounded-full ${active ? "bg-[#b34832]" : "bg-[#eedfcc]"}`}
+            className={`flex-1 h-1 rounded-full ${active ? "bg-terracotta" : "bg-beige"}`}
           />
         ))}
       </div>
@@ -115,23 +115,23 @@ export default function PickupTimePage() {
       <div className="px-5 flex-1 overflow-y-auto pb-6">
         {orderType !== "delivery" && (
           <FadeUp delay={0.1}>
-            <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+            <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-2.5">
               Ort
             </div>
             <div className="bg-white rounded-[18px] p-3.5 flex gap-3 items-start mb-5 shadow-sm">
-              <div className="w-[42px] h-[42px] rounded-full bg-[#E4C0A8] flex items-center justify-center shrink-0">
-                <Icons.MapPin size={20} color="#b34832" strokeWidth={2} />
+              <div className="w-[42px] h-[42px] rounded-full bg-peach flex items-center justify-center shrink-0">
+                <Icons.MapPin size={20} color="#CC624C" strokeWidth={2} />
               </div>
               <div className="flex-1">
-                <div className="font-calistoga text-[15px] text-[#2d1f19]">
+                <div className="font-heading text-[15px] text-brown">
                   Hey Fede! Wetzlar
                 </div>
-                <div className="font-nunito text-[11.5px] text-[#7a5a52] mt-0.5">
+                <div className="font-body text-[11.5px] text-brown-muted mt-0.5">
                   {FULL_ADDRESS}
                 </div>
                 <div className="inline-flex items-center gap-1.5 bg-[rgba(72,160,90,0.13)] px-2 py-1 rounded-full mt-2">
-                  <div className="w-1.5 h-1.5 rounded-full bg-[#3a9d52]" />
-                  <span className="font-nunito text-[10px] font-extrabold text-[#3a9d52]">
+                  <div className="w-1.5 h-1.5 rounded-full bg-success" />
+                  <span className="font-body text-[10px] font-extrabold text-success">
                     Geöffnet · bis 22:00
                   </span>
                 </div>
@@ -141,7 +141,7 @@ export default function PickupTimePage() {
         )}
 
         <FadeUp delay={0.2}>
-          <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+          <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-2.5">
             Welcher Tag?
           </div>
           <div className="flex gap-2 mb-5 overflow-x-auto hide-scrollbar pb-2">
@@ -154,23 +154,23 @@ export default function PickupTimePage() {
                 }}
                 className={`shrink-0 w-[60px] py-2.5 rounded-[14px] text-center transition-all ${
                   selectedDay === d.fullDate
-                    ? "bg-[#b34832] text-white shadow-md"
-                    : "bg-white text-[#2d1f19] shadow-sm"
+                    ? "bg-terracotta text-white shadow-md"
+                    : "bg-white text-brown shadow-sm"
                 }`}
               >
                 <div
-                  className={`font-nunito text-[10px] font-bold ${selectedDay === d.fullDate ? "opacity-85" : "opacity-60"}`}
+                  className={`font-body text-[10px] font-bold ${selectedDay === d.fullDate ? "opacity-85" : "opacity-60"}`}
                 >
                   {d.label}
                 </div>
-                <div className="font-calistoga text-lg mt-0.5">{d.date}</div>
+                <div className="font-heading text-lg mt-0.5">{d.date}</div>
               </button>
             ))}
           </div>
         </FadeUp>
 
         <FadeUp delay={0.3}>
-          <div className="font-nunito text-[11px] font-black text-[#b34832] tracking-[1.4px] uppercase mb-2.5">
+          <div className="font-body text-[11px] font-black text-terracotta tracking-[1.4px] uppercase mb-2.5">
             Welche Uhrzeit?
           </div>
           <div className="grid grid-cols-3 gap-2 mb-5">
@@ -183,10 +183,10 @@ export default function PickupTimePage() {
                   onClick={() => setSelectedTime(t.time)}
                   className={`rounded-[12px] py-2.5 text-center text-[13px] font-extrabold transition-all ${
                     t.isPast
-                      ? "opacity-40 bg-white text-[#2d1f19] line-through"
+                      ? "opacity-40 bg-white text-brown line-through"
                       : isSelected
-                        ? "bg-[#b34832] text-white shadow-md"
-                        : "bg-white text-[#2d1f19] shadow-sm"
+                        ? "bg-terracotta text-white shadow-md"
+                        : "bg-white text-brown shadow-sm"
                   }`}
                 >
                   {t.time}
@@ -197,7 +197,7 @@ export default function PickupTimePage() {
         </FadeUp>
       </div>
 
-      <div className="p-[14px_20px_20px] bg-[#f5efe8] border-t border-[#eedfcc]">
+      <div className="p-[14px_20px_20px] bg-cream border-t border-beige">
         <PrimaryButton
           onClick={handleNext}
           className="w-full flex justify-center items-center gap-2"

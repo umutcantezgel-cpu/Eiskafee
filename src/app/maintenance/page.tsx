@@ -21,23 +21,23 @@ export default function MaintenancePage() {
         {/* Playful icon/emoji */}
         <div className="text-6xl md:text-8xl mb-8 animate-bounce">🧇</div>
 
-        <h1 className="font-calistoga text-4xl md:text-5xl text-terracotta mb-6 leading-tight">
+        <h1 className="font-heading text-4xl md:text-5xl text-terracotta mb-6 leading-tight">
           Wir rühren gerade frischen Teig an...
         </h1>
 
-        <p className="font-nunito text-lg md:text-xl text-charcoal/80 mb-10 leading-relaxed font-medium">
+        <p className="font-body text-lg md:text-xl text-charcoal/80 mb-10 leading-relaxed font-medium">
           Hey Fede bekommt gerade den letzten Feinschliff. Wir sind sehr bald
           offiziell für euch da und freuen uns schon riesig darauf, euch unsere
           hausgemachten Desserts zu servieren!
         </p>
 
         <div className="bg-white/60 backdrop-blur-sm border border-terracotta/20 rounded-3xl p-6 shadow-sm">
-          <p className="font-nunito text-sm text-charcoal/70 font-bold uppercase tracking-wider mb-2">
+          <p className="font-body text-sm text-charcoal/70 font-bold uppercase tracking-wider mb-2">
             Kontakt
           </p>
           <a
             href="mailto:hallo@hey-fede.de"
-            className="font-calistoga text-xl text-terracotta hover:text-charcoal transition-colors"
+            className="font-heading text-xl text-terracotta hover:text-charcoal transition-colors"
           >
             hallo@hey-fede.de
           </a>

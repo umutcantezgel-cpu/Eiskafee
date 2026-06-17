@@ -17,14 +17,40 @@ if (!globalThis.mcpTransport) {
 
 export const dynamic = "force-dynamic";
 
+/**
+ * ✅ API key authentication for MCP endpoint.
+ * The MCP_API_KEY env var must be set and sent as X-API-Key header.
+ */
+function verifyApiKey(req: Request): Response | null {
+  const apiKey = req.headers.get("X-API-Key") || req.headers.get("x-api-key");
+  const expectedKey = process.env.MCP_API_KEY;
+
+  if (!expectedKey) {
+    console.warn("[MCP] MCP_API_KEY is not set - MCP endpoint is DISABLED");
+    return new Response("Service unavailable", { status: 503 });
+  }
+
+  if (apiKey !== expectedKey) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
+  return null; // Auth passed
+}
+
 export async function GET(req: Request) {
+  const authError = verifyApiKey(req);
+  if (authError) return authError;
   return globalThis.mcpTransport!.handleRequest(req);
 }
 
 export async function POST(req: Request) {
+  const authError = verifyApiKey(req);
+  if (authError) return authError;
   return globalThis.mcpTransport!.handleRequest(req);
 }
 
 export async function DELETE(req: Request) {
+  const authError = verifyApiKey(req);
+  if (authError) return authError;
   return globalThis.mcpTransport!.handleRequest(req);
 }

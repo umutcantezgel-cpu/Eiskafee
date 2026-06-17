@@ -27,7 +27,7 @@ export default function OrderHubPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5efe8] pb-32">
+    <div className="min-h-screen bg-cream pb-32">
       {/* Top Bar Area */}
       <div className="flex items-center justify-between px-5 pt-4 pb-3.5">
         <div className="w-32 h-10 relative">
@@ -47,27 +47,27 @@ export default function OrderHubPage() {
       </div>
 
       <div className="px-5">
-        <h1 className="font-calistoga text-2xl text-[#2d1f19] mb-6">
+        <h1 className="font-heading text-2xl text-brown mb-6">
           Wie möchtest du bestellen?
         </h1>
 
         {loading ? (
           <div className="flex justify-center items-center py-10">
-            <Icons.Loader2 size={32} className="animate-spin text-[#b34832]" />
+            <Icons.Loader2 size={32} className="animate-spin text-terracotta" />
           </div>
         ) : (
           <div className="space-y-3">
             {!isOnline && (
-              <FadeUp className="bg-[rgba(204,98,76,0.1)] border-2 border-[#b34832] rounded-[18px] p-4 flex gap-3 items-start mb-6">
+              <FadeUp className="bg-[rgba(204,98,76,0.1)] border-2 border-terracotta rounded-[18px] p-4 flex gap-3 items-start mb-6">
                 <Icons.AlertCircle
                   size={20}
-                  className="text-[#b34832] shrink-0 mt-0.5"
+                  className="text-terracotta shrink-0 mt-0.5"
                 />
                 <div>
-                  <div className="font-calistoga text-[15px] text-[#2d1f19] mb-1">
+                  <div className="font-heading text-[15px] text-brown mb-1">
                     Online-Bestellungen pausiert
                   </div>
-                  <div className="font-nunito text-[12.5px] text-[#5c3d35] leading-relaxed">
+                  <div className="font-body text-[12.5px] text-brown-mid leading-relaxed">
                     Wir bereiten aktuell sehr viele Bestellungen im Laden zu und
                     können momentan keine Online-Orders annehmen.
                   </div>
@@ -115,27 +115,27 @@ export default function OrderHubPage() {
                         disabled
                           ? "opacity-40 bg-white border-transparent cursor-not-allowed"
                           : isSelected
-                            ? "bg-[#b34832] text-white border-[#b34832] shadow-[0_8px_20px_rgba(204,98,76,0.25)]"
-                            : "bg-white text-[#2d1f19] border-transparent shadow-sm"
+                            ? "bg-terracotta text-white border-terracotta shadow-[0_8px_20px_rgba(204,98,76,0.25)]"
+                            : "bg-white text-brown border-transparent shadow-sm"
                       }`}
                     >
                       <div
-                        className={`w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? "bg-[rgba(255,255,255,0.2)]" : "bg-[#f5efe8]"}`}
+                        className={`w-[48px] h-[48px] rounded-full flex items-center justify-center shrink-0 ${isSelected ? "bg-[rgba(255,255,255,0.2)]" : "bg-cream"}`}
                       >
                         <choice.icon
                           size={22}
                           className={
-                            isSelected ? "text-white" : "text-[#b34832]"
+                            isSelected ? "text-white" : "text-terracotta"
                           }
                           strokeWidth={1.8}
                         />
                       </div>
                       <div className="flex-1">
-                        <div className="font-calistoga text-[17px] mb-0.5">
+                        <div className="font-heading text-[17px] mb-0.5">
                           {choice.title}
                         </div>
                         <div
-                          className={`font-nunito text-[12px] font-bold ${isSelected ? "text-[rgba(255,255,255,0.8)]" : "text-[#7a5a52]"}`}
+                          className={`font-body text-[12px] font-bold ${isSelected ? "text-[rgba(255,255,255,0.8)]" : "text-brown-muted"}`}
                         >
                           {choice.desc}
                         </div>
@@ -144,7 +144,7 @@ export default function OrderHubPage() {
                         <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center">
                           <Icons.Check
                             size={14}
-                            className="text-[#b34832]"
+                            className="text-terracotta"
                             strokeWidth={3}
                           />
                         </div>
@@ -157,7 +157,7 @@ export default function OrderHubPage() {
         )}
       </div>
 
-      <div className="fixed bottom-0 left-0 right-0 p-[16px_20px_32px] bg-gradient-to-t from-[#f5efe8] via-[#f5efe8] to-transparent z-40">
+      <div className="fixed bottom-0 left-0 right-0 p-[16px_20px_32px] bg-gradient-to-t from-[#F5EFE8] via-[#F5EFE8] to-transparent z-40">
         <PrimaryButton
           className="w-full"
           disabled={!selected || isOnline === false}

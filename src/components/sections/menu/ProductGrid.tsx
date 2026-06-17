@@ -13,6 +13,7 @@ import { Cake, Image as ImageIcon, Plus, Minus } from "lucide-react";
 import { FloatingBlob } from "@/components/atoms/FloatingBlob";
 import { useStore } from "@/store/useStore";
 import Image from "next/image";
+import { HF_DATA } from "@/lib/data";
 
 interface ProductGridProps {
   activeCategory: string;
@@ -67,8 +68,14 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
             className="absolute z-0"
           />
           <div className="relative z-10">
-            <span className="text-7xl mb-6 block">🧐</span>
-            <h3 className="font-calistoga text-3xl text-charcoal mb-3">
+            <span
+              className="text-7xl mb-6 block"
+              role="img"
+              aria-label="Nachdenkliches Gesicht"
+            >
+              🧐
+            </span>
+            <h3 className="font-heading text-3xl text-charcoal mb-3">
               Nichts gefunden!
             </h3>
             <p className="font-bold text-charcoal/70">
@@ -78,6 +85,15 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
             </p>
           </div>
         </motion.div>
+      )}
+
+      {/* Category Hint / Badge */}
+      {!loading && !error && HF_DATA.menu[activeCategory]?.desc && (
+        <div className="mb-8 text-center">
+          <div className="inline-block px-4 py-2 bg-peach/20 border border-terracotta/20 rounded-full text-terracotta font-bold text-sm tracking-wide shadow-sm">
+            {HF_DATA.menu[activeCategory].desc}
+          </div>
+        </div>
       )}
 
       {/* Items Grid */}
@@ -142,7 +158,8 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
                           {(item as any).image ? (
                             <Image
                               src={(item as any).image}
-                              alt={item.name}
+                              alt={(item as any).imageAlt || item.name}
+                              title={(item as any).imageTitle || item.name}
                               fill
                               className="object-cover"
                             />
@@ -159,9 +176,10 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
                           )}
                         </div>
 
-                        <h3 className="font-calistoga text-xl text-charcoal mb-2">
-                          {item.name}
-                        </h3>
+                        <h3
+                          className="font-heading text-xl text-charcoal mb-2"
+                          dangerouslySetInnerHTML={{ __html: item.name }}
+                        />
                         <p className="text-sm text-charcoal/70 line-clamp-2 flex-grow mb-4">
                           {item.desc}
                         </p>
@@ -199,14 +217,12 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
                                 </button>
                               </motion.div>
                             ) : (
-                              <motion.button
-                                whileTap={{ scale: 0.9 }}
-                                onClick={increment}
+                              <motion.div
+                                role="presentation"
                                 className="bg-terracotta text-white p-2 rounded-full hover:bg-brown transition-colors shadow-sm"
-                                aria-label="Zum Warenkorb hinzufügen"
                               >
                                 <Plus size={18} strokeWidth={2.5} />
-                              </motion.button>
+                              </motion.div>
                             )}
                           </div>
                         </div>
@@ -242,9 +258,9 @@ export function ProductGrid({ activeCategory }: ProductGridProps) {
               </p>
             </div>
             <TransitionLink href="/visit">
-              <button className="bg-terracotta text-cream px-6 py-3 rounded-full font-bold whitespace-nowrap shadow-clay hover:bg-brown transition-colors">
+              <div className="inline-block bg-terracotta text-cream px-6 py-3 rounded-full font-bold whitespace-nowrap shadow-clay hover:bg-brown transition-colors cursor-pointer">
                 Besuchen
-              </button>
+              </div>
             </TransitionLink>
           </motion.div>
         )}

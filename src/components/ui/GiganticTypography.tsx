@@ -17,7 +17,7 @@ export function GiganticTypography({
   className = "",
   delay = 0,
   highlightWords = [],
-  highlightColor = "#b34832",
+  highlightColor = "#CC624C",
   as = "div",
 }: GiganticTypographyProps) {
   const reduced = useReducedMotion();
@@ -64,7 +64,7 @@ export function GiganticTypography({
   if (reduced) {
     return (
       <StaticComponent
-        className={`font-calistoga text-[clamp(3rem,8vw,8rem)] leading-[1.05] tracking-tight ${className}`}
+        className={`font-heading text-[clamp(3rem,8vw,8rem)] leading-[1.05] tracking-tight ${className}`}
       >
         {text}
       </StaticComponent>
@@ -77,7 +77,7 @@ export function GiganticTypography({
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, margin: "-100px" }}
-      className={`font-calistoga text-[clamp(3rem,8vw,8rem)] leading-[1.05] tracking-tight flex flex-wrap gap-x-[2vw] ${className}`}
+      className={`font-heading text-[clamp(3rem,8vw,8rem)] leading-[1.05] tracking-tight flex flex-wrap gap-x-[2vw] ${className}`}
     >
       {words.map((word, index) => {
         const cleanWord = word.replace(/[.,!?]/g, "");

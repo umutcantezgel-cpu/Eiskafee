@@ -208,7 +208,7 @@ export function CookieBanner() {
               </div>
 
               <div className="flex-grow text-center md:text-left">
-                <h3 className="font-calistoga text-2xl text-charcoal mb-2">
+                <h3 className="font-heading text-2xl text-charcoal mb-2">
                   Cookies für dich!
                 </h3>
                 <p className="text-sm text-charcoal/80 leading-relaxed max-w-xl">

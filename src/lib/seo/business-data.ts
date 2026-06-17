@@ -1,5 +1,5 @@
 /**
- * SINGLE SOURCE OF TRUTH — Hey Fede! Business Data
+ * SINGLE SOURCE OF TRUTH - Hey Fede! Business Data
  * ALL business information MUST be imported from here.
  * Never hardcode NAP data in components.
  */
@@ -81,11 +81,11 @@ export const BUSINESS = {
   openingHoursDisplay: [
     { day: "Montag", hours: "Geschlossen" },
     { day: "Dienstag", hours: "Geschlossen" },
-    { day: "Mittwoch", hours: "12:00 – 19:00 Uhr" },
-    { day: "Donnerstag", hours: "12:00 – 19:00 Uhr" },
-    { day: "Freitag", hours: "12:00 – 19:00 Uhr" },
-    { day: "Samstag", hours: "12:00 – 19:00 Uhr" },
-    { day: "Sonntag", hours: "13:00 – 19:00 Uhr" },
+    { day: "Mittwoch", hours: "12:00 - 19:00 Uhr" },
+    { day: "Donnerstag", hours: "12:00 - 19:00 Uhr" },
+    { day: "Freitag", hours: "12:00 - 19:00 Uhr" },
+    { day: "Samstag", hours: "12:00 - 19:00 Uhr" },
+    { day: "Sonntag", hours: "13:00 - 19:00 Uhr" },
   ],
 
   // ─── Amenities ───

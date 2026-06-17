@@ -29,11 +29,26 @@ export function BoxCard({
   onDecrement,
   onClick,
 }: BoxCardProps) {
+  const isClickable = onClick && quantity === 0;
+
   return (
     <div
-      onClick={onClick}
+      onClick={isClickable ? onClick : undefined}
+      onKeyDown={
+        isClickable
+          ? (e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                onClick();
+              }
+            }
+          : undefined
+      }
+      role={isClickable ? "button" : undefined}
+      tabIndex={isClickable ? 0 : undefined}
       className={twMerge(
-        "relative flex items-center p-4 bg-cream rounded-xl border-2 border-dashed border-terracotta/40 cursor-pointer",
+        "relative flex items-center p-4 bg-cream rounded-xl border-2 border-dashed border-terracotta/40",
+        isClickable && "cursor-pointer",
         "transition-all duration-300 hover:border-terracotta hover:shadow-clay",
         className,
       )}
@@ -49,7 +64,10 @@ export function BoxCard({
 
       <div className="flex-grow flex flex-col justify-center py-1">
         <div className="flex items-center gap-3 mb-1">
-          <h3 className="font-calistoga text-xl text-charcoal">{title}</h3>
+          <h3
+            className="font-heading text-xl text-charcoal"
+            dangerouslySetInnerHTML={{ __html: title }}
+          />
           {isNew && <EyebrowPill label="NEU" statusColor="bg-peach" />}
         </div>
         {desc && (
@@ -93,20 +111,9 @@ export function BoxCard({
               </button>
             </div>
           ) : (
-            <button
-              className="bg-terracotta text-white p-2 rounded-full hover:bg-brown transition-colors shadow-sm"
-              aria-label="Zum Warenkorb hinzufügen"
-              onClick={(e) => {
-                e.stopPropagation();
-                if (onIncrement) {
-                  onIncrement();
-                } else if (onClick) {
-                  onClick();
-                }
-              }}
-            >
+            <div className="bg-terracotta text-white p-2 rounded-full hover:bg-brown transition-colors shadow-sm">
               <Plus size={18} strokeWidth={2.5} />
-            </button>
+            </div>
           )}
         </div>
       )}

@@ -11,6 +11,9 @@ export interface MenuItem {
   desc: string;
   tag?: string;
   ticket?: boolean;
+  image?: string;
+  imageAlt?: string;
+  imageTitle?: string;
 }
 
 export interface MenuSection {

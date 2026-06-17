@@ -12,6 +12,8 @@ import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToastStore } from "@/store/useToastStore";
 import { GiganticTypography } from "@/components/ui/GiganticTypography";
+import { SchemaScripts } from "@/components/seo/SchemaScripts";
+import { buildFaqSchema } from "@/lib/seo/schema/pages";
 
 const FAQS = [
   {
@@ -52,11 +54,20 @@ export default function SupportPage() {
 
     setIsSubmitting(true);
     try {
+      // 1. Save to Firestore (instant, for admin dashboard)
       await addDoc(collection(db, "support_messages"), {
         ...formData,
         createdAt: new Date().toISOString(),
         status: "new",
       });
+
+      // 2. Send email notification (non-blocking)
+      fetch("/api/email/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      }).catch((err) => console.warn("Email send failed (non-critical):", err));
+
       addToast({
         title: "Nachricht gesendet!",
         message: "Wir melden uns bald bei dir.",
@@ -76,19 +87,19 @@ export default function SupportPage() {
   };
 
   return (
-    <div className="min-h-[400vh] bg-transparent text-[#2d1f19] font-nunito relative">
+    <div className="min-h-[400vh] bg-transparent text-brown font-body relative">
       {/* SECTION 1: Massive Intro */}
       <section className="min-h-[100vh] flex flex-col justify-center items-center px-6 relative pt-20">
         <GiganticTypography
           as="h1"
           highlightWords={["helfen?"]}
-          highlightColor="#b34832"
+          highlightColor="#CC624C"
           className="text-center justify-center max-w-[1200px] mx-auto"
         >
           Wie können wir helfen?
         </GiganticTypography>
 
-        <p className="font-nunito text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
+        <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
           Scroll weiter, um Antworten zu finden oder schreib uns.
         </p>
 
@@ -108,6 +119,7 @@ export default function SupportPage() {
       >
         <GiganticTypography
           delay={0.2}
+          as="h2"
           className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center"
         >
           Fragen blubbern auf.
@@ -123,7 +135,16 @@ export default function SupportPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-100px" }}
                 transition={{ type: "spring", delay: idx * 0.1 }}
+                role="button"
+                tabIndex={0}
+                aria-expanded={isActive}
                 onClick={() => setActiveFaq(isActive ? null : idx)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setActiveFaq(isActive ? null : idx);
+                  }
+                }}
                 className={`cursor-pointer rounded-full p-8 flex items-center justify-center text-center transition-all duration-500 shadow-clay ${isActive ? "bg-terracotta text-white scale-110 z-20 aspect-auto rounded-3xl w-full max-w-[400px]" : "bg-cream/80 backdrop-blur-md text-charcoal hover:scale-105 aspect-square w-[200px] md:w-[250px]"}`}
               >
                 <AnimatePresence mode="wait">
@@ -133,7 +154,7 @@ export default function SupportPage() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="font-calistoga text-xl md:text-2xl"
+                      className="font-heading text-xl md:text-2xl"
                     >
                       {faq.question}
                     </motion.div>
@@ -143,7 +164,7 @@ export default function SupportPage() {
                       initial={{ opacity: 0, scale: 0.8 }}
                       animate={{ opacity: 1, scale: 1 }}
                       exit={{ opacity: 0, scale: 0.8 }}
-                      className="font-nunito text-lg font-bold"
+                      className="font-body text-lg font-bold"
                     >
                       {faq.answer}
                     </motion.div>
@@ -160,7 +181,10 @@ export default function SupportPage() {
         id="kontakt"
         className="min-h-[150vh] px-6 relative z-10 flex flex-col justify-center items-center overflow-hidden"
       >
-        <GiganticTypography className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center z-10">
+        <GiganticTypography
+          as="h2"
+          className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center z-10"
+        >
           Nichts gefunden?
         </GiganticTypography>
 
@@ -170,15 +194,20 @@ export default function SupportPage() {
               onSubmit={handleSubmit}
               className="bg-cream/90 backdrop-blur-xl p-8 md:p-12 rounded-[40px] shadow-clay border border-peach/50 flex flex-col gap-6"
             >
-              <h2 className="font-calistoga text-3xl text-charcoal mb-4">
+              <h2 className="font-heading text-3xl text-charcoal mb-4">
                 Schreib uns
               </h2>
 
               <div>
-                <label className="block text-sm font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">
+                <label
+                  htmlFor="contact-name"
+                  className="block text-sm font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
+                >
                   Dein Name
                 </label>
                 <input
+                  id="contact-name"
+                  name="contact-name"
                   type="text"
                   required
                   value={formData.name}
@@ -191,10 +220,15 @@ export default function SupportPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">
+                <label
+                  htmlFor="contact-email"
+                  className="block text-sm font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
+                >
                   Deine E-Mail
                 </label>
                 <input
+                  id="contact-email"
+                  name="contact-email"
                   type="email"
                   required
                   value={formData.email}
@@ -207,10 +241,15 @@ export default function SupportPage() {
               </div>
 
               <div>
-                <label className="block text-sm font-black text-brown/70 uppercase tracking-widest mb-2 ml-2">
+                <label
+                  htmlFor="contact-message"
+                  className="block text-sm font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
+                >
                   Nachricht
                 </label>
                 <textarea
+                  id="contact-message"
+                  name="contact-message"
                   required
                   value={formData.message}
                   onChange={(e) =>
@@ -242,15 +281,15 @@ export default function SupportPage() {
               initial={{ opacity: 0, x: 50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="bg-[#3a9d52]/10 border border-[#3a9d52]/20 rounded-[40px] p-8 md:p-12 flex flex-col items-center text-center backdrop-blur-md"
+              className="bg-success/10 border border-success/20 rounded-[40px] p-8 md:p-12 flex flex-col items-center text-center backdrop-blur-md"
             >
-              <div className="w-20 h-20 bg-[#3a9d52] text-white rounded-full flex items-center justify-center shadow-lg shadow-[#3a9d52]/30 mb-6">
+              <div className="w-20 h-20 bg-success text-white rounded-full flex items-center justify-center shadow-lg shadow-success/30 mb-6">
                 <MessageCircle size={40} />
               </div>
-              <h3 className="font-calistoga text-3xl text-[#3a9d52] mb-4">
+              <h3 className="font-heading text-3xl text-success mb-4">
                 Direkt Texten?
               </h3>
-              <p className="text-[#3a9d52]/80 text-lg font-bold mb-8">
+              <p className="text-success/80 text-lg font-bold mb-8">
                 Schreib uns einfach auf WhatsApp. Wir antworten superschnell.
               </p>
 
@@ -258,7 +297,7 @@ export default function SupportPage() {
                 href="https://wa.me/49123456789"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-[#3a9d52] text-white px-8 py-4 rounded-full font-black uppercase tracking-wider hover:scale-105 transition-transform shadow-lg shadow-[#3a9d52]/30"
+                className="bg-success text-white px-8 py-4 rounded-full font-black uppercase tracking-wider hover:scale-105 transition-transform shadow-lg shadow-success/30"
               >
                 WhatsApp Chat Starten
               </a>
@@ -266,6 +305,13 @@ export default function SupportPage() {
           </div>
         </div>
       </section>
+      <SchemaScripts
+        schema={[
+          buildFaqSchema(
+            FAQS.map((faq) => ({ q: faq.question, a: faq.answer })),
+          ),
+        ]}
+      />
     </div>
   );
 }

@@ -8,6 +8,8 @@ export type MenuItem = {
   color: string;
   tag?: string;
   image?: string;
+  imageAlt?: string;
+  imageTitle?: string;
   available: boolean;
 };
 

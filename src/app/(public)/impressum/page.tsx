@@ -24,7 +24,7 @@ export default function ImpressumPage() {
         <motion.div
           whileHover={{ y: -4 }}
           style={{
-            background: "#f5efe8",
+            background: "#F5EFE8",
             borderRadius: 20,
             padding: 24,
             border: "1px solid rgba(228,192,168,0.3)",
@@ -38,10 +38,10 @@ export default function ImpressumPage() {
               marginBottom: 12,
             }}
           >
-            <Building2 size={16} color="#b34832" />
+            <Building2 size={16} color="#CC624C" />
             <h3
               style={{
-                fontFamily: "var(--font-calistoga), serif",
+                fontFamily: "var(--font-heading), serif",
                 color: "#2d1f19",
                 fontSize: "0.95rem",
                 margin: 0,
@@ -52,7 +52,7 @@ export default function ImpressumPage() {
           </div>
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               color: "#5c3d35",
               fontSize: "0.88rem",
               lineHeight: 1.7,
@@ -73,7 +73,7 @@ export default function ImpressumPage() {
         <motion.div
           whileHover={{ y: -4 }}
           style={{
-            background: "#f5efe8",
+            background: "#F5EFE8",
             borderRadius: 20,
             padding: 24,
             border: "1px solid rgba(228,192,168,0.3)",
@@ -87,10 +87,10 @@ export default function ImpressumPage() {
               marginBottom: 12,
             }}
           >
-            <Phone size={16} color="#b34832" />
+            <Phone size={16} color="#CC624C" />
             <h3
               style={{
-                fontFamily: "var(--font-calistoga), serif",
+                fontFamily: "var(--font-heading), serif",
                 color: "#2d1f19",
                 fontSize: "0.95rem",
                 margin: 0,
@@ -101,7 +101,7 @@ export default function ImpressumPage() {
           </div>
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               color: "#5c3d35",
               fontSize: "0.88rem",
               lineHeight: 1.7,
@@ -116,7 +116,7 @@ export default function ImpressumPage() {
             <a
               href="mailto:hallo@hey-fede.de"
               style={{
-                color: "#b34832",
+                color: "#CC624C",
                 fontWeight: 700,
                 textDecoration: "none",
               }}
@@ -143,7 +143,7 @@ export default function ImpressumPage() {
         <motion.div
           whileHover={{ y: -4 }}
           style={{
-            background: "#f5efe8",
+            background: "#F5EFE8",
             borderRadius: 20,
             padding: 24,
             border: "1px solid rgba(228,192,168,0.3)",
@@ -157,10 +157,10 @@ export default function ImpressumPage() {
               marginBottom: 12,
             }}
           >
-            <FileText size={16} color="#b34832" />
+            <FileText size={16} color="#CC624C" />
             <h3
               style={{
-                fontFamily: "var(--font-calistoga), serif",
+                fontFamily: "var(--font-heading), serif",
                 color: "#2d1f19",
                 fontSize: "0.95rem",
                 margin: 0,
@@ -171,7 +171,7 @@ export default function ImpressumPage() {
           </div>
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               color: "#5c3d35",
               fontSize: "0.88rem",
               lineHeight: 1.7,
@@ -189,7 +189,7 @@ export default function ImpressumPage() {
                 fontFamily: "monospace",
                 fontSize: "0.85rem",
                 marginTop: 6,
-                color: "#b34832",
+                color: "#CC624C",
                 fontWeight: "bold",
               }}
             >
@@ -202,7 +202,7 @@ export default function ImpressumPage() {
         <motion.div
           whileHover={{ y: -4 }}
           style={{
-            background: "#f5efe8",
+            background: "#F5EFE8",
             borderRadius: 20,
             padding: 24,
             border: "1px solid rgba(228,192,168,0.3)",
@@ -216,10 +216,10 @@ export default function ImpressumPage() {
               marginBottom: 12,
             }}
           >
-            <Info size={16} color="#b34832" />
+            <Info size={16} color="#CC624C" />
             <h3
               style={{
-                fontFamily: "var(--font-calistoga), serif",
+                fontFamily: "var(--font-heading), serif",
                 color: "#2d1f19",
                 fontSize: "0.95rem",
                 margin: 0,
@@ -230,7 +230,7 @@ export default function ImpressumPage() {
           </div>
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               color: "#5c3d35",
               fontSize: "0.88rem",
               lineHeight: 1.7,
@@ -249,7 +249,7 @@ export default function ImpressumPage() {
       <div
         style={{
           marginTop: 40,
-          fontFamily: "var(--font-nunito), sans-serif",
+          fontFamily: "var(--font-body), sans-serif",
           color: "#5c3d35",
           fontSize: "0.9rem",
           lineHeight: 1.7,
@@ -257,7 +257,7 @@ export default function ImpressumPage() {
       >
         <h2
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             color: "#2d1f19",
             fontSize: "1.4rem",
             marginBottom: 16,
@@ -272,7 +272,7 @@ export default function ImpressumPage() {
             href="https://ec.europa.eu/consumers/odr/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ color: "#b34832", textDecoration: "underline" }}
+            style={{ color: "#CC624C", textDecoration: "underline" }}
           >
             https://ec.europa.eu/consumers/odr/
           </a>
@@ -282,7 +282,7 @@ export default function ImpressumPage() {
 
         <h2
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             color: "#2d1f19",
             fontSize: "1.4rem",
             marginTop: 32,
@@ -298,7 +298,7 @@ export default function ImpressumPage() {
 
         <h2
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             color: "#2d1f19",
             fontSize: "1.4rem",
             marginTop: 32,

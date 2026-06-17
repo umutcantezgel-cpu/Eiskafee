@@ -129,5 +129,85 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.2,
     },
+
+    // ─── Markdown Mirror (AI/LLM Crawlers) ───
+    {
+      url: `${baseUrl}/md/home.md`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/md/menu.md`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.4,
+    },
+    {
+      url: `${baseUrl}/md/about.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/visit.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/bubble-waffles-wetzlar.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/eisdiele-wetzlar-special-shakes.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/events-catering-hessen.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/vegane-desserts-wetzlar.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/gutscheine.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.2,
+    },
+    {
+      url: `${baseUrl}/md/agb.md`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.1,
+    },
+    {
+      url: `${baseUrl}/md/datenschutz.md`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.1,
+    },
+    {
+      url: `${baseUrl}/md/cookie-richtlinie.md`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.1,
+    },
+    {
+      url: `${baseUrl}/md/impressum.md`,
+      lastModified: now,
+      changeFrequency: "yearly",
+      priority: 0.1,
+    },
   ];
 }

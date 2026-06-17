@@ -65,13 +65,13 @@ export default function EisdielePage() {
             </div>
           </div>
           <div className="order-1 md:order-2">
-            <div className="inline-block px-4 py-1.5 bg-terracotta text-white font-nunito font-bold rounded-full text-sm mb-6 shadow-sm">
+            <div className="inline-block px-4 py-1.5 bg-terracotta text-white font-body font-bold rounded-full text-sm mb-6 shadow-sm">
               Erfrischung pur am Eisenmarkt
             </div>
-            <h1 className="font-calistoga text-5xl md:text-6xl text-charcoal mb-6 leading-[1.1]">
+            <h1 className="font-heading text-5xl md:text-6xl text-charcoal mb-6 leading-[1.1]">
               Deine moderne Eisdiele in Wetzlar
             </h1>
-            <p className="font-nunito text-lg text-[#5c3d35] leading-relaxed mb-8 max-w-[500px]">
+            <p className="font-body text-lg text-brown-mid leading-relaxed mb-8 max-w-[500px]">
               Kugel-Eis war gestern. Erlebe die seidige Textur unseres frisch
               gezapften Softeises in gigantischen 500ml Bechern oder als Basis
               für unsere legendären Special Shakes. Ein kühles Meisterwerk für
@@ -87,7 +87,7 @@ export default function EisdielePage() {
             Die Special Shakes
           </SectionTitle>
 
-          <div className="prose prose-lg prose-headings:font-calistoga prose-headings:text-charcoal prose-p:font-nunito prose-p:text-[#5c3d35] mt-12 mx-auto">
+          <div className="prose prose-lg prose-headings:font-heading prose-headings:text-charcoal prose-p:font-body prose-p:text-brown-mid mt-12 mx-auto">
             <h2>Die Kunst des perfekten Shakes in Hessen</h2>
             <p>
               Wenn die Sonne über der Wetzlarer Altstadt und der Alten

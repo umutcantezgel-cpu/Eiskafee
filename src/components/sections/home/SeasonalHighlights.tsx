@@ -11,7 +11,6 @@ import {
   Flower2,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { WaveDivider } from "@/components/ui/WaveDivider";
 
 const SEASONS = [
   {
@@ -32,7 +31,7 @@ const SEASONS = [
     id: "summer",
     name: "Sommer",
     icon: <Sun className="w-6 h-6" />,
-    color: "#b34832",
+    color: "#CC624C",
     specialTitle: "Tropical Mango Madness",
     specialDesc:
       "Wenn die Hitze über dem Eisenmarkt steht, sorgt unser Sommer-Spezial für die perfekte Abkühlung. Ein gigantischer 500ml Eisbecher mit hausgemachtem Mango-Sorbet, frischen Maracuja-Kernen, Kokosraspeln und unserem cremigen Softeis. Ein tropischer Kurzurlaub mitten in Hessen.",
@@ -82,10 +81,8 @@ export function SeasonalHighlights() {
   const activeSeason = SEASONS[currentIndex];
 
   return (
-    <section className="bg-[#eedfcc] py-24 relative overflow-hidden">
-      <div className="absolute top-0 left-0 w-full -translate-y-1">
-        <WaveDivider fromColor="#f5efe8" toColor="#eedfcc" variant={2} />
-      </div>
+    <section className="bg-beige py-24 relative overflow-hidden">
+      <div className="absolute top-0 left-0 w-full -translate-y-1"></div>
 
       <FadeUp delay={0.1} className="max-w-[1200px] mx-auto px-6 pt-12">
         <SectionTitle sub="Im Rhythmus der Jahreszeiten.">
@@ -99,8 +96,8 @@ export function SeasonalHighlights() {
               onClick={() => setCurrentIndex(i)}
               className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all ${
                 currentIndex === i
-                  ? "bg-[#b34832] text-white shadow-md scale-105"
-                  : "bg-white text-[#5c3d35] hover:bg-cream border border-peach/50"
+                  ? "bg-terracotta text-white shadow-md scale-105"
+                  : "bg-white text-brown-mid hover:bg-cream border border-peach/50"
               }`}
             >
               {season.icon}
@@ -126,19 +123,19 @@ export function SeasonalHighlights() {
                 >
                   Das aktuelle Special
                 </div>
-                <h3 className="font-calistoga text-3xl md:text-4xl text-[#2d1f19] mb-6 leading-tight">
+                <h3 className="font-heading text-3xl md:text-4xl text-brown mb-6 leading-tight">
                   {activeSeason.specialTitle}
                 </h3>
-                <p className="font-nunito text-[#5c3d35] leading-relaxed mb-8">
+                <p className="font-body text-brown-mid leading-relaxed mb-8">
                   {activeSeason.specialDesc}
                 </p>
               </div>
 
-              <div className="bg-[#f5efe8] rounded-3xl p-8 border border-peach/50 relative">
-                <div className="absolute -top-4 -right-4 bg-terracotta text-white w-12 h-12 flex items-center justify-center rounded-full font-calistoga text-2xl shadow-md rotate-12">
+              <div className="bg-cream rounded-3xl p-8 border border-peach/50 relative">
+                <div className="absolute -top-4 -right-4 bg-terracotta text-white w-12 h-12 flex items-center justify-center rounded-full font-heading text-2xl shadow-md rotate-12">
                   ★
                 </div>
-                <h4 className="font-calistoga text-xl text-[#2d1f19] mb-6">
+                <h4 className="font-heading text-xl text-brown mb-6">
                   Weitere {activeSeason.name}s-Highlights
                 </h4>
                 <ul className="space-y-4">
@@ -150,7 +147,7 @@ export function SeasonalHighlights() {
                       >
                         •
                       </span>
-                      <span className="font-nunito font-bold text-[#5c3d35]">
+                      <span className="font-body font-bold text-brown-mid">
                         {item}
                       </span>
                     </li>
@@ -165,6 +162,7 @@ export function SeasonalHighlights() {
             <button
               onClick={prev}
               className="bg-white text-terracotta w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-cream transition-colors border-2 border-peach/30"
+              aria-label="Vorheriges Highlight"
             >
               <ChevronLeft className="w-8 h-8 ml-[-2px]" />
             </button>
@@ -173,6 +171,7 @@ export function SeasonalHighlights() {
             <button
               onClick={next}
               className="bg-white text-terracotta w-14 h-14 rounded-full flex items-center justify-center shadow-lg hover:bg-cream transition-colors border-2 border-peach/30"
+              aria-label="Nächstes Highlight"
             >
               <ChevronRight className="w-8 h-8 mr-[-2px]" />
             </button>

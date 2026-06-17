@@ -4,11 +4,11 @@ import { useEffect } from "react";
 import * as CookieConsent from "vanilla-cookieconsent";
 
 /**
- * ScriptManager — Consent-gated script loader
- * 
- * Loads third-party scripts ONLY after the user has given consent 
+ * ScriptManager - Consent-gated script loader
+ *
+ * Loads third-party scripts ONLY after the user has given consent
  * for the respective category. This is required by TDDDG § 25.
- * 
+ *
  * Currently no analytics/marketing scripts are active.
  * When adding new scripts, register them here under the appropriate category.
  */
@@ -19,8 +19,7 @@ export default function ScriptManager() {
       if (CookieConsent.acceptedCategory("analytics")) {
         // Future: Load Vercel Analytics
         // import("@vercel/analytics").then(({ inject }) => inject());
-        
-        // Future: Load Firebase Analytics  
+        // Future: Load Firebase Analytics
         // import("firebase/analytics").then(({ getAnalytics }) => getAnalytics(app));
       }
 

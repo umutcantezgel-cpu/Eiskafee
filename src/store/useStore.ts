@@ -1,5 +1,5 @@
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
 export type CartItem = {
   id: string;
@@ -34,7 +34,7 @@ interface StoreState {
   isCartOpen: boolean;
   orderType: OrderType;
   orderData: OrderData;
-  addToCart: (item: Omit<CartItem, 'quantity'>) => void;
+  addToCart: (item: Omit<CartItem, "quantity">) => void;
   removeFromCart: (id: string) => void;
   updateQuantity: (id: string, q: number) => void;
   openCart: () => void;
@@ -48,7 +48,8 @@ interface StoreState {
   total: number;
 }
 
-const computeTotal = (cart: CartItem[]) => cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+const computeTotal = (cart: CartItem[]) =>
+  cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
 
 export const useStore = create<StoreState>()(
   persist(
@@ -58,35 +59,42 @@ export const useStore = create<StoreState>()(
       orderType: null,
       orderData: {},
       total: 0,
-      addToCart: (item) => set((s) => {
-        const exists = s.cart.find(c => c.id === item.id);
-        const newCart = exists
-          ? s.cart.map(c => c.id === item.id ? { ...c, quantity: c.quantity + 1 } : c)
-          : [...s.cart, { ...item, quantity: 1 }];
-        return { cart: newCart, total: computeTotal(newCart) };
-      }),
-      removeFromCart: (id) => set((s) => {
-        const newCart = s.cart.filter(c => c.id !== id);
-        return { cart: newCart, total: computeTotal(newCart) };
-      }),
-      updateQuantity: (id, q) => set((s) => {
-        const newCart = q <= 0
-          ? s.cart.filter(c => c.id !== id)
-          : s.cart.map(c => c.id === id ? { ...c, quantity: q } : c);
-        return { cart: newCart, total: computeTotal(newCart) };
-      }),
+      addToCart: (item) =>
+        set((s) => {
+          const exists = s.cart.find((c) => c.id === item.id);
+          const newCart = exists
+            ? s.cart.map((c) =>
+                c.id === item.id ? { ...c, quantity: c.quantity + 1 } : c,
+              )
+            : [...s.cart, { ...item, quantity: 1 }];
+          return { cart: newCart, total: computeTotal(newCart) };
+        }),
+      removeFromCart: (id) =>
+        set((s) => {
+          const newCart = s.cart.filter((c) => c.id !== id);
+          return { cart: newCart, total: computeTotal(newCart) };
+        }),
+      updateQuantity: (id, q) =>
+        set((s) => {
+          const newCart =
+            q <= 0
+              ? s.cart.filter((c) => c.id !== id)
+              : s.cart.map((c) => (c.id === id ? { ...c, quantity: q } : c));
+          return { cart: newCart, total: computeTotal(newCart) };
+        }),
       openCart: () => set({ isCartOpen: true }),
       closeCart: () => set({ isCartOpen: false }),
       toggleCart: () => set((s) => ({ isCartOpen: !s.isCartOpen })),
       clearCart: () => set({ cart: [], total: 0 }),
       setCart: (cart) => set({ cart, total: computeTotal(cart) }),
       setOrderType: (type) => set({ orderType: type }),
-      updateOrderData: (data) => set((s) => ({ orderData: { ...s.orderData, ...data } })),
+      updateOrderData: (data) =>
+        set((s) => ({ orderData: { ...s.orderData, ...data } })),
       clearOrderData: () => set({ orderData: {}, orderType: null }),
     }),
     {
-      name: 'hey-fede-cart',
-      partialize: (state) => ({ cart: state.cart, orderType: state.orderType, orderData: state.orderData })
-    }
-  )
+      name: "hey-fede-cart",
+      partialize: (state) => ({ cart: state.cart, orderType: state.orderType }), // ✅ Removed orderData - PII must not be persisted in localStorage
+    },
+  ),
 );

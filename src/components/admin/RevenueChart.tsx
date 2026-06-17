@@ -31,7 +31,7 @@ export default function RevenueChart({ data }: { data: AnalyticsDaily[] }) {
             fill: "#9a7060",
             fontSize: 12,
             fontWeight: 700,
-            fontFamily: "var(--font-nunito)",
+            fontFamily: "var(--font-body)",
           }}
           dy={10}
         />
@@ -42,13 +42,13 @@ export default function RevenueChart({ data }: { data: AnalyticsDaily[] }) {
             fill: "#9a7060",
             fontSize: 12,
             fontWeight: 700,
-            fontFamily: "var(--font-nunito)",
+            fontFamily: "var(--font-body)",
           }}
           tickFormatter={(val) => `€${val}`}
           dx={-10}
         />
         <Tooltip
-          cursor={{ stroke: "#b34832", strokeWidth: 2, strokeDasharray: "4 4" }}
+          cursor={{ stroke: "#CC624C", strokeWidth: 2, strokeDasharray: "4 4" }}
           contentStyle={{
             backgroundColor: "#fef8f5",
             borderRadius: "12px",
@@ -56,18 +56,18 @@ export default function RevenueChart({ data }: { data: AnalyticsDaily[] }) {
             boxShadow: "0 4px 20px rgba(204,98,76,0.15)",
             fontWeight: 700,
           }}
-          itemStyle={{ color: "#b34832", fontWeight: 800 }}
+          itemStyle={{ color: "#CC624C", fontWeight: 800 }}
         />
         <Line
           type="monotone"
           dataKey="revenue"
-          stroke="#b34832"
+          stroke="#CC624C"
           strokeWidth={4}
-          dot={{ r: 6, fill: "#f5efe8", stroke: "#b34832", strokeWidth: 3 }}
+          dot={{ r: 6, fill: "#F5EFE8", stroke: "#CC624C", strokeWidth: 3 }}
           activeDot={{
             r: 8,
-            fill: "#b34832",
-            stroke: "#f5efe8",
+            fill: "#CC624C",
+            stroke: "#F5EFE8",
             strokeWidth: 3,
           }}
           animationDuration={1500}

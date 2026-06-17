@@ -58,12 +58,12 @@ export function ScratchCard({
         );
         ctx.fill();
       }
-      ctx.fillStyle = "#b34832";
-      ctx.font = "bold 22px Nunito, sans-serif";
+      ctx.fillStyle = "#CC624C";
+      ctx.font = "bold 22px Myriad Variable Concept, sans-serif";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText("Rubbel mich frei! ✨", r.width / 2, r.height / 2 - 4);
-      ctx.font = "600 12px Nunito, sans-serif";
+      ctx.font = "600 12px Myriad Variable Concept, sans-serif";
       ctx.fillStyle = "rgba(204,98,76,0.7)";
       ctx.fillText("Wische über das Ticket", r.width / 2, r.height / 2 + 22);
     };
@@ -101,7 +101,7 @@ export function ScratchCard({
           particleCount: 150,
           spread: 80,
           origin: { y: 0.55 },
-          colors: ["#b34832", "#E4C0A8", "#eedfcc", "#fff8f1"],
+          colors: ["#CC624C", "#E4C0A8", "#eedfcc", "#fff8f1"],
           zIndex: 9999,
           shapes: ["circle", "square"],
           scalar: 1.1,

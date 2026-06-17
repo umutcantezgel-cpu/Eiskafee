@@ -22,7 +22,7 @@ export default function AGBPage() {
           padding: 24,
           borderRadius: 20,
           marginBottom: 32,
-          fontFamily: "var(--font-nunito), sans-serif",
+          fontFamily: "var(--font-body), sans-serif",
           fontSize: "0.88rem",
           color: "#5c3d35",
           border: "1px solid rgba(228,192,168,0.3)",
@@ -30,7 +30,7 @@ export default function AGBPage() {
       >
         <h3
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             color: "#2d1f19",
             fontSize: "1rem",
             margin: "0 0 14px",
@@ -39,7 +39,7 @@ export default function AGBPage() {
             gap: 8,
           }}
         >
-          <Info size={16} color="#b34832" /> Das Wichtigste in Kürze
+          <Info size={16} color="#CC624C" /> Das Wichtigste in Kürze
         </h3>
         <div style={{ display: "grid", gap: 8 }}>
           {[
@@ -52,7 +52,7 @@ export default function AGBPage() {
               key={item}
               style={{ display: "flex", alignItems: "center", gap: 8 }}
             >
-              <CheckCircle2 size={14} color="#b34832" />
+              <CheckCircle2 size={14} color="#CC624C" />
               <span>{item}</span>
             </div>
           ))}

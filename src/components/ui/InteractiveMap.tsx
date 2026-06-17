@@ -26,8 +26,8 @@ const heyFedeIcon =
         html: `<div style="position: relative; width: 60px; height: 60px; display: flex; align-items: flex-end; justify-content: center;">
            <div class="animate-map-pulse" style="position: absolute; bottom: -5px; width: 30px; height: 10px; background: rgba(204,98,76,0.6); border-radius: 50%;"></div>
            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 36" width="40" height="60" style="filter: drop-shadow(0px 6px 12px rgba(45,31,25,0.4)); position: relative; z-index: 2;">
-             <path fill="#b34832" stroke="#f5efe8" stroke-width="1.5" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
-             <circle cx="12" cy="12" r="5" fill="#f5efe8" />
+             <path fill="#CC624C" stroke="#F5EFE8" stroke-width="1.5" d="M12 0C5.4 0 0 5.4 0 12c0 9 12 24 12 24s12-15 12-24C24 5.4 18.6 0 12 0zm0 16c-2.2 0-4-1.8-4-4s1.8-4 4-4 4 1.8 4 4-1.8 4-4 4z"/>
+             <circle cx="12" cy="12" r="5" fill="#F5EFE8" />
            </svg>
          </div>`,
         className: "",
@@ -126,7 +126,7 @@ function GlassPopup({
                 width: 32,
                 height: 32,
                 borderRadius: "50%",
-                background: "#b34832",
+                background: "#CC624C",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
@@ -138,7 +138,7 @@ function GlassPopup({
             <div>
               <div
                 style={{
-                  fontFamily: "var(--font-calistoga), serif",
+                  fontFamily: "var(--font-heading), serif",
                   fontSize: "1.2rem",
                   color: "#2d1f19",
                   lineHeight: 1.1,
@@ -179,7 +179,7 @@ function GlassPopup({
                 display: "flex",
                 alignItems: "center",
                 gap: 6,
-                color: "#b34832",
+                color: "#CC624C",
                 fontSize: "0.8rem",
                 fontWeight: 700,
               }}
@@ -198,7 +198,7 @@ function GlassPopup({
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               style={{
-                background: "#b34832",
+                background: "#CC624C",
                 color: "#fefefe",
                 padding: "12px",
                 borderRadius: 12,
@@ -206,7 +206,7 @@ function GlassPopup({
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 8,
-                fontFamily: "var(--font-nunito), sans-serif",
+                fontFamily: "var(--font-body), sans-serif",
                 fontWeight: 800,
                 fontSize: "0.9rem",
                 boxShadow: "0 4px 12px rgba(204,98,76,0.3)",
@@ -220,7 +220,7 @@ function GlassPopup({
         <div>
           <div
             style={{
-              fontFamily: "var(--font-calistoga), serif",
+              fontFamily: "var(--font-heading), serif",
               fontSize: "1.2rem",
               color: "#2d1f19",
               marginBottom: 6,
@@ -310,7 +310,7 @@ function GlassPopup({
                 alignItems: "center",
                 justifyContent: "center",
                 gap: 6,
-                color: "#b34832",
+                color: "#CC624C",
                 fontSize: "0.8rem",
                 fontWeight: 800,
                 textDecoration: "none",
@@ -375,7 +375,7 @@ export default function InteractiveMap() {
         width: "100%",
         boxShadow: "0 12px 40px rgba(45,31,25,0.08)",
         transform: "translateZ(0)",
-        background: "#f5efe8",
+        background: "#F5EFE8",
       }}
     >
       <div
@@ -461,7 +461,7 @@ export default function InteractiveMap() {
               <div>
                 <div
                   style={{
-                    fontFamily: "var(--font-nunito), sans-serif",
+                    fontFamily: "var(--font-body), sans-serif",
                     fontWeight: 900,
                     fontSize: "0.88rem",
                     color: "#2d1f19",
@@ -471,7 +471,7 @@ export default function InteractiveMap() {
                 </div>
                 <div
                   style={{
-                    fontFamily: "var(--font-nunito), sans-serif",
+                    fontFamily: "var(--font-body), sans-serif",
                     fontSize: "0.76rem",
                     color: "#9a7060",
                   }}
@@ -489,13 +489,13 @@ export default function InteractiveMap() {
                   display: "flex",
                   alignItems: "center",
                   gap: 6,
-                  background: "#b34832",
+                  background: "#CC624C",
                   color: "#fefefe",
                   padding: "10px 18px",
                   borderRadius: 50,
                   textDecoration: "none",
                   flexShrink: 0,
-                  fontFamily: "var(--font-nunito), sans-serif",
+                  fontFamily: "var(--font-body), sans-serif",
                   fontWeight: 800,
                   fontSize: "0.78rem",
                   boxShadow: "0 4px 12px rgba(204,98,76,0.3)",

@@ -20,7 +20,7 @@ export function StampBadge({
   const defaultRotation = variant === "terracotta" ? 14 : -9;
   const finalRotation = rotate !== undefined ? rotate : defaultRotation;
 
-  const strokeColor = variant === "terracotta" ? "#b34832" : "#5c3d35";
+  const strokeColor = variant === "terracotta" ? "#CC624C" : "#5c3d35";
 
   // Calculate center and radius based on size
   const center = size / 2;
@@ -37,7 +37,11 @@ export function StampBadge({
         transform: `rotate(${finalRotation}deg)`,
       }}
     >
-      <svg viewBox={`0 0 ${size} ${size}`} xmlns="http://www.w3.org/2000/svg">
+      <svg
+        viewBox={`0 0 ${size} ${size}`}
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden="true"
+      >
         <defs>
           <path
             id={pathId}
@@ -55,7 +59,7 @@ export function StampBadge({
         />
         <text
           fontSize="9"
-          fontFamily="var(--font-nunito), sans-serif"
+          fontFamily="var(--font-body), sans-serif"
           fontWeight="800"
           fill={strokeColor}
           letterSpacing="2"

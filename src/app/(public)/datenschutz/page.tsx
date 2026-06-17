@@ -68,7 +68,7 @@ export default function DatenschutzPage() {
           {FULL_ADDRESS}
           <br />
           E-Mail:{" "}
-          <span style={{ fontWeight: 700, color: "#b34832" }}>
+          <span style={{ fontWeight: 700, color: "#CC624C" }}>
             datenschutz@hey-fede.de
           </span>
         </p>
@@ -289,7 +289,7 @@ export default function DatenschutzPage() {
         <p style={{ marginTop: 16 }}>
           Möchtest du von deinen Rechten Gebrauch machen, kontaktiere uns
           einfach unter{" "}
-          <span style={{ fontWeight: 700, color: "#b34832" }}>
+          <span style={{ fontWeight: 700, color: "#CC624C" }}>
             datenschutz@hey-fede.de
           </span>
           .
@@ -347,7 +347,7 @@ export default function DatenschutzPage() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
-              color: "#b34832",
+              color: "#CC624C",
               fontWeight: 700,
               textDecoration: "underline",
               textUnderlineOffset: 3,

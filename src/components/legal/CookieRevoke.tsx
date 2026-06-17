@@ -53,7 +53,7 @@ export default function CookieRevoke() {
               padding: "8px 14px",
               borderRadius: 12,
               fontSize: "0.75rem",
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontWeight: 700,
               whiteSpace: "nowrap",
               boxShadow: "0 8px 24px rgba(45,31,25,0.2)",
@@ -92,7 +92,7 @@ export default function CookieRevoke() {
           position: "absolute",
           inset: 0,
           borderRadius: "50%",
-          border: "2px solid #b34832",
+          border: "2px solid #CC624C",
           pointerEvents: "none",
         }}
       />
@@ -135,9 +135,9 @@ export default function CookieRevoke() {
           transition={{ type: "spring", stiffness: 300, damping: 20 }}
         >
           {isHovered ? (
-            <Settings size={20} color="#b34832" strokeWidth={2} />
+            <Settings size={20} color="#CC624C" strokeWidth={2} />
           ) : (
-            <Cookie size={20} color="#b34832" strokeWidth={2} />
+            <Cookie size={20} color="#CC624C" strokeWidth={2} />
           )}
         </motion.div>
       </motion.button>

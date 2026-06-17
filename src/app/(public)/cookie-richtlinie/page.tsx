@@ -15,7 +15,7 @@ export default function CookieRichtliniePage() {
     >
       <div
         style={{
-          fontFamily: "var(--font-nunito), sans-serif",
+          fontFamily: "var(--font-body), sans-serif",
           fontSize: "0.9rem",
           color: "#5c3d35",
           lineHeight: 1.7,
@@ -36,7 +36,7 @@ export default function CookieRichtliniePage() {
 
         <h2
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
@@ -56,7 +56,7 @@ export default function CookieRichtliniePage() {
 
         <h2
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
@@ -81,7 +81,7 @@ export default function CookieRichtliniePage() {
 
         <h2
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
@@ -139,7 +139,7 @@ export default function CookieRichtliniePage() {
               whileHover={{ x: 4 }}
               transition={{ type: "spring", stiffness: 400, damping: 30 }}
               style={{
-                background: "#f5efe8",
+                background: "#F5EFE8",
                 borderRadius: 16,
                 padding: "16px 20px",
                 border: "1px solid rgba(228,192,168,0.3)",
@@ -186,7 +186,7 @@ export default function CookieRichtliniePage() {
 
         <h2
           style={{
-            fontFamily: "var(--font-calistoga), serif",
+            fontFamily: "var(--font-heading), serif",
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
@@ -210,12 +210,12 @@ export default function CookieRichtliniePage() {
             alignItems: "center",
             gap: 10,
             padding: "14px 28px",
-            background: "#b34832",
+            background: "#CC624C",
             color: "#fefefe",
             border: "none",
             borderRadius: 50,
             cursor: "pointer",
-            fontFamily: "var(--font-nunito), sans-serif",
+            fontFamily: "var(--font-body), sans-serif",
             fontWeight: 800,
             fontSize: "0.88rem",
             boxShadow: "0 6px 20px rgba(204,98,76,0.3)",

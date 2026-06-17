@@ -62,13 +62,13 @@ export default function BubbleWafflePage() {
       <section className="relative pt-[120px] pb-24 bg-sand overflow-hidden border-b border-peach/30">
         <div className="max-w-7xl mx-auto px-6 relative z-10 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-block px-4 py-1.5 bg-terracotta text-white font-nunito font-bold rounded-full text-sm mb-6 shadow-sm">
+            <div className="inline-block px-4 py-1.5 bg-terracotta text-white font-body font-bold rounded-full text-sm mb-6 shadow-sm">
               Das Original in Mittelhessen
             </div>
-            <h1 className="font-calistoga text-5xl md:text-6xl text-charcoal mb-6 leading-[1.1]">
+            <h1 className="font-heading text-5xl md:text-6xl text-charcoal mb-6 leading-[1.1]">
               Die beste Bubble Waffle im gesamten Lahn-Dill-Kreis
             </h1>
-            <p className="font-nunito text-lg text-[#5c3d35] leading-relaxed mb-8 max-w-[500px]">
+            <p className="font-body text-lg text-brown-mid leading-relaxed mb-8 max-w-[500px]">
               Vergiss trockene, langweilige Waffeln. In der historischen
               Wetzlarer Langgasse backen wir das Streetfood-Original aus
               Hongkong. Viele unserer Stammgäste fahren extra aus Gießen,
@@ -79,12 +79,12 @@ export default function BubbleWafflePage() {
           </div>
           <div className="relative">
             {/* Image Placeholder styled nicely */}
-            <div className="aspect-[4/5] bg-[#eedfcc] rounded-[40px] border-4 border-white shadow-xl flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform duration-500">
+            <div className="aspect-[4/5] bg-beige rounded-[40px] border-4 border-white shadow-xl flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform duration-500">
               <span className="text-8xl">🧇</span>
             </div>
             <div className="absolute -bottom-6 -left-6 bg-white px-6 py-4 rounded-2xl shadow-lg transform -rotate-6">
-              <p className="font-calistoga text-terracotta text-2xl">100%</p>
-              <p className="font-nunito font-bold text-xs uppercase tracking-widest text-charcoal">
+              <p className="font-heading text-terracotta text-2xl">100%</p>
+              <p className="font-body font-bold text-xs uppercase tracking-widest text-charcoal">
                 Hausgemacht
               </p>
             </div>
@@ -99,7 +99,7 @@ export default function BubbleWafflePage() {
             Die Magie der Texturen
           </SectionTitle>
 
-          <div className="prose prose-lg prose-headings:font-calistoga prose-headings:text-charcoal prose-p:font-nunito prose-p:text-[#5c3d35] mt-12 mx-auto">
+          <div className="prose prose-lg prose-headings:font-heading prose-headings:text-charcoal prose-p:font-body prose-p:text-brown-mid mt-12 mx-auto">
             <h2>Handwerkskunst am Wetzlarer Eisenmarkt</h2>
             <p>
               Was macht eine Bubble Waffle so unwiderstehlich? Es ist das
@@ -145,13 +145,13 @@ export default function BubbleWafflePage() {
       {/* Cross Linking / CTA */}
       <section className="py-24 bg-terracotta relative text-center text-white overflow-hidden">
         <div className="absolute top-0 left-0 w-full -translate-y-1">
-          <WaveDivider fromColor="#ffffff" toColor="#b34832" variant={1} />
+          <WaveDivider fromColor="#ffffff" toColor="#CC624C" variant={1} />
         </div>
         <FadeUp className="max-w-2xl mx-auto px-6 relative z-10 pt-12">
-          <h2 className="font-calistoga text-4xl mb-6">
+          <h2 className="font-heading text-4xl mb-6">
             Lust auf eine Waffel auf dem Sofa?
           </h2>
-          <p className="font-nunito text-lg text-cream/90 mb-10">
+          <p className="font-body text-lg text-cream/90 mb-10">
             Wir liefern unsere Bubble Waffles natürlich auch direkt zu dir nach
             Hause. Perfekt verpackt, damit sie knusprig bleiben. Entdecke
             unseren Lieferservice im Lahn-Dill-Kreis.

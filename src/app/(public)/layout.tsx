@@ -18,19 +18,29 @@ export default function PublicLayout({
 }) {
   return (
     <>
-      <ScrollLavaBackground />
-      <ScrollProgressBar />
-      <BitemarkMaskDefs />
-      <SplashScreen />
-      <TransitionCurtain />
+      <div aria-hidden="true">
+        <ScrollLavaBackground />
+        <ScrollProgressBar />
+        <BitemarkMaskDefs />
+        <SplashScreen />
+        <TransitionCurtain />
+      </div>
       <Header />
-      <main id="main-content" className="flex-grow pt-[68px] relative z-10">
+      <main
+        id="main-content"
+        role="main"
+        className="flex-grow pt-[68px] relative z-10"
+      >
         {children}
         <SpeedInsights />
       </main>
       <Footer />
-      <CartDrawer />
-      <PhysicsPlaygroundContainer />
+      <aside aria-label="Warenkorb" className="contents">
+        <CartDrawer />
+      </aside>
+      <div aria-hidden="true">
+        <PhysicsPlaygroundContainer />
+      </div>
     </>
   );
 }

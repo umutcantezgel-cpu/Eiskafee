@@ -286,3 +286,20 @@ A: Die Bestseller bei Hey Fede! sind: 1) Fede & Friends Box (25,00 €), 2) Bubb
 - currenciesAccepted: EUR
 - hasMenu: https://hey-fede.de/menu
 - geo: lat 50.5575, lng 8.5046 (Wetzlar Altstadt)
+
+---
+
+## Markdown-Versionen (für AI-Crawler)
+- Startseite: https://hey-fede.de/md/home.md
+- Über uns: https://hey-fede.de/md/about.md
+- Speisekarte: https://hey-fede.de/md/menu.md
+- Besuche uns: https://hey-fede.de/md/visit.md
+- Bubble Waffles Wetzlar: https://hey-fede.de/md/bubble-waffles-wetzlar.md
+- Eisdiele Wetzlar & Shakes: https://hey-fede.de/md/eisdiele-wetzlar-special-shakes.md
+- Catering & Events: https://hey-fede.de/md/events-catering-hessen.md
+- Vegane & Halal Desserts: https://hey-fede.de/md/vegane-desserts-wetzlar.md
+- Gutscheine: https://hey-fede.de/md/gutscheine.md
+- AGB: https://hey-fede.de/md/agb.md
+- Datenschutzerklärung: https://hey-fede.de/md/datenschutz.md
+- Cookie-Richtlinie: https://hey-fede.de/md/cookie-richtlinie.md
+- Impressum: https://hey-fede.de/md/impressum.md

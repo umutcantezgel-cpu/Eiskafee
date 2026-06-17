@@ -2,9 +2,11 @@
 
 @config "../../tailwind.config.ts";
 
+@import "./hey-fede-kit.css";
+
 /* ═══════════════════════════════════════════════════════════
-   Hey Fede! — Global CSS
-   Source of Truth: MASTER_CONTEXT.md v2.0, §5–§9 + §12.4
+   Hey Fede! - Global CSS
+   Source of Truth: MASTER_CONTEXT.md v2.0, §5-§9 + §12.4
    ═══════════════════════════════════════════════════════════ */
 
 /* ─── CSS Custom Properties ─────────────────────────────── */
@@ -13,8 +15,8 @@
   --color-bg-creme: #f5efe8;
   --color-beige: #eedfcc;
   --color-peach: #e4c0a8;
-  --color-terracotta: #b34832;
-  --color-terracotta-deep: #963520;
+  --color-terracotta: #cc624c;
+  --color-terracotta-deep: #b8553f;
   --color-brown: #2d1f19;
   --color-brown-bark: #3a2820;
   --color-brown-mid: #5c3d35;
@@ -71,6 +73,8 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 body {
@@ -79,6 +83,8 @@ body {
   font-family: var(--font-body);
   line-height: 1.5;
   overflow-x: hidden;
+  max-width: 100%;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -119,13 +125,52 @@ h6 {
   font-size: 1rem;
 }
 
-/* Interactive elements */
-a,
+/* Interactive elements reset (Bulletproof) */
 button,
 input,
+optgroup,
+select,
 textarea,
-select {
-  font-family: var(--font-body);
+::file-selector-button {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: inherit;
+  color: inherit;
+  margin: 0;
+}
+
+::-webkit-input-placeholder {
+  font-family: inherit;
+}
+::-moz-placeholder {
+  font-family: inherit;
+}
+:-ms-input-placeholder {
+  font-family: inherit;
+}
+::-ms-input-placeholder {
+  font-family: inherit;
+}
+::placeholder {
+  font-family: inherit;
+}
+
+/* ─── NOTFALL-OVERRIDES (Die Brechstange) ────────────────── */
+.font-primary-force,
+.font-primary-force * {
+  font-family: var(--font-heading) !important;
+  font-weight: 900 !important;
+}
+
+.font-secondary-force,
+.font-secondary-force * {
+  font-family: var(--font-body) !important;
+}
+
+.font-secondary-force-black,
+.font-secondary-force-black * {
+  font-family: var(--font-body) !important;
+  font-weight: 900 !important;
 }
 
 /* ─── Custom SyrupCursor (§24) ──────────────────────────── */

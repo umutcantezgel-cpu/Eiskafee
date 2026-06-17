@@ -14,7 +14,7 @@ interface Review {
   text: string;
 }
 
-const AVATAR_COLORS = ["#b34832", "#5c3d35", "#E4C0A8", "#9a7060", "#3a2820"];
+const AVATAR_COLORS = ["#CC624C", "#5c3d35", "#E4C0A8", "#9a7060", "#3a2820"];
 
 function getInitials(name: string) {
   return name
@@ -37,148 +37,58 @@ function ReviewCard({
   const avatarColor = AVATAR_COLORS[index % AVATAR_COLORS.length];
 
   return (
-    <motion.div
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
-      whileHover={isTouch ? undefined : { y: -8, scale: 1.02 }}
-      whileTap={isTouch ? { scale: 0.97 } : undefined}
-      transition={{ type: "spring", stiffness: 300, damping: 22 }}
+    <div
       style={{
-        background: "#f5efe8",
-        borderRadius: 22,
-        padding: "28px 24px",
+        background: "#fff",
+        borderRadius: 20,
+        padding: 26,
+        boxShadow: "var(--shadow-sm)",
+        maxWidth: 340,
         minWidth: 310,
-        maxWidth: 350,
         flexShrink: 0,
-        cursor: "default",
-        boxShadow: isHovered
-          ? "0 16px 40px rgba(204,98,76,0.18)"
-          : "0 4px 18px rgba(45,31,25,0.07)",
-        transition: "box-shadow 0.3s ease",
-        position: "relative" as const,
-        overflow: "hidden" as const,
         ...(isTouch ? { scrollSnapAlign: "start" as const } : {}),
       }}
+      className="hf-hover-lift"
     >
-      {/* Decorative quote mark */}
-      <motion.div
-        animate={{
-          opacity: isHovered ? 0.12 : 0.06,
-          scale: isHovered ? 1.1 : 1,
-        }}
-        transition={{ duration: 0.3 }}
-        style={{
-          position: "absolute",
-          top: 16,
-          right: 16,
-          color: "#b34832",
-        }}
-      >
-        <Quote size={48} strokeWidth={1.5} />
-      </motion.div>
-
-      {/* Stars with stagger animation */}
-      <div
-        style={{ display: "flex", gap: 3, marginBottom: 16 }}
-        aria-label={`${review.stars} von 5 Sternen`}
+      <span
+        className="hf-stars"
+        style={{ fontSize: "1.1rem", letterSpacing: 1, color: "#CC624C" }}
         role="img"
+        aria-label={`${review.stars} von 5 Sternen`}
       >
-        {Array(review.stars)
-          .fill(0)
-          .map((_, j) => (
-            <motion.div
-              key={j}
-              initial={{ opacity: 0, y: -8 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: j * 0.08, duration: 0.3 }}
-            >
-              <Star
-                size={15}
-                fill="#b34832"
-                color="#b34832"
-                aria-hidden="true"
-              />
-            </motion.div>
-          ))}
-      </div>
-
-      {/* Review text */}
+        {"★".repeat(review.stars)}
+      </span>
       <p
         style={{
-          fontFamily: "var(--font-nunito), sans-serif",
-          fontSize: "0.9rem",
+          font: "400 .92rem/1.7 var(--font-body)",
           color: "#5c3d35",
-          lineHeight: 1.72,
-          marginBottom: 20,
+          margin: "12px 0 18px",
           fontStyle: "italic",
-          position: "relative" as const,
-          zIndex: 1,
         }}
       >
-        „{review.text}"
+        „{review.text}“
       </p>
-
-      {/* Author row */}
-      <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-        {/* Avatar circle with initials */}
-        <motion.div
-          whileHover={{ rotate: [0, -5, 5, 0] }}
-          transition={{ duration: 0.4 }}
+      <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
+        <span
           style={{
-            width: 40,
-            height: 40,
+            width: 38,
+            height: 38,
             borderRadius: "50%",
             background: avatarColor,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            color: "#fefefe",
-            fontFamily: "var(--font-calistoga), serif",
-            fontSize: "0.85rem",
-            flexShrink: 0,
+            font: "800 .9rem var(--font-body)",
+            color: "#fff",
           }}
         >
           {getInitials(review.name)}
-        </motion.div>
-        <div>
-          <div
-            style={{
-              fontFamily: "var(--font-nunito), sans-serif",
-              fontWeight: 800,
-              fontSize: "0.88rem",
-              color: "#2d1f19",
-            }}
-          >
-            {review.name}
-          </div>
-          <div
-            style={{
-              fontFamily: "var(--font-nunito), sans-serif",
-              fontSize: "0.72rem",
-              color: "#9a7060",
-              fontWeight: 600,
-            }}
-          >
-            Verifizierte Google-Bewertung
-          </div>
-        </div>
+        </span>
+        <b style={{ font: "800 .88rem var(--font-body)", color: "#2d1f19" }}>
+          {review.name}
+        </b>
       </div>
-
-      {/* Hover accent line at bottom */}
-      <motion.div
-        animate={{ scaleX: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        style={{
-          position: "absolute",
-          bottom: 0,
-          left: 0,
-          right: 0,
-          height: 3,
-          background: "linear-gradient(90deg, #b34832, #E4C0A8)",
-          transformOrigin: "left",
-        }}
-      />
-    </motion.div>
+    </div>
   );
 }
 
@@ -267,8 +177,7 @@ export function ReviewsSection({
         overflow: "hidden",
       }}
     >
-      <WaveDivider fromColor="#E4C0A8" toColor="#E4C0A8" variant={1} />
-      <div className="absolute inset-0 opacity-30 dot-bg" />
+      <div className="absolute inset-0 hf-dot-bg pointer-events-none" />
 
       <FadeUp className="relative z-10 max-w-[1200px] mx-auto px-6 pt-6">
         <SectionTitle
@@ -334,7 +243,7 @@ export function ReviewsSection({
                   height: 8,
                   borderRadius: 4,
                   background:
-                    activeIndex === i ? "#b34832" : "rgba(92,61,53,0.25)",
+                    activeIndex === i ? "#CC624C" : "rgba(92,61,53,0.25)",
                   border: "none",
                   padding: 0,
                   cursor: "pointer",
@@ -358,7 +267,7 @@ export function ReviewsSection({
         >
           <p
             style={{
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontSize: "0.78rem",
               color: "#5c3d35",
               opacity: 0.7,
@@ -381,7 +290,7 @@ export function ReviewsSection({
               gap: 8,
               background: "#fefefe",
               color: "#2d1f19",
-              fontFamily: "var(--font-nunito), sans-serif",
+              fontFamily: "var(--font-body), sans-serif",
               fontWeight: 800,
               fontSize: "0.85rem",
               padding: "10px 20px",
@@ -390,7 +299,7 @@ export function ReviewsSection({
               boxShadow: "0 4px 16px rgba(45,31,25,0.1)",
             }}
           >
-            <Star size={16} fill="#b34832" color="#b34832" />
+            <Star size={16} fill="#CC624C" color="#CC624C" />
             Auf Google bewerten
             <ExternalLink size={14} color="#9a7060" />
           </motion.a>
