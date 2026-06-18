@@ -45,7 +45,7 @@ function baseLayout(content: string, preheader?: string): string {
           <!-- Footer -->
           <tr>
             <td style="padding:24px 32px;background-color:${BRAND.beige};border-top:1px solid ${BRAND.peach};text-align:center;">
-              <p style="margin:0 0 4px;font-size:13px;color:${BRAND.brownMid};">Hey Fede! · Langgasse 68 · 35578 Wetzlar</p>
+              <p style="margin:0 0 4px;font-size:13px;color:${BRAND.brownMid};">Hey Fede! · Langgasse 68 · 35576 Wetzlar</p>
               <p style="margin:0;font-size:12px;color:${BRAND.brownMid};">
                 <a href="https://hey-fede.de" style="color:${BRAND.terracotta};text-decoration:none;">hey-fede.de</a>
               </p>

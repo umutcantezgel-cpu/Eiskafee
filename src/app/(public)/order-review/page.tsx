@@ -109,6 +109,24 @@ export default function OrderReviewPage() {
       };
 
       const docRef = await addDoc(collection(db, "orders"), orderDoc);
+
+      // Send order confirmation email (non-blocking)
+      fetch("/api/email/order-confirmation", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: orderData.email,
+          name: orderData.name,
+          orderId: orderDoc.orderNumber,
+          items: orderDoc.items,
+          total: orderDoc.total,
+          pickupTime: `${orderData.pickupDate} um ${orderData.pickupTime}`,
+          isDelivery: orderType === "delivery",
+        }),
+      }).catch((err) =>
+        console.warn("Order email send failed (non-critical):", err),
+      );
+
       clearCart();
       clearOrderData();
       router.push(`/confirmation?orderId=${docRef.id}`);
