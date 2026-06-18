@@ -6,6 +6,7 @@ import { FadeUp } from "@/components/ui/FadeUp";
 import { PrimaryButton } from "@/components/ui/Btn";
 import { useRouter } from "next/navigation";
 import { useStore } from "@/store/useStore";
+import { useAuth } from "@/store/useAuth";
 import { collection, addDoc, doc, getDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { BUSINESS } from "@/lib/seo/business-data";
@@ -16,6 +17,7 @@ const generateOrderNumber = () =>
 export default function OrderReviewPage() {
   const router = useRouter();
   const { cart, orderType, orderData, clearCart, clearOrderData } = useStore();
+  const { user } = useAuth();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [promoCode, setPromoCode] = useState("");
   const [promoError, setPromoError] = useState("");
@@ -80,6 +82,7 @@ export default function OrderReviewPage() {
 
       const orderDoc = {
         orderNumber,
+        userId: user?.uid || "guest",
         type: orderType,
         items: cart.map((it) => ({
           name: it.name,
@@ -101,7 +104,7 @@ export default function OrderReviewPage() {
         customerEmail: orderData.email,
         customerNotes: orderData.notes || "",
         address: orderType === "delivery" ? orderData.address : null,
-        status: "confirmed",
+        status: "pending",
         createdAt: new Date().toISOString(),
       };
 

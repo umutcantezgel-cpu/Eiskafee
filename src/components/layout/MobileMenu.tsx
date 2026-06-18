@@ -31,6 +31,7 @@ export function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
     { id: "menu", href: "/menu", label: "Speisekarte" },
     { id: "about", href: "/about", label: "Über Uns" },
     { id: "visit", href: "/visit", label: "Besuchen & Liefern" },
+    { id: "kontakt", href: "/kontakt", label: "Kontakt" },
   ];
 
   return (
