@@ -9,7 +9,8 @@
 - WhatsApp: 0176 25026991
 - E-Mail: hallo@hey-fede.de
 - Website: https://hey-fede.de
-- Instagram: @heyfede_wetzlar
+- Instagram: @heyfede_dessertbar
+- Facebook: facebook.com/eiscafeitaliawetzlar
 - Gründerin: Federica
 - Gegründet: 2023
 - Google-Bewertung: 4.8/5 (84+ Bewertungen)
@@ -36,6 +37,7 @@
 - Online Bestellen: https://hey-fede.de/order-hub
 - Besuche uns: https://hey-fede.de/visit
 - Über uns: https://hey-fede.de/about
+- Kontakt: https://hey-fede.de/kontakt
 
 ## Besonderheiten
 - Alle Desserts werden täglich frisch und hausgemacht zubereitet
@@ -64,6 +66,11 @@
 - Catering & Events: https://hey-fede.de/md/events-catering-hessen.md
 - Vegane & Halal Desserts: https://hey-fede.de/md/vegane-desserts-wetzlar.md
 - Gutscheine: https://hey-fede.de/md/gutscheine.md
+- Eiscafé Wetzlar: https://hey-fede.de/md/eiscafe-wetzlar.md
+- Crêpes Wetzlar: https://hey-fede.de/md/crepes-wetzlar.md
+- Kindergeburtstag Wetzlar: https://hey-fede.de/md/kindergeburtstag-wetzlar.md
+- Lieferservice: https://hey-fede.de/md/lieferservice-desserts-lahn-dill.md
+- Kontakt: https://hey-fede.de/md/kontakt.md
 - AGB: https://hey-fede.de/md/agb.md
 - Datenschutzerklärung: https://hey-fede.de/md/datenschutz.md
 - Cookie-Richtlinie: https://hey-fede.de/md/cookie-richtlinie.md

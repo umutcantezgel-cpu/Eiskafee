@@ -6,6 +6,7 @@ import { WaveDivider } from "@/components/ui/WaveDivider";
 import { PrimaryButton } from "@/components/ui/Btn";
 import { SchemaScripts } from "@/components/seo/SchemaScripts";
 import { SITE, BUSINESS } from "@/lib/seo/business-data";
+import { buildFaqSchema } from "@/lib/seo/schema/pages";
 
 export const revalidate = 60;
 
@@ -55,6 +56,47 @@ function getPageSchema() {
   };
 }
 
+const FAQ_DATA = [
+  {
+    q: "Was ist eine Bubble Waffle?",
+    a: "Eine Bubble Waffle ist ein Streetfood-Original aus Hongkong. Der Teig wird in einem speziellen Waffeleisen gebacken, das runde 'Bubbles' erzeugt — außen knusprig, innen fluffig. Bei Hey Fede! wird sie als Tüte geformt und mit Softeis, Soßen und Toppings gefüllt.",
+  },
+  {
+    q: "Welche Toppings gibt es für die Bubble Waffle?",
+    a: "Du kannst aus einer Vielzahl von Toppings wählen: Softeis, hausgemachte Soßen (Schokolade, Erdbeere, Karamell), frische Früchte, Crumbles, Kekse, Nüsse und mehr. Du kannst dir auch deine eigene Kreation zusammenstellen.",
+  },
+  {
+    q: "Was kostet eine Bubble Waffle bei Hey Fede!?",
+    a: "Unsere Bubble Waffles starten ab 6,90€. Je nach Toppings und Extras kann der Preis variieren. Die aktuelle Preisliste findest du auf unserer Speisekarte unter hey-fede.de/menu.",
+  },
+  {
+    q: "Kann ich Bubble Waffles auch bestellen und liefern lassen?",
+    a: "Ja! Wir liefern Bubble Waffles in Wetzlar und im Lahn-Dill-Kreis. Bestelle einfach über hey-fede.de/order-hub. Wir verpacken sie so, dass sie knusprig bleiben.",
+  },
+  {
+    q: "Gibt es auch vegane Bubble Waffles?",
+    a: "Ja, wir können Bubble Waffles auch ohne tierische Produkte zubereiten. Frage unser Team nach den aktuellen veganen Optionen für Teig, Eis und Toppings.",
+  },
+];
+
+const CROSS_LINKS = [
+  {
+    href: "/eisdiele-wetzlar-special-shakes",
+    emoji: "🍨",
+    label: "Eisbecher & Shakes",
+  },
+  { href: "/crepes-wetzlar", emoji: "🥞", label: "Crêpes" },
+  { href: "/eiscafe-wetzlar", emoji: "☕", label: "Eiscafé" },
+  { href: "/events-catering-hessen", emoji: "🎉", label: "Catering & Events" },
+  { href: "/kindergeburtstag-wetzlar", emoji: "🎂", label: "Kindergeburtstag" },
+  {
+    href: "/lieferservice-desserts-lahn-dill",
+    emoji: "🚗",
+    label: "Lieferservice",
+  },
+  { href: "/vegane-desserts-wetzlar", emoji: "🌱", label: "Vegan & Halal" },
+];
+
 export default function BubbleWafflePage() {
   return (
     <div className="bg-bg-creme">
@@ -78,7 +120,6 @@ export default function BubbleWafflePage() {
             <PrimaryButton href="/menu">Jetzt Karte ansehen</PrimaryButton>
           </div>
           <div className="relative">
-            {/* Image Placeholder styled nicely */}
             <div className="aspect-[4/5] bg-beige rounded-[40px] border-4 border-white shadow-xl flex items-center justify-center transform rotate-3 hover:rotate-0 transition-transform duration-500">
               <span className="text-8xl">🧇</span>
             </div>
@@ -108,19 +149,20 @@ export default function BubbleWafflePage() {
               oder komplett knusprig ist, bieten wir bei Hey Fede! in Wetzlar
               das Beste aus beiden Welten. Durch das schnelle Wenden unserer
               speziellen Waffeleisen im exakt richtigen Moment karamellisieren
-              die dünnen Verbindungsstege zwischen den "Bubbles" goldbraun.
-              Gleichzeitig schließen die Kapseln heiße Luft ein und bleiben im
-              Kern unfassbar fluffig.
+              die dünnen Verbindungsstege zwischen den &quot;Bubbles&quot;
+              goldbraun. Gleichzeitig schließen die Kapseln heiße Luft ein und
+              bleiben im Kern unfassbar fluffig.
             </p>
 
             <h2>Dein Dessert-Trip aus Gießen, Marburg & Limburg</h2>
             <p>
               Wir hören es fast täglich:{" "}
               <em>
-                "Für diese Waffel fahre ich gerne die halbe Stunde aus Gießen!"
+                &quot;Für diese Waffel fahre ich gerne die halbe Stunde aus
+                Gießen!&quot;
               </em>{" "}
               Unsere Dessertbar hat sich schnell als Pilgerstätte für
-              Süßspeisen-Liebhaber im gesamten Radius von 50 Kilometrom
+              Süßspeisen-Liebhaber im gesamten Radius von 50 Kilometern
               etabliert. Egal ob als krönender Abschluss nach einem
               Shopping-Trip im Forum Wetzlar, als Ziel eines Familienausflugs
               aus Braunfels oder als After-Work-Treff für Pendler aus Dillenburg
@@ -142,10 +184,37 @@ export default function BubbleWafflePage() {
         </FadeUp>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-24 bg-sand">
+        <FadeUp className="max-w-4xl mx-auto px-6">
+          <SectionTitle sub="Antworten auf deine Fragen">
+            Häufig gestellte Fragen
+          </SectionTitle>
+          <div className="mt-12 space-y-4">
+            {FAQ_DATA.map((faq, i) => (
+              <details
+                key={i}
+                className="group bg-white rounded-2xl border border-peach/20 overflow-hidden"
+              >
+                <summary className="flex items-center justify-between px-6 py-5 cursor-pointer font-heading text-lg text-charcoal">
+                  {faq.q}
+                  <span className="text-terracotta group-open:rotate-45 transition-transform text-2xl ml-4 shrink-0">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-5 font-body text-brown-mid leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </FadeUp>
+      </section>
+
       {/* Cross Linking / CTA */}
       <section className="py-24 bg-terracotta relative text-center text-white overflow-hidden">
         <div className="absolute top-0 left-0 w-full -translate-y-1">
-          <WaveDivider fromColor="#ffffff" toColor="#CC624C" variant={1} />
+          <WaveDivider fromColor="#F5EDE3" toColor="#CC624C" variant={1} />
         </div>
         <FadeUp className="max-w-2xl mx-auto px-6 relative z-10 pt-12">
           <h2 className="font-heading text-4xl mb-6">
@@ -165,7 +234,30 @@ export default function BubbleWafflePage() {
         </FadeUp>
       </section>
 
-      <SchemaScripts schema={[getPageSchema()]} />
+      {/* Cross Links */}
+      <section className="py-20 bg-bg-creme">
+        <FadeUp className="max-w-5xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-3xl text-charcoal mb-10">
+            Entdecke mehr von Hey Fede!
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {CROSS_LINKS.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                className="bg-white rounded-2xl p-5 border border-peach/20 hover:border-terracotta/40 hover:shadow-lg transition-all group"
+              >
+                <span className="text-3xl block mb-2">{link.emoji}</span>
+                <span className="font-body font-bold text-sm text-charcoal group-hover:text-terracotta transition-colors">
+                  {link.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        </FadeUp>
+      </section>
+
+      <SchemaScripts schema={[getPageSchema(), buildFaqSchema(FAQ_DATA)]} />
     </div>
   );
 }

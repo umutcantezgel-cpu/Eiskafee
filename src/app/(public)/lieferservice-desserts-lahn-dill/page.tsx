@@ -6,6 +6,7 @@ import { WaveDivider } from "@/components/ui/WaveDivider";
 import { PrimaryButton } from "@/components/ui/Btn";
 import { SchemaScripts } from "@/components/seo/SchemaScripts";
 import { SITE, BUSINESS } from "@/lib/seo/business-data";
+import { buildFaqSchema } from "@/lib/seo/schema/pages";
 import { MapPin, Clock, Bike } from "lucide-react";
 
 export const revalidate = 60;
@@ -24,6 +25,7 @@ export const metadata = buildMetadata({
     "Essen bestellen Gießen Umgebung",
     "Hey Fede Lieferservice",
     "Nachtisch bestellen",
+    "Eis bestellen Wetzlar",
   ],
 });
 
@@ -83,6 +85,43 @@ function getDeliverySchema() {
     },
   };
 }
+
+const FAQ_DATA = [
+  {
+    q: "In welche Gebiete liefert Hey Fede!?",
+    a: "Wir liefern in Wetzlar (35576), Naunheim/Garbenheim (35578), Dutenhofen/Münchholzhausen (35580) und Hermannstein/Blasbach (35581). Bestelle einfach über unsere Website.",
+  },
+  {
+    q: "Was kostet die Lieferung bei Hey Fede!?",
+    a: "Die Lieferung ist kostenlos! Wir erheben keine Liefergebühr. Du zahlst nur den Preis deiner bestellten Produkte.",
+  },
+  {
+    q: "Wie kann ich bei Hey Fede! bestellen?",
+    a: "Ganz einfach über unsere Website hey-fede.de/order-hub. Wähle Lieferung oder Abholung, stelle deine Bestellung zusammen und wähle einen Wunschtermin.",
+  },
+  {
+    q: "Wie lange dauert die Lieferung?",
+    a: "In der Regel 20–40 Minuten, je nach Entfernung und Auslastung. Du kannst auch einen Wunschtermin wählen und wir liefern pünktlich.",
+  },
+  {
+    q: "Kann ich auch für Gruppen bestellen?",
+    a: "Ja! Unsere Fede Boxen sind perfekt für Gruppen. Von der Pancake Picknick Box bis zur Mix Box — wir liefern auch größere Bestellungen für Büros, Familienfeiern oder Geburtstage.",
+  },
+];
+
+const CROSS_LINKS = [
+  { href: "/bubble-waffles-wetzlar", emoji: "🧇", label: "Bubble Waffles" },
+  {
+    href: "/eisdiele-wetzlar-special-shakes",
+    emoji: "🍨",
+    label: "Eisdiele & Shakes",
+  },
+  { href: "/crepes-wetzlar", emoji: "🥞", label: "Crêpes" },
+  { href: "/eiscafe-wetzlar", emoji: "☕", label: "Eiscafé" },
+  { href: "/events-catering-hessen", emoji: "🎉", label: "Catering & Events" },
+  { href: "/kindergeburtstag-wetzlar", emoji: "🎂", label: "Kindergeburtstag" },
+  { href: "/vegane-desserts-wetzlar", emoji: "🌱", label: "Vegan & Halal" },
+];
 
 export default function LieferservicePage() {
   return (
@@ -176,7 +215,57 @@ export default function LieferservicePage() {
         </FadeUp>
       </section>
 
-      <SchemaScripts schema={[getDeliverySchema()]} />
+      {/* FAQ Section */}
+      <section className="py-24 bg-white">
+        <FadeUp className="max-w-4xl mx-auto px-6">
+          <SectionTitle sub="Antworten auf deine Fragen">
+            Häufig gestellte Fragen
+          </SectionTitle>
+          <div className="mt-12 space-y-4">
+            {FAQ_DATA.map((faq, i) => (
+              <details
+                key={i}
+                className="group bg-sand rounded-2xl border border-peach/20 overflow-hidden"
+              >
+                <summary className="flex items-center justify-between px-6 py-5 cursor-pointer font-heading text-lg text-charcoal">
+                  {faq.q}
+                  <span className="text-terracotta group-open:rotate-45 transition-transform text-2xl ml-4 shrink-0">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-5 font-body text-brown-mid leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* Entdecke mehr */}
+      <section className="py-20 bg-sand">
+        <FadeUp className="max-w-5xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-3xl text-charcoal mb-10">
+            Entdecke mehr von Hey Fede!
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {CROSS_LINKS.map((link, i) => (
+              <a
+                key={i}
+                href={link.href}
+                className="bg-white rounded-2xl p-5 border border-peach/20 hover:border-terracotta/40 hover:shadow-lg transition-all group"
+              >
+                <span className="text-3xl block mb-2">{link.emoji}</span>
+                <span className="font-body font-bold text-sm text-charcoal group-hover:text-terracotta transition-colors">
+                  {link.label}
+                </span>
+              </a>
+            ))}
+          </div>
+        </FadeUp>
+      </section>
+
+      <SchemaScripts schema={[getDeliverySchema(), buildFaqSchema(FAQ_DATA)]} />
     </div>
   );
 }

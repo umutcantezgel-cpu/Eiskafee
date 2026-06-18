@@ -74,6 +74,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // SEO Pages
     {
+      url: `${baseUrl}/eiscafe-wetzlar`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/crepes-wetzlar`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/kindergeburtstag-wetzlar`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/bubble-waffles-wetzlar`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -214,6 +232,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "yearly",
       priority: 0.1,
+    },
+    {
+      url: `${baseUrl}/md/kontakt.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/lieferservice-desserts-lahn-dill.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/eiscafe-wetzlar.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/crepes-wetzlar.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
+    },
+    {
+      url: `${baseUrl}/md/kindergeburtstag-wetzlar.md`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.3,
     },
   ];
 }
