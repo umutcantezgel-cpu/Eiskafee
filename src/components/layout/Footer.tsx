@@ -85,6 +85,45 @@ export function Footer() {
           </nav>
         </div>
         <div>
+          <h4 className="hf-footer-h">Spezialitäten</h4>
+          <nav
+            role="navigation"
+            aria-label="Footer-Spezialitaeten"
+            className="flex flex-col"
+          >
+            <TransitionLink href="/eiscafe-wetzlar" className="hf-footer-link">
+              Eiscafé Wetzlar
+            </TransitionLink>
+            <TransitionLink
+              href="/bubble-waffles-wetzlar"
+              className="hf-footer-link"
+            >
+              Bubble Waffles
+            </TransitionLink>
+            <TransitionLink href="/crepes-wetzlar" className="hf-footer-link">
+              Crêpes Wetzlar
+            </TransitionLink>
+            <TransitionLink
+              href="/kindergeburtstag-wetzlar"
+              className="hf-footer-link"
+            >
+              Kindergeburtstag
+            </TransitionLink>
+            <TransitionLink
+              href="/vegane-desserts-wetzlar"
+              className="hf-footer-link"
+            >
+              Vegane Desserts
+            </TransitionLink>
+            <TransitionLink
+              href="/events-catering-hessen"
+              className="hf-footer-link"
+            >
+              Catering &amp; Events
+            </TransitionLink>
+          </nav>
+        </div>
+        <div>
           <h4 className="hf-footer-h">Kontakt</h4>
           <p className="hf-footer-c">Langgasse 68, 35576 Wetzlar</p>
           <p className="hf-footer-c">06441 7890426</p>
