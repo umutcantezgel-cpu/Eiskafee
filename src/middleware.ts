@@ -10,7 +10,7 @@ import type { NextRequest } from "next/server";
 // ═══════════════════════════════════════════════════════
 
 /** Routes that require an authenticated session cookie */
-const PROTECTED_ROUTES = ["/admin", "/profile", "/order-status", "/order-hub"];
+const PROTECTED_ROUTES = ["/admin", "/profile"];
 
 /** Routes that additionally require admin role (enforced in API routes/components) */
 const ADMIN_ROUTES = ["/admin"];

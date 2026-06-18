@@ -92,7 +92,8 @@ function ConfirmationContent() {
             Bestellung bestätigt!
           </h1>
           <p className="font-body text-[13px] text-brown-mid mt-1.5 leading-relaxed max-w-[280px] mx-auto">
-            Wir bereiten alles frisch vor. Bestätigung per SMS an deine Nummer.
+            Wir bereiten alles frisch vor. Du erhältst eine Bestätigung per
+            E-Mail.
           </p>
         </FadeUp>
       </div>

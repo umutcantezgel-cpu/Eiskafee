@@ -111,9 +111,10 @@ function OrderStatusContent() {
     );
   }
 
-  const status: OrderStatus = order.status || "confirmed";
+  const status: OrderStatus = order.status || "pending";
 
   const getStatusText = () => {
+    if (status === "pending") return "Deine Bestellung ist eingegangen";
     if (status === "confirmed") return "Deine Bestellung wurde bestätigt";
     if (status === "preparing") return "Deine Bestellung wird zubereitet";
     if (status === "ready") return "Deine Bestellung ist abholbereit!";
@@ -123,6 +124,18 @@ function OrderStatusContent() {
   };
 
   const steps = [
+    {
+      t: "Eingegangen",
+      ic: Icons.Clock,
+      done: [
+        "pending",
+        "confirmed",
+        "preparing",
+        "ready",
+        "completed",
+      ].includes(status),
+      active: status === "pending",
+    },
     {
       t: "Bestätigt",
       ic: Icons.Check,
