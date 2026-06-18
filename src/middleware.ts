@@ -17,6 +17,8 @@ const ADMIN_ROUTES = ["/admin"];
 
 const PUBLIC_API_ALLOWLIST = [
   "/api/auth/session", // Login endpoint must be accessible
+  "/api/email/contact", // Contact form (rate-limited internally)
+  "/api/orders/create", // Guest checkout orders
 ];
 
 export function middleware(request: NextRequest) {
