@@ -39,6 +39,8 @@ export const BUSINESS = {
   // ─── Social ───
   instagram: "heyfede_wetzlar",
   instagramUrl: "https://www.instagram.com/heyfede_wetzlar",
+  facebook: "eiscafeitaliawetzlar",
+  facebookUrl: "https://www.facebook.com/eiscafeitaliawetzlar/",
   googleMapsUrl: "https://maps.google.com/?q=Langgasse+68+Wetzlar",
 
   // ─── Business Details ───
