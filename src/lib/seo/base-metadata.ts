@@ -106,8 +106,8 @@ export function buildMetadata(opts: BuildMetadataOpts): Metadata {
       title: opts.title,
       description: opts.description,
       images: [ogImage],
-      creator: "@heyfede_wetzlar", // Placeholder for actual handle
-      site: "@heyfede_wetzlar",
+      creator: "@heyfede_dessertbar",
+      site: "@heyfede_dessertbar",
     },
 
     // ─── Robots ───

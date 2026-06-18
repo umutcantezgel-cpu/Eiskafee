@@ -17,7 +17,7 @@ export const HF_DATA: AppData = {
     address: `${BUSINESS.street}, ${BUSINESS.postalCode} ${BUSINESS.city}`,
     phone: BUSINESS.phone,
     whatsapp: "0176 25026991",
-    instagram: "heyfede_wetzlar",
+    instagram: "heyfede_dessertbar",
     rating: 4.8,
     reviewCount: 84,
   },

@@ -37,8 +37,8 @@ export const BUSINESS = {
   longitude: 8.49852,
 
   // ─── Social ───
-  instagram: "heyfede_wetzlar",
-  instagramUrl: "https://www.instagram.com/heyfede_wetzlar",
+  instagram: "heyfede_dessertbar",
+  instagramUrl: "https://www.instagram.com/heyfede_dessertbar/",
   facebook: "eiscafeitaliawetzlar",
   facebookUrl: "https://www.facebook.com/eiscafeitaliawetzlar/",
   googleMapsUrl: "https://maps.google.com/?q=Langgasse+68+Wetzlar",
