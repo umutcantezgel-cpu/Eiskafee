@@ -76,7 +76,7 @@ export function middleware(request: NextRequest) {
   // Content Security Policy with dynamic nonce
   const csp = [
     `default-src 'self'`,
-    `script-src 'self' ${isLocal ? "'unsafe-inline' 'unsafe-eval'" : `'nonce-${nonce}' 'strict-dynamic'`} https://apis.google.com https://www.googletagmanager.com https://va.vercel-scripts.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/`,
+    `script-src 'self' 'unsafe-inline' 'unsafe-eval' https://apis.google.com https://www.googletagmanager.com https://va.vercel-scripts.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`, // unsafe-inline required for CSS-in-JS (framer-motion, etc.)
     `font-src 'self' https://fonts.gstatic.com`,
     `img-src 'self' data: blob: https://images.unsplash.com https://firebasestorage.googleapis.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com`,
