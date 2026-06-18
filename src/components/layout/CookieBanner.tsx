@@ -195,48 +195,51 @@ export function CookieBanner() {
           transition={{ type: "spring", stiffness: 300, damping: 30 }}
           className="fixed bottom-0 left-0 right-0 z-[100] p-4 pointer-events-none flex justify-center"
         >
-          <div className="pointer-events-auto bg-cream border-2 border-peach rounded-3xl shadow-clay p-6 w-full max-w-4xl flex flex-col gap-6 relative overflow-hidden">
+          <div className="pointer-events-auto bg-cream border-2 border-peach rounded-[1.5rem] md:rounded-3xl shadow-clay p-5 md:p-6 w-full max-w-4xl flex flex-col gap-4 relative overflow-hidden">
             {/* Top Right Bite Mark */}
             <div
-              className="absolute top-0 right-0 w-16 h-16 pointer-events-none"
+              className="absolute top-0 right-0 w-12 h-12 md:w-16 md:h-16 pointer-events-none"
               style={{ maskImage: "url(#bitemark-top-right)" }}
             />
 
-            <div className="flex flex-col md:flex-row gap-6 items-center">
-              <div className="flex-shrink-0 w-16 h-16 bg-peach rounded-full flex items-center justify-center text-terracotta">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6 items-center md:items-start">
+              {/* Desktop Icon */}
+              <div className="hidden md:flex flex-shrink-0 w-16 h-16 bg-peach rounded-full items-center justify-center text-terracotta">
                 <Cookie className="w-8 h-8" />
               </div>
 
-              <div className="flex-grow text-center md:text-left">
-                <h3 className="font-heading text-2xl text-charcoal mb-2">
+              <div className="flex-grow text-center md:text-left w-full">
+                <h3 className="font-heading text-xl md:text-2xl text-charcoal mb-2 flex items-center justify-center md:justify-start gap-2">
+                  <Cookie className="w-6 h-6 md:hidden text-terracotta" />
                   Cookies für dich!
                 </h3>
-                <p className="text-sm text-charcoal/80 leading-relaxed max-w-xl">
+                <p className="text-xs md:text-sm text-charcoal/80 leading-relaxed max-w-xl mx-auto md:mx-0">
                   Wir verwenden Cookies, um dir das beste Erlebnis auf unserer
                   Website zu bieten. Manche sind essenziell, andere helfen uns,
                   unseren Service zu verbessern. Bist du einverstanden?
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto">
-                <button
-                  onClick={() => handleConsent("essential")}
-                  className="text-sm font-bold text-charcoal/60 hover:text-charcoal underline underline-offset-4 px-4 py-2 transition-colors"
-                >
-                  Ablehnen
-                </button>
-                <SecondaryCTA
-                  onClick={() => handleConsent("custom")}
-                  className="py-2 text-sm"
-                >
-                  Anpassen
-                </SecondaryCTA>
+              {/* Buttons Layout */}
+              <div className="grid grid-cols-2 md:flex md:flex-row gap-2 md:gap-3 w-full md:w-auto mt-2 md:mt-0 flex-shrink-0 items-center">
                 <PrimaryCTA
                   onClick={() => handleConsent("all")}
-                  className="py-2 text-sm whitespace-nowrap"
+                  className="col-span-2 md:col-auto py-2.5 md:py-2 text-sm whitespace-nowrap order-1 md:order-3"
                 >
                   Akzeptieren
                 </PrimaryCTA>
+                <SecondaryCTA
+                  onClick={() => handleConsent("custom")}
+                  className="col-span-1 md:col-auto py-2.5 md:py-2 text-xs md:text-sm order-2 md:order-2"
+                >
+                  Anpassen
+                </SecondaryCTA>
+                <button
+                  onClick={() => handleConsent("essential")}
+                  className="col-span-1 md:col-auto text-xs md:text-sm font-bold text-charcoal/60 hover:text-charcoal underline underline-offset-4 px-2 py-2.5 md:py-2 transition-colors flex items-center justify-center order-3 md:order-1"
+                >
+                  Ablehnen
+                </button>
               </div>
             </div>
           </div>

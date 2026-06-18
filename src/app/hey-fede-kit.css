@@ -697,3 +697,39 @@
     animation-play-state: paused;
   }
 }
+
+/* --- Vanilla Cookie Consent Brand Overrides --- */
+:root {
+  --cc-bg: #fffbf5;
+  --cc-text: #2d1f19;
+  --cc-btn-primary-bg: #cc624c;
+  --cc-btn-primary-text: #fffbf5;
+  --cc-btn-primary-hover-bg: #b05441;
+  --cc-btn-secondary-bg: #eedfcc;
+  --cc-btn-secondary-text: #5c3d35;
+  --cc-btn-secondary-hover-bg: #e4c0a8;
+  --cc-toggle-bg-off: #eedfcc;
+  --cc-toggle-bg-on: #cc624c;
+  --cc-toggle-bg-readonly: #e4c0a8;
+  --cc-toggle-knob-bg: #fffbf5;
+  --cc-toggle-knob-icon-color: #fffbf5;
+  --cc-block-text: #5c3d35;
+  --cc-cookie-category-block-bg: #ffffff;
+  --cc-cookie-category-block-border: #e4c0a8;
+  --cc-cookie-category-block-hover-bg: #fffbf5;
+  --cc-cookie-category-expanded-block-bg: #ffffff;
+  --cc-cookie-category-expanded-block-hover-bg: #fffbf5;
+  --cc-overlay-bg: rgba(45, 31, 25, 0.7);
+  --cc-webhook-bg: #fffbf5;
+  --cc-webkit-scrollbar-bg: #fffbf5;
+  --cc-webkit-scrollbar-bg-hover: #fffbf5;
+  --cc-primary-color: #cc624c;
+  --cc-font-family: var(--font-body), sans-serif;
+}
+
+#cc-main .pm-wrapper {
+  border-radius: 1.5rem !important;
+}
+#cc-main .pm {
+  border: 2px solid #e4c0a8 !important;
+}
