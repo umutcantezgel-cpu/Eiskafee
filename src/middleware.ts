@@ -79,7 +79,7 @@ export function middleware(request: NextRequest) {
     `script-src 'self' ${isLocal ? "'unsafe-inline' 'unsafe-eval'" : `'nonce-${nonce}' 'strict-dynamic'`} https://apis.google.com https://www.googletagmanager.com https://va.vercel-scripts.com https://www.google.com/recaptcha/ https://www.gstatic.com/recaptcha/`,
     `style-src 'self' 'unsafe-inline' https://fonts.googleapis.com`, // unsafe-inline required for CSS-in-JS (framer-motion, etc.)
     `font-src 'self' https://fonts.gstatic.com`,
-    `img-src 'self' data: blob: https://images.unsplash.com https://firebasestorage.googleapis.com https://*.tile.openstreetmap.org`,
+    `img-src 'self' data: blob: https://images.unsplash.com https://firebasestorage.googleapis.com https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com`,
     `connect-src 'self' https://*.googleapis.com https://*.firebaseio.com wss://*.firebaseio.com https://identitytoolkit.googleapis.com https://securetoken.googleapis.com https://vitals.vercel-insights.com https://*.upstash.io${isLocal ? " ws://localhost:* http://localhost:* ws://127.0.0.1:* http://127.0.0.1:*" : ""}`,
     `frame-src https://hey-fedee.firebaseapp.com https://accounts.google.com https://www.google.com/recaptcha/`,
     `object-src 'none'`,

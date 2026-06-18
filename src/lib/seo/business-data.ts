@@ -33,8 +33,8 @@ export const BUSINESS = {
   emailPrivacy: "datenschutz@hey-fede.de",
 
   // ─── Geo ───
-  latitude: 50.5604,
-  longitude: 8.5048,
+  latitude: 50.55842,
+  longitude: 8.49852,
 
   // ─── Social ───
   instagram: "heyfede_wetzlar",

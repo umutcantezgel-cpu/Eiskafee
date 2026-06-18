@@ -17,7 +17,7 @@ import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
 import { LANDMARKS } from "@/lib/seo/wetzlar-entities";
 
 /* ─── Constants ─── */
-const HEY_FEDE_LATLNG: [number, number] = [50.5604, 8.5048];
+const HEY_FEDE_LATLNG: [number, number] = [50.55842, 8.49852];
 const ROUTE_URL = `https://www.google.com/maps/dir/?api=1&destination=${HEY_FEDE_LATLNG[0]},${HEY_FEDE_LATLNG[1]}`;
 
 const heyFedeIcon =
