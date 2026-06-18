@@ -65,6 +65,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.6,
     },
+    {
+      url: `${baseUrl}/kontakt`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.7,
+    },
 
     // SEO Pages
     {
