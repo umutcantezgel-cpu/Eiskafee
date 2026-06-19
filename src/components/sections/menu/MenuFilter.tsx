@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import React, { useRef, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { getCategoryIcon } from '@/components/atoms/icons/category-icons';
+import React, { useRef, useEffect } from "react";
+import { motion } from "framer-motion";
+import { getCategoryIcon } from "@/components/atoms/icons/category-icons";
 
 interface Category {
   id: string;
@@ -16,7 +16,11 @@ interface MenuFilterProps {
   onChange: (categoryId: string) => void;
 }
 
-export function MenuFilter({ categories, activeCategory, onChange }: MenuFilterProps) {
+export function MenuFilter({
+  categories,
+  activeCategory,
+  onChange,
+}: MenuFilterProps) {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Scroll active tab into view
@@ -24,14 +28,18 @@ export function MenuFilter({ categories, activeCategory, onChange }: MenuFilterP
     if (!scrollRef.current) return;
     const activeEl = scrollRef.current.querySelector('[data-active="true"]');
     if (activeEl) {
-      activeEl.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+      activeEl.scrollIntoView({
+        inline: "center",
+        block: "nearest",
+        behavior: "smooth",
+      });
     }
   }, [activeCategory]);
 
   return (
     <div className="sticky top-[88px] z-[800] bg-sand/90 backdrop-blur-md shadow-sm border-b border-peach">
       <div className="max-w-7xl mx-auto px-6">
-        <div 
+        <div
           ref={scrollRef}
           className="flex gap-2 overflow-x-auto py-3 hide-scrollbar snap-x snap-mandatory"
         >
@@ -45,7 +53,7 @@ export function MenuFilter({ categories, activeCategory, onChange }: MenuFilterP
                 data-active={isActive}
                 onClick={() => onChange(c.id)}
                 className={`relative flex items-center gap-2 font-bold text-sm px-5 py-2.5 rounded-full whitespace-nowrap shrink-0 snap-start transition-colors duration-200 ${
-                  isActive ? 'text-cream' : 'text-charcoal hover:bg-cream/50'
+                  isActive ? "text-cream" : "text-charcoal hover:bg-cream/50"
                 }`}
               >
                 {isActive && (
@@ -62,6 +70,24 @@ export function MenuFilter({ categories, activeCategory, onChange }: MenuFilterP
               </button>
             );
           })}
+        </div>
+
+        {/* Allergen & Vegan Filter Row */}
+        <div className="flex gap-4 pb-3 px-1">
+          <label className="flex items-center gap-2 text-xs font-bold text-charcoal/80 cursor-pointer hover:text-terracotta transition-colors">
+            <input
+              type="checkbox"
+              className="accent-terracotta w-4 h-4 rounded border-peach/50"
+            />
+            <span>Vegan (Plant-based)</span>
+          </label>
+          <label className="flex items-center gap-2 text-xs font-bold text-charcoal/80 cursor-pointer hover:text-terracotta transition-colors">
+            <input
+              type="checkbox"
+              className="accent-terracotta w-4 h-4 rounded border-peach/50"
+            />
+            <span>Allergenfrei / Glutenfrei</span>
+          </label>
         </div>
       </div>
     </div>

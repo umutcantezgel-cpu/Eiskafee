@@ -238,7 +238,6 @@ export function buildLocalBusinessSchema() {
     sameAs: [
       BUSINESS.instagramUrl,
       "https://www.tiktok.com/@heyfede_dessertbar",
-      BUSINESS.facebookUrl,
       BUSINESS.googleMapsUrl,
       "https://www.tripadvisor.de/HeyFede-Wetzlar",
       "https://www.yelp.de/biz/hey-fede-wetzlar",

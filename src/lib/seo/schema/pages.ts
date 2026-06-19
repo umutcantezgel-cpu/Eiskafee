@@ -40,7 +40,6 @@ export function buildOrganizationSchema() {
     sameAs: [
       BUSINESS.instagramUrl,
       "https://www.tiktok.com/@heyfede_dessertbar",
-      BUSINESS.facebookUrl,
     ],
   };
 }

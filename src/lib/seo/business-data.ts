@@ -39,8 +39,6 @@ export const BUSINESS = {
   // ─── Social ───
   instagram: "heyfede_dessertbar",
   instagramUrl: "https://www.instagram.com/heyfede_dessertbar/",
-  facebook: "eiscafeitaliawetzlar",
-  facebookUrl: "https://www.facebook.com/eiscafeitaliawetzlar/",
   googleMapsUrl: "https://maps.google.com/?q=Langgasse+68+Wetzlar",
 
   // ─── Business Details ───
@@ -69,10 +67,10 @@ export const BUSINESS = {
     "Google Pay",
   ],
 
-  // ─── Opening Hours (KORREKT: Mo+Di geschlossen) ───
+  // ─── Opening Hours ───
   openingHours: {
     monday: null, // geschlossen
-    tuesday: null, // geschlossen
+    tuesday: { opens: "12:00", closes: "19:00" },
     wednesday: { opens: "12:00", closes: "19:00" },
     thursday: { opens: "12:00", closes: "19:00" },
     friday: { opens: "12:00", closes: "19:00" },
@@ -82,7 +80,7 @@ export const BUSINESS = {
 
   openingHoursDisplay: [
     { day: "Montag", hours: "Geschlossen" },
-    { day: "Dienstag", hours: "Geschlossen" },
+    { day: "Dienstag", hours: "12:00 - 19:00 Uhr" },
     { day: "Mittwoch", hours: "12:00 - 19:00 Uhr" },
     { day: "Donnerstag", hours: "12:00 - 19:00 Uhr" },
     { day: "Freitag", hours: "12:00 - 19:00 Uhr" },

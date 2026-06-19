@@ -17,6 +17,7 @@ import { useStore } from "@/store/useStore";
 import { useStoreSettings } from "@/hooks/useStoreSettings";
 import { MobileMenu } from "./MobileMenu";
 import { PromoBanner } from "./PromoBanner";
+import { LiveStatus } from "@/components/ui/LiveStatus";
 import { twMerge } from "tailwind-merge";
 
 export function Header() {
@@ -79,8 +80,8 @@ export function Header() {
           className="w-full transition-all duration-200"
         >
           <div className="max-w-7xl mx-auto px-6 h-[88px] flex items-center justify-between gap-4">
-            {/* Left: Logo */}
-            <div className="flex-shrink-0">
+            {/* Left: Logo + Live Status */}
+            <div className="flex-shrink-0 flex items-center gap-3">
               <TransitionLink
                 href="/"
                 aria-label="Hey Fedee! Startseite"
@@ -88,6 +89,9 @@ export function Header() {
               >
                 <Logo variant="orange" className="w-[60px]" />
               </TransitionLink>
+              <div className="hidden sm:block">
+                <LiveStatus />
+              </div>
             </div>
 
             {/* Middle: Navigation */}
@@ -167,6 +171,17 @@ export function Header() {
         onClose={() => setMobileMenuOpen(false)}
         pathname={pathname}
       />
+
+      {/* Sticky Mobile CTA */}
+      <div className="md:hidden fixed bottom-4 left-4 right-4 z-[850]">
+        <TransitionLink
+          href="/menu"
+          className="flex items-center justify-center gap-2 w-full bg-terracotta text-white py-3.5 px-6 rounded-full font-bold shadow-clay hover:-translate-y-1 transition-transform"
+        >
+          <ShoppingBag size={20} strokeWidth={2.5} />
+          Jetzt online bestellen
+        </TransitionLink>
+      </div>
     </>
   );
 }

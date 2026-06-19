@@ -44,7 +44,7 @@ export const HF_DATA: AppData = {
           desc: "2 Eiskugeln, Kakao, Sahne, Schokosoße",
           image: "/assets/menu/eisschokolade.png",
           imageAlt:
-            "Eine köstliche Eisschokolade serviert mit zwei cremigen Kugeln Eis, reichlich Kakaopulver, Sahnehaube und Schokosoße verziert",
+            "Eine köstliche Eisschokolade serviert mit zwei cremigen Kugeln Eis, reichlich Kakaopulver, Sahnehaube und Schokosoße verziert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Eisschokolade (0,3l)",
         },
         {
@@ -54,7 +54,7 @@ export const HF_DATA: AppData = {
           desc: "3 Eiskugeln, Kakao, Sahne, Schokosoße",
           image: "/assets/menu/eisschokolade.png",
           imageAlt:
-            "Große Eisschokolade mit drei Kugeln feinstem Vanilleeis, kakaohaltigem Getränk, cremiger Sahne und Schokoladensoße verziert",
+            "Große Eisschokolade mit drei Kugeln feinstem Vanilleeis, kakaohaltigem Getränk, cremiger Sahne und Schokoladensoße verziert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Eisschokolade (0,5l)",
         },
         {
@@ -64,7 +64,7 @@ export const HF_DATA: AppData = {
           desc: "2 Eiskugeln, Kaffee, Sahne, Kaffee-Soße",
           image: "/assets/menu/eiskaffee.png",
           imageAlt:
-            "Erfrischender Eiskaffee mit zwei Kugeln Vanilleeis, kräftigem Kaffee, einer Sahnehaube und feiner Kaffeesoße dekoriert",
+            "Erfrischender Eiskaffee mit zwei Kugeln Vanilleeis, kräftigem Kaffee, einer Sahnehaube und feiner Kaffeesoße dekoriert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Eiskaffee (0,3l)",
         },
         {
@@ -74,7 +74,7 @@ export const HF_DATA: AppData = {
           desc: "3 Eiskugeln, Kaffee, Sahne, Kaffee-Soße",
           image: "/assets/menu/eiskaffee.png",
           imageAlt:
-            "Großer Eiskaffee mit drei Kugeln Vanilleeis, starkem Kaffee, frischer Schlagsahne und süßer Kaffeesoße garniert",
+            "Großer Eiskaffee mit drei Kugeln Vanilleeis, starkem Kaffee, frischer Schlagsahne und süßer Kaffeesoße garniert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Eiskaffee (0,5l)",
         },
         {
@@ -84,7 +84,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/milchshake.png",
           imageAlt:
-            "Cremiger, frisch gemixter Milchshake mit zwei Kugeln Eis nach Wahl, perfekt zubereitet für süßen Genuss",
+            "Cremiger, frisch gemixter Milchshake mit zwei Kugeln Eis nach Wahl, perfekt zubereitet für süßen Genuss bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Milchshake (0,3l)",
         },
         {
@@ -94,7 +94,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/milchshake.png",
           imageAlt:
-            "Großer, frisch zubereiteter Milchshake mit drei Kugeln Premium-Eis, cremig geschlagen für erfrischenden Geschmack",
+            "Großer, frisch zubereiteter Milchshake mit drei Kugeln Premium-Eis, cremig geschlagen für erfrischenden Geschmack bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Milchshake (0,5l)",
         },
       ],
@@ -109,7 +109,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/iced-americano.png",
           imageAlt:
-            "Klassischer Iced Americano aus frisch gebrühten Espressoschüssen, serviert auf Eiswürfeln für eine kühle Erfrischung",
+            "Klassischer Iced Americano aus frisch gebrühten Espressoschüssen, serviert auf Eiswürfeln für eine kühle Erfrischung bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Iced Americano",
         },
         {
@@ -119,7 +119,7 @@ export const HF_DATA: AppData = {
           desc: "Sirup nach Wahl",
           image: "/assets/menu/latte-macchiato.png",
           imageAlt:
-            "Kalter Iced Latte Macchiato mit cremig geschäumter Milch, kräftigem Espresso und feinem Sirup nach Wahl verfeinert",
+            "Kalter Iced Latte Macchiato mit cremig geschäumter Milch, kräftigem Espresso und feinem Sirup nach Wahl verfeinert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Iced Latte Macchiato",
         },
         {
@@ -129,7 +129,7 @@ export const HF_DATA: AppData = {
           desc: "Traditional Matcha mit Milch",
           image: "/assets/menu/iced-matcha-latte.png",
           imageAlt:
-            "Erfrischender Iced Matcha Latte zubereitet mit traditionellem japanischen Matcha-Grüntee und kalter, cremiger Milch",
+            "Erfrischender Iced Matcha Latte zubereitet mit traditionellem japanischen Matcha-Grüntee und kalter, cremiger Milch bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Iced Matcha Latte",
         },
         {
@@ -139,7 +139,7 @@ export const HF_DATA: AppData = {
           desc: "mit Erdbeerpüree (Hausgemacht)",
           image: "/assets/menu/matcha-erdbeere.png",
           imageAlt:
-            "Iced Matcha Latte kombiniert mit hausgemachtem süßem Erdbeerpüree für eine fruchtig-herbe Erfrischung",
+            "Iced Matcha Latte kombiniert mit hausgemachtem süßem Erdbeerpüree für eine fruchtig-herbe Erfrischung bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Matcha Erdbeere",
         },
         {
@@ -149,7 +149,7 @@ export const HF_DATA: AppData = {
           desc: "mit Mangopüree (Hausgemacht)",
           image: "/assets/menu/matcha-mango.png",
           imageAlt:
-            "Matcha Mango Kaltgetränk zubereitet mit aromatischem Mangopüree und cremigem Matcha für exotischen Genuss",
+            "Matcha Mango Kaltgetränk zubereitet mit aromatischem Mangopüree und cremigem Matcha für exotischen Genuss bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Matcha Mango",
         },
         {
@@ -171,7 +171,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/kaffee.png",
           imageAlt:
-            "Tasse frisch gebrühter, aromatischer Kaffee zubereitet aus erlesenen Bohnen für den perfekten Kaffeegenuss",
+            "Tasse frisch gebrühter, aromatischer Kaffee zubereitet aus erlesenen Bohnen für den perfekten Kaffeegenuss bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Kaffee",
         },
         {
@@ -181,7 +181,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/espresso.png",
           imageAlt:
-            "Klassischer Espresso mit einer dichten, goldbraunen Crema, intensiv und aromatisch im Geschmack",
+            "Klassischer Espresso mit einer dichten, goldbraunen Crema, intensiv und aromatisch im Geschmack bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Espresso",
         },
         {
@@ -191,7 +191,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/doppio-espresso.png",
           imageAlt:
-            "Doppelter Espresso zubereitet aus frisch gemahlenen Kaffeebohnen für einen kräftigen und belebenden Genuss",
+            "Doppelter Espresso zubereitet aus frisch gemahlenen Kaffeebohnen für einen kräftigen und belebenden Genuss bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Doppio Espresso",
         },
         {
@@ -201,7 +201,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/cappuccino.png",
           imageAlt:
-            "Cappuccino mit einem kräftigen Espresso, warmer Milch und einer samtigen Haube aus Milchschaum",
+            "Cappuccino mit einem kräftigen Espresso, warmer Milch und einer samtigen Haube aus Milchschaum bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Cappuccino",
         },
         {
@@ -211,7 +211,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/kaffee.png",
           imageAlt:
-            "Klassischer Milchkaffee zubereitet mit frisch gebrühtem Kaffee und einem hohen Anteil warmer Milch",
+            "Klassischer Milchkaffee zubereitet mit frisch gebrühtem Kaffee und einem hohen Anteil warmer Milch bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Milchkaffee",
         },
         {
@@ -221,7 +221,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/latte-macchiato.png",
           imageAlt:
-            "Schichtgetränk Latte Macchiato mit heißer Milch, cremigem Milchschaum und einem frisch aufgebrühten Espresso",
+            "Schichtgetränk Latte Macchiato mit heißer Milch, cremigem Milchschaum und einem frisch aufgebrühten Espresso bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Latte Macchiato",
         },
         {
@@ -231,7 +231,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/affogato.png",
           imageAlt:
-            "Traditioneller italienischer Affogato bestehend aus einer Kugel Vanilleeis, übergossen mit einem heißen Espresso",
+            "Traditioneller italienischer Affogato bestehend aus einer Kugel Vanilleeis, übergossen mit einem heißen Espresso bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Affogato",
         },
         {
@@ -251,7 +251,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/tee.png",
           imageAlt:
-            "Heißer Tee zubereitet aus ausgewählten Kräutern und Früchten, serviert in einer gemütlichen Tasse",
+            "Heißer Tee zubereitet aus ausgewählten Kräutern und Früchten, serviert in einer gemütlichen Tasse bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Tee",
         },
         {
@@ -273,7 +273,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/eisbecher-schoko.png",
           imageAlt:
-            "Schokoladen-Eisbecher verziert mit verschiedenen Eissorten, cremiger Sahne und einer feinen Schokoladensoße",
+            "Schokoladen-Eisbecher verziert mit verschiedenen Eissorten, cremiger Sahne und einer feinen Schokoladensoße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Schoko",
         },
         {
@@ -283,7 +283,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/eisbecher-haselnuss.png",
           imageAlt:
-            "Köstlicher Haselnuss-Eisbecher verfeinert mit aromatischen Premium-Nusseissorten, extra knackigen ganzen Haselnüssen und einer süßen Karamellsoße",
+            "Köstlicher Haselnuss-Eisbecher verfeinert mit aromatischen Premium-Nusseissorten, extra knackigen ganzen Haselnüssen und einer süßen Karamellsoße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Haselnuss",
         },
         {
@@ -293,7 +293,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/eisbecher-walnuss.png",
           imageAlt:
-            "Exklusiver Walnuss-Eisbecher serviert mit cremigen Premium-Eiskugeln, extra knackigen Walnüssen, einer großen Sahnehaube und süßem Nusslikör-Aroma",
+            "Exklusiver Walnuss-Eisbecher serviert mit cremigen Premium-Eiskugeln, extra knackigen Walnüssen, einer großen Sahnehaube und süßem Nusslikör-Aroma bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Walnuss",
         },
         {
@@ -303,7 +303,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/eisbecher-erdbeere.png",
           imageAlt:
-            "Erdbeer-Eisbecher mit fruchtigen Kugel Eis, frischen Erdbeerscheiben, Schlagsahne und hausgemachter Erdbeersoße",
+            "Erdbeer-Eisbecher mit fruchtigen Kugel Eis, frischen Erdbeerscheiben, Schlagsahne und hausgemachter Erdbeersoße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Erdbeere",
         },
         {
@@ -313,7 +313,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/eisbecher-frucht.png",
           imageAlt:
-            "Fruchtiger Eisbecher angerichtet mit gemischtem Saisonsalat aus Früchten, verschiedenen Kugel Eis und Sahne",
+            "Fruchtiger Eisbecher angerichtet mit gemischtem Saisonsalat aus Früchten, verschiedenen Kugel Eis und Sahne bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Frucht",
         },
         {
@@ -323,7 +323,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/eisbecher-bananasplit.png",
           imageAlt:
-            "Klassischer Bananensplit Eisbecher mit einer halbierten Banane, Vanilleeis, Sahnehaube und warmer Schokoladensoße",
+            "Klassischer Bananensplit Eisbecher mit einer halbierten Banane, Vanilleeis, Sahnehaube und warmer Schokoladensoße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Bananasplit",
         },
         {
@@ -333,7 +333,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/eisbecher-amarena.png",
           imageAlt:
-            "Amarena-Eisbecher garniert mit cremigem Eis, süßen Amarena-Kirschen, Sahne und feiner Kirschsoße",
+            "Amarena-Eisbecher garniert mit cremigem Eis, süßen Amarena-Kirschen, Sahne und feiner Kirschsoße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Amarena",
         },
         {
@@ -343,7 +343,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/kinderbecher-spaghetti.png",
           imageAlt:
-            "Spaghetti-Eisbecher zubereitet aus Vanilleeis, Erdbeersoße und geraspelter weißer Schokolade für die klassische Optik",
+            "Spaghetti-Eisbecher zubereitet aus Vanilleeis, Erdbeersoße und geraspelter weißer Schokolade für die klassische Optik bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Spaghetti",
         },
       ],
@@ -358,7 +358,7 @@ export const HF_DATA: AppData = {
           desc: "eine Eiskugel, Sahne & Zuckerwatte",
           image: "/assets/menu/kinderbecher-zuckerwatte.png",
           imageAlt:
-            "Zuckerwatte Kinderbecher serviert mit einer Kugel Eis, frischer Schlagsahne und bunter Zuckerwatte dekoriert",
+            "Zuckerwatte Kinderbecher serviert mit einer Kugel Eis, frischer Schlagsahne und bunter Zuckerwatte dekoriert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Zuckerwatte",
         },
         {
@@ -368,7 +368,7 @@ export const HF_DATA: AppData = {
           desc: "eine Eiskugel, Sahne & Streusel",
           image: "/assets/menu/kinderbecher-regenbogen.png",
           imageAlt:
-            "Regenbogen Kinderbecher zubereitet mit einer Eiskugel, Sahnehaube und vielen bunten Streuseln verziert",
+            "Regenbogen Kinderbecher zubereitet mit einer Eiskugel, Sahnehaube und vielen bunten Streuseln verziert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Regenbogen",
         },
         {
@@ -378,7 +378,7 @@ export const HF_DATA: AppData = {
           desc: "eine Eiskugel, Sahne & Marshmallows",
           image: "/assets/menu/kinderbecher-marshmallow.png",
           imageAlt:
-            "Marshmallow Kinderbecher bestehend aus einer Kugel Eis nach Wahl, Sahne and weichen Marshmallows",
+            "Marshmallow Kinderbecher bestehend aus einer Kugel Eis nach Wahl, Sahne and weichen Marshmallows bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Marshmallow",
         },
         {
@@ -388,7 +388,7 @@ export const HF_DATA: AppData = {
           desc: "mit Smarties",
           image: "/assets/menu/kinderbecher-spaghetti.png",
           imageAlt:
-            "Kinder-Spaghetti-Eisbecher dekoriert mit Vanilleeis, fruchtiger Erdbeersoße und einer Handvoll bunten Smarties",
+            "Kinder-Spaghetti-Eisbecher dekoriert mit Vanilleeis, fruchtiger Erdbeersoße und einer Handvoll bunten Smarties bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Spaghetti",
         },
       ],
@@ -403,7 +403,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/special-shake-nutella.png",
           imageAlt:
-            "Cremiger Nutella Special Shake frisch zubereitet mit echter Nutella, Milch und einer Sahnehaube",
+            "Cremiger Nutella Special Shake frisch zubereitet mit echter Nutella, Milch und einer Sahnehaube bei Hey Fede Wetzlar Altstadt",
           imageTitle: "NutellaG, H, F",
         },
         {
@@ -413,7 +413,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/special-shake-oreo.png",
           imageAlt:
-            "Oreo Special Shake gemixt mit knusprigen Oreo-Keksen, kalter Milch, Sahne und Keksbröseln",
+            "Oreo Special Shake gemixt mit knusprigen Oreo-Keksen, kalter Milch, Sahne und Keksbröseln bei Hey Fede Wetzlar Altstadt",
           imageTitle: "OreoG, F, A",
         },
         {
@@ -423,7 +423,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/special-shake-snickers.png",
           imageAlt:
-            "Erdnussiger Snickers Special Shake zubereitet mit Snickers-Riegeln, Karamellsoße, Milch und frischer Sahne",
+            "Erdnussiger Snickers Special Shake zubereitet mit Snickers-Riegeln, Karamellsoße, Milch und frischer Sahne bei Hey Fede Wetzlar Altstadt",
           imageTitle: "SnickersG, E",
         },
         {
@@ -433,7 +433,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/special-shake-bueno.png",
           imageAlt:
-            "Bueno Special Shake gemixt mit knusprigen Kinder Bueno Riegeln, Milch und feiner Sahnehaube",
+            "Bueno Special Shake gemixt mit knusprigen Kinder Bueno Riegeln, Milch und feiner Sahnehaube bei Hey Fede Wetzlar Altstadt",
           imageTitle: "BuenoG, H, F",
         },
         {
@@ -443,7 +443,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/special-shake-lotus.png",
           imageAlt:
-            "Lotus Special Shake zubereitet mit originalen Lotus Biscoff Keksen, Milch, Sahne und Kekssoße",
+            "Lotus Special Shake zubereitet mit originalen Lotus Biscoff Keksen, Milch, Sahne und Kekssoße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "LotusG, F, A",
         },
         {
@@ -453,7 +453,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/special-shake-cheesecake.png",
           imageAlt:
-            "Cheesecake Special Shake cremig gemixt mit Frischkäse-Aroma, Milch, Sahne und feinen Keksbröseln",
+            "Cheesecake Special Shake cremig gemixt mit Frischkäse-Aroma, Milch, Sahne und feinen Keksbröseln bei Hey Fede Wetzlar Altstadt",
           imageTitle: "CheesecakeG, L",
         },
       ],
@@ -468,7 +468,7 @@ export const HF_DATA: AppData = {
           desc: "versch. Früchte & eine Soße",
           image: "/assets/menu/fede-box-fruit-fiesta.png",
           imageAlt:
-            "Fruit Fiesta Box gefüllt mit einer bunten Auswahl an frischen Früchten und einer Soße nach Wahl",
+            "Fruit Fiesta Box gefüllt mit einer bunten Auswahl an frischen Früchten und einer Soße nach Wahl bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Fruit Fiesta",
         },
         {
@@ -478,7 +478,7 @@ export const HF_DATA: AppData = {
           desc: "12 Pancakes, 2 Fruchtsorten, eine Soße",
           image: "/assets/menu/fede-box-pancake-picknick.png",
           imageAlt:
-            "Pancake Picknick Box mit 12 warmen Pancakes, zwei verschiedenen frischen Fruchtsorten und einer süßen Soße",
+            "Pancake Picknick Box mit 12 warmen Pancakes, zwei verschiedenen frischen Fruchtsorten und einer süßen Soße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Pancake PicknickA, C, G",
         },
         {
@@ -488,7 +488,7 @@ export const HF_DATA: AppData = {
           desc: "12 Pancakes, Bubble Waffle, 3 Fruchtsorten, 2 Soßen",
           image: "/assets/menu/fede-box-mix-box.png",
           imageAlt:
-            "Mix Box bestehend aus 12 Pancakes, einer warmen Bubble Waffel, drei Fruchtsorten und zwei Soßen",
+            "Mix Box bestehend aus 12 Pancakes, einer warmen Bubble Waffel, drei Fruchtsorten und zwei Soßen bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Mix BoxA, C, G",
         },
         {
@@ -498,7 +498,7 @@ export const HF_DATA: AppData = {
           desc: "6 Pancakes, eine Fruchtsorte, eine Soße",
           image: "/assets/menu/fede-box-pancake-picknick.png",
           imageAlt:
-            "Kleine Pancake Picknick Box mit 6 flaumigen Pancakes, einer Fruchtsorte und einer süßen Soße",
+            "Kleine Pancake Picknick Box mit 6 flaumigen Pancakes, einer Fruchtsorte und einer süßen Soße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Pancake Picknick klein",
         },
         {
@@ -508,7 +508,7 @@ export const HF_DATA: AppData = {
           desc: "12 Pancakes, eine Bubble Waffle, ein Crêpes, 3 mini Croissants, versch. Früchte, Cookies, 4 Soßen nach Wahl",
           image: "/assets/menu/fede-box-fede-and-friends.png",
           imageAlt:
-            "Große Fede and Friends Box gefüllt mit Pancakes, Waffel, Crêpe, Croissants, Früchten und vier leckeren Soßen",
+            "Große Fede and Friends Box gefüllt mit Pancakes, Waffel, Crêpe, Croissants, Früchten und vier leckeren Soßen bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Fede & FriendsA, C, G, H",
         },
       ],
@@ -523,7 +523,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-puderzucker.png",
           imageAlt:
-            "Klassischer warmer Crêpe wahlweise mit feinem Puderzucker oder Zimt und Zucker bestäubt",
+            "Klassischer warmer Crêpe wahlweise mit feinem Puderzucker oder Zimt und Zucker bestäubt bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Puderzucker oder Zimt / ZuckerA, C, G",
         },
         {
@@ -533,7 +533,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-nutella.png",
           imageAlt:
-            "Warmer französischer Crêpe großzügig bestrichen mit cremiger Nutella für den Schokoladengenuss",
+            "Warmer französischer Crêpe großzügig bestrichen mit cremiger Nutella für den Schokoladengenuss bei Hey Fede Wetzlar Altstadt",
           imageTitle: "NutellaA, C, G, H, F",
         },
         {
@@ -543,7 +543,7 @@ export const HF_DATA: AppData = {
           desc: "1x Topping + 1x Soße",
           image: "/assets/menu/bubble-waffle-eigene-kreation.png",
           imageAlt:
-            "Eigene Crêpe Kreation individuell zusammengestellt mit einem leckeren Topping und einer süßen Soße",
+            "Eigene Crêpe Kreation individuell zusammengestellt mit einem leckeren Topping und einer süßen Soße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Eigene KreationA, C, G",
         },
         {
@@ -553,7 +553,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-kinder-riegel.png",
           imageAlt:
-            "Süßer Crêpe gefüllt mit geschmolzenen Kinder Riegeln, warm serviert für Schokoladenliebhaber",
+            "Süßer Crêpe gefüllt mit geschmolzenen Kinder Riegeln, warm serviert für Schokoladenliebhaber bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Crêpes Kinder RiegelA, C, G, F",
         },
         {
@@ -563,7 +563,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-yogurette.png",
           imageAlt:
-            "Fruchtig-schokoladiger, warmer Crêpe reichlich gefüllt mit sanft geschmolzenen Yogurette-Riegeln und einer extra feinen Erdbeernote",
+            "Fruchtig-schokoladiger, warmer Crêpe reichlich gefüllt mit sanft geschmolzenen Yogurette-Riegeln und einer extra feinen Erdbeernote bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Crêpes YoguretteA, C, G, F, H",
         },
         {
@@ -573,7 +573,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-pistazie.png",
           imageAlt:
-            "Exklusiver Crêpe bestrichen mit hochwertiger Pistaziencreme und garniert mit gehackten Pistazienkernen",
+            "Exklusiver Crêpe bestrichen mit hochwertiger Pistaziencreme und garniert mit gehackten Pistazienkernen bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Crêpes PistazieA, C, G, H",
         },
         {
@@ -583,7 +583,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-lotus.png",
           imageAlt:
-            "Süßer Crêpe gefüllt mit feiner Lotus Biscoff Creme und knusprigen Lotus Keksbröseln",
+            "Süßer Crêpe gefüllt mit feiner Lotus Biscoff Creme und knusprigen Lotus Keksbröseln bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Crêpes LotusF, A, C, G",
         },
         {
@@ -593,7 +593,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-bueno.png",
           imageAlt:
-            "Süßer Crêpe gefüllt mit geschmolzenen Kinder Bueno Stücken und cremiger Haselnusssoße",
+            "Süßer Crêpe gefüllt mit geschmolzenen Kinder Bueno Stücken und cremiger Haselnusssoße bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Crêpes Bueno",
         },
       ],
@@ -608,7 +608,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-herzhaft-schinken-kaese.png",
           imageAlt:
-            "Herzhafter Crêpe gefüllt mit saftigem Kochschinken und zart schmelzendem Käse warm serviert",
+            "Herzhafter Crêpe gefüllt mit saftigem Kochschinken und zart schmelzendem Käse warm serviert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Schinken & KäseA, C, G",
         },
         {
@@ -618,7 +618,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-herzhaft-salami-kaese.png",
           imageAlt:
-            "Herzhafter Crêpe belegt mit würziger Salami und geschmolzenem Käse für den herzhaften Appetit",
+            "Herzhafter Crêpe belegt mit würziger Salami und geschmolzenem Käse für den herzhaften Appetit bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Salami & KäseA, C, G",
         },
         {
@@ -628,7 +628,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/crepe-herzhaft-caprese.png",
           imageAlt:
-            "Vegetarischer herzhafter Crêpe belegt mit Tomatenscheiben, cremigem Mozzarella und frischem Basilikum",
+            "Vegetarischer herzhafter Crêpe belegt mit Tomatenscheiben, cremigem Mozzarella und frischem Basilikum bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Caprese (Tomate / Mozzarella)A, C, G",
         },
       ],
@@ -643,7 +643,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/bubble-waffle-puderzucker.png",
           imageAlt:
-            "Eine fluffige warme Bubble Waffle klassisch bestäubt mit feinem Puderzucker serviert",
+            "Eine fluffige warme Bubble Waffle klassisch bestäubt mit feinem Puderzucker serviert bei Hey Fede Wetzlar Altstadt",
           imageTitle: "PuderzuckerA, C, G",
         },
         {
@@ -653,7 +653,7 @@ export const HF_DATA: AppData = {
           desc: "",
           image: "/assets/menu/bubble-waffle-sosse.png",
           imageAlt:
-            "Frisch gebackene Bubble Waffle serviert mit einer süßen Soße nach Wahl des Kunden",
+            "Frisch gebackene Bubble Waffle serviert mit einer süßen Soße nach Wahl des Kunden bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Soße nach WahlA, C, G",
         },
         {
@@ -663,7 +663,7 @@ export const HF_DATA: AppData = {
           desc: "oder zwei Eiskugeln statt Sahne",
           image: "/assets/menu/bubble-waffle-eis-sahne.png",
           imageAlt:
-            "Warme Bubble Waffle serviert mit einer Kugel Eis und einer portion frischer Schlagsahne",
+            "Warme Bubble Waffle serviert mit einer Kugel Eis und einer portion frischer Schlagsahne bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Eis + SahneA, C, G",
         },
         {
@@ -673,7 +673,7 @@ export const HF_DATA: AppData = {
           desc: "Eis + Sahne + 3 Toppings + Soße oder zwei Eiskugeln statt Sahne",
           image: "/assets/menu/bubble-waffle-eigene-kreation.png",
           imageAlt:
-            "Eigene Bubble Waffle Kreation serviert mit Eis, Sahne, drei Toppings und einer Soße nach Wahl",
+            "Eigene Bubble Waffle Kreation serviert mit Eis, Sahne, drei Toppings und einer Soße nach Wahl bei Hey Fede Wetzlar Altstadt",
           imageTitle: "Eigene KreationA, C, G",
         },
       ],

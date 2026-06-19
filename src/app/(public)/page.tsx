@@ -496,7 +496,7 @@ export default function HomePage() {
       `,
         }}
       />
-      <div className="sr-only">
+      <div className="max-w-[800px] mx-auto py-16 px-6">
         <HomeSEO />
       </div>
       <SchemaScripts

@@ -453,11 +453,6 @@ export default function KontaktPage() {
                       label: `@${BUSINESS.instagram}`,
                       href: `https://instagram.com/${BUSINESS.instagram}`,
                     },
-                    {
-                      icon: FacebookIcon,
-                      label: "Facebook",
-                      href: BUSINESS.facebookUrl,
-                    },
                   ].map((item) => (
                     <a
                       key={item.label}
