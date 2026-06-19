@@ -36,7 +36,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative w-full min-h-[100svh] flex items-center bg-peach pt-28 pb-32 overflow-hidden">
+    <section className="relative w-full min-h-[100svh] flex items-start lg:items-center bg-peach pt-32 lg:pt-28 pb-32 overflow-hidden">
       {/* Dot Pattern Overlay */}
       <div className="absolute inset-0 hf-dot-bg pointer-events-none" />
 
