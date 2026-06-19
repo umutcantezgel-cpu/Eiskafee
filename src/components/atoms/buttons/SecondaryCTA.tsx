@@ -24,7 +24,7 @@ export function SecondaryCTA({
       whileTap={prefersReducedMotion ? undefined : { scale: 0.92 }}
       transition={{ type: "spring", stiffness: 300, damping: 22 }}
       className={twMerge(
-        "flex items-center justify-center px-6 py-3 w-full max-w-fit",
+        "flex items-center justify-center px-6 py-3 w-full",
         "border-2 border-terracotta text-terracotta font-bold rounded-full transition-all duration-300",
         "hover:bg-terracotta/5 focus:outline-none focus:ring-4 focus:ring-terracotta/20",
         // Soft hover effect on the border

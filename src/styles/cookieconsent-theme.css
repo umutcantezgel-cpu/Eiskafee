@@ -10,9 +10,9 @@
   --cc-primary-color: #2d1f19;
   --cc-secondary-color: #5c3d35;
   --cc-btn-primary-bg: #cc624c;
-  --cc-btn-primary-color: #fefefe;
+  --cc-btn-primary-color: #ffffff;
   --cc-btn-primary-hover-bg: #b8553f;
-  --cc-btn-primary-hover-color: #fefefe;
+  --cc-btn-primary-hover-color: #ffffff;
   --cc-btn-secondary-bg: rgba(238, 223, 204, 0.7);
   --cc-btn-secondary-color: #2d1f19;
   --cc-btn-secondary-hover-bg: #e4c0a8;
@@ -230,6 +230,6 @@
 }
 
 /* Hide the main consent modal of vanilla-cookieconsent because we use custom Framer Motion banner */
-#cc-main .cm-wrapper {
+#cc-main .cm {
   display: none !important;
 }

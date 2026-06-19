@@ -98,24 +98,24 @@ export default function HomePage() {
                 style={{ borderRadius: "48% 52% 54% 46%/50% 48% 52% 50%" }}
               />
               <div
-                className="relative overflow-hidden aspect-[4/5] z-10"
+                className="relative overflow-hidden aspect-[4/5] z-10 bg-[#fdf3e9]"
                 style={{ borderRadius: "44% 56% 50% 50%/52% 48% 52% 48%" }}
               >
                 <Image
                   src="/assets/photos/team-gruenderin-federica-hey-fede-wetzlar.jpg"
                   alt="Federica, Gründerin des Hey Fede! Dessertbar & Café in Wetzlar, bei der Arbeit in der Küche"
                   fill
-                  className="object-cover object-top"
+                  className="object-contain scale-[0.85]"
                   sizes="(max-width: 768px) 90vw, 45vw"
                   priority
                 />
               </div>
               {/* Rating badge */}
-              <div className="absolute -bottom-4 -right-2 bg-terracotta text-white px-4 py-3 rounded-2xl shadow-terra">
-                <div className="font-heading text-[1.8rem] leading-none">
+              <div className="absolute -bottom-6 left-1/2 -translate-x-1/2 z-20 bg-terracotta text-white px-6 py-3 rounded-3xl shadow-terra text-center whitespace-nowrap">
+                <div className="font-heading text-[1.8rem] leading-none !text-white">
                   {config.rating}★
                 </div>
-                <div className="font-body text-[0.68rem] font-extrabold opacity-90 mt-0.5">
+                <div className="font-body text-[0.75rem] font-extrabold opacity-90 mt-0.5 !text-white">
                   {config.reviewCount}+ Google Reviews
                 </div>
               </div>

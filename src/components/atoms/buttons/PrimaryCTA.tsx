@@ -50,8 +50,11 @@ export function PrimaryCTA({
 
   const Component = as === "div" ? motion.div : motion.button;
 
+  // We check if className contains w-full to pass it to the wrapper too
+  const isFullWidth = className?.includes("w-full");
+
   return (
-    <div className="relative inline-block w-full max-w-fit">
+    <div className={`relative inline-block ${isFullWidth ? "w-full" : ""}`}>
       <AnimatePresence>
         {particles.map((p) => (
           <motion.div
@@ -71,7 +74,7 @@ export function PrimaryCTA({
         onClick={handleClick}
         className={twMerge(
           "relative flex items-center justify-center gap-2 px-6 py-3",
-          "bg-terracotta text-cream font-bold rounded-full transition-all duration-300",
+          "bg-terracotta text-white font-bold rounded-full transition-all duration-300",
           "hover:bg-terracotta-deep hover:shadow-lg focus:outline-none focus:ring-4 focus:ring-terracotta/30",
           // The bitemark mask reveals on hover via tailwind classes
           "hover:[mask-image:url(#bitemark-right)] [mask-image:none]",
