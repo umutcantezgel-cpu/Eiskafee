@@ -5,6 +5,7 @@ import { FadeUp } from "@/components/ui/FadeUp";
 import dynamic from "next/dynamic";
 import { PrimaryButton, SecondaryButton } from "@/components/ui/Btn";
 import { FoodIcon } from "@/components/ui/FoodIcon";
+import Image from "next/image";
 import {
   MapPin,
   Phone,
@@ -227,6 +228,50 @@ export default function VisitPage() {
                     Auf Wikipedia ansehen <ChevronRight size={14} />
                   </div>
                 </a>
+              ))}
+            </div>
+          </FadeUp>
+        </section>
+
+        {/* Laden-Atmosphäre Photo Grid */}
+        <section className="py-20 bg-beige">
+          <FadeUp className="max-w-[1200px] mx-auto px-6">
+            <div className="text-center mb-10">
+              <h2 className="font-heading text-[2rem] text-charcoal mb-3">
+                Unsere Atmosphäre
+              </h2>
+              <p className="font-body text-charcoal/70 max-w-[500px] mx-auto">
+                Gemütlich, modern und mit Liebe eingerichtet — so sieht es bei
+                uns aus.
+              </p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                {
+                  src: "/assets/photos/laden-sitzbereich-logo-hey-fede-wetzlar.jpg",
+                  alt: "Sitzbereich mit Hey Fede! Logo an der Wand, gelbe Polsterbank und Marmortische in Wetzlar",
+                },
+                {
+                  src: "/assets/photos/laden-sitzbereich-neon-mooswand-hey-fede-wetzlar.jpg",
+                  alt: 'Neon-Schriftzug \"Do what you love\" und Mooswand im Hey Fede! Café Wetzlar',
+                },
+                {
+                  src: "/assets/photos/laden-theke-innenraum-hey-fede-wetzlar.jpg",
+                  alt: "Theke und Innenraum des Hey Fede! Dessertbar & Café Wetzlar",
+                },
+              ].map((p) => (
+                <div
+                  key={p.src}
+                  className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-clay group"
+                >
+                  <Image
+                    src={p.src}
+                    alt={p.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                  />
+                </div>
               ))}
             </div>
           </FadeUp>

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { buildMetadata } from "@/lib/seo/base-metadata";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { SectionTitle } from "@/components/ui/LayoutBlocks";
@@ -213,6 +214,27 @@ export default function LieferservicePage() {
             WG-Party: Hey Fede! liefert das volle Dessertbar-Erlebnis.
           </p>
         </FadeUp>
+      </section>
+
+      {/* Echte Fotos */}
+      <section className="py-16 bg-cream">
+        <div className="max-w-4xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-3xl text-charcoal mb-2">
+            Frisch verpackt & geliefert
+          </h2>
+          <p className="font-body text-charcoal/60 mb-8 max-w-lg mx-auto">
+            Unsere Desserts kommen sicher verpackt direkt zu dir nach Hause
+          </p>
+          <div className="relative aspect-[3/2] max-w-xl mx-auto overflow-hidden rounded-2xl shadow-clay">
+            <Image
+              src="/assets/photos/eis-vitrine-takeaway-packung-hey-fede-wetzlar.jpg"
+              alt="Hey Fede! Eis-Takeaway-Packung (500g) vor der Eisvitrine mit vielen bunten Eissorten in Wetzlar"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 90vw, 50vw"
+            />
+          </div>
+        </div>
       </section>
 
       {/* FAQ Section */}

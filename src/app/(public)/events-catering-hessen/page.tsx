@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { buildMetadata } from "@/lib/seo/base-metadata";
 import { FadeUp } from "@/components/ui/FadeUp";
 import { SectionTitle } from "@/components/ui/LayoutBlocks";
@@ -219,6 +220,47 @@ export default function CateringPage() {
             </div>
           </div>
         </FadeUp>
+      </section>
+
+      {/* Echte Fotos */}
+      <section className="py-16 bg-cream">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-heading text-3xl text-charcoal mb-2 text-center">
+            Unser Laden — perfekt für Events
+          </h2>
+          <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
+            Moderne Räumlichkeiten für Kindergeburtstage, Firmenfeiern & mehr
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {[
+              {
+                src: "/assets/photos/laden-sitzbereich-neon-mooswand-hey-fede-wetzlar.jpg",
+                alt: 'Heller Sitzbereich mit Neon-Schriftzug "Do what you love" und Mooswand im Hey Fede! Wetzlar',
+              },
+              {
+                src: "/assets/photos/laden-theke-innenraum-hey-fede-wetzlar.jpg",
+                alt: "Theke und Innenraum des Hey Fede! Dessertbar & Café Wetzlar",
+              },
+              {
+                src: "/assets/photos/laden-eisvitrine-speisekarte-hey-fede-wetzlar.jpg",
+                alt: "Eisvitrine mit bunten Eissorten und digitaler Speisekarte im Hey Fede! Eiscafé Wetzlar",
+              },
+            ].map((p) => (
+              <div
+                key={p.src}
+                className="relative aspect-square overflow-hidden rounded-2xl shadow-clay group"
+              >
+                <Image
+                  src={p.src}
+                  alt={p.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* FAQ Section */}

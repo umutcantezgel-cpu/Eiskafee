@@ -1,4 +1,6 @@
 import React from "react";
+import Image from "next/image";
+import { getPhotosForPage } from "@/lib/photos";
 import { buildMetadata } from "@/lib/seo/base-metadata";
 import { buildFaqSchema } from "@/lib/seo/schema/pages";
 import { FadeUp } from "@/components/ui/FadeUp";
@@ -231,6 +233,34 @@ export default function EiscafeWetzlarPage() {
             </p>
           </div>
         </FadeUp>
+      </section>
+
+      {/* ─── Echte Fotos ─── */}
+      <section className="py-16 bg-cream">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-heading text-3xl text-charcoal mb-2 text-center">
+            Einblicke in unser Eiscafé
+          </h2>
+          <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
+            Echte Impressionen aus dem Hey Fede! in der Wetzlarer Altstadt
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {getPhotosForPage("/eiscafe-wetzlar").map((photo) => (
+              <div
+                key={photo.src}
+                className="relative aspect-square overflow-hidden rounded-2xl shadow-clay group"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ─── FAQ Section ─── */}

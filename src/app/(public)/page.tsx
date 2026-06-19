@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { HomeSEO } from "@/content/seo/HomeSEO";
 import { SEOContentBlock } from "@/components/seo/SEOContentBlock";
 import { SchemaScripts } from "@/components/seo/SchemaScripts";
@@ -90,18 +91,23 @@ export default function HomePage() {
       <section className="bg-cream pt-[88px] pb-[80px]">
         <FadeUp>
           <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-14 items-center">
-            {/* Image blob */}
+            {/* Image blob — echtes Foto von Gründerin Federica */}
             <div className="relative">
               <div
-                className="overflow-hidden aspect-[4/5]"
+                className="absolute inset-[-8px] bg-peach/60 z-0"
+                style={{ borderRadius: "48% 52% 54% 46%/50% 48% 52% 50%" }}
+              />
+              <div
+                className="relative overflow-hidden aspect-[4/5] z-10"
                 style={{ borderRadius: "44% 56% 50% 50%/52% 48% 52% 48%" }}
               >
-                <FoodIcon
-                  icon="Heart"
-                  label="Café Atmosphäre\nFamilienfoto"
-                  size="sq"
-                  shape="rounded-none"
-                  className="w-full h-full"
+                <Image
+                  src="/assets/photos/team-gruenderin-federica-hey-fede-wetzlar.jpg"
+                  alt="Federica, Gründerin des Hey Fede! Dessertbar & Café in Wetzlar, bei der Arbeit in der Küche"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 768px) 90vw, 45vw"
+                  priority
                 />
               </div>
               {/* Rating badge */}
@@ -143,17 +149,57 @@ export default function HomePage() {
 
               <div className="grid grid-cols-2 gap-3">
                 {[
-                  ["Kinderecke", "Spielbereich für die Kleinen"],
-                  ["Wickelraum", "Komfort für Familien"],
-                  ["Vegan", "Vegane Optionen verfügbar"],
-                  ["Hausgemacht", "Alles frisch & selbst gemacht"],
-                ].map(([t, d]) => (
-                  <div key={t} className="bg-beige rounded-[14px] px-4 py-3.5">
-                    <div className="font-body font-black text-[0.84rem] text-brown">
-                      {t}
-                    </div>
-                    <div className="font-body text-[0.75rem] text-bark-soft mt-0.5">
-                      {d}
+                  {
+                    title: "Kinderecke",
+                    desc: "Spielbereich für die Kleinen",
+                    photo:
+                      "/assets/photos/laden-kinderecke-spielzeug-nahaufnahme-hey-fede-wetzlar.jpg",
+                    photoAlt:
+                      "Kinderecke mit Spielzeug im Hey Fede! Dessertbar & Café Wetzlar",
+                  },
+                  {
+                    title: "Wickelraum",
+                    desc: "Komfort für Familien",
+                    photo:
+                      "/assets/photos/laden-wickeltisch-babyraum-hey-fede-wetzlar.jpg",
+                    photoAlt:
+                      "Babyraum mit Wickeltisch im Hey Fede! Café Wetzlar",
+                  },
+                  {
+                    title: "Vegan",
+                    desc: "Vegane Optionen verfügbar",
+                    photo: null,
+                    photoAlt: null,
+                  },
+                  {
+                    title: "Hausgemacht",
+                    desc: "Alles frisch & selbst gemacht",
+                    photo: null,
+                    photoAlt: null,
+                  },
+                ].map(({ title, desc, photo, photoAlt }) => (
+                  <div
+                    key={title}
+                    className="bg-beige rounded-[14px] overflow-hidden"
+                  >
+                    {photo && (
+                      <div className="relative h-20 w-full">
+                        <Image
+                          src={photo}
+                          alt={photoAlt!}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 768px) 50vw, 20vw"
+                        />
+                      </div>
+                    )}
+                    <div className="px-4 py-3.5">
+                      <div className="font-body font-black text-[0.84rem] text-brown">
+                        {title}
+                      </div>
+                      <div className="font-body text-[0.75rem] text-bark-soft mt-0.5">
+                        {desc}
+                      </div>
                     </div>
                   </div>
                 ))}

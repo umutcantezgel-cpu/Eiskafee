@@ -1,0 +1,440 @@
+{
+  "photos": [
+    {
+      "filename": "crepe-spekulatius-karamell-hey-fede-wetzlar.jpg",
+      "alt_de": "Crêpe mit Spekulatius-Karamell-Sauce und Lotus-Keks bei Hey Fede! Dessertbar & Café in Wetzlar",
+      "alt_en": "Crêpe with Speculoos caramel sauce and Lotus Biscoff cookie at Hey Fede! Dessert Bar & Café in Wetzlar",
+      "category": "crepe",
+      "tags": ["crepe", "spekulatius", "karamell", "lotus", "suess"],
+      "seo_keywords": [
+        "Crêpes Wetzlar",
+        "Dessertbar Wetzlar",
+        "Crêpes Hey Fede"
+      ],
+      "suggested_pages": ["/menu", "/crepes-wetzlar", "/"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 156
+    },
+    {
+      "filename": "dessert-streuselkuchen-pflaumen-hey-fede-wetzlar.jpg",
+      "alt_de": "Frischer Streuselkuchen mit Pflaumen auf Glasplatte im Hey Fede! Dessertbar & Café Wetzlar",
+      "alt_en": "Fresh plum crumble cake on glass plate at Hey Fede! Dessert Bar & Café in Wetzlar",
+      "category": "dessert",
+      "tags": ["kuchen", "streusel", "pflaume", "backen", "café"],
+      "seo_keywords": ["Dessert Wetzlar", "Kuchen Wetzlar", "Café Wetzlar"],
+      "suggested_pages": ["/menu", "/", "/about"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 220
+    },
+    {
+      "filename": "dessert-kaesekuchen-schokolade-kirsche-hey-fede-wetzlar.jpg",
+      "alt_de": "Käsekuchen mit Schokoladen-Crumbles und Kirschen, handgehalten bei Hey Fede! Dessertbar Wetzlar",
+      "alt_en": "Cheesecake with chocolate crumbles and cherries, held by hand at Hey Fede! Dessert Bar Wetzlar",
+      "category": "dessert",
+      "tags": ["kaesekuchen", "schokolade", "kirsche", "kuchen", "backen"],
+      "seo_keywords": ["Dessert Wetzlar", "Kuchen Wetzlar", "Café Wetzlar"],
+      "suggested_pages": ["/menu", "/", "/about"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 215
+    },
+    {
+      "filename": "eis-spaghetti-erdbeere-hey-fede-wetzlar.jpg",
+      "alt_de": "Spaghetti-Eis mit Erdbeer-Sauce, Waffelscheibe und weißen Streuseln bei Hey Fede! Eiscafé Wetzlar",
+      "alt_en": "Spaghetti ice cream with strawberry sauce, wafer disc and white sprinkles at Hey Fede! ice cream café Wetzlar",
+      "category": "eis",
+      "tags": ["spaghetti-eis", "erdbeere", "waffel", "eis", "klassiker"],
+      "seo_keywords": [
+        "Spaghetti Eis Wetzlar",
+        "Eiscafé Wetzlar",
+        "Eisdiele Wetzlar"
+      ],
+      "suggested_pages": [
+        "/menu",
+        "/eiscafe-wetzlar",
+        "/eisdiele-wetzlar-special-shakes",
+        "/"
+      ],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 149
+    },
+    {
+      "filename": "dessert-croissant-schokolade-hey-fede-wetzlar.jpg",
+      "alt_de": "Frische Croissants mit Puderzucker und Schokolade im Hey Fede! Dessertbar & Café Wetzlar",
+      "alt_en": "Fresh croissants with powdered sugar and chocolate at Hey Fede! Dessert Bar & Café in Wetzlar",
+      "category": "dessert",
+      "tags": ["croissant", "schokolade", "backwaren", "café", "fruehstueck"],
+      "seo_keywords": ["Café Wetzlar", "Dessert Wetzlar", "Frühstück Wetzlar"],
+      "suggested_pages": ["/menu", "/", "/about"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 175
+    },
+    {
+      "filename": "crepe-nutella-haselnuss-hey-fede-wetzlar.jpg",
+      "alt_de": "Crêpe mit Nutella-Schokolade und gehackten Haselnüssen bei Hey Fede! Dessertbar Wetzlar",
+      "alt_en": "Crêpe with Nutella chocolate sauce and chopped hazelnuts at Hey Fede! Dessert Bar Wetzlar",
+      "category": "crepe",
+      "tags": ["crepe", "nutella", "haselnuss", "schokolade", "suess"],
+      "seo_keywords": [
+        "Crêpes Wetzlar",
+        "Dessertbar Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": ["/menu", "/crepes-wetzlar", "/"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 149
+    },
+    {
+      "filename": "getraenk-cappuccino-neonschild-hey-fede-wetzlar.jpg",
+      "alt_de": "Cappuccino in Steinzeug-Tasse vor dem Neon-Schild \"Do what you love\" im Hey Fede! Café Wetzlar",
+      "alt_en": "Cappuccino in stoneware cup in front of the neon sign \"Do what you love\" at Hey Fede! Café Wetzlar",
+      "category": "getraenk",
+      "tags": ["cappuccino", "kaffee", "neonschild", "atmosphaere", "café"],
+      "seo_keywords": ["Café Wetzlar", "Kaffee Wetzlar", "Dessertbar Wetzlar"],
+      "suggested_pages": ["/menu", "/", "/about", "/visit"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 177
+    },
+    {
+      "filename": "bubble-waffle-schokolade-eis-hey-fede-wetzlar.jpg",
+      "alt_de": "Bubble Waffle mit Schokolade, einer Kugel Eis und Waffelrolle bei Hey Fede! Dessertbar Wetzlar",
+      "alt_en": "Bubble waffle with chocolate, a scoop of ice cream and wafer roll at Hey Fede! Dessert Bar Wetzlar",
+      "category": "bubble-waffle",
+      "tags": ["bubble-waffle", "schokolade", "eis", "waffel", "dessert"],
+      "seo_keywords": [
+        "Bubble Waffles Wetzlar",
+        "Dessertbar Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": ["/menu", "/bubble-waffles-wetzlar", "/"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 374
+    },
+    {
+      "filename": "bubble-waffle-erdbeere-sahne-schokolade-hey-fede-wetzlar.jpg",
+      "alt_de": "Bubble Waffle mit frischen Erdbeeren, Sahne und Schokolade bei Hey Fede! Dessertbar Wetzlar",
+      "alt_en": "Bubble waffle with fresh strawberries, whipped cream and chocolate at Hey Fede! Dessert Bar Wetzlar",
+      "category": "bubble-waffle",
+      "tags": [
+        "bubble-waffle",
+        "erdbeere",
+        "sahne",
+        "schokolade",
+        "kinder-riegel"
+      ],
+      "seo_keywords": [
+        "Bubble Waffles Wetzlar",
+        "Dessertbar Wetzlar",
+        "Dessert Wetzlar"
+      ],
+      "suggested_pages": ["/menu", "/bubble-waffles-wetzlar", "/"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 190
+    },
+    {
+      "filename": "laden-kinderecke-spielzimmer-hey-fede-wetzlar.jpg",
+      "alt_de": "Kinderecke mit Spieltisch, Stühlen und Spielzeug im Hey Fede! Dessertbar & Café Wetzlar",
+      "alt_en": "Kids corner with play table, chairs and toys at Hey Fede! Dessert Bar & Café in Wetzlar",
+      "category": "laden",
+      "tags": [
+        "kinderecke",
+        "spielzimmer",
+        "familienfreundlich",
+        "innenraum",
+        "laden"
+      ],
+      "seo_keywords": [
+        "Kindergeburtstag Wetzlar",
+        "familienfreundlich Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": ["/about", "/visit", "/kindergeburtstag-wetzlar"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 116
+    },
+    {
+      "filename": "laden-sitzbereich-logo-hey-fede-wetzlar.jpg",
+      "alt_de": "Sitzbereich mit Hey Fede! Logo an der Wand, gelbe Polsterbank und Marmortische in Wetzlar",
+      "alt_en": "Seating area with Hey Fede! logo on the wall, yellow upholstered bench and marble tables in Wetzlar",
+      "category": "laden",
+      "tags": ["sitzbereich", "logo", "innenraum", "atmosphaere", "bank"],
+      "seo_keywords": [
+        "Dessertbar Wetzlar Innenraum",
+        "Café Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": ["/", "/about", "/visit"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 107
+    },
+    {
+      "filename": "laden-wickeltisch-babyraum-hey-fede-wetzlar.jpg",
+      "alt_de": "Babyraum mit Wickeltisch und LED-Spiegel im Hey Fede! Dessertbar & Café Wetzlar",
+      "alt_en": "Baby room with changing table and LED mirror at Hey Fede! Dessert Bar & Café in Wetzlar",
+      "category": "laden",
+      "tags": [
+        "wickeltisch",
+        "babyraum",
+        "familienfreundlich",
+        "einrichtung",
+        "sanitaer"
+      ],
+      "seo_keywords": [
+        "familienfreundlich Wetzlar",
+        "Hey Fede Wetzlar",
+        "Café Wetzlar"
+      ],
+      "suggested_pages": ["/about", "/visit", "/kindergeburtstag-wetzlar"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 100
+    },
+    {
+      "filename": "dessert-obstteller-fruechte-schokolade-hey-fede-wetzlar.jpg",
+      "alt_de": "Bunter Obstteller mit Banane, Erdbeere, Kiwi, Heidelbeere, Mango und Schokoladensauce bei Hey Fede! Wetzlar",
+      "alt_en": "Colorful fruit plate with banana, strawberry, kiwi, blueberry, mango and chocolate sauce at Hey Fede! Wetzlar",
+      "category": "dessert",
+      "tags": [
+        "obst",
+        "fruechte",
+        "schokolade",
+        "vegan",
+        "gesund",
+        "farbenfroh"
+      ],
+      "seo_keywords": [
+        "Vegane Desserts Wetzlar",
+        "Dessert Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": ["/menu", "/", "/vegane-desserts-wetzlar"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 163
+    },
+    {
+      "filename": "laden-theke-innenraum-hey-fede-wetzlar.jpg",
+      "alt_de": "Theke und Innenraum des Hey Fede! Dessertbar & Café mit Kuchenvitrine, Pflanzen und Lampen in Wetzlar",
+      "alt_en": "Counter and interior of Hey Fede! Dessert Bar & Café with cake display, plants and lamps in Wetzlar",
+      "category": "laden",
+      "tags": ["theke", "innenraum", "vitrine", "pflanzen", "beleuchtung"],
+      "seo_keywords": [
+        "Dessertbar Wetzlar",
+        "Eiscafé Wetzlar",
+        "Hey Fede Innenraum"
+      ],
+      "suggested_pages": ["/", "/about", "/visit"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 204
+    },
+    {
+      "filename": "laden-eisvitrine-speisekarte-hey-fede-wetzlar.jpg",
+      "alt_de": "Eisvitrine mit vielen bunten Eissorten und digitaler Speisekarte im Hey Fede! Eiscafé Wetzlar",
+      "alt_en": "Ice cream display with many colorful flavors and digital menu at Hey Fede! ice cream café Wetzlar",
+      "category": "laden",
+      "tags": ["eisvitrine", "eissorten", "speisekarte", "theke", "eis"],
+      "seo_keywords": ["Eiscafé Wetzlar", "Eisdiele Wetzlar", "Eis Wetzlar"],
+      "suggested_pages": [
+        "/",
+        "/about",
+        "/eiscafe-wetzlar",
+        "/eisdiele-wetzlar-special-shakes"
+      ],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 242
+    },
+    {
+      "filename": "laden-sitzbereich-neon-mooswand-hey-fede-wetzlar.jpg",
+      "alt_de": "Heller Sitzbereich mit Neon-Schriftzug \"Do what you love\", Mooswand und Fenster zur Straße im Hey Fede! Wetzlar",
+      "alt_en": "Bright seating area with neon sign \"Do what you love\", moss wall and street-facing window at Hey Fede! Wetzlar",
+      "category": "laden",
+      "tags": [
+        "sitzbereich",
+        "neon",
+        "mooswand",
+        "innenraum",
+        "atmosphaere",
+        "fenster"
+      ],
+      "seo_keywords": [
+        "Dessertbar Wetzlar Innenraum",
+        "Café Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": ["/", "/about", "/visit"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 192
+    },
+    {
+      "filename": "laden-kinderecke-spielzeug-nahaufnahme-hey-fede-wetzlar.jpg",
+      "alt_de": "Nahaufnahme der Kinderecke mit buntem Spielzeug, Stühlen und Krabbelröhre im Hey Fede! Wetzlar",
+      "alt_en": "Close-up of the kids corner with colorful toys, chairs and crawl tunnel at Hey Fede! Wetzlar",
+      "category": "laden",
+      "tags": [
+        "kinderecke",
+        "spielzeug",
+        "kinder",
+        "familienfreundlich",
+        "nahaufnahme"
+      ],
+      "seo_keywords": [
+        "Kindergeburtstag Wetzlar",
+        "familienfreundlich Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": ["/about", "/visit", "/kindergeburtstag-wetzlar"],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1440,
+      "size_kb": 138
+    },
+    {
+      "filename": "getraenk-iced-matcha-erdbeere-hey-fede-wetzlar.jpg",
+      "alt_de": "Iced Matcha mit Kokosmilch und Erdbeer-Püree im Hey Fede! Becher mit Aufkleber, Wetzlar",
+      "alt_en": "Iced Matcha with coconut milk and strawberry purée in Hey Fede! branded cup, Wetzlar",
+      "category": "getraenk",
+      "tags": [
+        "iced-matcha",
+        "matcha",
+        "erdbeere",
+        "kokosmilch",
+        "kaltgetraenk",
+        "vegan"
+      ],
+      "seo_keywords": [
+        "Matcha Wetzlar",
+        "Vegane Getränke Wetzlar",
+        "Eisdiele Wetzlar Special Shakes"
+      ],
+      "suggested_pages": [
+        "/menu",
+        "/eisdiele-wetzlar-special-shakes",
+        "/vegane-desserts-wetzlar"
+      ],
+      "quality_note": null,
+      "width": 1440,
+      "height": 1920,
+      "size_kb": 222
+    },
+    {
+      "filename": "team-gruenderin-federica-hey-fede-wetzlar.jpg",
+      "alt_de": "Federica, Gründerin des Hey Fede! Dessertbar & Café in Wetzlar, bei der Arbeit in der Küche",
+      "alt_en": "Federica, founder of Hey Fede! Dessert Bar & Café in Wetzlar, working in the kitchen",
+      "category": "team",
+      "tags": ["team", "gruenderin", "federica", "social-media", "about"],
+      "seo_keywords": [
+        "Hey Fede Wetzlar Team",
+        "Dessertbar Wetzlar",
+        "Hey Fede Gründerin"
+      ],
+      "suggested_pages": ["/about", "/"],
+      "quality_note": "Social-Media-Grafik mit Text-Overlay",
+      "width": 1080,
+      "height": 1350,
+      "size_kb": 112
+    },
+    {
+      "filename": "getraenk-iced-latte-grafik-hey-fede-wetzlar.jpg",
+      "alt_de": "Iced Latte mit Kaffee, Milch, Eiswürfeln und Sirup im Hey Fede! Dessertbar & Café Wetzlar",
+      "alt_en": "Iced Latte with coffee, milk, ice cubes and syrup at Hey Fede! Dessert Bar & Café Wetzlar",
+      "category": "getraenk",
+      "tags": ["iced-latte", "kaffee", "kaltgetraenk", "sommer", "grafik"],
+      "seo_keywords": [
+        "Iced Latte Wetzlar",
+        "Kaffee Wetzlar",
+        "Dessertbar Wetzlar"
+      ],
+      "suggested_pages": ["/menu", "/eisdiele-wetzlar-special-shakes"],
+      "quality_note": "Marketing-Grafik mit Text-Overlay",
+      "width": 1601,
+      "height": 1985,
+      "size_kb": 126
+    },
+    {
+      "filename": "eis-brioscia-sizilien-hey-fede-wetzlar.jpg",
+      "alt_de": "Sizilianisches Brioscia Eis-Sandwich mit zwei Eiskugeln bei Hey Fede! Dessertbar & Café Wetzlar",
+      "alt_en": "Sicilian Brioche ice cream sandwich with two scoops at Hey Fede! Dessert Bar & Café Wetzlar",
+      "category": "eis",
+      "tags": [
+        "brioscia",
+        "brioche",
+        "eis",
+        "sizilien",
+        "italienisch",
+        "sandwich"
+      ],
+      "seo_keywords": [
+        "Eiscafé Wetzlar",
+        "Italienisches Eis Wetzlar",
+        "Hey Fede Wetzlar"
+      ],
+      "suggested_pages": [
+        "/menu",
+        "/eiscafe-wetzlar",
+        "/eisdiele-wetzlar-special-shakes"
+      ],
+      "quality_note": "Marketing-Grafik mit Text-Overlay",
+      "width": 1601,
+      "height": 1985,
+      "size_kb": 193
+    },
+    {
+      "filename": "eis-vitrine-takeaway-packung-hey-fede-wetzlar.jpg",
+      "alt_de": "Hey Fede! Eis-Takeaway-Packung (500g) vor der Eisvitrine mit vielen bunten Eissorten in Wetzlar",
+      "alt_en": "Hey Fede! ice cream takeaway package (500g) in front of the ice cream display with many colorful flavors in Wetzlar",
+      "category": "eis",
+      "tags": [
+        "vitrine",
+        "takeaway",
+        "packung",
+        "eis",
+        "500g",
+        "lieferservice"
+      ],
+      "seo_keywords": [
+        "Eis zum Mitnehmen Wetzlar",
+        "Lieferservice Desserts",
+        "Eiscafé Wetzlar"
+      ],
+      "suggested_pages": [
+        "/",
+        "/eiscafe-wetzlar",
+        "/lieferservice-desserts-lahn-dill",
+        "/menu"
+      ],
+      "quality_note": null,
+      "width": 2561,
+      "height": 3173,
+      "size_kb": 442
+    }
+  ]
+}

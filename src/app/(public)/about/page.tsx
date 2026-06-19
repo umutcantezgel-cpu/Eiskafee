@@ -81,18 +81,22 @@ export default function AboutPage() {
             </div>
             <figure className="relative group">
               <div
-                className="overflow-hidden aspect-[4/5] transform transition-transform duration-700 group-hover:scale-105"
+                className="absolute inset-[-10px] bg-peach/50 z-0 transition-transform duration-700 group-hover:scale-[1.02]"
+                style={{ borderRadius: "48% 52% 56% 44%/54% 48% 52% 46%" }}
+              />
+              <div
+                className="relative overflow-hidden aspect-[4/5] z-10 transform transition-transform duration-700 group-hover:scale-105"
                 style={{ borderRadius: "44% 56% 52% 48%/50% 46% 54% 50%" }}
               >
-                <FoodIcon
-                  icon="Heart"
-                  label="Inhaberin Fede\nPorträt / Team-Foto"
-                  size="sq"
-                  shape="rounded-none"
-                  className="w-full h-full"
+                <Image
+                  src="/assets/photos/team-gruenderin-federica-hey-fede-wetzlar.jpg"
+                  alt="Federica, Gründerin des Hey Fede! Dessertbar & Café in Wetzlar, bei der Arbeit in der Küche"
+                  fill
+                  className="object-cover object-top"
+                  sizes="(max-width: 1024px) 90vw, 45vw"
                 />
               </div>
-              <figcaption className="absolute -bottom-10 -left-10 bg-cream/80 backdrop-blur-md border border-peach/30 rounded-3xl p-6 shadow-clay transform -rotate-3 transition-transform group-hover:rotate-0">
+              <figcaption className="absolute -bottom-10 -left-10 bg-cream/80 backdrop-blur-md border border-peach/30 rounded-3xl p-6 shadow-clay transform -rotate-3 transition-transform group-hover:rotate-0 z-20">
                 <div className="font-heading text-3xl text-terracotta">
                   Fede
                 </div>
