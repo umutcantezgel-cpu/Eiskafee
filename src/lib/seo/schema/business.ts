@@ -22,6 +22,10 @@ export function buildLocalBusinessSchema() {
       "Hey Fede Wetzlar",
     ],
     image: [
+      `${SITE.url}/assets/photos/laden-theke-innenraum-hey-fede-wetzlar.jpg`,
+      `${SITE.url}/assets/photos/laden-eisvitrine-speisekarte-hey-fede-wetzlar.jpg`,
+      `${SITE.url}/assets/photos/laden-sitzbereich-neon-mooswand-hey-fede-wetzlar.jpg`,
+      `${SITE.url}/assets/photos/team-gruenderin-federica-hey-fede-wetzlar.jpg`,
       `${SITE.url}/og/home.png`,
       `${SITE.url}/og/default.png`,
       `${SITE.url}/og/menu.png`,
@@ -192,6 +196,8 @@ export function buildLocalBusinessSchema() {
     founder: {
       "@type": "Person",
       name: BUSINESS.founder,
+      image: `${SITE.url}/assets/photos/team-gruenderin-federica-hey-fede-wetzlar.jpg`,
+      jobTitle: "Gründerin & Inhaberin",
     },
     hasOfferCatalog: {
       "@type": "OfferCatalog",
