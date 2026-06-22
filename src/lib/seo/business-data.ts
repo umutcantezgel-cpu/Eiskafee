@@ -86,7 +86,7 @@ export const BUSINESS = {
     { day: "Freitag", hours: "12:00 - 20:00 Uhr" },
     { day: "Samstag", hours: "10:00 - 20:00 Uhr" },
     { day: "Sonntag", hours: "10:00 - 20:00 Uhr" },
-  ],
+  ] as { day: string; hours: string }[],
 
   // ─── Amenities ───
   amenities: {

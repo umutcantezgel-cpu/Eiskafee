@@ -491,22 +491,20 @@ export default function KontaktPage() {
 
                 <div className="flex flex-col gap-2">
                   {[
-                    { day: "Montag", time: "Geschlossen", closed: true },
-                    { day: "Dienstag", time: "Geschlossen", closed: true },
-                    { day: "Mittwoch", time: "12:00 - 19:00" },
-                    { day: "Donnerstag", time: "12:00 - 19:00" },
-                    { day: "Freitag", time: "12:00 - 19:00" },
-                    { day: "Samstag", time: "12:00 - 19:00" },
-                    { day: "Sonntag", time: "13:00 - 19:00" },
+                    { day: "Montag", time: "12:00 - 20:00" },
+                    { day: "Dienstag", time: "12:00 - 20:00" },
+                    { day: "Mittwoch", time: "12:00 - 20:00" },
+                    { day: "Donnerstag", time: "12:00 - 20:00" },
+                    { day: "Freitag", time: "12:00 - 20:00" },
+                    { day: "Samstag", time: "10:00 - 20:00" },
+                    { day: "Sonntag", time: "10:00 - 20:00" },
                   ].map((row) => (
                     <div
                       key={row.day}
-                      className={`flex justify-between items-center py-1.5 px-1 text-[0.84rem] font-body ${row.closed ? "text-brown/40" : "text-brown/80"}`}
+                      className="flex justify-between items-center py-1.5 px-1 text-[0.84rem] font-body text-brown/80"
                     >
                       <span className="font-bold">{row.day}</span>
-                      <span className={row.closed ? "italic" : "font-bold"}>
-                        {row.time}
-                      </span>
+                      <span className="font-bold">{row.time}</span>
                     </div>
                   ))}
                 </div>

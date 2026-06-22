@@ -99,10 +99,10 @@ export function MobileMenu({ isOpen, onClose, pathname }: MobileMenuProps) {
 
             <div className="relative z-10 mt-auto bg-sand rounded-2xl p-5 mb-4 border border-peach/50">
               <p className="font-bold text-sm text-charcoal mb-1">
-                Mi – Sa 12:00–19:00 · So 13:00–19:00
+                Mo – Fr 12:00–20:00
               </p>
               <p className="text-xs text-brown font-bold uppercase tracking-wider">
-                Mo + Di geschlossen
+                Sa – So 10:00–20:00
               </p>
             </div>
           </motion.aside>
