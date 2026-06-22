@@ -69,23 +69,23 @@ export const BUSINESS = {
 
   // ─── Opening Hours ───
   openingHours: {
-    monday: null, // geschlossen
-    tuesday: { opens: "12:00", closes: "19:00" },
-    wednesday: { opens: "12:00", closes: "19:00" },
-    thursday: { opens: "12:00", closes: "19:00" },
-    friday: { opens: "12:00", closes: "19:00" },
-    saturday: { opens: "12:00", closes: "19:00" },
-    sunday: { opens: "13:00", closes: "19:00" },
+    monday: { opens: "12:00", closes: "20:00" },
+    tuesday: { opens: "12:00", closes: "20:00" },
+    wednesday: { opens: "12:00", closes: "20:00" },
+    thursday: { opens: "12:00", closes: "20:00" },
+    friday: { opens: "12:00", closes: "20:00" },
+    saturday: { opens: "10:00", closes: "20:00" },
+    sunday: { opens: "10:00", closes: "20:00" },
   },
 
   openingHoursDisplay: [
-    { day: "Montag", hours: "Geschlossen" },
-    { day: "Dienstag", hours: "12:00 - 19:00 Uhr" },
-    { day: "Mittwoch", hours: "12:00 - 19:00 Uhr" },
-    { day: "Donnerstag", hours: "12:00 - 19:00 Uhr" },
-    { day: "Freitag", hours: "12:00 - 19:00 Uhr" },
-    { day: "Samstag", hours: "12:00 - 19:00 Uhr" },
-    { day: "Sonntag", hours: "13:00 - 19:00 Uhr" },
+    { day: "Montag", hours: "12:00 - 20:00 Uhr" },
+    { day: "Dienstag", hours: "12:00 - 20:00 Uhr" },
+    { day: "Mittwoch", hours: "12:00 - 20:00 Uhr" },
+    { day: "Donnerstag", hours: "12:00 - 20:00 Uhr" },
+    { day: "Freitag", hours: "12:00 - 20:00 Uhr" },
+    { day: "Samstag", hours: "10:00 - 20:00 Uhr" },
+    { day: "Sonntag", hours: "10:00 - 20:00 Uhr" },
   ],
 
   // ─── Amenities ───
