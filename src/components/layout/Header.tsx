@@ -7,6 +7,8 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  useMotionValueEvent,
+  AnimatePresence,
 } from "framer-motion";
 import { User, ShoppingBag } from "lucide-react";
 import { Logo } from "@/components/atoms/Logo";
@@ -29,6 +31,17 @@ export function Header() {
 
   // Scroll interpolation (0 to 80px)
   const { scrollY } = useScroll();
+  const [isCTAVisible, setIsCTAVisible] = useState(true);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious() || 0;
+    // Hide CTA when scrolling down and we are past the top area (150px)
+    if (latest > previous && latest > 150) {
+      setIsCTAVisible(false);
+    } else {
+      setIsCTAVisible(true);
+    }
+  });
 
   const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.9]);
   const blur = useTransform(scrollY, [0, 80], [0, 12]);
@@ -173,15 +186,25 @@ export function Header() {
       />
 
       {/* Sticky Mobile CTA */}
-      <div className="md:hidden fixed bottom-4 left-4 right-4 z-[850]">
-        <TransitionLink
-          href="/menu"
-          className="flex items-center justify-center gap-2 w-full bg-terracotta text-white py-3.5 px-6 rounded-full font-bold shadow-clay hover:-translate-y-1 transition-transform"
-        >
-          <ShoppingBag size={20} strokeWidth={2.5} />
-          Jetzt online bestellen
-        </TransitionLink>
-      </div>
+      <AnimatePresence>
+        {isCTAVisible && (
+          <motion.div
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: 100, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden fixed bottom-4 left-4 right-4 z-[850]"
+          >
+            <TransitionLink
+              href="/menu"
+              className="flex items-center justify-center gap-2 w-full bg-terracotta text-white py-3.5 px-6 rounded-full font-bold shadow-clay hover:-translate-y-1 transition-transform"
+            >
+              <ShoppingBag size={20} strokeWidth={2.5} />
+              Jetzt online bestellen
+            </TransitionLink>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
