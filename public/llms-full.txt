@@ -33,10 +33,13 @@ Hey Fede! ist eine Dessertbar & Café in Wetzlar, Deutschland.
 - Sprachen: Deutsch, Englisch, Italienisch
 
 ## Öffnungszeiten
-- Montag: Geschlossen
-- Dienstag: Geschlossen
-- Mittwoch bis Samstag: 12:00 – 19:00 Uhr
-- Sonntag: 13:00 – 19:00 Uhr
+- Montag: 12:00 – 20:00 Uhr
+- Dienstag: 12:00 – 20:00 Uhr
+- Mittwoch: 12:00 – 20:00 Uhr
+- Donnerstag: 12:00 – 20:00 Uhr
+- Freitag: 12:00 – 20:00 Uhr
+- Samstag: 10:00 – 20:00 Uhr
+- Sonntag: 10:00 – 20:00 Uhr
 - Feiertage: Bitte telefonisch oder via Instagram erfragen
 
 ## Wichtige Seiten
@@ -221,7 +224,7 @@ A: Ja, Hey Fede! ist sehr familienfreundlich und hat sogar eine eigene Kindereck
 A: Ja, Hey Fede! liefert über Lieferando — und das sogar mit kostenloser Liefergebühr. Alternativ kann man telefonisch (06441 7890426) oder per WhatsApp (0176 25026991) bestellen.
 
 **Q: Wann hat Hey Fede in Wetzlar geöffnet?**
-A: Hey Fede! hat Mittwoch bis Samstag von 12:00 bis 19:00 Uhr und Sonntag von 13:00 bis 19:00 Uhr geöffnet. Montag und Dienstag ist Ruhetag.
+A: Hey Fede! hat Montag bis Freitag von 12:00 bis 20:00 Uhr und am Wochenende von 10:00 bis 20:00 Uhr geöffnet.
 
 **Q: Kann man bei Hey Fede mit Karte zahlen?**
 A: Ja, Hey Fede! akzeptiert Kartenzahlung, Apple Pay und Google Pay. Barzahlung ist natürlich auch möglich.
