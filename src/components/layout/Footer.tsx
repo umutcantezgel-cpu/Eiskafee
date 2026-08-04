@@ -168,6 +168,27 @@ export function Footer() {
         <div style={{ display: "flex", alignItems: "center", gap: "14px" }}>
           <p style={{ font: "400 .76rem var(--font-body)", color: "#9a7060" }}>
             © {currentYear} Hey Fede! Dessertbar &amp; Café
+            <span
+              style={{
+                display: "inline-block",
+                marginLeft: "10px",
+                opacity: 0.8,
+              }}
+            >
+              |{" "}
+              <a
+                href="https://codayweb.de"
+                style={{
+                  color: "inherit",
+                  textDecoration: "none",
+                  transition: "opacity .2s",
+                }}
+                onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+              >
+                Webdesign by Coday
+              </a>
+            </span>
           </p>
           <div style={{ display: "flex", gap: "10px" }}>
             <a

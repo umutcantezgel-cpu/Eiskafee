@@ -1,16 +1,28 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import { LegalPageLayout } from "@/components/legal/LegalUI";
-import { motion } from "framer-motion";
 import { Building2, Phone, FileText, Info } from "lucide-react";
 import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
+import { buildMetadata } from "@/lib/seo/base-metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "Impressum | Hey Fede! Dessertbar & Eiscafé in Wetzlar",
+  description:
+    "Offizielles Impressum & rechtliche Informationen von Hey Fede! Dessertbar & Eiscafé Wetzlar. Angaben gemäß § 5 DDG & § 18 MStV sowie Kontaktdaten.",
+  path: "/impressum",
+  keywords: [
+    "Impressum Hey Fede",
+    "Impressum Dessertbar Wetzlar",
+    "Federica Rossi Wetzlar",
+    "Kontakt Hey Fede Wetzlar",
+  ],
+});
 
 export default function ImpressumPage() {
   return (
     <LegalPageLayout
-      title="Impressum"
-      subtitle="Informationen gemäß § 5 TMG / § 5 DDG und § 18 MStV."
+      title="Impressum – Hey Fede! Dessertbar & Café Wetzlar"
+      subtitle="Rechtliche Anbieterkennzeichnung und Pflichtangaben gemäß § 5 DDG (ehemals TMG) sowie § 18 MStV."
       lastUpdated="Juni 2026"
     >
       <div
@@ -21,8 +33,8 @@ export default function ImpressumPage() {
         }}
       >
         {/* Anbieter Card */}
-        <motion.div
-          whileHover={{ y: -4 }}
+        <div
+          className="transition-transform duration-300 hover:-translate-y-1"
           style={{
             background: "#F5EFE8",
             borderRadius: 20,
@@ -59,7 +71,7 @@ export default function ImpressumPage() {
               margin: 0,
             }}
           >
-            Hey Fede - Dessertbar & Cafè
+            Hey Fede - Dessertbar & Café
             <br />
             Inhaberin: {BUSINESS.founder}
             <br />
@@ -67,11 +79,11 @@ export default function ImpressumPage() {
             <br />
             {BUSINESS.postalCode} {BUSINESS.city}
           </p>
-        </motion.div>
+        </div>
 
         {/* Kontakt Card */}
-        <motion.div
-          whileHover={{ y: -4 }}
+        <div
+          className="transition-transform duration-300 hover:-translate-y-1"
           style={{
             background: "#F5EFE8",
             borderRadius: 20,
@@ -132,16 +144,16 @@ export default function ImpressumPage() {
                 marginTop: "4px",
               }}
             >
-              Hinweis: Wir prüfen dieses Postfach nur sehr unregelmäßig. Für
-              schnelle Anliegen bitten wir dich, uns anzurufen oder vor Ort
-              vorbeizukommen!
+              Hinweis: Wir prüfen dieses E-Mail-Postfach unregelmäßig. Für
+              dringende Anfragen bitten wir dich, uns direkt anzurufen oder
+              persönlich in der Langgasse 68 vorbeizukommen!
             </span>
           </p>
-        </motion.div>
+        </div>
 
         {/* USt-ID Card */}
-        <motion.div
-          whileHover={{ y: -4 }}
+        <div
+          className="transition-transform duration-300 hover:-translate-y-1"
           style={{
             background: "#F5EFE8",
             borderRadius: 20,
@@ -166,7 +178,7 @@ export default function ImpressumPage() {
                 margin: 0,
               }}
             >
-              Steuernummer
+              Umsatzsteuer-ID
             </h3>
           </div>
           <p
@@ -196,11 +208,11 @@ export default function ImpressumPage() {
               {BUSINESS.vatId}
             </span>
           </p>
-        </motion.div>
+        </div>
 
         {/* Inhaltlich Verantwortlich */}
-        <motion.div
-          whileHover={{ y: -4 }}
+        <div
+          className="transition-transform duration-300 hover:-translate-y-1"
           style={{
             background: "#F5EFE8",
             borderRadius: 20,
@@ -243,7 +255,61 @@ export default function ImpressumPage() {
             <br />
             {FULL_ADDRESS}
           </p>
-        </motion.div>
+        </div>
+
+        {/* Technische Konzeption & Webdesign */}
+        <div
+          className="transition-transform duration-300 hover:-translate-y-1"
+          style={{
+            background: "#F5EFE8",
+            borderRadius: 20,
+            padding: 24,
+            border: "1px solid rgba(228,192,168,0.3)",
+          }}
+        >
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 8,
+              marginBottom: 12,
+            }}
+          >
+            <Info size={16} color="#CC624C" />
+            <h3
+              style={{
+                fontFamily: "var(--font-heading), serif",
+                color: "#2d1f19",
+                fontSize: "0.95rem",
+                margin: 0,
+              }}
+            >
+              Konzeption & Realisierung
+            </h3>
+          </div>
+          <p
+            style={{
+              fontFamily: "var(--font-body), sans-serif",
+              color: "#5c3d35",
+              fontSize: "0.88rem",
+              lineHeight: 1.7,
+              margin: 0,
+            }}
+          >
+            Technische Konzeption und Webdesign:
+            <br />
+            <a
+              href="https://codayweb.de"
+              style={{
+                color: "#CC624C",
+                fontWeight: 700,
+                textDecoration: "none",
+              }}
+            >
+              Coday Webdesign Wetzlar
+            </a>
+          </p>
+        </div>
       </div>
 
       <div
@@ -267,7 +333,8 @@ export default function ImpressumPage() {
         </h2>
         <p>
           Die Europäische Kommission stellt eine Plattform zur
-          Online-Streitbeilegung (OS) bereit:{" "}
+          Online-Streitbeilegung (OS) für Verbraucherinnen und Verbraucher
+          bereit, die du unter{" "}
           <a
             href="https://ec.europa.eu/consumers/odr/"
             target="_blank"
@@ -275,9 +342,11 @@ export default function ImpressumPage() {
             style={{ color: "#CC624C", textDecoration: "underline" }}
           >
             https://ec.europa.eu/consumers/odr/
-          </a>
-          .<br />
-          Unsere E-Mail-Adresse findest du oben im Impressum.
+          </a>{" "}
+          findest. Wir sind stets bemüht, eventuelle Meinungsverschiedenheiten
+          aus unseren Verträgen einvernehmlich zu klären. Unsere E-Mail-Adresse
+          für direkte Anfragen findest du weiter oben im Impressum von Hey Fede!
+          in Wetzlar.
         </p>
 
         <h2
@@ -292,8 +361,12 @@ export default function ImpressumPage() {
           Verbraucherstreitbeilegung / Universalschlichtungsstelle
         </h2>
         <p>
-          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
-          vor einer Verbraucherschlichtungsstelle teilzunehmen.
+          Wir sind weder verpflichtet noch bereit, an Streitbeilegungsverfahren
+          vor einer Verbraucherschlichtungsstelle gemäß
+          Verbraucherstreitbeilegungsgesetz (VSBG) teilzunehmen. Wir legen
+          jedoch größten Wert auf eine kundenfreundliche und direkte Lösung
+          aller Anliegen – wende dich bei Fragen oder Anmerkungen gerne direkt
+          an unser Team von Hey Fede! Dessertbar & Café in Wetzlar.
         </p>
 
         <h2
@@ -308,12 +381,13 @@ export default function ImpressumPage() {
           Haftung für Inhalte
         </h2>
         <p>
-          Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG für eigene Inhalte
-          auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach
-          §§ 8 bis 10 DDG sind wir als Diensteanbieter jedoch nicht
-          verpflichtet, übermittelte oder gespeicherte fremde Informationen zu
-          überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige
-          Tätigkeit hinweisen.
+          Als Diensteanbieter sind wir gemäß § 7 Abs.1 DDG
+          (Digitale-Dienste-Gesetz, ehemals Telemediengesetz § 7 Abs. 1 TMG) für
+          eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen
+          verantwortlich. Nach §§ 8 bis 10 DDG sind wir als Diensteanbieter
+          jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde
+          Informationen zu überwachen oder nach Umständen zu forschen, die auf
+          eine rechtswidrige Tätigkeit hinweisen.
         </p>
         <p>
           Verpflichtungen zur Entfernung oder Sperrung der Nutzung von
@@ -322,6 +396,61 @@ export default function ImpressumPage() {
           Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden
           von entsprechenden Rechtsverletzungen werden wir diese Inhalte
           umgehend entfernen.
+        </p>
+
+        <h2
+          style={{
+            fontFamily: "var(--font-heading), serif",
+            color: "#2d1f19",
+            fontSize: "1.4rem",
+            marginTop: 32,
+            marginBottom: 16,
+          }}
+        >
+          Haftung für Links
+        </h2>
+        <p>
+          Unser Angebot enthält Links zu externen Websites Dritter, auf deren
+          Inhalte wir keinen Einfluss haben. Deshalb können wir für diese
+          fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
+          verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der
+          Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der
+          Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige
+          Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar.
+        </p>
+        <p>
+          Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch
+          ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei
+          Bekanntwerden von Rechtsverletzungen werden wir derartige Links
+          umgehend entfernen.
+        </p>
+
+        <h2
+          style={{
+            fontFamily: "var(--font-heading), serif",
+            color: "#2d1f19",
+            fontSize: "1.4rem",
+            marginTop: 32,
+            marginBottom: 16,
+          }}
+        >
+          Urheberrecht
+        </h2>
+        <p>
+          Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
+          Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
+          Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
+          Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des
+          jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite
+          sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.
+        </p>
+        <p>
+          Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt
+          wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden
+          Inhalte Dritter als solche gekennzeichnet. Solltest du trotzdem auf
+          eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
+          entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen
+          werden wir derartige Inhalte umgehend entfernen.
         </p>
       </div>
     </LegalPageLayout>
