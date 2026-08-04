@@ -28,7 +28,11 @@ export function middleware(request: NextRequest) {
   // ── 1. MAINTENANCE MODE ──────────────────────────────
   const isMaintenanceMode = process.env.NEXT_PUBLIC_MAINTENANCE_MODE === "true";
 
-  if (isMaintenanceMode) {
+  // Allow Googlebot to bypass maintenance mode so the site can be indexed before launch
+  const userAgent = request.headers.get("user-agent") || "";
+  const isGoogleBot = /googlebot|google-inspectiontool/i.test(userAgent);
+
+  if (isMaintenanceMode && !isGoogleBot) {
     const allowedPaths = [
       "/maintenance",
       "/admin",
@@ -42,7 +46,7 @@ export function middleware(request: NextRequest) {
       (path) => pathname.startsWith(path) || pathname === path,
     );
     if (!isAllowedPath) {
-      return NextResponse.rewrite(new URL("/maintenance", request.url));
+      return NextResponse.redirect(new URL("/maintenance", request.url));
     }
   }
 
