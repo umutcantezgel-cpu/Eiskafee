@@ -8,7 +8,6 @@ import {
   buildPersonSchema,
 } from "@/lib/seo/schema/pages";
 import { GiganticTypography } from "@/components/ui/GiganticTypography";
-import { FoodIcon } from "@/components/ui/FoodIcon";
 import { buildMetadata } from "@/lib/seo/base-metadata";
 import { BUSINESS } from "@/lib/seo/business-data";
 import { motion } from "framer-motion";
@@ -16,17 +15,17 @@ import { Sparkles, Heart, Coffee } from "lucide-react";
 import Image from "next/image";
 
 export const metadata = buildMetadata({
-  title: "Über uns · Die Geschichte hinter Hey Fede!",
+  title: "Über uns – Hey Fede! Die Dessertbar & Café in Wetzlar",
   description:
-    "Erfahre die Geschichte von Hey Fede! - gegründet von Federica. Frische Desserts, hausgemacht mit Liebe, in der Wetzlarer Altstadt.",
+    "Erfahre die Geschichte von Hey Fede! Dessertbar & Café in Wetzlar – gegründet von Federica. Handgemachte Süßspeisen & Waffeln in der Altstadt.",
   path: "/about",
   keywords: [
     "Hey Fede Geschichte",
-    "Dessertbar Gründerin",
-    "Federica Wetzlar",
+    "Dessertbar Wetzlar",
     "Café Wetzlar Altstadt",
+    "Federica Wetzlar",
+    "Handgemachte Desserts",
     "Familienfreundliches Café Hessen",
-    "Regionale Gastronomie",
   ],
   ogImage: "/og/about.png",
 });
@@ -40,14 +39,17 @@ export default function AboutPage() {
         <section className="min-h-[120vh] flex flex-col justify-center items-center px-6 relative">
           <GiganticTypography
             as="h1"
-            highlightWords={["Leidenschaft."]}
+            highlightWords={["Fede"]}
             highlightColor="#CC624C"
             className="text-center justify-center max-w-[1200px] mx-auto mt-20"
           >
-            Unser Rezept? Leidenschaft.
+            Über uns – Die Hey Fede! Dessertbar in Wetzlar
           </GiganticTypography>
-          <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
-            Entstanden aus der einfachen Frage: Was fehlt Wetzlar?
+          <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[750px] font-bold text-brown/80">
+            Hey Fede! entstand aus einer einfachen Frage: Was fehlt Wetzlar
+            noch? Die Antwort war klar: Ein fröhlicher Ort für frische,
+            handgemachte Desserts, leckere Waffeln und erstklassigen Kaffee
+            mitten in der historischen Altstadt.
           </p>
         </section>
 
@@ -69,13 +71,17 @@ export default function AboutPage() {
               </GiganticTypography>
               <div className="font-body text-lg md:text-xl text-brown/90 space-y-6 max-w-[500px]">
                 <p>
-                  Kein Fast-Food-Dessert, sondern handgemachte Kreationen mit
-                  Herz. Das war meine Vision.
+                  Kein industrielles Fast-Food-Dessert, sondern liebevoll
+                  handgemachte Kreationen aus den besten Zutaten – das war von
+                  Anfang an meine persönliche Vision für Hey Fede! Ich wollte
+                  ein Café schaffen, in dem jeder Bissen pure Freude schenkt.
                 </p>
                 <p>
-                  Seit September 2023 ist Hey Fede! ein Ort geworden, an dem
-                  Generationen zusammenkommen. Familien, Freunde, Großeltern mit
-                  ihren Enkeln.
+                  Seit der Eröffnung im September 2023 mitten im Herzen von
+                  Wetzlar ist Hey Fede! zu einem Ort der Begegnung geworden.
+                  Hier kommen Familien, Freunde und Genießer jeden Alters
+                  zusammen, um gemeinsam besondere Genussmomente in gemütlicher
+                  Atmosphäre zu teilen.
                 </p>
               </div>
             </div>
@@ -85,14 +91,14 @@ export default function AboutPage() {
                 style={{ borderRadius: "48% 52% 56% 44%/54% 48% 52% 46%" }}
               />
               <div
-                className="relative overflow-hidden aspect-[4/5] z-10 transform transition-transform duration-700 group-hover:scale-105"
+                className="relative overflow-hidden aspect-[4/5] z-10 transform transition-transform duration-700 group-hover:scale-105 bg-[#fdf3e9]"
                 style={{ borderRadius: "44% 56% 52% 48%/50% 46% 54% 50%" }}
               >
                 <Image
                   src="/assets/photos/team-gruenderin-federica-hey-fede-wetzlar.jpg"
                   alt="Federica, Gründerin des Hey Fede! Dessertbar & Café in Wetzlar, bei der Arbeit in der Küche"
                   fill
-                  className="object-cover object-top"
+                  className="object-contain scale-[0.85]"
                   sizes="(max-width: 1024px) 90vw, 45vw"
                 />
               </div>
@@ -141,12 +147,20 @@ export default function AboutPage() {
                 <div className="w-32 h-32 bg-terracotta rounded-full flex items-center justify-center shrink-0 shadow-clay-lg z-10 relative text-cream">
                   <Sparkles size={56} strokeWidth={1.5} />
                 </div>
-                <GiganticTypography
-                  as="h3"
-                  className="!text-[clamp(2rem,5vw,4rem)]"
-                >
-                  Kompromisslose Frische.
-                </GiganticTypography>
+                <div>
+                  <GiganticTypography
+                    as="h3"
+                    className="!text-[clamp(2rem,5vw,4rem)]"
+                  >
+                    Kompromisslose Frische.
+                  </GiganticTypography>
+                  <p className="font-body text-base md:text-lg text-brown/80 max-w-[500px] mt-2">
+                    Bei uns kommen nur frischeste Zutaten und feine regionale
+                    Produkte in die Schüssel. Wir bereiten all unsere Desserts
+                    täglich frisch zu, damit du bei jedem Besuch maximale
+                    Qualität genießt.
+                  </p>
+                </div>
               </div>
 
               {/* Value 2 */}
@@ -163,12 +177,19 @@ export default function AboutPage() {
                 <div className="w-32 h-32 bg-peach rounded-full flex items-center justify-center shrink-0 shadow-clay-lg z-10 relative text-terracotta">
                   <Heart size={56} strokeWidth={1.5} />
                 </div>
-                <GiganticTypography
-                  as="h3"
-                  className="!text-[clamp(2rem,5vw,4rem)] text-right"
-                >
-                  Mit purer Liebe gemacht.
-                </GiganticTypography>
+                <div className="text-right">
+                  <GiganticTypography
+                    as="h3"
+                    className="!text-[clamp(2rem,5vw,4rem)] text-right"
+                  >
+                    Mit purer Liebe gemacht.
+                  </GiganticTypography>
+                  <p className="font-body text-base md:text-lg text-brown/80 max-w-[500px] mt-2 ml-auto text-right">
+                    Jede Waffel, jedes Eis und jedes Topping wird mit echter
+                    Leidenschaft zubereitet. Wir investieren Herzblut in feine
+                    Rezepturen und liebevolle Details, die man schmeckt.
+                  </p>
+                </div>
               </div>
 
               {/* Value 3 */}
@@ -185,12 +206,19 @@ export default function AboutPage() {
                 <div className="w-32 h-32 bg-brown rounded-full flex items-center justify-center shrink-0 shadow-clay-lg z-10 relative text-cream">
                   <Coffee size={56} strokeWidth={1.5} />
                 </div>
-                <GiganticTypography
-                  as="h3"
-                  className="!text-[clamp(2rem,5vw,4rem)]"
-                >
-                  Alles hausgemacht.
-                </GiganticTypography>
+                <div>
+                  <GiganticTypography
+                    as="h3"
+                    className="!text-[clamp(2rem,5vw,4rem)]"
+                  >
+                    Alles hausgemacht.
+                  </GiganticTypography>
+                  <p className="font-body text-base md:text-lg text-brown/80 max-w-[500px] mt-2">
+                    Vom hausgemachten Teig bis hin zu unseren einzigartigen
+                    Saucen verzichten wir komplett auf Fertigprodukte. Ehrliches
+                    Konditorhandwerk trifft bei uns auf zeitgemäße Genusskultur.
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -202,38 +230,43 @@ export default function AboutPage() {
             as="h2"
             highlightWords={["Zuhause"]}
             highlightColor="#CC624C"
-            className="text-center justify-center mb-16"
+            className="text-center justify-center mb-8"
           >
             Unser Zuhause in Wetzlar.
           </GiganticTypography>
+          <p className="font-body text-lg md:text-xl text-center max-w-[700px] text-brown/80 mb-16">
+            Besuche unsere Dessertbar im Herzen der Altstadt von Wetzlar.
+            Genieße deinen Lieblings-Nachtisch, frischen Kaffee und hausgemachte
+            Eisspezialitäten in entspannter, familienfreundlicher Atmosphäre.
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1200px] mx-auto">
-            <div className="md:col-span-2 rounded-[32px] overflow-hidden min-h-[400px] shadow-clay hover:scale-[1.02] transition-transform duration-500">
-              <FoodIcon
-                icon="MapPin"
-                label="Außenansicht\nHey Fede! Wetzlar"
-                size="sq"
-                shape="rounded-none"
-                className="h-full min-h-[400px]"
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-[1200px] mx-auto min-h-[400px]">
+            <div className="md:col-span-2 rounded-[32px] overflow-hidden min-h-[400px] h-full relative shadow-clay hover:scale-[1.02] transition-transform duration-500">
+              <Image
+                src="/assets/photos/laden-sitzbereich-neon-mooswand-hey-fede-wetzlar.jpg"
+                alt="Atmosphäre und Innenraum bei Hey Fede! Wetzlar"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 66vw"
               />
             </div>
-            <div className="flex flex-col gap-6">
-              <div className="rounded-[32px] overflow-hidden flex-1 shadow-clay hover:scale-[1.02] transition-transform duration-500">
-                <FoodIcon
-                  icon="Coffee"
-                  label="Innenraum"
-                  size="sq"
-                  shape="rounded-none"
-                  className="h-full min-h-[200px]"
+            <div className="flex flex-col gap-6 h-full">
+              <div className="rounded-[32px] overflow-hidden flex-1 min-h-[200px] relative shadow-clay hover:scale-[1.02] transition-transform duration-500">
+                <Image
+                  src="/assets/photos/laden-theke-innenraum-hey-fede-wetzlar.jpg"
+                  alt="Innenraum und Theke"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
-              <div className="rounded-[32px] overflow-hidden flex-1 shadow-clay hover:scale-[1.02] transition-transform duration-500">
-                <FoodIcon
-                  icon="Baby"
-                  label="Kinderecke"
-                  size="sq"
-                  shape="rounded-none"
-                  className="h-full min-h-[200px]"
+              <div className="rounded-[32px] overflow-hidden flex-1 min-h-[200px] relative shadow-clay hover:scale-[1.02] transition-transform duration-500">
+                <Image
+                  src="/assets/photos/laden-kinderecke-spielzimmer-hey-fede-wetzlar.jpg"
+                  alt="Kinderecke und Spielzimmer"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
                 />
               </div>
             </div>
