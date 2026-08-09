@@ -28,12 +28,16 @@ import { SITE, BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
 
 export const metadata: Metadata = {
   title: {
-    template: `%s · ${SITE.shortName} Wetzlar`,
-    default: `${SITE.shortName} · Hausgemachte Bubble Waffles & Desserts in Wetzlar`,
+    template: `%s · ${SITE.shortName}`,
+    default: `${SITE.shortName} · Bubble Waffles & Eis in Wetzlar`,
   },
   description: `Hey Fede! Dessertbar & Café in Wetzlar - hausgemachte Bubble Waffles, Crêpes, Pancakes, Eisbecher und Special Shakes. ${FULL_ADDRESS}.`,
-  metadataBase: new URL(SITE.url),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || SITE.url),
   formatDetection: { telephone: false, address: false, email: false },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png", // Next.js will automatically look for this or fall back if not present, but declaring it fixes the check if the asset exists
+  },
   other: {
     "geo.region": BUSINESS.region,
     "geo.placename": BUSINESS.city,

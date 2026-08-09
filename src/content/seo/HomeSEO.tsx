@@ -23,10 +23,12 @@ export function HomeSEO() {
 
       <div className="font-body text-charcoal/80 space-y-5 text-base md:text-lg leading-relaxed">
         <p>
-          Willkommen bei Hey Fede! In der {BUSINESS.street} bringen wir moderne
-          Dessert-Trends und echtes Café-Feeling zusammen. Ob knusprige Bubble
-          Waffles, feine Crêpes oder hausgemachte Special Shakes – bei uns
-          trifft Handwerk auf Leidenschaft.
+          Willkommen bei Hey Fede! In der historischen Wetzlarer Langgasse (
+          {BUSINESS.street}) bringen wir kreative Dessert-Trends und echtes
+          Café-Feeling zusammen. Ob knusprige Bubble Waffles mit Softeis, zarte
+          Crêpes, erfrischende Eisbecher oder intensiv schmeckende Special
+          Shakes – bei uns trifft ehrliches Handwerk auf beste Zutaten und pure
+          Leidenschaft.
         </p>
 
         <AnimatePresence initial={false}>
@@ -56,10 +58,12 @@ export function HomeSEO() {
                   Qualität, die man schmeckt
                 </h3>
                 <p>
-                  Wir setzen auf frisch aufgeschlagenes Softeis, liebevolle
-                  Toppings und den perfekten Back-Moment. Jede Bubble Waffle und
-                  jeder Crêpe wird frisch vor deinen Augen zubereitet, um dir
-                  das absolute Maximum an Textur und Geschmack zu bieten.
+                  Wir setzen konsequent auf täglich frisch aufgeschlagenes
+                  Softeis, reichhaltige Premium-Toppings und den perfekten
+                  Backmoment. Jede Bubble Waffle und jeder feine Crêpe wird erst
+                  nach deiner Bestellung direkt vor deinen Augen zubereitet, um
+                  dir das absolute Maximum an Knusprigkeit, Textur und
+                  unverfälschtem Geschmack zu garantieren.
                 </p>
               </section>
             </motion.div>

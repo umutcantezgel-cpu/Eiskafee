@@ -12,9 +12,9 @@ import { buildFaqSchema } from "@/lib/seo/schema/pages";
 export const revalidate = 60;
 
 export const metadata = buildMetadata({
-  title: "Dessert Catering & Events in Hessen | Hey Fede!",
+  title: "Dessert Catering & Events in Hessen | Hey Fede! Wetzlar",
   description:
-    "Mache dein Event unvergesslich! Dessert-Catering, Fede-Boxen und Sweettables für Hochzeiten & Firmenfeiern in Gießen, Marburg, Wetzlar und Frankfurt.",
+    "Exklusives Dessert-Catering, Fede-Boxen & Sweettables für Hochzeiten, Geburtstage & Firmenfeiern in Wetzlar, Gießen, Marburg, Frankfurt & ganz Hessen.",
   path: "/events-catering-hessen",
   keywords: [
     "Dessert Catering Wetzlar",
@@ -105,14 +105,13 @@ export default function CateringPage() {
             B2B & Private Feiern in ganz Hessen
           </div>
           <h1 className="font-heading text-5xl md:text-7xl mb-6 leading-[1.1]">
-            Dessert Catering, das
-            <br />
-            Begeisterung weckt
+            Dessert Catering & Events in Hessen
           </h1>
-          <p className="font-body text-lg text-cream/80 leading-relaxed mb-10 max-w-[600px] mx-auto">
-            Von der eleganten Hochzeit in Marburg bis zum Corporate Event im
-            Frankfurter Norden. Wir bringen die Magie der Bubble Waffles und
-            unsere exklusiven Fede Boxen direkt auf dein Event.
+          <p className="font-body text-lg text-cream/80 leading-relaxed mb-10 max-w-[700px] mx-auto">
+            Ob elegante Hochzeit in Marburg, unvergesslicher Kindergeburtstag in
+            Gießen oder exklusives Firmen-Event im Frankfurter Norden – Hey
+            Fede! bringt frische Bubble Waffeln, handgemachte Crêpes und edle
+            Fede Boxen direkt auf dein Event in ganz Hessen.
           </p>
           <PrimaryButton
             href="/kontakt"
@@ -135,33 +134,36 @@ export default function CateringPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16 items-center">
             <div className="prose prose-lg prose-headings:font-heading prose-headings:text-charcoal prose-p:font-body prose-p:text-brown-mid">
-              <h2>Süße Vielfalt, perfekt präsentiert</h2>
+              <h2>Süße Vielfalt für Events & Catering in Hessen</h2>
               <p>
-                Kuchenbüffet war gestern. Überrasche deine Gäste oder
-                Mitarbeiter mit unseren maßgeschneiderten{" "}
-                <strong>Fede Boxen</strong>. Diese edlen Präsentationsboxen
-                werden frisch in unserer Wetzlarer Dessertbar bestückt und
-                enthalten eine sorgfältig kuratierte Auswahl unserer besten
-                Kreationen.
+                Ein gewöhnliches Kuchenbüffet war gestern. Überrasche deine
+                Gäste, Partner oder Mitarbeiter mit unseren maßgeschneiderten{" "}
+                <strong>Fede Boxen</strong> und stimmungsvollen Sweettables.
+                Diese edlen Präsentationsboxen werden frisch in unserer
+                Wetzlarer Dessertbar zubereitet und enthalten eine sorgfältig
+                kuratierte Auswahl unserer beliebtesten Dessert-Spezialitäten.
               </p>
               <ul>
                 <li>
-                  <strong>Bubble Waffle Minis:</strong> Handlich, knusprig und
-                  perfekt portioniert.
+                  <strong>Bubble Waffle Minis:</strong> Aussen knusprig, innen
+                  fluffig und perfekt portioniert für Handheld-Genuss.
                 </li>
                 <li>
-                  <strong>Crêpe-Röllchen:</strong> Gefüllt mit
-                  Premium-Nougatcreme und frischen Erdbeeren.
+                  <strong>Crêpe-Röllchen:</strong> Hauchdünne französische
+                  Crêpes, gefüllt mit Premium-Nougatcreme und frischen Früchten.
                 </li>
                 <li>
-                  <strong>Churros & Dips:</strong> Spanischer Flair mit
-                  hausgemachter belgischer Schokoladensoße.
+                  <strong>Churros & Dips:</strong> Goldbraun gebackener
+                  spanischer Klassiker serviert mit zartschmelzender
+                  Schokoladensauce.
                 </li>
               </ul>
               <p>
-                Egal, ob du ein Team-Meeting in Gießen aufwerten willst, oder
-                einen Sweettable für eine Traumhochzeit in Braunfels planst –
-                wir haben die perfekte Box für dich.
+                Ganz gleich, ob du ein motivierendes Team-Meeting in Gießen
+                planst, ein elegantes Dessert-Buffet für eine Hochzeit in
+                Braunfels suchst oder ein großes Sommerfest im Lahn-Dill-Kreis
+                ausrichtest – unsere flexiblen Catering-Konzepte passen sich
+                ideal der Gruppengröße und dem Stil deiner Veranstaltung an.
               </p>
 
               <h2>Kindergeburtstag Catering in Wetzlar & Umgebung</h2>
@@ -211,10 +213,12 @@ export default function CateringPage() {
               <div className="aspect-square bg-white rounded-[40px] border border-peach/50 shadow-lg p-8 flex flex-col justify-center items-center text-center">
                 <span className="text-7xl mb-6">🎁</span>
                 <h3 className="font-heading text-2xl text-charcoal mb-2">
-                  Corporate & Wedding
+                  Corporate & Wedding Catering
                 </h3>
-                <p className="font-body text-brown-mid">
-                  Lieferung im gesamten 50km Radius
+                <p className="font-body text-brown-mid text-sm leading-relaxed mt-2">
+                  Frisch gelieferte Dessert-Highlights und individuelle
+                  Sweettables im gesamten Radius von 50 km rund um Wetzlar,
+                  Gießen, Marburg, Butzbach und Frankfurt.
                 </p>
               </div>
             </div>
@@ -226,10 +230,13 @@ export default function CateringPage() {
       <section className="py-16 bg-cream">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="font-heading text-3xl text-charcoal mb-2 text-center">
-            Unser Laden — perfekt für Events
+            Unsere Dessertbar in Wetzlar als Event-Location
           </h2>
-          <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
-            Moderne Räumlichkeiten für Kindergeburtstage, Firmenfeiern & mehr
+          <p className="font-body text-charcoal/70 text-center mb-8 max-w-2xl mx-auto leading-relaxed">
+            Du möchtest deine Feier direkt vor Ort ausrichten? Unsere moderne
+            Dessertbar in der Wetzlarer Altstadt bietet stilvolles Ambiente,
+            Neon-Highlights und erstklassige Dessert-Stationen für exklusive
+            Kindergeburtstage, Jubiläen und Firmenfeiern.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {[

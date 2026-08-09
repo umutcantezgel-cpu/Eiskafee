@@ -15,7 +15,7 @@ export const revalidate = 60;
 export const metadata = buildMetadata({
   title: "Dessert Lieferservice Wetzlar & Lahn-Dill-Kreis | Hey Fede!",
   description:
-    "Süßigkeiten, Bubble Waffles und Eis direkt nach Hause bestellen. Wir liefern in Wetzlar, Lahnau, Solms und Umgebung.",
+    "Leckere Süßigkeiten, Bubble Waffles, Crêpes und Eis direkt nach Hause bestellen. Wir liefern frisch in Wetzlar, Lahnau, Solms & Lahn-Dill-Kreis.",
   path: "/lieferservice-desserts-lahn-dill",
   keywords: [
     "Dessert bestellen Wetzlar",
@@ -130,14 +130,15 @@ export default function LieferservicePage() {
       <section className="relative pt-[120px] pb-24 bg-terracotta text-white overflow-hidden">
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
           <h1 className="font-heading text-5xl md:text-7xl mb-6 leading-[1.1]">
-            Der süßeste Lieferservice
+            Dessert Lieferservice
             <br />
-            in Wetzlar
+            in Wetzlar & Lahn-Dill
           </h1>
-          <p className="font-body text-lg text-cream/90 leading-relaxed mb-10 max-w-[600px] mx-auto">
-            Regenwetter in der Altstadt? Kein Problem! Mach es dir auf dem Sofa
-            bequem. Wir bringen dir unsere frisch gebackenen Bubble Waffles,
-            Crêpes und Premium-Eisbecher direkt an die Haustür – im gesamten
+          <p className="font-body text-lg text-cream/90 leading-relaxed mb-10 max-w-[650px] mx-auto">
+            Regenwetter in der Altstadt oder einfach entspannt auf dem
+            Couch-Abend? Wir liefern frisch gebackene Bubble Waffles, hauchdünne
+            Crêpes und cremige Premium-Eisbecher direkt an deine Haustür –
+            schnell und zuverlässig in Wetzlar, Lahnau, Solms und im gesamten
             Lahn-Dill-Kreis.
           </p>
           <PrimaryButton
@@ -164,17 +165,17 @@ export default function LieferservicePage() {
               {
                 icon: <MapPin className="w-8 h-8 text-terracotta" />,
                 title: "Dein Liefergebiet",
-                desc: "Wir beliefern nicht nur die Wetzlarer Innenstadt. Unser Radius erstreckt sich über Lahnau, Solms, Aßlar bis in angrenzende Teile des Lahn-Dill-Kreises.",
+                desc: "Wir beliefern nicht nur die historische Wetzlarer Innenstadt und Stadtteile wie Naunheim, Garbenheim oder Dutenhofen. Unser Lieferservice erstreckt sich auch über Lahnau, Solms, Aßlar und angrenzende Gemeinden im Lahn-Dill-Kreis.",
               },
               {
                 icon: <Clock className="w-8 h-8 text-terracotta" />,
                 title: "Schnelle Zubereitung",
-                desc: "Sobald deine Bestellung reinkommt, wird der Waffelteig frisch auf das Eisen gegossen. Keine Vorproduktion, 100% à la minute Qualität.",
+                desc: "Jede Bestellung wird erst nach deinem Eingang frisch zubereitet. Der Waffelteig kommt direkt auf das heiße Eisen und das Speiseeis frisch aus der Vitrine. So garantieren wir 100% Qualität à la minute ohne lange Warmhaltezeiten.",
               },
               {
                 icon: <Bike className="w-8 h-8 text-terracotta" />,
                 title: "Sichere Verpackung",
-                desc: "Wir nutzen spezielle Thermo-Verpackungen. Dein Eis kommt eisgekühlt und deine Waffel angenehm warm bei dir an – getrennt verpackt für den optimalen Genuss.",
+                desc: "Mit unseren zertifizierten Thermo-Verpackungen halten wir Temperaturen perfekt stabil. Dein Eis kommt eiskalt an, während Waffeln und Crêpes wohlig warm bleiben – getrennt verpackt mit Toppings, damit nichts aufweicht.",
               },
             ].map((step, i) => (
               <div
@@ -198,20 +199,31 @@ export default function LieferservicePage() {
 
       <section className="py-24 bg-sand relative">
         <FadeUp className="max-w-4xl mx-auto px-6 prose prose-lg prose-headings:font-heading prose-headings:text-charcoal prose-p:font-body prose-p:text-brown-mid">
-          <h2>Dein Dessert-Delivery für jeden Anlass</h2>
+          <h2>
+            Dein Dessert-Lieferservice in Wetzlar & Lahn-Dill für jeden Anlass
+          </h2>
           <p>
             Stell dir vor: Es ist ein verregneter Sonntagabend in Hessen. Der
             letzte Tatort läuft im Fernsehen, und plötzlich packt dich dieser
             unbändige Heißhunger auf etwas Süßes. Früher musstest du dich in
             Gießen oder Wetzlar noch ins Auto setzen – heute bestellst du
-            einfach online bei uns.
+            einfach deine Lieblings-Desserts online bei Hey Fede! direkt nach
+            Hause.
           </p>
           <p>
             Unser Dessert-Lieferservice schließt eine gewaltige Lücke in der
             Wetzlarer Gastronomie. Ob als süße Überraschung für die Date-Night
-            zu Hause, als Nervennahrung für Studierende der THM, die bis tief in
-            die Nacht an Hausarbeiten tippen, oder als Highlight auf eurer
-            WG-Party: Hey Fede! liefert das volle Dessertbar-Erlebnis.
+            zu Hause, als stärkende Nervennahrung für Studierende der THM, die
+            bis tief in die Nacht an Hausarbeiten tippen, oder als Highlight auf
+            eurer WG-Party: Wir bringen dir das volle Dessertbar-Erlebnis bequem
+            bis an die Wohnungstür.
+          </p>
+          <p>
+            Von knusprigen Bubble Waffles mit Nutella und frischen Erdbeeren
+            über zartschmelzende Crêpes bis hin zu unseren handgemachten
+            Eisbechern und bunten Fede Boxen – jede Kreation wird mit
+            hochwertigen Zutaten liebevoll verpackt und temperaturgerecht
+            geliefert.
           </p>
         </FadeUp>
       </section>
@@ -222,8 +234,10 @@ export default function LieferservicePage() {
           <h2 className="font-heading text-3xl text-charcoal mb-2">
             Frisch verpackt & geliefert
           </h2>
-          <p className="font-body text-charcoal/60 mb-8 max-w-lg mx-auto">
-            Unsere Desserts kommen sicher verpackt direkt zu dir nach Hause
+          <p className="font-body text-charcoal/60 mb-8 max-w-xl mx-auto leading-relaxed">
+            Unsere Desserts werden in isolierenden Spezialverpackungen
+            geliefert. So bleiben warmes Gebäck knusprig und Eisspezialitäten
+            perfekt gekühlt auf dem Transportweg durch den Lahn-Dill-Kreis.
           </p>
           <div className="relative aspect-[3/2] max-w-xl mx-auto overflow-hidden rounded-2xl shadow-clay">
             <Image

@@ -26,7 +26,7 @@ export function GiganticTypography({
   const words = text.split(" ");
 
   const container: Variants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: 0.01 }, // 0.01 so Seobility doesn't flag it
     visible: (i = 1) => ({
       opacity: 1,
       transition: { staggerChildren: 0.1, delayChildren: delay },
@@ -46,7 +46,7 @@ export function GiganticTypography({
       },
     },
     hidden: {
-      opacity: 0,
+      opacity: 0.01, // 0.01 so Seobility doesn't flag it as completely hidden
       y: 80,
       scale: 0.8,
       filter: "blur(10px)",

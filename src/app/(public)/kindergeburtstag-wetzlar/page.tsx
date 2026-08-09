@@ -34,23 +34,23 @@ export const metadata = buildMetadata({
 const FAQ_DATA = [
   {
     q: "Kann ich bei Hey Fede! einen Kindergeburtstag feiern?",
-    a: "Ja! Wir bieten spezielle Kindergeburtstag-Pakete an. Von Fede Boxen mit Pancakes und Waffeln bis hin zu individuellen Sweettables — wir machen jede Kinderparty zu einem unvergesslichen Erlebnis.",
+    a: "Ja! Wir bieten spezielle Kindergeburtstag-Pakete an. Von Fede Boxen mit Pancakes und Waffeln bis hin zu individuellen Sweettables — wir machen jede Kinderparty in Wetzlar zu einem unvergesslichen Erlebnis für das Geburtstagskind und alle Gäste.",
   },
   {
     q: "Was kostet ein Kindergeburtstag bei Hey Fede!?",
-    a: "Unsere Fede Boxen starten ab 24,90€ und eignen sich perfekt für Kindergruppen. Für größere Feiern erstellen wir gerne ein individuelles Angebot. Kontaktiere uns einfach über unser Kontaktformular.",
+    a: "Unsere beliebten Fede Boxen starten ab 24,90 € und eignen sich ideal für Kindergruppen. Komplett-Pakete inklusive Getränken und Dekoration gibt es ab 49,90 €. Für individuelle Wünsche erstellen wir euch gerne ein maßgeschneidertes Angebot.",
   },
   {
     q: "Für wie viele Kinder eignet sich eine Feier bei Hey Fede!?",
-    a: "Wir können Gruppen von 5 bis 20 Kindern bewirten. Für größere Gruppen bieten wir auch Catering-Pakete an, die wir zu eurem Veranstaltungsort liefern.",
+    a: "In unserer Dessertbar in Wetzlar bewirten wir Gruppen von 5 bis 20 Kindern. Für größere Geburtstagsgesellschaften bieten wir flexible Catering-Pakete an, die wir direkt an euren Wunschort im Lahn-Dill-Kreis liefern.",
   },
   {
     q: "Was gibt es bei einem Kindergeburtstag zu essen?",
-    a: "Die Kinder können zwischen Pancakes, Bubble Waffles, Crêpes und Eisbecher wählen. Unsere Kinderbecher (Zuckerwatte, Regenbogen, Marshmallow, Spaghetti-Eis) sind besonders beliebt. Dazu gibt es Getränke und natürlich Kerzen für den Geburtstagskuchen!",
+    a: "Die Kinder können aus Pancakes, Bubble Waffles, zarten Crêpes und bunten Eisbechern wählen. Besonders beliebt sind unsere speziellen Kinderbecher (Zuckerwatte, Regenbogen, Marshmallow und Spaghetti-Eis). Dazu servieren wir kühle Erfrischungsgetränke und Kerzen für den Geburtstagskuchen.",
   },
   {
     q: "Muss ich einen Kindergeburtstag vorher reservieren?",
-    a: "Ja, wir empfehlen eine Reservierung mindestens 1 Woche im Voraus. So können wir alles perfekt vorbereiten. Kontaktiere uns per WhatsApp (0176 25026991), Telefon (06441 7890426) oder über unser Online-Formular.",
+    a: "Ja, wir empfehlen eine Reservierung mindestens eine Woche im Voraus, damit unser Team alles optimal für euch vorbereiten kann. Schick uns einfach eine Anfrage per WhatsApp (0176 25026991), Telefon (06441 7890426) oder über unser Online-Kontaktformular.",
   },
 ];
 
@@ -104,10 +104,26 @@ function getPageSchema() {
 
 /* ─── Kinderbecher Cards ─── */
 const KINDERBECHER = [
-  { emoji: "🍭", name: "Zuckerwatte", desc: "Fluffig, pink & magisch" },
-  { emoji: "🌈", name: "Regenbogen", desc: "Bunt, fruchtig & fröhlich" },
-  { emoji: "☁️", name: "Marshmallow", desc: "Weich, süß & verträumt" },
-  { emoji: "🍝", name: "Spaghetti-Eis", desc: "Der absolute Klassiker" },
+  {
+    emoji: "🍭",
+    name: "Zuckerwatte",
+    desc: "Fluffige rosa Zuckerwatte-Wolke mit cremigem Vanilleeis, Fruchtsoße und bunten Streuseln.",
+  },
+  {
+    emoji: "🌈",
+    name: "Regenbogen",
+    desc: "Bunte Fruchtsoßen, erfrischendes Beeren-Eis und fröhliche Regenbogen-Toppings für kleine Entdecker.",
+  },
+  {
+    emoji: "☁️",
+    name: "Marshmallow",
+    desc: "Weiche gelatinefreie Mini-Marshmallows auf feinstem Eis mit zarter Schokoladensoße.",
+  },
+  {
+    emoji: "🍝",
+    name: "Spaghetti-Eis",
+    desc: "Der zeitlose Kinderklassiker: frisch gepresstes Vanilleeis mit hausgemachter Erdbeersoße und weißer Schokolade.",
+  },
 ];
 
 /* ─── Fede Box Cards ─── */
@@ -115,22 +131,22 @@ const FEDE_BOXEN = [
   {
     emoji: "🥞",
     name: "Pancake Picknick",
-    desc: "Fluffige Pancake-Türme mit Toppings zum Teilen",
+    desc: "Fluffig gebackene Pancake-Türme mit Schokosoße, frischen Beeren und bunten Toppings zum gemeinsamen Teilen.",
   },
   {
     emoji: "🍓",
     name: "Fruit Fiesta",
-    desc: "Frische Früchte, Joghurt & knusprige Granola-Streusel",
+    desc: "Saisonale frische Früchte, cremiger Joghurt und knusprige Granola-Streusel für eine erfrischende Vitaminbombe.",
   },
   {
     emoji: "🎁",
     name: "Mix Box",
-    desc: "Das Beste aus Waffeln, Crêpes & Pancakes in einer Box",
+    desc: "Die perfekte Vielfalt: Eine köstliche Kombination aus knusprigen Bubble Waffles, zarten Crêpes und fluffigen Pancakes.",
   },
   {
     emoji: "🎉",
     name: "Fede & Friends",
-    desc: "Das XL-Paket für die große Geburtstagsrunde",
+    desc: "Das großzügige XL-Dessertpaket für bis zu 10 Kinder mit einer bunten Auswahl aller Hey Fede! Spezialitäten.",
   },
 ];
 
@@ -180,7 +196,7 @@ export default function KindergeburtstagPage() {
           </SectionTitle>
 
           <div className="prose prose-lg prose-headings:font-heading prose-headings:text-charcoal prose-p:font-body prose-p:text-brown-mid mt-12 mx-auto">
-            <h2>Warum Hey Fede! perfekt für Kindergeburtstage ist</h2>
+            <h3>Entspannt feiern in der Wetzlarer Altstadt</h3>
             <p>
               Einen Kindergeburtstag zu planen ist für viele Eltern mit Stress
               verbunden. Was gibt es zu essen? Wo hat man genug Platz? Und wie
@@ -201,7 +217,7 @@ export default function KindergeburtstagPage() {
               die Altstadt als Rahmenprogramm.
             </p>
 
-            <h2>Unsere beliebten Kinderbecher</h2>
+            <h3>Spezielle Kinderbecher für strahlende Kinderaugen</h3>
             <p>
               Das absolute Highlight jeder Kinderparty bei Hey Fede! sind unsere
               Kinderbecher. Diese speziell für junge Gäste kreierten Eisbecher
@@ -217,7 +233,7 @@ export default function KindergeburtstagPage() {
               Schokolade.
             </p>
 
-            <h2>Fede Boxen — Gemeinsam schlemmen und teilen</h2>
+            <h3>Fede Boxen: Süße Sharing-Boxen für die ganze Kindergruppe</h3>
             <p>
               Für Kindergeburtstage, bei denen es richtig üppig zugehen soll,
               empfehlen wir unsere <strong>Fede Boxen</strong>. Diese
@@ -235,7 +251,7 @@ export default function KindergeburtstagPage() {
               bezahlbare Lösung für jede Kinderfeier.
             </p>
 
-            <h2>Pakete, Preise und Buchung</h2>
+            <h3>Transparente Pakete und einfache Reservierung</h3>
             <p>
               Unsere Geburtstags-Pakete starten ab 49,90&thinsp;€ für eine
               Gruppe bis zu 8 Kinder. Im Paket enthalten sind eine Fede Box nach
@@ -249,7 +265,7 @@ export default function KindergeburtstagPage() {
               zu buchen, damit wir alles perfekt vorbereiten können.
             </p>
 
-            <h2>Catering-Option — Wir kommen zu euch!</h2>
+            <h3>Kindergeburtstag Catering im Lahn-Dill-Kreis</h3>
             <p>
               Ihr möchtet den Kindergeburtstag lieber bei euch zuhause, im
               Garten oder in einem Gemeinschaftsraum feiern? Kein Problem! Wir
@@ -260,7 +276,7 @@ export default function KindergeburtstagPage() {
               zubereitet, liebevoll verpackt und bereit zum Schlemmen.
             </p>
 
-            <h2>Anreise aus der Region</h2>
+            <h3>Bequeme Anreise aus Gießen, Marburg und Umgebung</h3>
             <p>
               Hey Fede! liegt im Herzen der Wetzlarer Altstadt und ist aus der
               gesamten Region Mittelhessen bequem erreichbar. Von Gießen sind es
@@ -334,9 +350,10 @@ export default function KindergeburtstagPage() {
             Bereit für die süßeste Party des Jahres?
           </h2>
           <p className="font-body text-lg text-cream/90 mb-10">
-            Kontaktiere uns jetzt und wir planen gemeinsam den perfekten
-            Kindergeburtstag — ob bei uns in der Langgasse oder als Catering bei
-            dir zuhause. Wir freuen uns auf euch!
+            Kontaktiere uns jetzt und wir planen gemeinsam einen unvergesslichen
+            Kindergeburtstag in Wetzlar — ob direkt in unserer stimmungsvollen
+            Dessertbar in der Langgasse oder als frisches Catering direkt bei
+            dir zuhause.
           </p>
           <a
             href="/kontakt"
@@ -353,8 +370,10 @@ export default function KindergeburtstagPage() {
           <h2 className="font-heading text-3xl text-charcoal mb-2 text-center">
             Unser Spielbereich & Kinderecke
           </h2>
-          <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
-            Spielzimmer, Wickelraum & alles für die Kleinen bei Hey Fede!
+          <p className="font-body text-charcoal/60 text-center mb-8 max-w-xl mx-auto">
+            In unserer kinderfreundlichen Dessertbar in Wetzlar erwartet euch
+            ein gemütliches Spielzimmer für die Kleinen, ein sauberer Wickelraum
+            sowie eine rundum entspannte Atmosphäre für Eltern und Kinder.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {getPhotosForPage("/kindergeburtstag-wetzlar").map((photo) => (

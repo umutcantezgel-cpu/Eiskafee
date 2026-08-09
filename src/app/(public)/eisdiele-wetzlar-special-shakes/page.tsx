@@ -13,9 +13,9 @@ import { buildFaqSchema } from "@/lib/seo/schema/pages";
 export const revalidate = 60;
 
 export const metadata = buildMetadata({
-  title: "Eisdiele Wetzlar & Special Shakes | Hey Fede!",
+  title: "Eisdiele Wetzlar: Special Shakes & Softeis | Hey Fede!",
   description:
-    "Das beste Softeis in Wetzlar! Entdecke unsere gigantischen 500ml Eisbecher und extravaganten Special Milkshakes. Erfrischung pur in der Altstadt.",
+    "Deine Eisdiele in Wetzlar für Special Shakes & Softeis! Entdecke gigantische 500ml Eisbecher und kreative Milkshake-Kreationen direkt in der Altstadt.",
   path: "/eisdiele-wetzlar-special-shakes",
   keywords: [
     "Eisdiele Wetzlar",
@@ -124,13 +124,13 @@ export default function EisdielePage() {
               Erfrischung pur in der Altstadt
             </div>
             <h1 className="font-heading text-5xl md:text-6xl text-charcoal mb-6 leading-[1.1]">
-              Deine moderne Eisdiele in Wetzlar
+              Eisdiele Wetzlar – Special Shakes & Softeis
             </h1>
             <p className="font-body text-lg text-brown-mid leading-relaxed mb-8 max-w-[500px]">
-              Kugel-Eis war gestern. Erlebe die seidige Textur unseres frisch
-              gezapften Softeises in gigantischen 500ml Bechern oder als Basis
-              für unsere legendären Special Shakes. Ein kühles Meisterwerk für
-              heiße Sommertage im Lahn-Dill-Kreis.
+              Kugel-Eis war gestern: Erlebe die seidig-cremige Textur unseres
+              frisch gezapften Softeises in gigantischen 500ml Bechern und als
+              Basis für unsere extravaganten Special Shakes. Dein erfrischendes
+              Dessert-Erlebnis mitten in der Wetzlarer Altstadt.
             </p>
             <PrimaryButton href="/menu">Unsere Eiskarte ansehen</PrimaryButton>
           </div>
@@ -148,61 +148,61 @@ export default function EisdielePage() {
             <h2>Die Kunst des perfekten Shakes in Hessen</h2>
             <p>
               Wenn die Sonne über der Wetzlarer Altstadt und der Alten
-              Lahnbrücke scheint, gibt es nichts Besseres als eine eiskalte
-              Erfrischung. Doch wir bei Hey Fede! geben uns nicht mit einem
-              einfachen Schoko-Milchshake zufrieden. Unsere{" "}
-              <strong>Special Shakes</strong> sind hochstapelnde Kunstwerke, die
-              man so nur bei uns in der Langgasse 68 in Wetzlar bekommt.
+              Lahnbrücke scheint, gibt es nichts Einzigartigeres als eine
+              eiskalte Erfrischung. Doch bei Hey Fede! geben wir uns nicht mit
+              gewöhnlichen Schoko- oder Vanilleshakes zufrieden. Unsere{" "}
+              <strong>Special Shakes</strong> sind spektakuläre
+              Dessert-Kunstwerke, die mit viel Liebe zum Detail in der Langgasse
+              68 frisch zubereitet werden.
             </p>
             <p>
-              Wir nutzen unser hauseigenes Softeis als cremige Basis. Der
-              Glasrand wird aufwendig mit Schokolade, Karamell oder Frosting
-              verziert und mit knusprigen Crumbles besetzt. Das Sahnehäubchen
-              wird wörtlich genommen und zusätzlich mit Brownie-Stücken, ganzen
-              Keksen oder frischen Erdbeeren gekrönt. Kein Wunder, dass unsere
-              Shakes auf Instagram so beliebt sind und Gäste aus Butzbach,
-              Weilburg und Limburg anlocken.
+              Als Basis dient unser seidig-cremiges Softeis, das besonders
+              luftig und geschmacksintensiv ist. Der Glasrand wird aufwendig mit
+              feiner Schokolade, hausgemachtem Karamell oder cremigem Frosting
+              verziert und mit knusprigen Toppings besetzt. Abgerundet durch
+              softe Sahne, knusprige Brownie-Stücke, ganze Kekse oder frische
+              Beeren werden diese Shakes zu einem echten Highlight für
+              Dessert-Liebhaber aus Wetzlar, Gießen und Limburg.
             </p>
 
             <h2>500ml Eisbecher: Das XL Eis-Erlebnis</h2>
             <p>
-              Wer Eis liebt, wird unsere 500ml Eisbecher vergöttern. Wir
-              schichten cremiges Softeis im perfekten Wechsel mit fruchtigen
-              Soßen, Nuss-Nougat-Creme und knusprigen Toppings. Von klassischen
-              Favoriten wie <strong>Schoko</strong>, <strong>Haselnuss</strong>{" "}
-              und <strong>Erdbeere</strong> über exotische Kreationen wie{" "}
-              <strong>Amarena</strong> bis hin zum unverzichtbaren{" "}
-              <strong>Spaghetti-Eis</strong> – bei uns ist für jeden Geschmack
-              etwas dabei.
+              Wer Eis liebt, wird unsere riesigen 500ml Eisbecher schätzen. Wir
+              schichten frisches Softeis im Wechsel mit fruchtigen Soßen,
+              samtiger Nuss-Nougat-Creme und knusprigen Toppings. Von zeitlosen
+              Klassikern wie <strong>Schoko</strong>, <strong>Haselnuss</strong>{" "}
+              und <strong>Erdbeere</strong> über exotische Varianten wie{" "}
+              <strong>Amarena</strong> bis hin zum beliebten{" "}
+              <strong>Spaghetti-Eis</strong> bietet unsere Speisekarte Vielfalt
+              für jeden Geschmack.
             </p>
             <p>
-              Egal ob du im Café genießt oder bequem direkt über unsere Webseite
-              nach Hause bestellst — die Qualität bleibt kompromisslos hoch.
-              Unser Eis wird täglich frisch zubereitet und nie aus der
-              Tiefkühlung serviert. Das schmeckst du mit jedem Löffel.
+              Ob gemütlich vor Ort in unserer stimmungsvollen Eisdiele oder
+              bequem per Lieferdienst nach Hause geliefert – unsere
+              Dessert-Spezialitäten garantieren stets höchste Frische. Unser
+              Softeis wird täglich aus besten Zutaten hergestellt, um dir bei
+              jedem Besuch erstklassigen Geschmack zu bieten.
             </p>
 
             <h2>Kinderbecher für kleine Eis-Fans</h2>
             <p>
-              Für unsere jüngsten Gäste haben wir spezielle Kinderbecher
-              kreiert, die Kinderaugen zum Leuchten bringen. Der{" "}
-              <strong>Zuckerwatte-Becher</strong> mit echtem
-              Zuckerwatte-Topping, der bunte <strong>Regenbogen-Becher</strong>{" "}
-              mit mehrfarbigen Streuseln, der süße{" "}
-              <strong>Marshmallow-Becher</strong> und das klassische{" "}
-              <strong>Spaghetti-Eis</strong> sind die Stars bei jedem
-              Familienausflug nach Wetzlar.
+              Auch für die jüngsten Schleckermäuler haben wir farbenfrohe
+              Kinderbecher entwickelt. Der <strong>Zuckerwatte-Becher</strong>{" "}
+              mit fluffy Topping, der farbenfrohe{" "}
+              <strong>Regenbogen-Becher</strong> mit bunten Streuseln, der süße{" "}
+              <strong>Marshmallow-Becher</strong> sowie unser kindergerechtes{" "}
+              <strong>Spaghetti-Eis</strong> machen den Familienausflug in die
+              Wetzlarer Altstadt zu einem unvergesslichen Erlebnis.
             </p>
 
             <h2>Warum Gäste aus Gießen und Marburg zu uns kommen</h2>
             <p>
-              Viele unserer Stammgäste nehmen die Fahrt aus Gießen, Marburg oder
-              sogar Frankfurt gerne auf sich. Der Grund? Bei Hey Fede! bekommen
-              sie nicht nur Eis, sondern ein komplettes Dessert-Erlebnis in der
-              malerischen Wetzlarer Altstadt. Nach dem Shopping im Forum Wetzlar
-              oder einem Spaziergang am Lottehaus gibt es keinen besseren
-              Abschluss als einen 500ml Eisbecher oder einen spektakulären
-              Special Shake.
+              Viele Genießer nehmen den Weg aus Nachbarstädten wie Gießen,
+              Marburg oder Weilburg gerne auf sich. Bei Hey Fede! verbinden sich
+              frische Zutaten, kreative Rezepte und ein modernes
+              Wohlfühl-Ambiente zu einer besonderen Eisdiele in Hessen. Nach
+              einem Bummel im Forum Wetzlar oder an der Lahn ist ein kühler
+              Special Shake der perfekte Genussmoment.
             </p>
           </div>
         </FadeUp>
@@ -215,7 +215,8 @@ export default function EisdielePage() {
             Eis, Shakes & Spezialitäten
           </h2>
           <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
-            Echte Impressionen aus unserer Eisdiele in Wetzlar
+            Echte Impressionen aus unserer Eisdiele in Wetzlar – entdecke unsere
+            cremigen Softeis-Kreationen und handgemachten Special Shakes.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {getPhotosForPage("/eisdiele-wetzlar-special-shakes").map(
@@ -274,9 +275,10 @@ export default function EisdielePage() {
           <h2 className="font-heading text-4xl mb-6">
             Eis genießen auf dem Sofa?
           </h2>
-          <p className="font-body text-lg text-cream/90 mb-10">
-            Bestelle deine Lieblings-Eisbecher und Special Shakes direkt nach
-            Hause. Wir liefern in Wetzlar und im gesamten Lahn-Dill-Kreis.
+          <p className="font-body text-lg text-cream/90 mb-10 max-w-xl mx-auto">
+            Hole dir deine Lieblings-Eisbecher und spektakulären Special Shakes
+            bequem nach Hause. Wir liefern blitzschnell und gekühlt in Wetzlar,
+            Gießen und dem gesamten Lahn-Dill-Kreis direkt an deine Haustür.
           </p>
           <a
             href="/lieferservice-desserts-lahn-dill"

@@ -41,16 +41,18 @@ function MenuContent() {
 
         <GiganticTypography
           as="h1"
-          highlightWords={["Süßes!"]}
+          highlightWords={["Speisekarte"]}
           highlightColor="#CC624C"
           className="text-center justify-center max-w-[1200px] mx-auto z-10"
         >
-          Gönn dir was Süßes!
+          Unsere Speisekarte in Wetzlar
         </GiganticTypography>
 
-        <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80 z-10">
-          Alles frisch, hausgemacht und mit viel Liebe zubereitet. Wähl deinen
-          Favoriten.
+        <p className="font-body text-lg md:text-xl mt-8 text-center max-w-[750px] font-medium text-brown/80 z-10 leading-relaxed">
+          Entdecke unsere vielfältige Auswahl an frisch zubereiteten Desserts in
+          der Wetzlarer Altstadt. Ob fluffige Bubble Waffles, hauchdünne Crêpes,
+          gestapelte Pancakes, erfrischende Eisbecher oder cremige Special
+          Shakes – bei Hey Fede wird jede Kreation frisch zubereitet.
         </p>
       </section>
 

@@ -13,9 +13,9 @@ import { buildFaqSchema } from "@/lib/seo/schema/pages";
 export const revalidate = 60;
 
 export const metadata = buildMetadata({
-  title: "Bubble Waffles Wetzlar | Original & Handgemacht bei Hey Fede!",
+  title: "Bubble Waffles Wetzlar | Handgemacht bei Hey Fede!",
   description:
-    "Erlebe die originalen Bubble Waffles in der Wetzlarer Altstadt. Knusprig, fluffig & handgemacht. Jetzt in der Langgasse probieren oder aus Gießen & Lahn-Dill-Kreis vorbeikommen.",
+    "Erlebe originale Bubble Waffles in Wetzlar: knusprig, fluffig & handgemacht. Jetzt in der Langgasse probieren oder bequem im Lahn-Dill-Kreis bestellen!",
   path: "/bubble-waffles-wetzlar",
   keywords: [
     "Bubble Waffle Wetzlar",
@@ -69,7 +69,7 @@ const FAQ_DATA = [
   },
   {
     q: "Was kostet eine Bubble Waffle bei Hey Fede!?",
-    a: "Unsere Bubble Waffles starten ab 6,90€. Je nach Toppings und Extras kann der Preis variieren. Die aktuelle Preisliste findest du auf unserer Speisekarte unter hey-fede.de/menu.",
+    a: "Unsere frisch gebackenen Bubble Waffles starten ab 6,90€ in der Basisvariante. Je nach deiner Auswahl an Toppings, Eissorten und Spezialsaucen variiert der Preis. Unsere vollständige Speisekarte findest du online.",
   },
   {
     q: "Kann ich Bubble Waffles auch bestellen und liefern lassen?",
@@ -77,7 +77,7 @@ const FAQ_DATA = [
   },
   {
     q: "Gibt es auch vegane Bubble Waffles?",
-    a: "Ja, wir können Bubble Waffles auch ohne tierische Produkte zubereiten. Frage unser Team nach den aktuellen veganen Optionen für Teig, Eis und Toppings.",
+    a: "Ja, wir bieten auch rein pflanzliche Waffelteige sowie vegane Eissorten und fruchtige Toppings an. Frage unser Team vor Ort in Wetzlar einfach nach allen veganen Alternativen.",
   },
 ];
 
@@ -110,7 +110,7 @@ export default function BubbleWafflePage() {
               Das Original in Mittelhessen
             </div>
             <h1 className="font-heading text-5xl md:text-6xl text-charcoal mb-6 leading-[1.1]">
-              Die beste Bubble Waffle im gesamten Lahn-Dill-Kreis
+              Original Bubble Waffles in Wetzlar – Handgemacht bei Hey Fede!
             </h1>
             <p className="font-body text-lg text-brown-mid leading-relaxed mb-8 max-w-[500px]">
               Vergiss trockene, langweilige Waffeln. In der historischen
@@ -192,8 +192,11 @@ export default function BubbleWafflePage() {
           <h2 className="font-heading text-3xl text-charcoal mb-2 text-center">
             Unsere Bubble Waffles — frisch zubereitet
           </h2>
-          <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
-            Echte Fotos direkt aus unserer Dessertbar in Wetzlar
+          <p className="font-body text-charcoal/70 text-center mb-8 max-w-2xl mx-auto leading-relaxed">
+            Wirf einen Blick auf unsere frisch zubereiteten Bubble Waffles in
+            der Wetzlarer Langgasse. Jede Kreation wird vor deinen Augen mit
+            feinstem Softeis, bunten Toppings und hausgemachten Soßen liebevoll
+            angerichtet.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {getPhotosForPage("/bubble-waffles-wetzlar").map((photo) => (
@@ -250,10 +253,11 @@ export default function BubbleWafflePage() {
           <h2 className="font-heading text-4xl mb-6">
             Lust auf eine Waffel auf dem Sofa?
           </h2>
-          <p className="font-body text-lg text-cream/90 mb-10">
-            Wir liefern unsere Bubble Waffles natürlich auch direkt zu dir nach
-            Hause. Perfekt verpackt, damit sie knusprig bleiben. Entdecke
-            unseren Lieferservice im Lahn-Dill-Kreis.
+          <p className="font-body text-lg text-cream/90 mb-10 max-w-xl mx-auto">
+            Genieße deine frisch gebackenen Bubble Waffles ganz bequem auf dem
+            Sofa. Über unseren praktischen Online-Bestellservice bringen wir
+            deine Waffel-Kreationen stets warm, duftend und knusprig direkt zu
+            dir nach Hause in Wetzlar und Umgebung.
           </p>
           <a
             href="/lieferservice-desserts-lahn-dill"

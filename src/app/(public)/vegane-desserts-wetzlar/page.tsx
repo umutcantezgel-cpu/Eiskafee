@@ -14,11 +14,12 @@ import { CheckCircle2 } from "lucide-react";
 export const revalidate = 60;
 
 export const metadata = buildMetadata({
-  title: "Vegane & Halal Desserts Wetzlar | Hey Fede!",
+  title: "Vegane Desserts Wetzlar – Pflanzlich & Halal | Hey Fede!",
   description:
     "Inklusiver Genuss in der Wetzlarer Altstadt. Entdecke unsere Auswahl an 100% veganen Eis-Sorten, laktosefreien Shakes und Halal-zertifizierten Süßspeisen.",
   path: "/vegane-desserts-wetzlar",
   keywords: [
+    "Vegane Desserts Wetzlar",
     "Veganes Café Wetzlar",
     "Halal Desserts Gießen",
     "Veganes Eis Lahn-Dill-Kreis",
@@ -100,14 +101,16 @@ export default function VeganeDessertsPage() {
               Inklusiver Genuss in Mittelhessen
             </div>
             <h1 className="font-heading text-5xl md:text-6xl text-[#2d4b36] mb-6 leading-[1.1]">
-              Vegane & Halal
+              Vegane Desserts Wetzlar –
               <br />
-              Süßspeisen
+              Pflanzlich & Halal
             </h1>
             <p className="font-body text-lg text-[#3e664b] leading-relaxed mb-10 max-w-[500px]">
-              Gutes Essen sollte für alle da sein. Wir sind stolz darauf, eine
-              der besten Anlaufstellen im Lahn-Dill-Kreis und dem Raum Gießen
-              für pflanzliche Eiscreme und Halal-konforme Desserts zu sein.
+              Gutes Essen verbindet Menschen. Bei Hey Fede! in Wetzlar sind wir
+              stolz darauf, eine erstklassige Anlaufstelle im Lahn-Dill-Kreis
+              und Raum Gießen für 100 % pflanzliche Eiscreme, laktosefreie
+              Waffeln und Halal-konforme Süßspeisen zu bieten. Entdecke puren
+              Genuss mitten in der Altstadt!
             </p>
             <PrimaryButton
               href="/menu"
@@ -197,9 +200,9 @@ export default function VeganeDessertsPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-16">
             <div>
-              <h2 className="font-heading text-3xl text-charcoal mb-6">
+              <h3 className="font-heading text-3xl text-charcoal mb-6">
                 Veganes Eis & Shakes
-              </h2>
+              </h3>
               <ul className="space-y-4">
                 {[
                   "Fruchtige Sorbets (Mango, Zitrone, Erdbeere)",
@@ -216,21 +219,24 @@ export default function VeganeDessertsPage() {
                 ))}
               </ul>
               <p className="font-body text-brown-mid mt-6 leading-relaxed">
-                Egal ob du dich aus ethischen Gründen rein pflanzlich ernährst
-                oder laktoseintolerant bist – bei uns musst du auf nichts
-                verzichten. Genieße unsere veganen Fruit-Shakes, während du
-                durch die Wetzlarer Altstadt schlenderst.
+                Egal ob du dich aus ethischen Gründen vegan ernährst, eine
+                Laktoseintoleranz berücksichtigen musst oder einfach neugierig
+                auf neuartige Geschmacksrichtungen bist – bei Hey Fede! genießt
+                du ohne Abstriche. Probiere unsere cremig aufgeschlagenen
+                veganen Shakes und Sorbets bei einem entspannten Spaziergang
+                durch die historische Wetzlarer Altstadt.
               </p>
             </div>
 
             <div className="bg-cream rounded-3xl p-8 border border-peach/30">
-              <h2 className="font-heading text-3xl text-charcoal mb-6">
+              <h3 className="font-heading text-3xl text-charcoal mb-6">
                 Halal Transparenz
-              </h2>
+              </h3>
               <p className="font-body text-brown-mid leading-relaxed mb-4">
-                Viele unserer Gäste aus Wetzlar, Gießen und Marburg legen großen
-                Wert auf Halal-konforme Ernährung. Bei uns gibt es volle
-                Transparenz:
+                Für unsere Gäste aus Mittelhessen steht Transparenz an erster
+                Stelle. Wir legen Höchstwert auf eine lückenlose Deklaration
+                aller verwendeten Rohstoffe und bieten ein verlässliches
+                Sortiment für bewusste Genießer:
               </p>
               <ul className="space-y-4">
                 {[
@@ -298,9 +304,11 @@ export default function VeganeDessertsPage() {
             Vegane Desserts bis an die Haustür?
           </h2>
           <p className="font-body text-lg text-white/90 mb-10">
-            Wir liefern unsere veganen und Halal-konformen Desserts direkt zu
-            dir nach Hause. Bestelle bequem über unseren Online-Shop — wir
-            liefern in Wetzlar und im gesamten Lahn-Dill-Kreis.
+            Möchtest du unsere veganen Waffelkreationen, erfrischenden
+            Pflanzenshakes und Halal-zertifizierten Süßspeisen gemütlich zu
+            Hause genießen? Unser Lieferservice bringt deine Lieblingsdesserts
+            frisch zubereitet direkt an deine Haustür in Wetzlar sowie in
+            umliegende Gemeinden im Lahn-Dill-Kreis.
           </p>
           <a
             href="/lieferservice-desserts-lahn-dill"
@@ -318,7 +326,9 @@ export default function VeganeDessertsPage() {
             Vegane Vielfalt bei Hey Fede!
           </h2>
           <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
-            Echte Fotos unserer pflanzlichen Köstlichkeiten
+            Wirf einen Blick in unsere Küche: Hier findest du authentische
+            Aufnahmen unserer frischen veganen Spezialitäten, bunt gestalteten
+            Dessertteller und fruchtigen Eisbecher in Wetzlar.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {getPhotosForPage("/vegane-desserts-wetzlar").map((photo) => (

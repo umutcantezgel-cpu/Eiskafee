@@ -2,7 +2,8 @@
 
 import React from "react";
 import Image from "next/image";
-import { motion, useReducedMotion } from "framer-motion";
+import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 import { TransitionLink } from "@/components/ui/TransitionLink";
 import { FloatingBlob } from "@/components/atoms/FloatingBlob";
 import { EyebrowPill } from "@/components/atoms/EyebrowPill";
@@ -11,30 +12,18 @@ import { PrimaryCTA, SecondaryCTA } from "@/components/atoms/buttons";
 import { ScallopBadge } from "@/components/atoms/ScallopBadge";
 import { StampBadge } from "@/components/atoms/StampBadge";
 
-import PhysicsPlayground from "@/components/ui/PhysicsPlayground";
+// Dynamically import PhysicsPlayground to unblock main thread & LCP
+const PhysicsPlayground = dynamic(
+  () => import("@/components/ui/PhysicsPlayground"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="w-full h-full bg-cream/20 rounded-full animate-pulse" />
+    ),
+  },
+);
 
 export function Hero() {
-  const prefersReducedMotion = useReducedMotion();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring" as const, stiffness: 300, damping: 24 },
-    },
-  };
-
   return (
     <section className="relative w-full min-h-[100svh] flex items-start lg:items-center bg-peach pt-32 lg:pt-28 pb-32 overflow-hidden">
       {/* Dot Pattern Overlay */}
@@ -60,42 +49,29 @@ export function Hero() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 w-full">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
-          {/* Left: Content Stack */}
-          <motion.div
-            variants={prefersReducedMotion ? undefined : containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="flex flex-col items-start max-w-2xl"
-          >
-            <motion.div variants={itemVariants} className="mb-6">
+          {/* Left: Content Stack (Using CSS animations for SEO visibility) */}
+          <div className="flex flex-col items-start max-w-2xl animate-fade-in">
+            <div className="mb-6">
               <EyebrowPill
                 label="DESSERTBAR & CAFÉ · WETZLAR"
                 statusColor="bg-terracotta"
               />
-            </motion.div>
+            </div>
 
-            <motion.h1
-              variants={itemVariants}
-              className="font-heading text-5xl md:text-6xl lg:text-7xl text-charcoal leading-[1.1] mb-6"
-            >
-              Süße Momente,
-              <br />
-              <span className="text-terracotta">frisch gemacht.</span>
-            </motion.h1>
+            <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl text-charcoal leading-[1.1] mb-6">
+              Bubble Waffles & Eis in Wetzlar – <br />
+              <span className="text-terracotta">
+                Süße Momente, frisch gemacht.
+              </span>
+            </h1>
 
-            <motion.p
-              variants={itemVariants}
-              className="font-bold text-charcoal/80 text-lg md:text-xl leading-relaxed mb-10 max-w-lg"
-            >
+            <p className="font-bold text-charcoal/80 text-lg md:text-xl leading-relaxed mb-10 max-w-lg">
               Bubble Waffeln, Pancake Boxen, Special Shakes und mehr - alles
               selbstgemacht mit Liebe. Dein gemütlicher Treffpunkt in der
               Wetzlarer Langgasse.
-            </motion.p>
+            </p>
 
-            <motion.div
-              variants={itemVariants}
-              className="flex flex-wrap items-center gap-4 mb-12"
-            >
+            <div className="flex flex-wrap items-center gap-4 mb-12">
               <TransitionLink href="/menu">
                 <span
                   className="hf-btn-wrap"
@@ -111,12 +87,12 @@ export function Hero() {
                   Uns besuchen
                 </span>
               </TransitionLink>
-            </motion.div>
+            </div>
 
-            <motion.div variants={itemVariants}>
+            <div>
               <RatingPill score={4.8} reviewCount={84} />
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Right: Visual */}
           <motion.div

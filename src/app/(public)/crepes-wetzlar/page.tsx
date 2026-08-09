@@ -13,9 +13,9 @@ import { SITE, BUSINESS } from "@/lib/seo/business-data";
 export const revalidate = 60;
 
 export const metadata = buildMetadata({
-  title: "Crêpes Wetzlar | Frisch & Handgemacht | Hey Fede!",
+  title: "Crêpes Wetzlar | Frisch & Handgemacht bei Hey Fede!",
   description:
-    "Die besten Crêpes in Wetzlar! Süß oder herzhaft, frisch zubereitet in der Altstadt. Von Nutella über Pistazie bis Schinken-Käse. Jetzt bei Hey Fede! probieren.",
+    "Die besten Crêpes in Wetzlar! Süß oder herzhaft, frisch zubereitet in der Altstadt. Nutella, Pistazie, Schinken-Käse & mehr. Jetzt bei Hey Fede! genießen.",
   path: "/crepes-wetzlar",
   keywords: [
     "Crêpes Wetzlar",
@@ -46,11 +46,11 @@ const FAQ_DATA = [
   },
   {
     q: "Gibt es auch vegane Crêpes?",
-    a: "Ja! Wir können Crêpes auch mit veganen Zutaten zubereiten. Frage unser Team nach den aktuellen veganen Optionen — wir finden immer eine leckere Lösung.",
+    a: "Ja, absolut! Wir bieten pflanzliche Teigoptionen sowie eine Vielzahl an veganen Füllungen und Toppings wie frische Früchte, Nüsse, Zimt & Zucker oder vegane Soßen an. Sprich unser Team vor Ort an oder filtere in der Online-Speisekarte nach veganen Crêpes.",
   },
   {
     q: "Kann ich Crêpes auch bestellen und liefern lassen?",
-    a: "Ja, über unsere Online-Bestellung auf hey-fede.de/order-hub kannst du Crêpes zur Abholung oder Lieferung bestellen. Wir liefern in Wetzlar und Umgebung.",
+    a: "Ja, selbstverständlich! Über unsere komfortable Online-Bestellung kannst du dir deine Crêpes bequem zur zeitgenauen Abholung vorbestellen oder per Lieferservice direkt nach Hause liefern lassen. Wir beliefern das gesamte Stadtgebiet Wetzlar sowie viele Orte im Lahn-Dill-Kreis.",
   },
 ];
 
@@ -120,7 +120,7 @@ export default function CrepesWetzlarPage() {
               Frisch von der Platte in der Altstadt
             </div>
             <h1 className="font-heading text-5xl md:text-6xl text-charcoal mb-6 leading-[1.1]">
-              Crêpes wie in Paris — mitten in Wetzlar
+              Crêpes Wetzlar — Frisch & handgemacht wie in Paris
             </h1>
             <p className="font-body text-lg text-brown-mid leading-relaxed mb-8 max-w-[500px]">
               Hauchdünn, butterweich und frisch vor deinen Augen zubereitet.
@@ -248,8 +248,11 @@ export default function CrepesWetzlarPage() {
           <h2 className="font-heading text-3xl text-charcoal mb-2 text-center">
             Unsere Crêpes — frisch vom Eisen
           </h2>
-          <p className="font-body text-charcoal/60 text-center mb-8 max-w-lg mx-auto">
-            Echte Fotos aus der Hey Fede! Dessertbar in Wetzlar
+          <p className="font-body text-charcoal/60 text-center mb-8 max-w-xl mx-auto leading-relaxed">
+            Wir legen großen Wert auf Frische und Handwerk. Hier findest du
+            echte Einblicke aus unserer Dessertbar in der Wetzlarer Altstadt —
+            von frisch gebackenen Crêpes auf heißer Platte bis zu unseren
+            beliebten Kreationen.
           </p>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             {getPhotosForPage("/crepes-wetzlar").map((photo) => (
@@ -307,9 +310,11 @@ export default function CrepesWetzlarPage() {
             Crêpes-Lust? Bestell jetzt online!
           </h2>
           <p className="font-body text-lg text-cream/90 mb-10">
-            Ob zur Abholung oder direkt an deine Haustür — bestelle deine
-            Lieblingscrêpes bequem online. Wir liefern in Wetzlar und den
-            gesamten Lahn-Dill-Kreis.
+            Lust auf frisch gebackene süße oder herzhafte Crêpes? Ob zur
+            schnellen Abholung in der Wetzlarer Altstadt oder bequem per
+            Lieferservice direkt nach Hause — bestelle deine Dessert-Favoriten
+            ganz einfach online. Wir beliefern Wetzlar und den gesamten
+            Lahn-Dill-Kreis.
           </p>
           <a
             href="/lieferservice-desserts-lahn-dill"

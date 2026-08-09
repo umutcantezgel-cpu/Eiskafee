@@ -92,19 +92,19 @@ test.describe("Tier 3 - Cross-Feature Consistency & Navigation Flows", () => {
       await expect(page.locator("body")).toContainText("06441 7890426");
     });
 
-    test("opening hours are consistent (Mo/Di closed, Sun opens at 13:00)", async ({
+    test("opening hours are consistent (Mo-Fr 12:00, Sa-So 10:00)", async ({
       page,
     }) => {
       await page.goto("/visit");
       await waitForHydration(page);
 
-      // Verify Montag/Dienstag is Closed / Geschlossen
+      // Verify Montag/Dienstag is 12:00 - 20:00
       const bodyText = await page.locator("body").innerText();
-      expect(bodyText).toMatch(/Montag.*(Geschlossen|closed)/i);
-      expect(bodyText).toMatch(/Dienstag.*(Geschlossen|closed)/i);
+      expect(bodyText).toMatch(/Montag[\s\S]*12:00/i);
+      expect(bodyText).toMatch(/Dienstag[\s\S]*12:00/i);
 
-      // Verify Sonntag is 13:00
-      expect(bodyText).toMatch(/Sonntag.*13:00/i);
+      // Verify Sonntag is 10:00
+      expect(bodyText).toMatch(/Sonntag[\s\S]*10:00/i);
     });
 
     test("Schema.org JSON-LD contains consistent business data", async ({

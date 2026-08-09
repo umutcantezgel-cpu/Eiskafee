@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "next/image";
+import type { Metadata } from "next";
 import { HomeSEO } from "@/content/seo/HomeSEO";
 import { SEOContentBlock } from "@/components/seo/SEOContentBlock";
 import { SchemaScripts } from "@/components/seo/SchemaScripts";
@@ -29,14 +30,13 @@ import { StatsSection } from "@/components/sections/home/StatsSection";
 import { OccasionsSection } from "@/components/sections/home/OccasionsSection";
 import { SeasonalHighlights } from "@/components/sections/home/SeasonalHighlights";
 import { FAQQuickCheck } from "@/components/sections/home/FAQQuickCheck";
-import { NewsletterSection } from "@/components/sections/home/NewsletterSection";
 
 export const revalidate = 60;
 
-export const metadata = buildMetadata({
-  title: "Hey Fede! - Handgemachte Bubble Waffles & Eis in Wetzlar",
+export const metadata: Metadata = buildMetadata({
+  title: "Hey Fede! Bubble Waffles & Eis in Wetzlar",
   description:
-    "Süße Momente im Herzen der Wetzlarer Altstadt. Handgemachte Bubble Waffles, Premium-Softeis und Shakes. Komm vorbei oder bestelle direkt online zur Abholung.",
+    "Handgemachte Bubble Waffles, Premium-Softeis und Shakes in der Wetzlarer Altstadt. Komm vorbei oder bestelle zur Abholung.",
   path: "/",
   ogImage: "/og/home.png",
   keywords: [
@@ -142,16 +142,19 @@ export default function HomePage() {
                 <span className="text-terracotta">alle Generationen</span>
               </h2>
               <p className="font-body text-[0.97rem] text-brown-mid leading-[1.85] mb-7 max-w-[440px]">
-                Bei Hey Fede! dreht sich alles ums Zusammenkommen. Ob
-                Familienausflug, Verabredung mit Freunden oder ein süßer
-                Nachmittag mit den Kleinen - hier ist Platz für alle.
+                Bei Hey Fede! dreht sich alles um unvergessliche Genussmomente
+                und das gemütliche Zusammenkommen in der Wetzlarer Altstadt. Ob
+                spontaner Familienausflug, romantische Verabredung mit Freunden
+                oder ein entspannter Nachmittag mit den Kleinen – in unserer
+                kinderfreundlichen Dessertbar findet jeder seinen
+                Lieblingsplatz.
               </p>
 
               <div className="grid grid-cols-2 gap-3">
                 {[
                   {
                     title: "Kinderecke",
-                    desc: "Spielbereich für die Kleinen",
+                    desc: "Liebevoll gestalteter Spielbereich für Babys & Kleinkinder",
                     photo:
                       "/assets/photos/laden-kinderecke-spielzeug-nahaufnahme-hey-fede-wetzlar.jpg",
                     photoAlt:
@@ -159,7 +162,7 @@ export default function HomePage() {
                   },
                   {
                     title: "Wickelraum",
-                    desc: "Komfort für Familien",
+                    desc: "Sauberer & voll ausgestatteter Wickelbereich für Familien",
                     photo:
                       "/assets/photos/laden-wickeltisch-babyraum-hey-fede-wetzlar.jpg",
                     photoAlt:
@@ -167,13 +170,13 @@ export default function HomePage() {
                   },
                   {
                     title: "Vegan",
-                    desc: "Vegane Optionen verfügbar",
+                    desc: "Vielfältige Auswahl an veganen Waffeln, Crêpes & Eis",
                     photo: null,
                     photoAlt: null,
                   },
                   {
                     title: "Hausgemacht",
-                    desc: "Alles frisch & selbst gemacht",
+                    desc: "Täglich frisch zubereitete Teige, Saucen & Softeis",
                     photo: null,
                     photoAlt: null,
                   },
@@ -425,9 +428,6 @@ export default function HomePage() {
       {/* ─── FAQ Quick Check ───────────────────────────────────────────────── */}
       <FAQQuickCheck />
 
-      {/* ─── Newsletter ────────────────────────────────────────────────────── */}
-      <NewsletterSection />
-
       {/* ─── CTA Banner ────────────────────────────────────────────────────── */}
       <div className="bg-cream pb-24">
         <div className="hf-container">
@@ -461,7 +461,11 @@ export default function HomePage() {
                   margin: "10px 0 24px",
                 }}
               >
-                Bestelle jetzt bei Lieferando - keine Liefergebühr.
+                Lust auf frisch gebackene Bubble Waffles, cremig beladene
+                Eisbecher oder warme Crêpes direkt nach Hause? Bestelle deine
+                Lieblingsdesserts bequem online zur Abholung in der Wetzlarer
+                Langgasse oder lass sie dir schnell und ohne Liefergebühr
+                liefern.
               </p>
               <TransitionLink href="/menu">
                 <span

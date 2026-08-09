@@ -174,15 +174,17 @@ export default function KontaktPage() {
             {...fadeUp}
             className="font-heading text-[clamp(2.4rem,6vw,4.2rem)] text-brown mb-4 leading-[1.05]"
           >
-            Schreib uns!
+            Kontakt – Hey Fede Dessertbar & Café Wetzlar
           </motion.h1>
           <motion.p
             {...fadeUp}
             transition={{ ...fadeUp.transition, delay: 0.1 }}
-            className="font-body text-[1.06rem] text-brown-mid max-w-[520px] mx-auto"
+            className="font-body text-[1.06rem] text-brown-mid max-w-[580px] mx-auto"
           >
-            Ob Frage, Feedback, Catering-Anfrage oder einfach nur ein Hallo -
-            wir freuen uns auf deine Nachricht.
+            Hast du Fragen zu unseren handgemachten Eissortimenten, veganen
+            Waffeln, Crêpes oder Catering für deine Feier in Wetzlar? Schreib
+            uns direkt über das Kontaktformular, per WhatsApp oder E-Mail. Unser
+            Team steht dir gerne persönlich zur Seite.
           </motion.p>
         </div>
 
@@ -217,7 +219,10 @@ export default function KontaktPage() {
                   Kontaktformular
                 </h2>
                 <p className="font-body text-[0.88rem] text-brown-mid mb-8">
-                  Wir antworten in der Regel innerhalb von 24 Stunden.
+                  Egal ob allgemeine Anfragen, Tischreservierungen,
+                  Catering-Planung oder Feedback – schick uns deine Nachricht
+                  und unser Service-Team meldet sich innerhalb von 24 Stunden
+                  persönlich bei dir zurück.
                 </p>
 
                 <AnimatePresence mode="wait">
@@ -522,14 +527,59 @@ export default function KontaktPage() {
                 </div>
                 <div>
                   <div className="font-heading text-[1.1rem] text-[#25D366] mb-0.5">
-                    Lieber per WhatsApp?
+                    Lieber direkt per WhatsApp kontaktieren?
                   </div>
-                  <div className="font-body text-[0.82rem] text-[#25D366]/70 font-bold">
-                    Schreib uns direkt - wir antworten superschnell.
+                  <div className="font-body text-[0.82rem] text-[#25D366]/80 font-bold">
+                    Schreib uns eine schnelle Nachricht auf WhatsApp für
+                    spontane Fragen zu Öffnungszeiten, Reservierungen oder
+                    unseren Eissorten.
                   </div>
                 </div>
               </a>
             </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ Anfahrt & Zusatzinformationen ═══ */}
+      <section className="pb-20 pt-4 px-6 border-t border-peach/20">
+        <div className="max-w-[1200px] mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-peach/20 shadow-sm">
+              <h3 className="font-heading text-lg text-brown mb-2">
+                Anfahrt &amp; Erreichbarkeit
+              </h3>
+              <p className="font-body text-sm text-brown-mid leading-relaxed">
+                Du findest unsere Hey Fede Dessertbar zentral gelegen in
+                Wetzlar. Ob zu Fuß durch die Innenstadt, mit dem Fahrrad oder
+                mit öffentlichen Verkehrsmitteln – wir sind bequem erreichbar
+                und freuen uns auf deinen Besuch.
+              </p>
+            </div>
+
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-peach/20 shadow-sm">
+              <h3 className="font-heading text-lg text-brown mb-2">
+                Catering &amp; Event-Anfragen
+              </h3>
+              <p className="font-body text-sm text-brown-mid leading-relaxed">
+                Planst du eine Hochzeit, einen Geburtstag oder ein Firmenevent
+                in Wetzlar und Umgebung? Nutze unser Formular mit der
+                Betreff-Auswahl &bdquo;Catering &amp; Events&ldquo; und wir
+                erstellen dir ein individuelles Dessert-Angebot.
+              </p>
+            </div>
+
+            <div className="bg-white/60 backdrop-blur-md rounded-2xl p-6 border border-peach/20 shadow-sm">
+              <h3 className="font-heading text-lg text-brown mb-2">
+                Schnelle Antwortzeiten
+              </h3>
+              <p className="font-body text-sm text-brown-mid leading-relaxed">
+                Wir bearbeiten deine Nachrichten schnellstmöglich. Für besonders
+                dringende Anfragen oder spontane Reservierungen erreichst du uns
+                am schnellsten direkt per WhatsApp oder telefonisch während
+                unserer Öffnungszeiten.
+              </p>
+            </div>
           </div>
         </div>
       </section>

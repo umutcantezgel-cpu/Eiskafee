@@ -1,7 +1,7 @@
 import { buildMetadata } from "@/lib/seo/base-metadata";
 
 export const metadata = buildMetadata({
-  title: "Kontakt · Schreib uns!",
+  title: "Kontakt & Anfahrt | Hey Fede Dessertbar & Café Wetzlar",
   description:
     "Kontaktiere Hey Fede! Dessertbar & Café in Wetzlar. Schreib uns per Formular, WhatsApp oder E-Mail. Wir freuen uns auf deine Nachricht!",
   path: "/kontakt",

@@ -9,29 +9,33 @@ import * as CookieConsentLib from "vanilla-cookieconsent";
 export default function CookieRichtliniePage() {
   return (
     <LegalPageLayout
-      title="Cookie-Richtlinie"
-      subtitle="Details zu allen eingesetzten Cookies und Technologien auf Hey Fede!"
+      title="Cookie-Richtlinie bei Hey Fede!"
+      subtitle="Transparente Informationen zu allen eingesetzten Cookies, Web-Technologien und Datenschutz-Präferenzen."
       lastUpdated="Juni 2026"
     >
       <div
         style={{
           fontFamily: "var(--font-body), sans-serif",
-          fontSize: "0.9rem",
+          fontSize: "0.95rem",
           color: "#5c3d35",
-          lineHeight: 1.7,
+          lineHeight: 1.75,
         }}
       >
         <p style={{ marginBottom: 24 }}>
-          Diese Cookie-Richtlinie erklärt, was Cookies sind und wie wir sie auf
-          unserer Website verwenden. Du solltest diese Richtlinie lesen, um zu
-          verstehen, welche Arten von Cookies wir verwenden, welche
-          Informationen wir mit Cookies sammeln und wie diese Informationen
-          verwendet werden.
+          Diese Cookie-Richtlinie erläutert transparent und nachvollziehbar,
+          welche digitalen Technologien und Cookies auf der Website von Hey
+          Fede! in Wetzlar eingesetzt werden. Wir informieren dich darüber, für
+          welche konkreten Zwecke Daten gespeichert werden, welche Arten von
+          Cookies zum Einsatz kommen und wie du deine persönlichen Einstellungen
+          jederzeit selbst verwalten kannst.
         </p>
 
-        <p style={{ marginBottom: 24 }}>
-          Deine Zustimmung gilt für die folgende Domain:{" "}
-          <strong>hey-fede.de</strong> (sowie etwaige Subdomains).
+        <p style={{ marginBottom: 32 }}>
+          Deine erteilte Zustimmung gilt für die Webdomäne{" "}
+          <strong style={{ color: "#2d1f19" }}>hey-fede.de</strong> sowie für
+          alle dazugehörigen Subdomains unserer Eiscafé- und
+          Dessertbar-Plattform. Wir legen höchsten Wert auf Datensparsamkeit und
+          Transparenz bei jedem deiner Besuche.
         </p>
 
         <h2
@@ -40,18 +44,20 @@ export default function CookieRichtliniePage() {
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
+            marginTop: 36,
           }}
         >
-          1. Was sind Cookies?
+          1. Was sind Cookies und Web-Technologien?
         </h2>
         <p style={{ marginBottom: 24 }}>
-          Cookies sind kleine Textdateien, die dazu verwendet werden, kleine
-          Informationen zu speichern. Sie werden auf deinem Gerät gespeichert,
-          wenn die Website in deinem Browser geladen wird. Diese Cookies helfen
-          uns, die Website ordnungsgemäß funktionieren zu lassen, sie sicherer
-          zu machen, eine bessere Benutzererfahrung zu bieten und zu verstehen,
-          wie die Website funktioniert, sowie zu analysieren, was funktioniert
-          und wo Verbesserungen nötig sind.
+          Cookies und ähnliche Speichertechnologien (wie Local Storage) sind
+          kleine Textdateien oder Datenspeicher, die beim Besuch unserer Website
+          auf deinem Endgerät (Browser, Smartphone oder Tablet) hinterlegt
+          werden. Sie ermöglichen es uns, dir eine reibungslose Navigation,
+          sichere Bestellabläufe für unsere Eis- und Dessertspezialitäten sowie
+          eine individuell angepasste Nutzungserfahrung bei Hey Fede! in Wetzlar
+          zu gewährleisten. Darüber hinaus helfen anonymisierte Erkenntnisse aus
+          der Nutzung dabei, unser Online-Angebot kontinuierlich zu verbessern.
         </p>
 
         <h2
@@ -60,24 +66,47 @@ export default function CookieRichtliniePage() {
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
+            marginTop: 36,
           }}
         >
           2. Wie verwenden wir Cookies?
         </h2>
-        <p style={{ marginBottom: 24 }}>
-          Wie die meisten Online-Dienste verwendet unsere Website First-Party-
-          und Third-Party-Cookies für verschiedene Zwecke. Die
-          First-Party-Cookies (Erstanbieter) sind meistens notwendig, damit die
-          Website richtig funktioniert. Sie sammeln keine deiner persönlich
-          identifizierbaren Daten. <br />
-          <br />
-          Die Third-Party-Cookies (Drittanbieter), die auf unserer Website
-          verwendet werden, dienen hauptsächlich dazu, zu verstehen, wie die
-          Website funktioniert, wie du mit unserer Website interagierst, unsere
-          Dienste sicher zu halten, dir irrelevante Werbung fernzuhalten und dir
-          alles in allem eine bessere und verbesserte Benutzererfahrung zu
-          bieten.
+        <p style={{ marginBottom: 16 }}>
+          Wie bei modernen Webanwendungen üblich setzt Hey Fede! sowohl
+          Erstanbieter-Cookies (First-Party) als auch Drittanbieter-Cookies
+          (Third-Party) für klar definierte Zwecke ein:
         </p>
+        <ul
+          style={{
+            paddingLeft: 24,
+            marginBottom: 24,
+            display: "flex",
+            flexDirection: "column",
+            gap: 12,
+          }}
+        >
+          <li>
+            <strong style={{ color: "#2d1f19" }}>
+              Erstanbieter-Cookies (First-Party):
+            </strong>{" "}
+            Werden direkt von unserer Website gesetzt. Sie sind technisch
+            erforderlich, um Basisfunktionen wie die Session-Verwaltung beim
+            Login, die Speicherung deines Warenkorbs oder die Merkfunktion für
+            deine Cookie-Einwilligungen bereitzustellen. Diese Notwendigen
+            Cookies erfassen keine personenbezogenen Profile zu
+            Marketingzwecken.
+          </li>
+          <li>
+            <strong style={{ color: "#2d1f19" }}>
+              Drittanbieter-Cookies (Third-Party):
+            </strong>{" "}
+            Werden von eingebundenen Diensten (wie beispielsweise Google Maps
+            für unsere interaktive Standort- und Anfahrtskarte in Wetzlar)
+            verwendet. Sie dienen dazu, interaktive Zusatzfunktionen
+            bereitzustellen und die technische Stabilität sowie Performance
+            unserer Seite sicherzustellen.
+          </li>
+        </ul>
 
         <h2
           style={{
@@ -85,19 +114,26 @@ export default function CookieRichtliniePage() {
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
+            marginTop: 36,
           }}
         >
           3. Welche Arten von Cookies verwenden wir?
         </h2>
+        <p style={{ marginBottom: 20 }}>
+          Nachfolgend findest du eine detaillierte und transparente Übersicht
+          aller auf unserer Plattform genutzten Cookies und
+          Local-Storage-Einträge, aufgeteilt nach ihrer Zweck-Kategorie,
+          Speicherdauer und dem jeweiligen Anbieter:
+        </p>
 
         {/* Interactive cookie cards */}
-        <div style={{ display: "grid", gap: 12, marginBottom: 32 }}>
+        <div style={{ display: "grid", gap: 12, marginBottom: 36 }}>
           {[
             {
               name: "cc_cookie",
               provider: "Hey Fede!",
               purpose:
-                "Speichert deine getroffenen Cookie-Einwilligungen und -Ablehnungen, damit das Banner nicht ständig neu erscheint.",
+                "Speichert deine getroffenen Cookie-Einwilligungen und Präferenzen, damit das Banner bei deinen nächsten Besuchen nicht erneut erscheint.",
               duration: "6 Monate",
               category: "Notwendig",
             },
@@ -105,7 +141,7 @@ export default function CookieRichtliniePage() {
               name: "__session",
               provider: "Firebase Auth",
               purpose:
-                "Verwaltung der aktiven Login-Sitzung, wenn du ein Konto bei uns erstellt hast.",
+                "Verwaltung deiner aktiven und gesicherten Login-Sitzung in deinem persönlichen Hey Fede! Kundenkonto.",
               duration: "Sitzung",
               category: "Notwendig",
             },
@@ -113,7 +149,7 @@ export default function CookieRichtliniePage() {
               name: "splash_shown",
               provider: "Hey Fede!",
               purpose:
-                "Stellt sicher, dass die Eintrittsanimation (Splash-Screen) pro Sitzung nur einmalig abgespielt wird.",
+                "Stellt sicher, dass die Begrüßungsanimation (Splash-Screen) pro Besuchssitzung nur einmalig für eine flüssige Bedienung abgespielt wird.",
               duration: "Sitzung",
               category: "Notwendig",
             },
@@ -121,7 +157,7 @@ export default function CookieRichtliniePage() {
               name: "hf_ach_*",
               provider: "Hey Fede!",
               purpose:
-                "Speichert deinen Fortschritt bei versteckten Easter Eggs und Achievements (Gamification) lokal in deinem Browser.",
+                "Speichert deinen lokalen Spielfortschritt bei versteckten Easter Eggs und Treue-Achievements direkt in deinem Browser.",
               duration: "Dauerhaft (Local Storage)",
               category: "Funktional",
             },
@@ -129,7 +165,7 @@ export default function CookieRichtliniePage() {
               name: "NID / 1P_JAR",
               provider: "Google Maps",
               purpose:
-                "Wird von Google gesetzt, um Nutzereinstellungen und Informationen zu speichern, wenn du die interaktive Anfahrtskarte ansiehst.",
+                "Wird von Google Maps verwendet, um Karteneinstellungen und Standortdaten für die interaktive Anfahrtsbeschreibung zu Hey Fede! in Wetzlar zu verarbeiten.",
               duration: "6 Monate",
               category: "Funktional",
             },
@@ -190,15 +226,18 @@ export default function CookieRichtliniePage() {
             fontSize: "1.6rem",
             color: "#2d1f19",
             marginBottom: 16,
+            marginTop: 36,
           }}
         >
           4. Verwalte deine Einstellungen
         </h2>
         <p style={{ marginBottom: 24 }}>
-          Du kannst deine Cookie-Präferenzen jederzeit ändern, indem du auf die
-          Schaltfläche unten klickst. Dies ermöglicht dir, das
-          Einwilligungsbanner erneut aufzurufen und deine Präferenzen zu ändern
-          oder deine Einwilligung sofort zu widerrufen.
+          Du behältst jederzeit die volle Kontrolle über deine Daten und
+          Cookie-Einstellungen. Über die nachfolgende Schaltfläche kannst du
+          deine getroffenen Einwilligungen für funktionale oder externe Dienste
+          (wie Google Maps) mit einem Klick anpassen, erneuern oder vollständig
+          widerrufen. Selbstverständlich kannst du Cookies auch direkt in den
+          Sicherheitseinstellungen deines Webbrowsers verwalten oder löschen.
         </p>
 
         <motion.button

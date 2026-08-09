@@ -7,31 +7,52 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { Send, MessageCircle, ArrowDown } from "lucide-react";
+import {
+  Send,
+  MessageCircle,
+  ArrowDown,
+  MapPin,
+  Phone,
+  Clock,
+} from "lucide-react";
 import { collection, addDoc } from "firebase/firestore";
 import { db } from "@/lib/firebase";
 import { useToastStore } from "@/store/useToastStore";
 import { GiganticTypography } from "@/components/ui/GiganticTypography";
 import { SchemaScripts } from "@/components/seo/SchemaScripts";
 import { buildFaqSchema } from "@/lib/seo/schema/pages";
+import { BUSINESS, FULL_ADDRESS } from "@/lib/seo/business-data";
 
 const FAQS = [
   {
-    question: "Liefert ihr?",
+    question: "Liefert Hey Fede! Desserts & Waffeln in Wetzlar?",
     answer:
-      "Ja, in ausgewählte PLZs (z.B. 35576, 35578). Check es im Checkout!",
+      "Ja! Wir liefern unsere frischen Bubble Waffles, Crêpes, Eisbecher und Shakes in ausgewählte Postleitzahlengebiete in Wetzlar (z.B. 35576, 35578) und Umgebung. Gib einfach deine Adresse im Online-Checkout ein, um die Verfügbarkeit zu prüfen.",
   },
   {
-    question: "Was ist in der Box?",
-    answer: "2 Waffeln, 4 Soßen, Erdbeeren & sehr viel Liebe.",
+    question: "Was genau beinhaltet die Hey Fede! Waffel-Box?",
+    answer:
+      "Unsere beliebte Waffel-Box enthält zwei frisch gebackene, knusprige Bubble Waffles, vier leckere Soßen nach Wahl, frische Erdbeeren sowie knusprige Toppings – perfekt zusammengestellt für gemeinsamen Genuss zu Hause.",
   },
   {
-    question: "Vegan?",
-    answer: "Einige Toppings/Soßen sind vegan. Am Teig tüfteln wir noch!",
+    question: "Gibt es vegane & laktosefreie Optionen im Angebot?",
+    answer:
+      "Selbstverständlich! Wir bieten eine vielfältige Auswahl an veganen und laktosefreien Toppings, Fruchtsoßen, Erfrischungssorbets sowie Hafermilch für alle Kaffeespezialitäten an. Unser Service-Team berät dich gerne vor Ort.",
   },
   {
-    question: "Reservieren?",
-    answer: "Einfach via WhatsApp oder über die Reservierungs-Seite.",
+    question: "Wie kann ich einen Tisch im Eiscafé Wetzlar reservieren?",
+    answer:
+      "Du kannst deinen Lieblingsplatz im Café bequem online über unsere Reservierungsseite reservieren oder uns eine kurze Nachricht via WhatsApp schicken. Wir bestätigen deine Anfrage innerhalb kürzester Zeit.",
+  },
+  {
+    question: "Welche Zahlungsmethoden werden im Café akzeptiert?",
+    answer:
+      "Bei Hey Fede! in Wetzlar akzeptieren wir sowohl kontaktlose Zahlungen per EC-Karte, Kreditkarte, Apple Pay und Google Pay als auch klassischen Barzahlung. Auch bei Online-Vorbestellungen zahlst du sicher und flexibel.",
+  },
+  {
+    question: "Bietet ihr Catering für Feiern & Events an?",
+    answer:
+      "Ja! Wir bringen frische Bubble Waffles, Crêpes und Eis-Catering zu Kindergeburtstagen, Firmenfeiern, Hochzeiten und privaten Feiern im gesamten Lahn-Dill-Kreis. Kontaktiere uns für ein maßgeschneidertes Angebot.",
   },
 ];
 
@@ -92,15 +113,19 @@ export default function SupportPage() {
       <section className="min-h-[100vh] flex flex-col justify-center items-center px-6 relative pt-20">
         <GiganticTypography
           as="h1"
-          highlightWords={["helfen?"]}
+          highlightWords={["Support"]}
           highlightColor="#CC624C"
           className="text-center justify-center max-w-[1200px] mx-auto"
         >
-          Wie können wir helfen?
+          Hilfe & Support bei Hey Fede!
         </GiganticTypography>
 
-        <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
-          Scroll weiter, um Antworten zu finden oder schreib uns.
+        <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[750px] font-bold text-brown/80 leading-relaxed">
+          Willkommen beim Kundenservice von Hey Fede! Dessertbar & Café in
+          Wetzlar. Ob Fragen zu Lieferservice, allergenfreien Zutaten,
+          Tischreservierungen oder Event-Catering – wir helfen dir persönlich
+          weiter. Finde sofort Antworten im FAQ oder kontaktiere unser Team
+          direkt.
         </p>
 
         <motion.div
@@ -120,10 +145,15 @@ export default function SupportPage() {
         <GiganticTypography
           delay={0.2}
           as="h2"
-          className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center"
+          className="!text-[clamp(2.5rem,5vw,4rem)] mb-6 text-center"
         >
-          Fragen blubbern auf.
+          Häufig gestellte Fragen (FAQ)
         </GiganticTypography>
+        <p className="text-center font-bold text-brown/70 max-w-[650px] mx-auto mb-16 text-lg">
+          Klicke auf ein Thema, um Antworten zu Lieferservice, Zutaten,
+          Tischreservierungen und Zahlungsmöglichkeiten bei Hey Fede! in Wetzlar
+          zu erhalten.
+        </p>
 
         <div className="relative w-full max-w-[1000px] h-[60vh] flex flex-wrap justify-center items-center gap-6">
           {FAQS.map((faq, idx) => {
@@ -183,10 +213,15 @@ export default function SupportPage() {
       >
         <GiganticTypography
           as="h2"
-          className="!text-[clamp(2.5rem,5vw,4rem)] mb-20 text-center z-10"
+          className="!text-[clamp(2.5rem,5vw,4rem)] mb-6 text-center z-10"
         >
-          Nichts gefunden?
+          Noch Fragen? Kontaktier uns!
         </GiganticTypography>
+        <p className="text-center font-bold text-brown/70 max-w-[650px] mx-auto mb-16 text-lg z-10">
+          Du hast deine Antwort in den FAQs nicht gefunden? Sende uns eine
+          Nachricht über das Formular oder melde dich direkt per WhatsApp bei
+          uns.
+        </p>
 
         <div className="w-full max-w-[1200px] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <motion.div style={{ y: formY }} className="z-10">
@@ -194,9 +229,9 @@ export default function SupportPage() {
               onSubmit={handleSubmit}
               className="bg-cream/90 backdrop-blur-xl p-8 md:p-12 rounded-[40px] shadow-clay border border-peach/50 flex flex-col gap-6"
             >
-              <h2 className="font-heading text-3xl text-charcoal mb-4">
-                Schreib uns
-              </h2>
+              <h3 className="font-heading text-3xl text-charcoal mb-4">
+                Schreib uns eine Nachricht
+              </h3>
 
               <div>
                 <label
@@ -287,14 +322,16 @@ export default function SupportPage() {
                 <MessageCircle size={40} />
               </div>
               <h3 className="font-heading text-3xl text-success mb-4">
-                Direkt Texten?
+                Schnell per WhatsApp chatten
               </h3>
-              <p className="text-success/80 text-lg font-bold mb-8">
-                Schreib uns einfach auf WhatsApp. Wir antworten superschnell.
+              <p className="text-success/80 text-lg font-bold mb-8 max-w-[400px]">
+                Möchtest du eine besonders schnelle Antwort zu deiner Bestellung
+                oder Reservierung? Schreib unserem Team in Wetzlar direkt auf
+                WhatsApp – wir sind für dich da!
               </p>
 
               <a
-                href="https://wa.me/49123456789"
+                href={`https://wa.me/${BUSINESS.whatsapp}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-success text-white px-8 py-4 rounded-full font-black uppercase tracking-wider hover:scale-105 transition-transform shadow-lg shadow-success/30"
@@ -305,6 +342,57 @@ export default function SupportPage() {
           </div>
         </div>
       </section>
+
+      {/* SECTION 4: Direct Contact & Business Info */}
+      <section className="py-20 px-6 relative z-10 max-w-[1200px] mx-auto">
+        <div className="bg-cream/80 backdrop-blur-md border border-terracotta/20 rounded-[40px] p-8 md:p-12 shadow-clay">
+          <h2 className="font-heading text-3xl md:text-4xl text-charcoal mb-8 text-center">
+            Persönlicher Kundenservice in Wetzlar
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-14 h-14 bg-terracotta/10 text-terracotta rounded-full flex items-center justify-center">
+                <MapPin size={28} />
+              </div>
+              <h3 className="font-heading text-xl text-charcoal">Standort</h3>
+              <p className="text-brown/80 font-bold text-sm leading-relaxed">
+                {FULL_ADDRESS}
+                <br />
+                Altstadt Wetzlar
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-14 h-14 bg-terracotta/10 text-terracotta rounded-full flex items-center justify-center">
+                <Phone size={28} />
+              </div>
+              <h3 className="font-heading text-xl text-charcoal">
+                Telefon & E-Mail
+              </h3>
+              <p className="text-brown/80 font-bold text-sm leading-relaxed">
+                Tel: {BUSINESS.phone}
+                <br />
+                E-Mail: {BUSINESS.email}
+              </p>
+            </div>
+
+            <div className="flex flex-col items-center gap-3">
+              <div className="w-14 h-14 bg-terracotta/10 text-terracotta rounded-full flex items-center justify-center">
+                <Clock size={28} />
+              </div>
+              <h3 className="font-heading text-xl text-charcoal">
+                Öffnungszeiten
+              </h3>
+              <p className="text-brown/80 font-bold text-sm leading-relaxed">
+                Mo–Fr: 12:00 – 20:00 Uhr
+                <br />
+                Sa–So: 10:00 – 20:00 Uhr
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <SchemaScripts
         schema={[
           buildFaqSchema(

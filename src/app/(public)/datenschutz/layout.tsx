@@ -2,14 +2,16 @@ import React from "react";
 import { buildMetadata } from "@/lib/seo/base-metadata";
 
 export const metadata = buildMetadata({
-  title: "Datenschutzerklärung · Hey Fede!",
+  title: "Datenschutzerklärung | Hey Fede! Dessertbar Wetzlar",
   description:
-    "Informationen zum Schutz deiner persönlichen Daten bei der Nutzung der Hey Fede! Website und des Vorbestellservice.",
+    "Datenschutzerklärung von Hey Fede! Wetzlar: Transparente Informationen zur Verarbeitung deiner Daten nach DSGVO auf unserer Website & beim Vorbestellen.",
   path: "/datenschutz",
   keywords: [
-    "Datenschutz Hey Fede",
+    "Datenschutzerklärung Hey Fede",
+    "Datenschutz Wetzlar",
     "DSGVO Dessertbar Wetzlar",
-    "Datenschutzerklärung Café",
+    "Datenschutzerklärung Café Wetzlar",
+    "Datenschutzvereinbarung Hey Fede",
   ],
 });
 

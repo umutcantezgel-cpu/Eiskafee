@@ -1,210 +1,313 @@
-"use client";
-
-import React, { useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import * as Icons from "lucide-react";
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import type { Metadata } from "next";
+import { buildMetadata } from "@/lib/seo/base-metadata";
+import { buildBreadcrumbSchema, buildFaqSchema } from "@/lib/seo/schema/pages";
+import { SITE, BUSINESS } from "@/lib/seo/business-data";
+import { getPhotosByCategory } from "@/lib/photos";
+import { FadeUp } from "@/components/ui/FadeUp";
+import { SectionTitle } from "@/components/ui/LayoutBlocks";
+import { WaveDivider } from "@/components/ui/WaveDivider";
 import { GiganticTypography } from "@/components/ui/GiganticTypography";
+import { SchemaScripts } from "@/components/seo/SchemaScripts";
+import { GutscheinConfigurator } from "./GutscheinConfigurator";
+
+export const revalidate = 60;
+
+export const metadata: Metadata = buildMetadata({
+  title: "Dessert Gutschein Wetzlar | Geschenkkarte | Hey Fede!",
+  description:
+    "Verschenke süße Momente mit einem Hey Fede! Gutschein in Wetzlar. Direkt online bestellen per E-Mail zum Ausdrucken oder per Post im edlen Umschlag.",
+  path: "/gutscheine",
+  keywords: [
+    "Gutschein Wetzlar",
+    "Dessert Gutschein Wetzlar",
+    "Geschenkkarte Wetzlar",
+    "Eiscafé Gutschein Wetzlar",
+    "Hey Fede Gutschein",
+    "Geschenkgutschein Wetzlar",
+  ],
+});
+
+/* ─── FAQ Data ─── */
+const FAQ_DATA = [
+  {
+    q: "Wie erhalte ich meinen Hey Fede! Gutschein nach der Bestellung?",
+    a: "Du hast die Wahl: Wählst du die Option 'Per E-Mail (PDF)', erhältst du deinen Gutschein sofort nach dem Kauf digital zugeschickt — perfekt zum Selbstausdrucken oder Weiterleiten. Wählst du den 'Edlen Geschenk-Umschlag', verschicken wir deinen gedruckten Gutschein per Post im liebevoll gestalteten Umschlag direkt an deine Wunschadresse.",
+  },
+  {
+    q: "Wo und wie lange ist der Dessert Gutschein in Wetzlar gültig?",
+    a: "Alle Gutscheine von Hey Fede! sind volle 36 Monate (3 Jahre) ab Ausstellungsdatum gültig. Sie können flexibel direkt vor Ort im Hey Fede! Eiscafé in der Langgasse 68 in Wetzlar sowie über unseren Online-Lieferservice eingelöst werden.",
+  },
+  {
+    q: "Kann der Gutschein auch stückweise eingelöst werden?",
+    a: "Ja, selbstverständlich! Der Betrag muss nicht auf einmal aufgebraucht werden. Das verbleibende Restguthaben bleibt auf dem Gutschein gespeichert und kann bei deinen nächsten Besuchen in unserer Dessertbar in Wetzlar genutzt werden.",
+  },
+  {
+    q: "Kann ich dem Gutschein eine persönliche Nachricht hinzufügen?",
+    a: "Ja! Bei der Online-Konfiguration kannst du eine persönliche Grußnachricht angeben. Diese wird stilvoll auf den digitalen PDF-Gutschein oder die gedruckte Geschenkkarte gedruckt.",
+  },
+  {
+    q: "Gilt der Gutschein für das gesamte Sortiment von Hey Fede!?",
+    a: "Ja, der Gutschein ist für unser gesamtes Sortiment gültig — egal ob hausgemachtes Eis, Bubble Waffles, Crêpes, Special Shakes, Kaffeespezialitäten, vegane Desserts oder erfrischende Kaltgetränke.",
+  },
+];
+
+/* ─── Cross-Links ─── */
+const CROSS_LINKS = [
+  { href: "/eiscafe-wetzlar", emoji: "🍨", label: "Eiscafé Wetzlar" },
+  { href: "/bubble-waffles-wetzlar", emoji: "🧇", label: "Bubble Waffles" },
+  { href: "/crepes-wetzlar", emoji: "🥞", label: "Crêpes Wetzlar" },
+  {
+    href: "/eisdiele-wetzlar-special-shakes",
+    emoji: "🥤",
+    label: "Special Shakes",
+  },
+  { href: "/events-catering-hessen", emoji: "🎉", label: "Catering & Events" },
+  {
+    href: "/lieferservice-desserts-lahn-dill",
+    emoji: "🚗",
+    label: "Lieferservice",
+  },
+  { href: "/vegane-desserts-wetzlar", emoji: "🌱", label: "Vegan & Halal" },
+  { href: "/kindergeburtstag-wetzlar", emoji: "🎂", label: "Kindergeburtstag" },
+];
+
+/* ─── Page Schema ─── */
+function getPageSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemPage",
+    mainEntity: {
+      "@type": "Product",
+      name: "Hey Fede! Dessert Gutschein Wetzlar",
+      description:
+        "Geschenkgutschein für das Hey Fede! Eiscafé & Dessertbar in der Wetzlarer Altstadt. Einlösbar für hausgemachtes Eis, Waffeln, Crêpes und Special Shakes.",
+      image: `${SITE.url}/og/home.png`,
+      brand: {
+        "@type": "Brand",
+        name: "Hey Fede!",
+      },
+      offers: {
+        "@type": "AggregateOffer",
+        priceCurrency: "EUR",
+        lowPrice: "10.00",
+        highPrice: "100.00",
+        offerCount: "6",
+        priceValidationUntil: "2029-12-31",
+        seller: {
+          "@type": "Restaurant",
+          "@id": `${SITE.url}/#localbusiness`,
+          name: BUSINESS.name,
+        },
+      },
+    },
+  };
+}
 
 export default function GutscheinePage() {
-  const [amount, setAmount] = useState<number | "Frei">(50);
-  const [delivery, setDelivery] = useState<"mail" | "mail_physical">("mail");
-  const [message, setMessage] = useState("");
-  const [recipientName, setRecipientName] = useState("");
-  const [recipientEmail, setRecipientEmail] = useState("");
-
-  const amounts: (number | "Frei")[] = [10, 25, 50, 75, 100, "Frei"];
-
-  const { scrollYProgress } = useScroll();
-  const ticketY = useTransform(scrollYProgress, [0, 1], [200, -100]);
-  const ticketRotate = useTransform(scrollYProgress, [0, 1], [-10, 10]);
+  const storePhotos = getPhotosByCategory("laden").slice(0, 3);
+  const dessertPhotos = getPhotosByCategory("dessert").slice(0, 3);
+  const galleryPhotos = [...storePhotos, ...dessertPhotos];
 
   return (
-    <div className="min-h-[300vh] bg-transparent text-charcoal font-body relative">
-      {/* SECTION 1: Massive Intro */}
-      <section className="min-h-[100vh] flex flex-col justify-center items-center px-6 relative pt-20">
+    <div className="min-h-screen bg-transparent text-charcoal font-body relative">
+      {/* ─── Hero Section ─── */}
+      <section className="min-h-[50vh] flex flex-col justify-center items-center px-6 relative pt-28 pb-12 text-center">
+        <div className="inline-block px-4 py-1.5 bg-terracotta text-white font-body font-bold rounded-full text-sm mb-6 shadow-sm">
+          Geschenkgutscheine & Geschenkkarte Wetzlar
+        </div>
+
         <GiganticTypography
           as="h1"
-          highlightWords={["Freude."]}
+          highlightWords={["Gutschein", "Wetzlar"]}
           highlightColor="#CC624C"
           className="text-center justify-center max-w-[1200px] mx-auto"
         >
-          Verschenke Freude.
+          Dessert Gutschein Wetzlar – Verschenke süße Freude
         </GiganticTypography>
 
-        <p className="font-body text-xl md:text-2xl mt-12 text-center max-w-[600px] font-bold text-brown/80">
-          Scroll weiter, um deinen Liebsten einen süßen Moment zu kreieren.
+        <p className="font-body text-lg md:text-xl mt-8 text-center max-w-[750px] font-medium text-brown-mid leading-relaxed mx-auto">
+          Überrasche deine Liebsten mit einem vielseitigen Dessert Gutschein für
+          Hey Fede! in der historischen Wetzlarer Altstadt. Ob für knusprige
+          Bubble Waffles, hausgemachte Eisbecher, duftende Crêpes oder cremig
+          beladene Special Shakes – verschenke unvergessliche Genussmomente in
+          stilvoller Atmosphäre.
         </p>
-
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-          className="absolute bottom-10 flex flex-col items-center opacity-50"
-        >
-          <Icons.ArrowDown size={40} className="text-terracotta" />
-        </motion.div>
       </section>
 
-      {/* SECTION 2: The Ticket & Form */}
-      <section className="min-h-[150vh] px-6 relative z-10 flex flex-col lg:flex-row justify-center items-center gap-20 max-w-[1400px] mx-auto py-20">
-        {/* Left Side: Floating Ticket */}
-        <motion.div
-          style={{ y: ticketY, rotate: ticketRotate }}
-          className="w-full max-w-[500px]"
-        >
-          <div className="relative bg-terracotta rounded-[40px] p-12 text-white overflow-hidden shadow-clay-lg">
-            <div className="absolute -top-12 -right-10 w-[250px] h-[250px] bg-white/10 rounded-full blur-2xl" />
-            <div className="absolute top-1/2 -left-6 w-[40px] h-[40px] rounded-full bg-cream -translate-y-1/2" />
-            <div className="absolute top-1/2 -right-6 w-[40px] h-[40px] rounded-full bg-cream -translate-y-1/2" />
-            <div className="relative">
-              <div className="text-sm font-black tracking-widest uppercase opacity-80 mb-6">
-                Hey Fede! Gutschein
-              </div>
-              <div className="flex items-baseline gap-4 mt-2">
-                <span className="font-heading text-8xl md:text-[120px] leading-none">
-                  {amount === "Frei" ? "??" : amount}
-                </span>
-                <span className="font-heading text-5xl opacity-90">€</span>
-              </div>
-              <div className="text-sm mt-8 opacity-90 font-bold uppercase tracking-wider">
-                Einlösbar im Laden · 36 Monate gültig
-              </div>
-            </div>
+      {/* ─── Interactive Ticket & Form Section ─── */}
+      <section className="px-6 relative z-10 py-8 max-w-[1400px] mx-auto">
+        <GutscheinConfigurator />
+      </section>
+
+      {/* ─── Main Content & SEO Text ─── */}
+      <section className="py-24 bg-white relative">
+        <FadeUp className="max-w-4xl mx-auto px-6">
+          <SectionTitle sub="Das perfekte Geschenk in Wetzlar">
+            Ein Gutschein für jeden süßen Anlass
+          </SectionTitle>
+
+          <div className="prose prose-lg prose-headings:font-heading prose-headings:text-charcoal prose-p:font-body prose-p:text-brown-mid mt-12 mx-auto">
+            <h2>Warum ein Hey Fede! Gutschein immer die richtige Wahl ist</h2>
+            <p>
+              Du suchst nach einem besonderen Geschenk in Wetzlar, das von
+              Herzen kommt und garantiert ein Lächeln auf das Gesicht zaubert?
+              Ein Geschenk-Gutschein von Hey Fede! ist die perfekte Idee für
+              Geburtstage, Weihnachten, Muttertag, Valentinstag oder als
+              liebevolles Dankeschön für Freunde, Kollegen und Familie. Statt
+              verstaubender Sachgeschenke verschenkst du wertvolle gemeinsame
+              Zeit und unvergleichlichen Dessertgenuss mitten in der Wetzlarer
+              Altstadt.
+            </p>
+            <p>
+              Egal ob für leidenschaftliche Eis-Liebhaber, Waffel-Fans oder
+              Kaffeegenießer: Mit dem Hey Fede! Gutschein trifft man immer den
+              richtigen Geschmack. Der Beschenkte kann frei wählen aus all
+              unseren hausgemachten Spezialitäten — von frisch gebackenen Bubble
+              Waffles und hauchzarten Crêpes bis hin zu üppig dekorierten
+              Special Shakes und veganen Eisbechern.
+            </p>
+
+            <h2>Sofort-Zustellung per E-Mail oder edler Geschenk-Umschlag</h2>
+            <p>
+              Brauchst du ein Last-Minute-Geschenk in Wetzlar? Kein Problem! Mit
+              unserer schnellen E-Mail-Option ist dein Gutschein im Handumdrehen
+              in deinem Posteingang. Du kannst ihn bequem zu Hause ausdrucken
+              oder direkt per E-Mail an den Glücklichen weiterleiten. Ideal für
+              spontane Überraschungen!
+            </p>
+            <p>
+              Möchtest du ein haptisch edles Präsent überreichen? Wähle unsere
+              Versandoption per Post: Wir drucken deinen Gutschein auf
+              hochwertigem Premium-Papier, verpacken ihn liebevoll in einem
+              stilvollen Geschenk-Umschlag und senden ihn direkt zu dir oder an
+              die Adresse des Empfängers.
+            </p>
+
+            <h2>Flexibel Einlösbar vor Ort in der Altstadt & Online</h2>
+            <p>
+              Unsere Gutscheine sind volle 36 Monate ab Kaufdatum gültig und
+              bieten maximale Flexibilität. Der Beschenkte kann den Gutschein
+              ganz einfach bei seinem nächsten Besuch in unserem Eiscafé in der
+              Langgasse 68 in Wetzlar vorzeigen und schrittweise einlösen.
+              Restguthaben verfällt nicht, sondern bleibt für den nächsten
+              Besuch erhalten.
+            </p>
+            <p>
+              Auch für Gemütliche zu Hause ist gesorgt: Der Gutschein lässt sich
+              ebenso unkompliziert für unseren Online-Bestellservice nutzen. So
+              lässt sich das Lieblingseis oder die frische Waffel auch entspannt
+              nach Hause im Lahn-Dill-Kreis liefern.
+            </p>
           </div>
-        </motion.div>
+        </FadeUp>
+      </section>
 
-        {/* Right Side: The Configuration Form */}
-        <div className="w-full max-w-[600px] space-y-10">
-          <div className="bg-cream/80 backdrop-blur-xl p-8 rounded-[40px] shadow-clay border border-peach/50 space-y-8">
-            {/* Amount */}
-            <div>
-              <div className="text-sm font-black text-terracotta tracking-widest uppercase mb-4">
-                Wähle den Betrag
-              </div>
-              <div className="grid grid-cols-3 gap-3">
-                {amounts.map((v) => (
-                  <button
-                    key={v}
-                    onClick={() => setAmount(v)}
-                    className={`rounded-2xl py-4 text-center font-heading text-2xl transition-all shadow-sm ${
-                      amount === v
-                        ? "bg-terracotta text-white scale-105 shadow-clay"
-                        : "bg-white/50 text-charcoal hover:bg-white/80"
-                    }`}
-                  >
-                    {typeof v === "number" ? `${v} €` : v}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Delivery */}
-            <div>
-              <div className="text-sm font-black text-terracotta tracking-widest uppercase mb-4">
-                Zustellung
-              </div>
-              <div className="flex flex-col gap-3">
-                <button
-                  onClick={() => setDelivery("mail")}
-                  className={`bg-white/50 rounded-2xl p-4 flex gap-4 items-center transition-all ${delivery === "mail" ? "ring-4 ring-terracotta bg-white" : "hover:bg-white/80"}`}
-                >
-                  <div className="w-12 h-12 rounded-full bg-peach/30 flex items-center justify-center shrink-0">
-                    <Icons.Mail size={24} className="text-terracotta" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="font-heading text-xl text-charcoal">
-                      Per E-Mail
-                    </div>
-                    <div className="text-sm font-bold text-brown/70 mt-1">
-                      Sofort verfügbar · PDF
-                    </div>
-                  </div>
-                  {delivery === "mail" && (
-                    <Icons.CheckCircle size={28} className="text-terracotta" />
-                  )}
-                </button>
-
-                <button
-                  onClick={() => setDelivery("mail_physical")}
-                  className={`bg-white/50 rounded-2xl p-4 flex gap-4 items-center transition-all ${delivery === "mail_physical" ? "ring-4 ring-terracotta bg-white" : "hover:bg-white/80"}`}
-                >
-                  <div className="w-12 h-12 rounded-full bg-peach/30 flex items-center justify-center shrink-0">
-                    <Icons.Gift size={24} className="text-terracotta" />
-                  </div>
-                  <div className="flex-1 text-left">
-                    <div className="font-heading text-xl text-charcoal">
-                      Edler Umschlag
-                    </div>
-                    <div className="text-sm font-bold text-brown/70 mt-1">
-                      + 3,90 € · per Post
-                    </div>
-                  </div>
-                  {delivery === "mail_physical" && (
-                    <Icons.CheckCircle size={28} className="text-terracotta" />
-                  )}
-                </button>
-              </div>
-            </div>
-
-            {/* Config */}
-            <div className="space-y-4">
-              <div>
-                <label
-                  htmlFor="gift-message"
-                  className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
-                >
-                  Nachricht (optional)
-                </label>
-                <textarea
-                  id="gift-message"
-                  name="gift-message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Alles Liebe..."
-                  className="w-full bg-white/50 border-none px-6 py-4 rounded-[20px] font-bold text-charcoal focus:outline-none focus:ring-2 focus:ring-terracotta min-h-[100px] resize-none"
+      {/* ─── Echte Fotos Section ─── */}
+      <section className="py-16 bg-cream">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="font-heading text-3xl text-charcoal mb-2 text-center">
+            Einblicke in die Dessertbar Hey Fede! Wetzlar
+          </h2>
+          <p className="font-body text-charcoal/70 text-center mb-8 max-w-xl mx-auto leading-relaxed">
+            Mit einem Hey Fede! Gutschein verschenkst du nicht nur leckere
+            Desserts, sondern auch eine schöne Auszeit in unserem stilvollen
+            Eiscafé in der Wetzlarer Langgasse.
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+            {galleryPhotos.map((photo) => (
+              <div
+                key={photo.src}
+                className="relative aspect-square overflow-hidden rounded-2xl shadow-clay group"
+              >
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 33vw"
                 />
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="gift-recipient-name"
-                    className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
-                  >
-                    An (Name)
-                  </label>
-                  <input
-                    id="gift-recipient-name"
-                    name="gift-recipient-name"
-                    type="text"
-                    value={recipientName}
-                    onChange={(e) => setRecipientName(e.target.value)}
-                    className="w-full bg-white/50 border-none px-6 py-4 rounded-[20px] font-bold text-charcoal focus:outline-none focus:ring-2 focus:ring-terracotta"
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="gift-recipient-email"
-                    className="block text-xs font-black text-brown/70 uppercase tracking-widest mb-2 ml-2"
-                  >
-                    E-Mail
-                  </label>
-                  <input
-                    id="gift-recipient-email"
-                    name="gift-recipient-email"
-                    type="email"
-                    value={recipientEmail}
-                    onChange={(e) => setRecipientEmail(e.target.value)}
-                    className="w-full bg-white/50 border-none px-6 py-4 rounded-[20px] font-bold text-charcoal focus:outline-none focus:ring-2 focus:ring-terracotta"
-                  />
-                </div>
-              </div>
-            </div>
-
-            <button className="w-full bg-terracotta text-white py-6 rounded-[20px] font-black text-xl uppercase tracking-wider flex items-center justify-center gap-3 hover:scale-[1.02] active:scale-[0.98] transition-all shadow-clay mt-8">
-              In den Warenkorb <Icons.ArrowRight size={24} />
-            </button>
+            ))}
           </div>
         </div>
       </section>
+
+      {/* ─── FAQ Section ─── */}
+      <section className="py-24 bg-sand">
+        <FadeUp className="max-w-4xl mx-auto px-6">
+          <SectionTitle sub="Antworten auf deine Fragen">
+            Häufig gestellte Fragen zu unseren Gutscheinen
+          </SectionTitle>
+          <div className="mt-12 space-y-4">
+            {FAQ_DATA.map((faq, i) => (
+              <details
+                key={i}
+                className="group bg-white rounded-2xl border border-peach/20 overflow-hidden"
+              >
+                <summary className="flex items-center justify-between px-6 py-5 cursor-pointer font-heading text-lg text-charcoal">
+                  {faq.q}
+                  <span className="text-terracotta group-open:rotate-45 transition-transform text-2xl ml-4 shrink-0">
+                    +
+                  </span>
+                </summary>
+                <div className="px-6 pb-5 font-body text-brown-mid leading-relaxed">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+        </FadeUp>
+      </section>
+
+      {/* ─── CTA Section ─── */}
+      <section className="py-24 bg-terracotta relative text-center text-white overflow-hidden">
+        <div className="absolute top-0 left-0 w-full -translate-y-1">
+          <WaveDivider fromColor="#F5EDE3" toColor="#CC624C" variant={1} />
+        </div>
+        <FadeUp className="max-w-2xl mx-auto px-6 relative z-10 pt-12">
+          <h2 className="font-heading text-4xl mb-6">
+            Mache jemandem heute eine Freude!
+          </h2>
+          <p className="font-body text-lg text-cream/90 mb-10 max-w-xl mx-auto">
+            Wähle oben deinen Wunschbetrag aus und erstelle in wenigen Klicks
+            deinen individuellen Hey Fede! Dessert Gutschein für Wetzlar.
+          </p>
+        </FadeUp>
+      </section>
+
+      {/* ─── Cross Links Section ─── */}
+      <section className="py-20 bg-bg-creme">
+        <FadeUp className="max-w-5xl mx-auto px-6 text-center">
+          <h2 className="font-heading text-3xl text-charcoal mb-10">
+            Entdecke mehr von Hey Fede! Wetzlar
+          </h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {CROSS_LINKS.map((link, i) => (
+              <Link
+                key={i}
+                href={link.href}
+                className="bg-white rounded-2xl p-5 border border-peach/20 hover:border-terracotta/40 hover:shadow-lg transition-all group"
+              >
+                <span className="text-3xl block mb-2">{link.emoji}</span>
+                <span className="font-body font-bold text-sm text-charcoal group-hover:text-terracotta transition-colors">
+                  {link.label}
+                </span>
+              </Link>
+            ))}
+          </div>
+        </FadeUp>
+      </section>
+
+      <SchemaScripts
+        schema={[
+          buildBreadcrumbSchema([{ name: "Gutscheine", path: "/gutscheine" }]),
+          buildFaqSchema(FAQ_DATA),
+          getPageSchema(),
+        ]}
+      />
     </div>
   );
 }

@@ -1,22 +1,32 @@
-"use client";
-
 import React from "react";
+import type { Metadata } from "next";
 import { LegalPageLayout, AccordionSection } from "@/components/legal/LegalUI";
 import { Scale, CheckCircle2, Info } from "lucide-react";
-import { motion } from "framer-motion";
+import { buildMetadata } from "@/lib/seo/base-metadata";
+
+export const metadata: Metadata = buildMetadata({
+  title: "AGB & Allgemeine Geschäftsbedingungen | Hey Fede! Wetzlar",
+  description:
+    "Allgemeine Geschäftsbedingungen (AGB) von Hey Fede! Wetzlar: Transparente Regelungen für Vorbestellungen, Click & Collect, Abholung und Stornierung.",
+  path: "/agb",
+  keywords: [
+    "AGB Hey Fede Wetzlar",
+    "Allgemeine Geschäftsbedingungen Hey Fede",
+    "Click and Collect AGB Wetzlar",
+    "Vorbestellung AGB Dessertbar",
+    "Rechtliches Hey Fede",
+  ],
+});
 
 export default function AGBPage() {
   return (
     <LegalPageLayout
-      title="Allgemeine Geschäftsbedingungen"
-      subtitle="AGB für Vorbestellungen (Click & Collect) bei Hey Fede!"
+      title="AGB & Allgemeine Geschäftsbedingungen"
+      subtitle="Allgemeine Geschäftsbedingungen für Vorbestellungen (Click & Collect) bei Hey Fede! Dessertbar & Café in Wetzlar"
       lastUpdated="Juni 2026"
     >
       {/* TL;DR Box */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
+      <div
         style={{
           background: "linear-gradient(135deg, #E4C0A8 0%, #eedfcc 100%)",
           padding: 24,
@@ -43,10 +53,10 @@ export default function AGBPage() {
         </h3>
         <div style={{ display: "grid", gap: 8 }}>
           {[
-            "Vorbestellung ist kostenlos & unverbindlich (Zubereitung beginnt oft erst kurz vor Abholung)",
-            "Zahlung erfolgt ausschließlich vor Ort im Laden",
-            "Stornierung ist bis 30 Min vor Abholung über die App oder telefonisch möglich",
-            "Nicht abgeholte Bestellungen werden nach 30 Min Wartezeit aufgelöst",
+            "Vorbestellung ist kostenlos & unverbindlich (Zubereitung beginnt kurz vor der gewählten Abholzeit)",
+            "Bezahlung erfolgt bequem & sicher direkt vor Ort im Laden in Wetzlar (Bar, EC oder Kreditkarte)",
+            "Kostenlose Stornierung ist bis 30 Minuten vor Abholung über die App, per Telefon oder WhatsApp möglich",
+            "Nicht abgeholte Bestellungen werden nach 30 Minuten Wartezeit zum Erhalt der Frische aufgelöst",
           ].map((item) => (
             <div
               key={item}
@@ -57,7 +67,7 @@ export default function AGBPage() {
             </div>
           ))}
         </div>
-      </motion.div>
+      </div>
 
       <AccordionSection
         icon={<Scale size={14} />}
@@ -66,13 +76,21 @@ export default function AGBPage() {
         defaultOpen
       >
         <p>
-          Diese Allgemeinen Geschäftsbedingungen gelten für alle Bestellungen
-          (insbesondere Vorbestellungen / Click & Collect), die von Verbrauchern
-          oder Unternehmern über die Hey Fede! Online-Plattform getätigt werden.
+          Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für sämtliche
+          Verträge, Bestellungen und Vorbestellungen (insbesondere über den
+          Vorbestellservice / Click & Collect), die Kunden als Verbraucher oder
+          Unternehmer über die Hey Fede! Online-Plattform, unsere Web-App oder
+          vor Ort im Café mit uns abschließen. Abweichende oder ergänzende
+          Bedingungen des Kunden werden nicht Vertragsbestandteil, es sei denn,
+          Hey Fede! stimmt ihrer Geltung ausdrücklich schriftlich zu.
         </p>
         <p>
-          Anbieter ist: Hey Fede! Dessertbar & Café, Inhaberin Federica Rossi,
-          Langgasse 68, 35578 Wetzlar.
+          Vertragspartner und Anbieter des Vorbestellservices ist die Hey Fede!
+          Dessertbar & Café, Inhaberin Federica Rossi, Langgasse 68, 35578
+          Wetzlar (nachfolgend „Hey Fede!“, „wir“ oder „uns“ genannt). Für alle
+          Anfragen, Vorbestellungen oder Kundenrückmeldungen stehen wir dir über
+          unsere gewohnten Kontaktkanäle sowie persönlich in unserer Dessertbar
+          in der Wetzlarer Altstadt zur Verfügung.
         </p>
       </AccordionSection>
 
@@ -82,18 +100,27 @@ export default function AGBPage() {
         title="Vertragsschluss"
       >
         <p>
-          (1) Die Darstellung der Produkte im Online-Shop stellt kein rechtlich
-          bindendes Angebot, sondern eine Aufforderung zur Abgabe einer
-          Bestellung dar.
+          (1) Die Präsentation und Darstellung unseres Produktangebots (z. B.
+          frische Bubble Waffles, Crêpes, Eisbecher, Spezialitätengetränke und
+          Desserts) auf der Hey Fede! Online-Plattform stellt kein rechtlich
+          bindendes Angebot im Sinne des BGB dar, sondern eine unverbindliche
+          Aufforderung an den Kunden, eine Bestellung (Reservierungsanfrage)
+          abzugeben.
         </p>
         <p>
-          (2) Durch Anklicken des Bestellbuttons gibst du eine verbindliche
-          Anfrage auf Abschluss eines Kaufvertrags ab.
+          (2) Durch das Absenden einer Vorbestellung über die Hey Fede! Web-App
+          und das Betätigen des Buttons „Kostenpflichtig bestellen“ bzw.
+          „Vorbestellung abschicken“ gibst du ein verbindliches Angebot zum
+          Abschluss eines Kaufvertrages über die ausgewählten Speisen und
+          Getränke ab.
         </p>
         <p>
-          (3) Der Vertrag kommt erst mit der Bestätigung deiner Bestellung durch
-          uns (per SMS, E-Mail oder Push-Benachrichtigung) zustande. Bis dahin
-          gilt die Bestellung als unverbindliche Reservierungsanfrage.
+          (3) Ein verbindlicher Kaufvertrag kommt erst zustande, wenn Hey Fede!
+          deine Bestellung ausdrücklich bestätigt. Die Bestätigung erfolgt
+          unmittelbar per SMS, E-Mail oder über eine Push-Benachrichtigung in
+          der App. Bis zu dieser Bestätigung behalten wir uns das Recht vor,
+          Bestellungen aufgrund unzureichender Kapazitäten oder fehlender
+          Zutaten abzulehnen.
         </p>
       </AccordionSection>
 
@@ -103,16 +130,22 @@ export default function AGBPage() {
         title="Preise, Steuern & Bezahlung"
       >
         <p>
-          (1) Alle angegebenen Preise sind Endpreise inklusive der gesetzlichen
-          Mehrwertsteuer. Bei Speisen zum Mitnehmen (Take-away) gilt der
-          ermäßigte Steuersatz (7%), beim Verzehr vor Ort der reguläre
-          Steuersatz (19%).
+          (1) Alle in unserem Online-Shop sowie auf den Speisekarten angegebenen
+          Preise sind Endpreise in Euro (€) und enthalten die jeweils gültige
+          gesetzliche Mehrwertsteuer. Bei Speisen und Getränken zum Mitnehmen
+          (Take-away / Click & Collect) wird der gesetzlich ermäßigte Steuersatz
+          (7%) angewendet, während beim Verzehr direkt vor Ort in unserer
+          Dessertbar der reguläre Steuersatz (19%) berechnet wird.
         </p>
         <p>
-          (2) Die Bezahlung erfolgt bei Hey Fede! derzeit ausschließlich{" "}
-          <strong>vor Ort</strong> bei Abholung der Bestellung (bar, mit
-          EC-Karte oder gängigen Kreditkarten). Ein Online-Payment wird aktuell
-          nicht angeboten.
+          (2) Die Bezahlung deiner Vorbestellung erfolgt bei Hey Fede! derzeit
+          ausschließlich
+          <strong> direkt vor Ort bei der Abholung</strong> in unserer Filiale
+          in der Langgasse 68, 35578 Wetzlar. Wir akzeptieren Bargeld, EC-Karten
+          (Girocard) sowie alle gängigen Kreditkarten und kontaktlose
+          Zahlungsmethoden (z. B. Apple Pay, Google Pay). Eine Online-Zahlung
+          vorab findet derzeit nicht statt, sodass keine Zahlungsdaten im
+          Internet eingegeben werden müssen.
         </p>
       </AccordionSection>
 
@@ -122,23 +155,29 @@ export default function AGBPage() {
         title="Abholung & Stornierung"
       >
         <p>
-          (1) Deine Bestellung wird zu der von dir ausgewählten Abholzeit frisch
-          zubereitet. Wir bitten dich, pünktlich zu erscheinen, um die beste
-          Qualität (insbesondere bei Eis, Bubble Waffles und heißen Getränken)
-          garantieren zu können.
+          (1) <strong>Pünktliche Abholung:</strong> Die von dir gewählte
+          Abholzeit ist für die Zubereitung maßgeblich. Um dir maximale Frische
+          und herausragende Qualität bei unseren handgemachten Eissorten, warmen
+          Bubble Waffles, Crêpes und Kaffeespezialitäten zu garantieren,
+          bereiten wir deine Produkte zeitnah vor. Wir bitten dich daher
+          höflich, pünktlich zum gewählten Abholzeitpunkt zu erscheinen.
         </p>
         <p>
-          (2) <strong>Stornierung:</strong> Du kannst deine Vorbestellung bis zu
-          30 Minuten vor der gewählten Abholzeit kostenlos und ohne Angabe von
-          Gründen stornieren (per App, Telefon oder WhatsApp).
+          (2) <strong>Kostenlose Stornierung:</strong> Da uns Flexibilität
+          wichtig ist, kannst du deine Vorbestellung bis zu 30 Minuten vor dem
+          vereinbarten Abholzeitpunkt völlig kostenfrei und ohne Angabe von
+          Gründen stornieren. Die Stornierung kann direkt über die Hey Fede!
+          Web-App, per Telefon oder über unsere WhatsApp-Hotline vorgenommen
+          werden.
         </p>
         <p>
-          (3) <strong>Nichtabholung:</strong> Solltest du deine Bestellung ohne
-          vorherige Stornierung nicht abholen, bewahren wir diese maximal 30
-          Minuten für dich auf. Danach behalten wir uns vor, die Bestellung aus
-          Qualitäts- und Platzgründen aufzulösen. Wir behalten uns vor,
-          Nutzerkennungen bei wiederholten Nichtabholungen (Spaßbestellungen)
-          temporär oder dauerhaft vom Vorbestellservice auszuschließen.
+          (3) <strong>Umgang mit Nichtabholung:</strong> Bei unentschuldigter
+          Nichtabholung halten wir deine Speisen und Getränke für maximal 30
+          Minuten ab dem vereinbarten Zeitpunkt warm bzw. gekühlt. Verstreicht
+          diese Frist ohne Rückmeldung, wird die Bestellung aus Hygiene- und
+          Qualitätsgründen entsorgt. Wir behalten uns vor, Nutzerkonten bei
+          wiederholter Nichtabholung (sogenannte Spaßbestellungen) vorübergehend
+          oder dauerhaft für weitere Online-Vorbestellungen zu sperren.
         </p>
       </AccordionSection>
 
@@ -148,8 +187,10 @@ export default function AGBPage() {
         title="Eigentumsvorbehalt"
       >
         <p>
-          Bis zur vollständigen Bezahlung vor Ort bleiben die gelieferten bzw.
-          ausgehändigten Waren im Eigentum von Hey Fede!.
+          Die von Hey Fede! ausgehändigten Speisen, Getränke und
+          Merchandise-Artikel bleiben bis zur vollständigen und beglichenen
+          Bezahlung des Rechnungsbetrages an der Kasse unserer Dessertbar im
+          Eigentum der Inhaberin Federica Rossi (Hey Fede! Dessertbar & Café).
         </p>
       </AccordionSection>
 
@@ -159,24 +200,31 @@ export default function AGBPage() {
         title="Gewährleistung & Haftung"
       >
         <p>
-          (1) Es gelten die gesetzlichen Gewährleistungsrechte. Da es sich um
-          schnell verderbliche Lebensmittel handelt, bitten wir dich,
-          offensichtliche Mängel direkt bei der Übergabe vor Ort zu reklamieren,
-          damit wir sofort für Ersatz sorgen können.
+          (1) <strong>Gewährleistungsrechte & Frischeversprechen:</strong> Es
+          gelten die gesetzlichen Mängelhaftungsrechte. Da es sich bei unseren
+          Produkten um frisch zubereitete und schnell verderbliche Lebensmittel
+          handelt, bitten wir dich, die Ware unmittelbar bei der Übergabe an der
+          Theke zu überprüfen. Etwaige Abweichungen oder Mängel werden von
+          unserem Team sofort unbürokratisch korrigiert oder ersetzt.
         </p>
         <p>
-          (2) Hey Fede! haftet nur für Schäden, die auf einer vorsätzlichen oder
-          grob fahrlässigen Pflichtverletzung beruhen. Für leichte
-          Fahrlässigkeit haften wir nur bei der Verletzung wesentlicher
-          Vertragspflichten (Kardinalpflichten) und beschränkt auf den
-          vertragstypischen, vorhersehbaren Schaden.
+          (2) <strong>Haftungsbeschränkung:</strong> Hey Fede! haftet
+          uneingeschränkt für Schäden aus der Verletzung des Lebens, des Körpers
+          oder der Gesundheit sowie für vorsätzlich oder grob fahrlässig
+          verursachte Schäden. Bei leicht fahrlässiger Verletzung wesentlicher
+          Vertragspflichten (Kardinalpflichten) haftet Hey Fede! der Höhe nach
+          begrenzt auf den bei Vertragsschluss vorhersehbaren, vertragstypischen
+          Schaden.
         </p>
         <p>
-          (3) Allergien und Unverträglichkeiten: Unsere Speisekarten weisen
-          Allergene aus. Bitte weise unser Personal bei der Abholung dennoch
-          zwingend auf schwere Allergien hin, da Kreuzkontaminationen in unserer
-          Dessertbar trotz größter Sorgfalt nicht zu 100% ausgeschlossen werden
-          können.
+          (3) <strong>Allergene & Unverträglichkeiten:</strong> Informationen
+          über enthaltene Allergene und Zusatzstoffe stellen wir in der Web-App
+          sowie in der Speisekarte vor Ort transparent bereit. Wir weisen
+          ausdrücklich darauf hin, dass in unserem Betrieb
+          Allergen-Kreuzkontaminationen trotz höchster Hygiene- und
+          Sorgfaltsstandards nicht zu 100 % ausgeschlossen werden können. Bei
+          schweren Allergien informiere bitte unverzüglich unser Servicepersonal
+          vor Ort.
         </p>
       </AccordionSection>
 
@@ -186,14 +234,21 @@ export default function AGBPage() {
         title="Schlussbestimmungen"
       >
         <p>
-          (1) Auf Verträge zwischen uns und dir findet das Recht der
-          Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts
-          Anwendung.
+          (1) <strong>Anwendbares Recht:</strong> Auf sämtliche
+          Rechtsbeziehungen zwischen Hey Fede! und den Kunden findet
+          ausschließlich das Recht der Bundesrepublik Deutschland unter
+          Ausschluss des UN-Kaufrechts (CISG) Anwendung. Bei Verbrauchern gilt
+          diese Rechtswahl nur insoweit, als nicht der gewährte Schutz durch
+          zwingende Bestimmungen des Rechts des Staates, in dem der Verbraucher
+          seinen gewöhnlichen Aufenthalt hat, entzogen wird.
         </p>
         <p>
-          (2) Sollten einzelne Bestimmungen dieser AGB unwirksam sein, so bleibt
-          der Vertrag im Übrigen wirksam. Anstelle der unwirksamen Bestimmung
-          gelten die einschlägigen gesetzlichen Vorschriften.
+          (2) <strong>Severabilitätsklausel & Streitbeilegung:</strong> Sollten
+          einzelne Bestimmungen dieser Allgemeinen Geschäftsbedingungen ganz
+          oder teilweise unwirksam oder undurchführbar sein oder werden, bleibt
+          die Wirksamkeit der übrigen Bestimmungen hiervon unberührt. Anstelle
+          der unwirksamen Regelung treten die entsprechenden gesetzlichen
+          Bestimmungen.
         </p>
       </AccordionSection>
     </LegalPageLayout>

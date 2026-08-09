@@ -33,9 +33,9 @@ import { LANDMARKS } from "@/lib/seo/wetzlar-entities";
 import { Compass } from "lucide-react";
 
 export const metadata = buildMetadata({
-  title: "Besuche uns · Anfahrt, Öffnungszeiten & Kontakt",
+  title: "Besuche Hey Fede in Wetzlar · Anfahrt & Öffnungszeiten",
   description:
-    "Besuche Hey Fede! in der Langgasse 68, Wetzlar. Alle Infos zu Anfahrt, Parken, Öffnungszeiten und Lieferungen.",
+    "Besuche Hey Fede! in der Langgasse 68, Wetzlar. Alle Informationen zu Anfahrt, Parken in der Altstadt, unseren Öffnungszeiten und bequemen Lieferungen.",
   path: "/visit",
   keywords: [
     "Anfahrt Hey Fede",
@@ -67,10 +67,13 @@ export default function VisitPage() {
 
           <div className="relative z-10 max-w-[700px] mx-auto text-center">
             <h1 className="font-heading text-[clamp(2.4rem,6vw,4.2rem)] text-brown mb-3.5 leading-[1.05]">
-              Komm uns besuchen!
+              Besuche Hey Fede! in Wetzlar
             </h1>
             <p className="font-body text-[1.04rem] text-brown-mid">
-              Wir freuen uns auf dich - vor Ort oder bequem per Lieferung.
+              Besuche Hey Fede! in der historischen Altstadt von Wetzlar in der
+              Langgasse 68. Genieße unsere frisch zubereiteten Bubble Waffeln,
+              Crêpes, Eisbecher und Kaffeespezialitäten direkt vor Ort oder
+              bestelle ganz bequem per Lieferservice zu dir nach Hause.
             </p>
           </div>
 
@@ -186,12 +189,15 @@ export default function VisitPage() {
           <FadeUp className="max-w-[1200px] mx-auto px-6">
             <div className="text-center mb-12">
               <h2 className="font-heading text-[2rem] text-charcoal mb-4">
-                Unsere Nachbarschaft
+                Unsere Nachbarschaft in Wetzlar
               </h2>
               <p className="font-body text-charcoal/80 max-w-[600px] mx-auto">
-                Hey Fede! liegt im Herzen der historischen Altstadt Wetzlars.
-                Verbinde deinen Besuch bei uns mit einem Spaziergang zu diesen
-                wunderschönen Sehenswürdigkeiten in unmittelbarer Nähe.
+                Hey Fede! befindet sich direkt im lebendigen Herzen der
+                historischen Altstadt von Wetzlar. Verbinde deinen Besuch in
+                unserer Dessertbar ideal mit einem entspannten Spaziergang zu
+                den bekanntesten Sehenswürdigkeiten und historischen
+                Highlight-Orten der Stadt, die nur wenige Gehminuten von uns
+                entfernt liegen.
               </p>
             </div>
 
@@ -241,8 +247,10 @@ export default function VisitPage() {
                 Unsere Atmosphäre
               </h2>
               <p className="font-body text-charcoal/70 max-w-[500px] mx-auto">
-                Gemütlich, modern und mit Liebe eingerichtet — so sieht es bei
-                uns aus.
+                Erlebe bei Hey Fede! in Wetzlar ein stilvolles und gemütliches
+                Ambiente: Unser modern gestalteter Innenraum mit bequemen
+                Polsterbänken, Marmortischen und der ikonischen Mooswand lädt
+                zum Entspannen, Genießen und Verweilen ein.
               </p>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

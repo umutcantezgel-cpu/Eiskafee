@@ -48,13 +48,7 @@ test.describe("Tier 2 - Boundary and Error Conditions", () => {
   // 2. Empty/Invalid inputs on Contact Form
   test.describe("Contact Form Boundary Validation", () => {
     test.beforeEach(async ({ page, browserName }) => {
-      // Direct navigation to support page, ensuring contact form hash is targeted
-      if (browserName === "webkit") {
-        await page.goto("/support#kontakt");
-      } else {
-        await page.goto("/kontakt");
-        await page.waitForURL("**/support**");
-      }
+      await page.goto("/kontakt");
       await waitForHydration(page);
     });
 
@@ -62,9 +56,9 @@ test.describe("Tier 2 - Boundary and Error Conditions", () => {
       page,
     }) => {
       // Check required attribute presence
-      const nameInput = page.locator("#contact-name");
-      const emailInput = page.locator("#contact-email");
-      const messageInput = page.locator("#contact-message");
+      const nameInput = page.locator("#kontakt-name");
+      const emailInput = page.locator("#kontakt-email");
+      const messageInput = page.locator("#kontakt-message");
 
       await expect(nameInput).toHaveAttribute("required");
       await expect(emailInput).toHaveAttribute("required");
@@ -83,7 +77,7 @@ test.describe("Tier 2 - Boundary and Error Conditions", () => {
     });
 
     test("HTML5 validation flags invalid email addresses", async ({ page }) => {
-      const emailInput = page.locator("#contact-email");
+      const emailInput = page.locator("#kontakt-email");
 
       // Set an invalid email
       await emailInput.fill("invalidemailaddress");

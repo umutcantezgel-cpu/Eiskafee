@@ -1,12 +1,22 @@
-import { buildMetadata } from '@/lib/seo/base-metadata';
+import { buildMetadata } from "@/lib/seo/base-metadata";
 
 export const metadata = buildMetadata({
-  title: 'Tisch reservieren · Hey Fede! Wetzlar',
-  description: 'Reserviere jetzt deinen Tisch in unserer Dessertbar in der Wetzlarer Altstadt. Perfekt für Dates, Familientreffen oder Geburtstage.',
-  path: '/reservierung',
-  keywords: ['Tisch reservieren Wetzlar', 'Hey Fede Reservierung', 'Dessertbar Wetzlar'],
+  title: "Tisch reservieren in Wetzlar | Hey Fede! Eiscafé Lounge",
+  description:
+    "Jetzt online deinen Tisch in Wetzlar reservieren bei Hey Fede! Genieße hausgemachtes Eis, Desserts & Kaffee in gemütlicher Lounge-Atmosphäre.",
+  path: "/reservierung",
+  keywords: [
+    "Tisch reservieren Wetzlar",
+    "Hey Fede Reservierung",
+    "Dessertbar Wetzlar",
+    "Eiscafé Wetzlar Tischreservierung",
+  ],
 });
 
-export default function ReservierungLayout({ children }: { children: React.ReactNode }) {
+export default function ReservierungLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return children;
 }

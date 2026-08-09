@@ -16,7 +16,7 @@ export function MenuSEO() {
       <div className="max-w-[820px] mx-auto px-6" role="region">
         <div className="bg-white rounded-3xl p-8 md:p-10 shadow-sm border border-peach/20">
           <h2 className="font-heading text-3xl md:text-4xl text-brown mb-6">
-            Herzlich willkommen bei Hey Fede!
+            Dessert-Spezialitäten auf der Hey Fede Speisekarte in Wetzlar
           </h2>
 
           <div className="font-body text-charcoal/80 space-y-5 text-base md:text-lg leading-relaxed">
@@ -24,8 +24,9 @@ export function MenuSEO() {
               Inmitten der historischen Wetzlarer Altstadt, nur einen Steinwurf
               vom Dom entfernt, findest du unsere Dessertbar. Ein Ort, an dem
               der Alltag an der Tür bleibt und Platz macht für puren Genuss und
-              echte Handwerkskunst. Komm vorbei, atme den Duft von frisch
-              gebackenem Waffelteig ein und fühl dich wie zu Hause.
+              echte Handwerkskunst. Komm vorbei, atme den verführerischen Duft
+              von frisch gebackenem Waffelteig ein und entdecke unsere
+              vielfältige Speisekarte.
             </p>
 
             <AnimatePresence initial={false}>
@@ -42,12 +43,14 @@ export function MenuSEO() {
                       Bubble Waffles – Die süße Sensation
                     </h3>
                     <p>
-                      Unsere Bubble Waffles sind außen knusprig und innen
-                      wunderbar fluffig. Wir bereiten den Teig täglich frisch zu
-                      und backen jede Waffel direkt auf Bestellung. Gefüllt mit
-                      cremigem Eis, hausgemachter Sahne und Toppings wie
-                      frischen Früchten, Keksstücken und Saucen wird jede Waffel
-                      zu einem kleinen Meisterwerk.
+                      Unsere Bubble Waffles sind außen knusprig, innen wunderbar
+                      fluffig und das Herzstück unserer Speisekarte. Wir
+                      bereiten den Teig täglich nach eigenem Hausrezept frisch
+                      zu und backen jede Waffel direkt auf deine Bestellung.
+                      Gefüllt mit cremigem Eis, frisch aufgeschlagener Sahne und
+                      einer großen Auswahl an Toppings wie frischen Früchten,
+                      Keksstücken und Saucen wird jede Waffel zu einem
+                      einzigartigen Dessert-Meisterwerk in Wetzlar.
                     </p>
                   </section>
 
@@ -56,11 +59,12 @@ export function MenuSEO() {
                       Crêpes – Süße und herzhafte Momente
                     </h3>
                     <p>
-                      Hauchdünn, goldbraun und auf der Crêpière frisch für dich
-                      zubereitet. Egal, ob du es klassisch mit Butter und
-                      Zucker, dekadent mit Nougat-Creme oder herzhaft mit Käse
-                      und Kräutern magst – wir haben die perfekte Variante für
-                      jeden Geschmack.
+                      Unsere Crêpes werden hauchdünn, goldbraun und stets frisch
+                      auf der traditionellen Crêpière für dich zubereitet. Egal,
+                      ob du es klassisch mit Butter und Zucker, dekadent mit
+                      Nougat-Creme und frischen Erdbeeren oder herzhaft mit Käse
+                      und Kräutern magst – auf unserer Speisekarte bieten wir
+                      für jeden Geschmack die passende Variation in Wetzlar.
                     </p>
                   </section>
 
@@ -69,11 +73,13 @@ export function MenuSEO() {
                       Pancakes – Fluffiges Glück gestapelt
                     </h3>
                     <p>
-                      Unsere Pancakes sind luftig, dick und saugen die
-                      herrlichen Aromen förmlich in sich auf. Ob puristisch mit
-                      echtem kanadischem Ahornsirup oder als "Chocolate
-                      Lover"-Turm mit Schokoladen-Ganache übergossen – sie sind
-                      das perfekte Soul Food.
+                      Die Pancakes bei Hey Fede sind besonders fluffig, in
+                      mehreren Schichten gestapelt und nehmen köstliche Saucen
+                      hervorragend auf. Genieße deinen Pancaketurm ganz
+                      klassisch mit feinstem kanadischen Ahornsirup oder
+                      entscheide dich für unsere beliebten Kombinationen mit
+                      Schokoladen-Ganache, Knusper-Toppings und frischem Obst.
+                      Ein echtes Highlight für alle Dessert-Fans.
                     </p>
                   </section>
 
@@ -82,12 +88,13 @@ export function MenuSEO() {
                       Eisbecher & Special Shakes
                     </h3>
                     <p>
-                      Großzügige 500ml-Eisbecher und spektakuläre "Freakshakes"
-                      – unsere eisgekühlten Desserts sind ein absolutes
-                      Highlight. Cremiges Premium-Eis, frische Milch und eine
-                      opulente Dekoration, die alle Blicke auf sich zieht.
-                      Perfekt zum Teilen oder um sich selbst so richtig zu
-                      verwöhnen.
+                      Unsere großzügigen 500ml-Eisbecher und spektakulären
+                      Special Shakes bieten eisgekühlten Dessertgenuss der
+                      Extraklasse. Ausgewähltes Premium-Eis, frische Vollmilch
+                      und eine opulente Dekoration aus Saucen, Sahne und Sweets
+                      machen jedes Getränk und jeden Eisbecher zu einem
+                      optischen und geschmacklichen Erlebnis. Perfekt zum Teilen
+                      mit Freunden oder für die süße Verwöhnauszeit.
                     </p>
                   </section>
 
@@ -96,11 +103,13 @@ export function MenuSEO() {
                       Fede Boxen – Gemeinsam genießen
                     </h3>
                     <p>
-                      Unsere Fede Boxen sind die ideale Wahl für Picknicks an
-                      der Lahn oder Filmabende zu Hause. Vollgepackt mit
-                      Mini-Pancakes, Bubble-Waffle-Ecken, Cookies und Dips,
+                      Die Fede Boxen auf unserer Speisekarte sind die ideale
+                      Wahl für gemeinsame Genussmomente, Picknicks an der Lahn
+                      oder gemütliche Filmabende daheim. Vollgepackt mit
+                      mundgerechten Mini-Pancakes, Bubble-Waffle-Ecken,
+                      verschiedenen Cookies und köstlichen Dips zum Tunken
                       verwandeln sie jedes Treffen in ein interaktives
-                      Dessert-Fest.
+                      Dessert-Fest in Wetzlar.
                     </p>
                   </section>
                 </motion.div>

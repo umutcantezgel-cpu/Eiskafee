@@ -2,14 +2,15 @@ import React from "react";
 import { buildMetadata } from "@/lib/seo/base-metadata";
 
 export const metadata = buildMetadata({
-  title: "Impressum · Hey Fede!",
+  title: "Impressum | Hey Fede! Dessertbar & Eiscafé in Wetzlar",
   description:
-    "Rechtliche Angaben und Impressum für Hey Fede! Dessertbar & Café in Wetzlar.",
+    "Offizielles Impressum & rechtliche Informationen von Hey Fede! Dessertbar & Eiscafé Wetzlar. Angaben gemäß § 5 DDG & § 18 MStV sowie Kontaktdaten.",
   path: "/impressum",
   keywords: [
     "Impressum Hey Fede",
+    "Impressum Dessertbar Wetzlar",
     "Federica Rossi Wetzlar",
-    "Kontakt Café Altstadt",
+    "Kontakt Hey Fede Wetzlar",
   ],
 });
 

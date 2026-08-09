@@ -1,15 +1,17 @@
 import React from "react";
+import type { Metadata } from "next";
 import { buildMetadata } from "@/lib/seo/base-metadata";
 
-export const metadata = buildMetadata({
-  title: "Cookie-Richtlinie · Hey Fede!",
+export const metadata: Metadata = buildMetadata({
+  title: "Cookie-Richtlinie & Cookie-Nutzung | Hey Fede! Wetzlar",
   description:
-    "Erfahre mehr über die Verwendung von Cookies und ähnlichen Technologien auf der Website von Hey Fede!.",
+    "Alle Details zur Nutzung von Cookies und Web-Technologien bei Hey Fede! in Wetzlar. Transparente Cookie-Richtlinie & volle Kontrolle deiner Daten.",
   path: "/cookie-richtlinie",
   keywords: [
-    "Cookies Hey Fede",
-    "Cookie Richtlinie Café Wetzlar",
-    "Datenschutz Cookies",
+    "Cookie Richtlinie Hey Fede",
+    "Cookie Richtlinie Wetzlar",
+    "Datenschutz Cookies Hey Fede",
+    "Cookie Einstellungen Hey Fede",
   ],
 });
 

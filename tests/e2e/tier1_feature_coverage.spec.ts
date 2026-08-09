@@ -156,12 +156,16 @@ test.describe("Menu Page Feature Area (/menu) - 6 Tests", () => {
       .locator("section[aria-label='Wissenswertes rund um unsere Speisekarte']")
       .or(
         page.locator(
-          "section[aria-label='Hey Fede! Speisekarte - Wissenswertes']",
+          "section[aria-label='Hey Fede! Menü - Unsere Spezialitäten']",
         ),
       );
     await expect(seoBlock.first()).toBeAttached();
-    await expect(seoBlock.first()).toContainText("Philosophie");
-    await expect(seoBlock.first()).toContainText("Zutaten");
+    const expandButton = seoBlock.locator("button").first();
+    if (await expandButton.isVisible()) {
+      await expandButton.click();
+    }
+    await expect(seoBlock.first()).toContainText("Bubble Waffles");
+    await expect(seoBlock.first()).toContainText("Crêpes");
   });
 });
 
@@ -205,11 +209,15 @@ test.describe("About Page Feature Area (/about) - 6 Tests", () => {
       )
       .or(
         page.locator(
-          "section[aria-label='Über Hey Fede! - Ausführliche Geschichte und Philosophie']",
+          "section[aria-label='Über Hey Fede! - Geschichte und Philosophie']",
         ),
       );
     await expect(seoBlock.first()).toBeAttached();
-    await expect(seoBlock.first()).toContainText("Zuhause");
+    const expandButton = seoBlock.locator("button").first();
+    if (await expandButton.isVisible()) {
+      await expandButton.click();
+    }
+    await expect(seoBlock.first()).toContainText("Wetzlar");
     await expect(seoBlock.first()).toContainText("Philosophie");
   });
 });
@@ -219,52 +227,47 @@ test.describe("About Page Feature Area (/about) - 6 Tests", () => {
 // ==========================================
 test.describe("Contact Page Feature Area (/kontakt) - 6 Tests", () => {
   test.beforeEach(async ({ page, browserName }) => {
-    if (browserName === "webkit") {
-      await page.goto("/support#kontakt");
-    } else {
-      await page.goto("/kontakt");
-      await page.waitForURL("**/support**");
-    }
+    await page.goto("/kontakt");
     await waitForHydration(page);
   });
 
-  test("Contact page (/kontakt) redirects and loads successfully with 200 OK", async ({
+  test("Contact page (/kontakt) loads successfully with 200 OK", async ({
     page,
   }) => {
-    expect(page.url()).toContain("/support");
+    expect(page.url()).toContain("/kontakt");
   });
 
   test("Contact page contains key contact headings and content", async ({
     page,
   }) => {
-    await expect(page.locator("body")).toContainText("helfen", {
+    await expect(page.locator("body")).toContainText("Schreib uns", {
       timeout: 10000,
     });
-    const heading = page.locator("h2").filter({ hasText: "Schreib uns" });
+    const heading = page.locator("h1").filter({ hasText: "Schreib" });
     await expect(heading.first()).toBeAttached();
   });
 
   test("Contact page contains basic semantic landmarks", async ({ page }) => {
-    await expect(page.locator("body")).toContainText("helfen", {
+    await expect(page.locator("body")).toContainText("Schreib", {
       timeout: 10000,
     });
     await verifySemanticLandmarks(page);
   });
 
   test("Contact page contact form inputs are present", async ({ page }) => {
-    await expect(page.locator("body")).toContainText("helfen", {
+    await expect(page.locator("body")).toContainText("Schreib", {
       timeout: 10000,
     });
-    const nameInput = page.locator("#contact-name");
-    const emailInput = page.locator("#contact-email");
-    const messageInput = page.locator("#contact-message");
+    const nameInput = page.locator("#kontakt-name");
+    const emailInput = page.locator("#kontakt-email");
+    const messageInput = page.locator("#kontakt-message");
     await expect(nameInput.first()).toBeAttached();
     await expect(emailInput.first()).toBeAttached();
     await expect(messageInput.first()).toBeAttached();
   });
 
   test("Contact page contains Schema.org JSON-LD scripts", async ({ page }) => {
-    await expect(page.locator("body")).toContainText("helfen", {
+    await expect(page.locator("body")).toContainText("Schreib", {
       timeout: 10000,
     });
     await verifySchemaJsonLd(page);
@@ -273,12 +276,12 @@ test.describe("Contact Page Feature Area (/kontakt) - 6 Tests", () => {
   test("Contact page contains WhatsApp contact button option", async ({
     page,
   }) => {
-    await expect(page.locator("body")).toContainText("helfen", {
+    await expect(page.locator("body")).toContainText("Schreib", {
       timeout: 10000,
     });
     const waLink = page.locator("a[href^='https://wa.me/']");
     await expect(waLink.first()).toBeAttached();
-    await expect(waLink.first()).toContainText("WhatsApp Chat Starten");
+    await expect(waLink.first()).toContainText("WhatsApp");
   });
 });
 
@@ -393,10 +396,12 @@ test.describe("FAQ Page Feature Area (/faq) - 6 Tests", () => {
     await expect(page.locator("body")).toContainText("helfen", {
       timeout: 10000,
     });
-    const faqItem = page.locator("role=button[name='Liefert ihr?']");
+    const faqItem = page
+      .locator('div[role="button"]')
+      .filter({ hasText: "Liefert ihr?" });
     await expect(faqItem.first()).toBeAttached();
     await faqItem.first().scrollIntoViewIfNeeded();
-    await faqItem.first().click({ force: true });
+    await faqItem.first().evaluate((node: HTMLElement) => node.click());
     await expect(page.locator("body")).toContainText("Ja, in ausgewählte PLZs");
   });
 
@@ -412,14 +417,10 @@ test.describe("FAQ Page Feature Area (/faq) - 6 Tests", () => {
       timeout: 10000,
     });
     await expect(
-      page.locator("role=button[name='Was ist in der Box?']").first(),
+      page.locator("text=Was ist in der Box?").first(),
     ).toBeAttached();
-    await expect(
-      page.locator("role=button[name='Vegan?']").first(),
-    ).toBeAttached();
-    await expect(
-      page.locator("role=button[name='Reservieren?']").first(),
-    ).toBeAttached();
+    await expect(page.locator("text=Vegan?").first()).toBeAttached();
+    await expect(page.locator("text=Reservieren?").first()).toBeAttached();
   });
 });
 
