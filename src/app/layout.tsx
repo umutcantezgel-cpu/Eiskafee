@@ -32,7 +32,15 @@ export const metadata: Metadata = {
     default: `${SITE.shortName} · Bubble Waffles & Eis in Wetzlar`,
   },
   description: `Hey Fede! Dessertbar & Café in Wetzlar - hausgemachte Bubble Waffles, Crêpes, Pancakes, Eisbecher und Special Shakes. ${FULL_ADDRESS}.`,
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || SITE.url),
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL
+      ? process.env.NEXT_PUBLIC_SITE_URL
+      : process.env.VERCEL_URL
+        ? `https://${process.env.VERCEL_URL}`
+        : process.env.NEXT_PUBLIC_VERCEL_URL
+          ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+          : SITE.url,
+  ),
   formatDetection: { telephone: false, address: false, email: false },
   icons: {
     icon: "/favicon.ico",
