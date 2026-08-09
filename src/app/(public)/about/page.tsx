@@ -98,7 +98,7 @@ export default function AboutPage() {
                   src="/assets/photos/team-gruenderin-federica-hey-fede-wetzlar.jpg"
                   alt="Federica, Gründerin des Hey Fede! Dessertbar & Café in Wetzlar, bei der Arbeit in der Küche"
                   fill
-                  className="object-contain scale-[0.85]"
+                  className="object-contain scale-[0.70]"
                   sizes="(max-width: 1024px) 90vw, 45vw"
                 />
               </div>
